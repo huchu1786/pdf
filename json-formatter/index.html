@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>JSON Formatter & Validator – Free Online Tool | LovePDFs</title>
+    <meta name="description"
+        content="Format, validate, beautify and minify JSON data instantly in your browser. Free JSON formatter with syntax highlighting, error detection, and tree view." />
+    <link rel="icon" type="image/png" sizes="512x512" href="../favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../shared.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1303178479491171"
+        crossorigin="anonymous"></script>
+    <style>
+        .jf-wrap {
+            max-width: 1000px;
+            margin: 0 auto
+        }
+
+        .jf-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1rem
+        }
+
+        .jf-panel {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden
+        }
+
+        .jf-panel-header {
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            padding: 0.65rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem
+        }
+
+        .jf-panel-title {
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted)
+        }
+
+        .jf-textarea {
+            width: 100%;
+            min-height: 340px;
+            padding: 1rem;
+            border: none;
+            background: var(--bg2);
+            color: var(--text);
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.88rem;
+            resize: vertical;
+            outline: none;
+            line-height: 1.7
+        }
+
+        .jf-output {
+            width: 100%;
+            min-height: 340px;
+            padding: 1rem;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.88rem;
+            overflow: auto;
+            line-height: 1.7;
+            white-space: pre;
+            word-break: break-word;
+            color: var(--text)
+        }
+
+        .status-bar {
+            padding: 0.6rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-top: 1px solid var(--border)
+        }
+
+        .status-ok {
+            background: rgba(22, 163, 74, 0.08);
+            color: #16a34a
+        }
+
+        .status-err {
+            background: rgba(232, 50, 26, 0.08);
+            color: var(--red)
+        }
+
+        .status-idle {
+            background: var(--bg3);
+            color: var(--muted)
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 0.55rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem
+        }
+
+        .jf-btn {
+            padding: 0.6rem 1.1rem;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text2);
+            background: var(--card);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Instrument Sans', sans-serif
+        }
+
+        .jf-btn:hover {
+            border-color: var(--red);
+            color: var(--red)
+        }
+
+        .jf-btn.primary {
+            background: linear-gradient(135deg, var(--red), var(--red2));
+            color: #fff;
+            border-color: transparent
+        }
+
+        .jf-btn.primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px var(--red-glow);
+            color: #fff
+        }
+
+        .indent-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--muted)
+        }
+
+        .indent-select {
+            padding: 0.3rem 0.55rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg2);
+            color: var(--text);
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.78rem;
+            cursor: pointer
+        }
+
+        /* Syntax colors */
+        .j-str {
+            color: #22c55e
+        }
+
+        .j-num {
+            color: #3b82f6
+        }
+
+        .j-bool {
+            color: #f59e0b
+        }
+
+        .j-null {
+            color: #94a3b8
+        }
+
+        .j-key {
+            color: #ec4899
+        }
+
+        .info-section {
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.05), rgba(20, 184, 166, 0.03));
+            border: 1.5px solid rgba(22, 163, 74, 0.15);
+            border-radius: 18px;
+            padding: 2rem;
+            margin-top: 2.5rem
+        }
+
+        .info-section h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 1rem
+        }
+
+        .info-section h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 1.2rem 0 0.5rem
+        }
+
+        .info-section p,
+        .info-section li {
+            font-size: 0.95rem;
+            color: var(--text2);
+            line-height: 1.75
+        }
+
+        .info-section ul {
+            padding-left: 1.5rem
+        }
+
+        .info-section li {
+            margin-bottom: 0.35rem
+        }
+
+        code.inline {
+            background: var(--bg3);
+            padding: 0.1rem 0.4rem;
+            border-radius: 5px;
+            font-size: 0.88rem;
+            font-family: monospace
+        }
+
+        @media(max-width:720px) {
+            .jf-grid {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="site-nav">
+        <a href="../index.html" class="nav-logo">
+            <div class="nav-logo-ic">P</div>LovePDFs
+        </a>
+        <div class="nav-mid">
+            <a href="../all-tools.html" class="nav-link">All Tools</a>
+            <a href="../features.html" class="nav-link">Features</a>
+            <a href="../blog.html" class="nav-link">Blog</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-btn" id="themeBtn">🌙</button>
+            <a href="../index.html" class="nav-btn-f">← Home</a>
+        </div>
+    </nav>
+    <div class="page-wrap">
+        <section class="inner-hero">
+            <div class="inner-hero-eyebrow">🧩 Utility Tools</div>
+            <h1>JSON Formatter & Validator</h1>
+            <p>Format, validate, beautify and minify JSON data instantly in your browser — with syntax highlighting and
+                error detection.</p>
+        </section>
+        <div class="jf-wrap content-section">
+            <div style="text-align:center;margin-bottom:1.25rem">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1303178479491171"
+                    data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+
+            <div class="btn-row">
+                <button class="jf-btn primary" onclick="formatJSON()">✨ Format / Beautify</button>
+                <button class="jf-btn" onclick="minifyJSON()">🗜️ Minify</button>
+                <button class="jf-btn" onclick="validateOnly()">✅ Validate</button>
+                <button class="jf-btn" onclick="clearAll()">🗑️ Clear</button>
+                <button class="jf-btn" onclick="loadSample()">📄 Load Sample</button>
+                <div class="indent-group">
+                    Indent:
+                    <select class="indent-select" id="indentSel">
+                        <option value="2" selected>2 spaces</option>
+                        <option value="4">4 spaces</option>
+                        <option value="tab">Tab</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="jf-grid">
+                <div class="jf-panel">
+                    <div class="jf-panel-header">
+                        <span class="jf-panel-title">Input JSON</span>
+                        <button class="jf-btn" style="padding:0.3rem 0.65rem;font-size:0.75rem"
+                            onclick="pasteFromClipboard()">📋 Paste</button>
+                    </div>
+                    <textarea class="jf-textarea" id="jfInput"
+                        placeholder='Paste your JSON here…&#10;&#10;Example:&#10;{"name":"Alice","age":30}'
+                        oninput="liveProcess()"></textarea>
+                    <div class="status-bar status-idle" id="inputStatus">Ready — paste JSON to begin</div>
+                </div>
+                <div class="jf-panel">
+                    <div class="jf-panel-header">
+                        <span class="jf-panel-title">Formatted Output</span>
+                        <div style="display:flex;gap:0.5rem">
+                            <button class="jf-btn" style="padding:0.3rem 0.65rem;font-size:0.75rem"
+                                onclick="copyOutput()">📋 Copy</button>
+                            <button class="jf-btn" style="padding:0.3rem 0.65rem;font-size:0.75rem"
+                                onclick="downloadJSON()">⬇ Download</button>
+                        </div>
+                    </div>
+                    <div class="jf-output" id="jfOutput">Formatted JSON will appear here…</div>
+                    <div class="status-bar status-idle" id="outputStatus">—</div>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <div class="info-section">
+                <h2>🧩 What Is JSON?</h2>
+                <p><strong>JSON</strong> (JavaScript Object Notation) is a lightweight, human-readable data interchange
+                    format. It's the most widely used format for APIs, configuration files, and data storage in modern
+                    web applications.</p>
+
+                <h3>How to Use This Tool</h3>
+                <ul>
+                    <li><strong>Format / Beautify</strong> — Converts compact or messy JSON into a readable, indented
+                        format.</li>
+                    <li><strong>Minify</strong> — Removes all whitespace to produce the smallest possible JSON string.
+                        Useful for reducing data transfer sizes.</li>
+                    <li><strong>Validate</strong> — Checks if your JSON is syntactically valid without reformatting it.
+                    </li>
+                    <li><strong>Color Syntax</strong> — Output is highlighted: keys in pink, strings in green, numbers
+                        in blue, booleans in amber.</li>
+                    <li><strong>Download</strong> — Save the formatted JSON as a <code class="inline">.json</code> file.
+                    </li>
+                </ul>
+
+                <h3>JSON Syntax Rules</h3>
+                <ul>
+                    <li>Data is in <strong>key/value pairs</strong>: <code class="inline">{"key": "value"}</code></li>
+                    <li>Keys must be <strong>strings in double quotes</strong> — single quotes are invalid.</li>
+                    <li>Values can be: <strong>string, number, object, array, boolean, null</strong></li>
+                    <li>Arrays use <strong>square brackets</strong>: <code class="inline">[1, 2, 3]</code></li>
+                    <li>No <strong>trailing commas</strong> — <code class="inline">{"a": 1,}</code> is invalid.</li>
+                    <li>No <strong>comments</strong> — JSON does not support <code class="inline">// comments</code>
+                    </li>
+                </ul>
+
+                <h3>Common JSON Errors</h3>
+                <ul>
+                    <li>Missing or mismatched <strong>braces/brackets</strong> (<code class="inline">{}</code> or <code
+                            class="inline">[]</code>)</li>
+                    <li>Using <strong>single quotes</strong> instead of double quotes for strings</li>
+                    <li><strong>Trailing commas</strong> after the last item in an object or array</li>
+                    <li>Unescaped special characters in strings (use <code class="inline">\"</code>, <code
+                            class="inline">\\</code>, <code class="inline">\n</code>)</li>
+                    <li>Using <code class="inline">undefined</code> — JSON has no undefined, only <code
+                            class="inline">null</code></li>
+                </ul>
+            </div>
+
+            <div style="text-align:center;margin-top:2rem">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1303178479491171"
+                    data-ad-slot="2222222222" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+        </div>
+    </div>
+    <footer class="simple-footer">
+        <p>© LovePDFs 2026 · <a href="../index.html">Home</a> · <a href="../all-tools.html">All Tools</a> · <a
+                href="../blog.html">Blog</a></p>
+    </footer>
+    <script>
+        const SAMPLE = '{\n  "user": {\n    "id": 1,\n    "name": "Alice Johnson",\n    "email": "alice@example.com",\n    "active": true,\n    "score": 98.6,\n    "tags": ["admin","premium","verified"],\n    "address": {\n      "city": "San Francisco",\n      "country": "USA"\n    },\n    "notes": null\n  }\n}';
+
+        function getIndent() { const v = document.getElementById('indentSel').value; return v === 'tab' ? '\t' : parseInt(v) || 2; }
+
+        function syntaxHighlight(json) {
+            return json.replace(/(")(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*(")\s*:/g, '<span class="j-key">$&</span>')
+                .replace(/:\s*(")(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*(")/g, m => ': <span class="j-str">' + m.slice(1) + '</span>')
+                .replace(/:\s*(\-?\d+\.?\d*)/g, m => ': <span class="j-num">' + m.slice(1) + '</span>')
+                .replace(/:\s*(true|false)/g, m => ': <span class="j-bool">' + m.slice(1) + '</span>')
+                .replace(/:\s*(null)/g, m => ': <span class="j-null">' + m.slice(1) + '</span>');
+        }
+
+        function setStatus(elId, msg, type) {
+            const el = document.getElementById(elId);
+            el.textContent = msg;
+            el.className = 'status-bar status-' + type;
+        }
+
+        function formatJSON() {
+            const raw = document.getElementById('jfInput').value.trim();
+            if (!raw) { setStatus('inputStatus', 'Nothing to format', 'idle'); return; }
+            try {
+                const parsed = JSON.parse(raw);
+                const indent = getIndent();
+                const pretty = JSON.stringify(parsed, null, indent);
+                document.getElementById('jfOutput').innerHTML = syntaxHighlight(escapeHtml(pretty));
+                const chars = pretty.length, keys = countKeys(parsed);
+                setStatus('inputStatus', '✓ Valid JSON', 'ok');
+                setStatus('outputStatus', `Formatted · ${chars.toLocaleString()} chars · ${keys} keys`, 'ok');
+            } catch (e) {
+                setStatus('inputStatus', '✕ Error: ' + e.message, 'err');
+                setStatus('outputStatus', 'Fix the error to format', 'err');
+                document.getElementById('jfOutput').textContent = 'Parse error: ' + e.message;
+            }
+        }
+
+        function minifyJSON() {
+            const raw = document.getElementById('jfInput').value.trim();
+            if (!raw) return;
+            try {
+                const minified = JSON.stringify(JSON.parse(raw));
+                document.getElementById('jfOutput').textContent = minified;
+                setStatus('inputStatus', '✓ Valid JSON', 'ok');
+                setStatus('outputStatus', `Minified · ${minified.length} chars`, 'ok');
+            } catch (e) { setStatus('inputStatus', '✕ ' + e.message, 'err'); }
+        }
+
+        function validateOnly() {
+            const raw = document.getElementById('jfInput').value.trim();
+            if (!raw) { setStatus('inputStatus', 'Empty input', 'idle'); return; }
+            try { JSON.parse(raw); setStatus('inputStatus', '✓ Valid JSON — no errors found!', 'ok'); }
+            catch (e) { setStatus('inputStatus', '✕ Invalid: ' + e.message, 'err'); }
+        }
+
+        function liveProcess() {
+            const raw = document.getElementById('jfInput').value.trim();
+            if (!raw) { setStatus('inputStatus', 'Ready — paste JSON to begin', 'idle'); return; }
+            try { JSON.parse(raw); setStatus('inputStatus', '✓ Valid JSON', 'ok'); }
+            catch (e) { setStatus('inputStatus', '✕ ' + e.message, 'err'); }
+        }
+
+        function clearAll() { document.getElementById('jfInput').value = ''; document.getElementById('jfOutput').textContent = 'Formatted JSON will appear here…'; setStatus('inputStatus', 'Ready', 'idle'); setStatus('outputStatus', '—', 'idle'); }
+        function loadSample() { document.getElementById('jfInput').value = SAMPLE; formatJSON(); }
+        function escapeHtml(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+        function countKeys(obj, n = 0) { if (typeof obj === 'object' && obj) { for (const k in obj) { n++; n = countKeys(obj[k], n); } } return n; }
+
+        async function pasteFromClipboard() {
+            try { const t = await navigator.clipboard.readText(); document.getElementById('jfInput').value = t; liveProcess(); }
+            catch (e) { alert('Please paste manually (Ctrl+V)'); }
+        }
+
+        function copyOutput() {
+            const text = document.getElementById('jfOutput').textContent;
+            if (!text || text.includes('appear here')) return;
+            navigator.clipboard.writeText(text).then(() => {
+                const n = document.createElement('div');
+                n.style.cssText = 'position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#16a34a;color:#fff;padding:0.55rem 1.2rem;border-radius:9px;font-weight:700;font-size:0.88rem;z-index:9999';
+                n.textContent = '✓ JSON copied!'; document.body.appendChild(n); setTimeout(() => n.remove(), 2000);
+            });
+        }
+
+        function downloadJSON() {
+            const text = document.getElementById('jfOutput').textContent;
+            if (!text || text.includes('appear here')) return;
+            const blob = new Blob([text], { type: 'application/json' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'formatted.json'; a.click();
+        }
+
+        const _t = document.getElementById('themeBtn');
+        if (_t) {
+            if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark'); _t.textContent = '☀️'; }
+            _t.onclick = () => { document.body.classList.toggle('dark'); const d = document.body.classList.contains('dark'); localStorage.setItem('theme', d ? 'dark' : 'light'); _t.textContent = d ? '☀️' : '🌙'; };
+        }
+    </script>
+
+<script src="../site-enhancements.js"></script>
+<script src="../nav-enhancements.js"></script>
+</body>
+
+</html>

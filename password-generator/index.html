@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Password Generator – Free Strong Password Tool | LovePDFs</title>
+    <meta name="description"
+        content="Generate strong, secure, random passwords instantly. Customize length, include symbols, numbers, uppercase & lowercase letters. 100% free, runs in your browser." />
+    <meta name="keywords"
+        content="password generator, strong password, random password, secure password, free password generator" />
+    <meta property="og:title" content="Password Generator – LovePDFs" />
+    <meta property="og:description"
+        content="Generate strong, secure random passwords instantly in your browser. Customize length and character types. 100% free & private." />
+    <link rel="icon" type="image/png" sizes="512x512" href="../favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../shared.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1303178479491171"
+        crossorigin="anonymous"></script>
+    <style>
+        .pg-tool {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 2rem
+        }
+
+        .pg-output {
+            position: relative;
+            background: var(--bg2);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem 3.5rem 1.5rem 1.5rem;
+            font-family: monospace;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text);
+            word-break: break-all;
+            min-height: 64px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            letter-spacing: 0.04em
+        }
+
+        .pg-output:hover {
+            border-color: var(--purple);
+            background: var(--card)
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, var(--purple), #9333ea);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 0.45rem 0.85rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Instrument Sans', sans-serif
+        }
+
+        .copy-btn:hover {
+            transform: translateY(calc(-50% - 2px));
+            box-shadow: 0 6px 16px rgba(113, 50, 222, 0.35)
+        }
+
+        .strength-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: var(--border);
+            margin: 0.75rem 0 0.25rem;
+            overflow: hidden;
+            transition: all 0.3s
+        }
+
+        .strength-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.4s ease, background 0.4s ease
+        }
+
+        .strength-label {
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--muted);
+            margin-bottom: 1.25rem
+        }
+
+        .ctrl-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0
+        }
+
+        .ctrl-card {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            padding: 1.1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none
+        }
+
+        .ctrl-card:hover {
+            border-color: var(--purple);
+            background: rgba(113, 50, 222, 0.04)
+        }
+
+        .ctrl-card.on {
+            border-color: var(--purple);
+            background: rgba(113, 50, 222, 0.07)
+        }
+
+        .ctrl-card input[type=checkbox] {
+            accent-color: var(--purple);
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            cursor: pointer
+        }
+
+        .ctrl-label {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text2)
+        }
+
+        .ctrl-example {
+            font-size: 0.74rem;
+            color: var(--muted);
+            font-family: monospace
+        }
+
+        .length-wrap {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            padding: 1.1rem 1.25rem;
+            margin-bottom: 1rem
+        }
+
+        .length-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem
+        }
+
+        .length-val {
+            font-family: 'Fraunces', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--text);
+            min-width: 2.5rem;
+            text-align: center
+        }
+
+        input[type=range] {
+            flex: 1;
+            accent-color: var(--purple);
+            height: 6px;
+            border-radius: 3px;
+            cursor: pointer
+        }
+
+        .gen-btn {
+            width: 100%;
+            padding: 1.1rem;
+            background: linear-gradient(135deg, var(--purple), #9333ea);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            font-family: 'Instrument Sans', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 6px 20px rgba(113, 50, 222, 0.3);
+            margin-top: 0.5rem;
+            letter-spacing: 0.02em
+        }
+
+        .gen-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(113, 50, 222, 0.4)
+        }
+
+        .bulk-area {
+            width: 100%;
+            min-height: 120px;
+            padding: 1rem;
+            border: 1.5px solid var(--border);
+            border-radius: 13px;
+            background: var(--bg2);
+            color: var(--text);
+            font-family: monospace;
+            font-size: 0.88rem;
+            resize: vertical;
+            transition: border-color 0.2s
+        }
+
+        .bulk-area:focus {
+            outline: none;
+            border-color: var(--purple)
+        }
+
+        .info-section {
+            background: linear-gradient(135deg, rgba(113, 50, 222, 0.05), rgba(147, 51, 234, 0.03));
+            border: 1.5px solid rgba(113, 50, 222, 0.15);
+            border-radius: 18px;
+            padding: 2rem;
+            margin-top: 2.5rem
+        }
+
+        .info-section h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 1rem
+        }
+
+        .info-section h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 1.2rem 0 0.5rem
+        }
+
+        .info-section p,
+        .info-section li {
+            font-size: 0.95rem;
+            color: var(--text2);
+            line-height: 1.75
+        }
+
+        .info-section ul {
+            padding-left: 1.5rem;
+            color: var(--text2)
+        }
+
+        .info-section li {
+            margin-bottom: 0.35rem
+        }
+
+        .tip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.85rem;
+            margin-top: 1rem
+        }
+
+        .tip-card {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            font-size: 0.88rem;
+            color: var(--text2)
+        }
+
+        .tip-card strong {
+            display: block;
+            color: var(--text);
+            font-weight: 800;
+            margin-bottom: 0.25rem
+        }
+
+        @media(max-width:600px) {
+            .ctrl-grid {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="site-nav">
+        <a href="../index.html" class="nav-logo">
+            <div class="nav-logo-ic">P</div>LovePDFs
+        </a>
+        <div class="nav-mid">
+            <a href="../all-tools.html" class="nav-link">All Tools</a>
+            <a href="../features.html" class="nav-link">Features</a>
+            <a href="../blog.html" class="nav-link">Blog</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-btn" id="themeBtn">🌙</button>
+            <a href="../index.html" class="nav-btn-f">← Home</a>
+        </div>
+    </nav>
+
+    <div class="page-wrap">
+        <section class="inner-hero">
+            <div class="inner-hero-eyebrow">🔑 Utility Tools</div>
+            <h1>Password Generator</h1>
+            <p>Create strong, secure, random passwords instantly — fully browser-based, nothing is stored or
+                transmitted.</p>
+        </section>
+
+        <div class="pg-tool content-section">
+            <!-- Ad -->
+            <div style="text-align:center;margin-bottom:1.5rem">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1303178479491171"
+                    data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+
+            <!-- Output -->
+            <div class="pg-output" id="pgOutput" onclick="copyPwd()" title="Click to copy">
+                <span id="pwdText">Click Generate to create a password</span>
+                <button class="copy-btn" onclick="event.stopPropagation();copyPwd()">📋 Copy</button>
+            </div>
+            <div class="strength-bar">
+                <div class="strength-fill" id="strengthFill" style="width:0%;background:#e5e7eb"></div>
+            </div>
+            <div class="strength-label" id="strengthLabel">Strength: —</div>
+
+            <!-- Length -->
+            <div class="length-wrap">
+                <div class="opt-l" style="margin-bottom:0.5rem">Password Length</div>
+                <div class="length-row">
+                    <span class="length-val" id="lenVal">16</span>
+                    <input type="range" id="lenSlider" min="6" max="128" value="16"
+                        oninput="lenVal.textContent=this.value;autoGen()">
+                    <span style="font-size:0.8rem;color:var(--muted)">6–128</span>
+                </div>
+            </div>
+
+            <!-- Character Types -->
+            <div class="ctrl-grid">
+                <label class="ctrl-card on" id="card_upper" onclick="toggleOpt('upper',this)">
+                    <input type="checkbox" id="opt_upper" checked onchange="autoGen()">
+                    <div>
+                        <div class="ctrl-label">Uppercase</div>
+                        <div class="ctrl-example">A B C … Z</div>
+                    </div>
+                </label>
+                <label class="ctrl-card on" id="card_lower" onclick="toggleOpt('lower',this)">
+                    <input type="checkbox" id="opt_lower" checked onchange="autoGen()">
+                    <div>
+                        <div class="ctrl-label">Lowercase</div>
+                        <div class="ctrl-example">a b c … z</div>
+                    </div>
+                </label>
+                <label class="ctrl-card on" id="card_nums" onclick="toggleOpt('nums',this)">
+                    <input type="checkbox" id="opt_nums" checked onchange="autoGen()">
+                    <div>
+                        <div class="ctrl-label">Numbers</div>
+                        <div class="ctrl-example">0 1 2 … 9</div>
+                    </div>
+                </label>
+                <label class="ctrl-card on" id="card_syms" onclick="toggleOpt('syms',this)">
+                    <input type="checkbox" id="opt_syms" checked onchange="autoGen()">
+                    <div>
+                        <div class="ctrl-label">Symbols</div>
+                        <div class="ctrl-example">! @ # $ % ^ &</div>
+                    </div>
+                </label>
+                <label class="ctrl-card" id="card_ambig" onclick="toggleOpt('ambig',this)">
+                    <input type="checkbox" id="opt_ambig" onchange="autoGen()">
+                    <div>
+                        <div class="ctrl-label">Exclude Ambiguous</div>
+                        <div class="ctrl-example">No 0,O,l,I,1</div>
+                    </div>
+                </label>
+                <label class="ctrl-card" id="card_similar" onclick="toggleOpt('similar',this)">
+                    <input type="checkbox" id="opt_similar" onchange="autoGen()">
+                    <div>
+                        <div class="ctrl-label">No Similar Chars</div>
+                        <div class="ctrl-example">Easier to read</div>
+                    </div>
+                </label>
+            </div>
+
+            <button class="gen-btn" onclick="generatePwd()">🔑 Generate New Password</button>
+
+            <!-- Bulk Generate -->
+            <div class="content-card" style="margin-top:1.5rem">
+                <div class="opt-section-title" style="margin-bottom:0.75rem">Bulk Generate</div>
+                <div style="display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;margin-bottom:0.75rem">
+                    <div class="opt-g" style="min-width:120px;flex:0 0 auto">
+                        <div class="opt-l">Count</div>
+                        <input type="number" class="opt-i" id="bulkCount" value="10" min="1" max="100"
+                            style="width:100px">
+                    </div>
+                    <button class="btn-go"
+                        style="flex:0 0 auto;margin-top:auto;padding:0.65rem 1.25rem;font-size:0.88rem"
+                        onclick="generateBulk()">Generate List</button>
+                    <button class="btn-rst" style="margin-top:auto"
+                        onclick="document.getElementById('bulkArea').value=''">Clear</button>
+                </div>
+                <textarea class="bulk-area" id="bulkArea" readonly
+                    placeholder="Generated passwords will appear here…"></textarea>
+                <button class="ocr-copy-btn" style="margin-top:0.5rem" onclick="copyBulk()">📋 Copy All
+                    Passwords</button>
+            </div>
+
+            <!-- Info Section -->
+            <div class="info-section">
+                <h2>🔑 What Is a Password Generator?</h2>
+                <p>A <strong>password generator</strong> is a tool that creates random, unpredictable character strings
+                    to be used as secure passwords. Unlike human-chosen passwords (which tend to follow patterns),
+                    machine-generated passwords are truly random and much harder for attackers to crack.</p>
+
+                <h3>How Does It Work?</h3>
+                <p>This tool uses the browser's built-in <code
+                        style="background:var(--bg3);padding:0.1rem 0.4rem;border-radius:5px;font-size:0.88rem">crypto.getRandomValues()</code>
+                    API — a cryptographically secure random number generator. This means the randomness is suitable for
+                    security applications, not just simulations.</p>
+
+                <h3>How to Use This Tool</h3>
+                <ul>
+                    <li><strong>Set a length</strong> — Longer passwords are always more secure. 16+ characters is
+                        recommended for important accounts.</li>
+                    <li><strong>Choose character types</strong> — Toggle uppercase, lowercase, numbers, and symbols to
+                        match the target site's requirements.</li>
+                    <li><strong>Exclude ambiguous characters</strong> — Enable this if you need to type the password
+                        manually. Removes 0/O, l/1, I characters.</li>
+                    <li><strong>Click Generate</strong> — A new random password appears instantly.</li>
+                    <li><strong>Copy and store</strong> — Use a password manager (like Bitwarden, 1Password, or
+                        LastPass) to save the password securely.</li>
+                </ul>
+
+                <h3>Password Strength Guide</h3>
+                <div class="tip-grid">
+                    <div class="tip-card"><strong>🔴 Weak (< 8 chars)</strong>Easily brute-forced. Never use for real
+                                accounts.</div>
+                    <div class="tip-card"><strong>🟡 Fair (8–11 chars)</strong>Passable for low-value accounts. Add
+                        symbols.</div>
+                    <div class="tip-card"><strong>🟢 Strong (12–15 chars)</strong>Good for most uses. Use mixed
+                        character sets.</div>
+                    <div class="tip-card"><strong>💪 Very Strong (16+)</strong>Excellent. Resistant to modern
+                        brute-force attacks.</div>
+                </div>
+
+                <h3>Best Practices</h3>
+                <ul>
+                    <li>Use a <strong>unique password</strong> for every website — never reuse passwords.</li>
+                    <li>Never share passwords via email, SMS, or chat.</li>
+                    <li>Enable <strong>two-factor authentication (2FA)</strong> wherever possible.</li>
+                    <li>Store passwords in a dedicated <strong>password manager</strong> — never in a browser's default
+                        autofill without a master password.</li>
+                    <li>Rotate passwords for critical accounts (email, banking) periodically.</li>
+                    <li>Avoid password "patterns" like substituting letters with numbers (p@ssw0rd is easily guessed by
+                        modern crackers).</li>
+                </ul>
+
+                <h3>Why Not Use Simple Passwords?</h3>
+                <p>Simple or common passwords are vulnerable to <strong>dictionary attacks</strong> (trying known
+                    words), <strong>brute force attacks</strong> (trying all combinations), and <strong>credential
+                        stuffing</strong> (using leaked password databases from other site breaches). A 6-character
+                    lowercase password has only 26⁶ = ~308 million combinations — crackable in under a second by modern
+                    hardware.</p>
+                <p>A 16-character password with all character types has over <strong>6.2 × 10²⁹ combinations</strong> —
+                    computationally infeasible to crack by any current technology.</p>
+            </div>
+
+            <!-- Ad -->
+            <div style="text-align:center;margin-top:2rem">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1303178479491171"
+                    data-ad-slot="2222222222" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+        </div>
+    </div>
+
+    <footer class="simple-footer">
+        <p>© LovePDFs 2026 · <a href="../index.html">Home</a> · <a href="../all-tools.html">All Tools</a> · <a
+                href="../blog.html">Blog</a> · <a href="../contact.html">Contact</a></p>
+    </footer>
+
+    <script>
+        const UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const LOWER = 'abcdefghijklmnopqrstuvwxyz';
+        const NUMS = '0123456789';
+        const SYMS = '!@#$%^&*()-_=+[]{}|;:,.<>?';
+        const AMBIG = /[0Ol1I]/g;
+        const SIMILAR = /[oO0l1I|]/g;
+
+        function getCharset() {
+            let cs = '';
+            if (document.getElementById('opt_upper').checked) cs += UPPER;
+            if (document.getElementById('opt_lower').checked) cs += LOWER;
+            if (document.getElementById('opt_nums').checked) cs += NUMS;
+            if (document.getElementById('opt_syms').checked) cs += SYMS;
+            if (document.getElementById('opt_ambig').checked) cs = cs.replace(AMBIG, '');
+            if (document.getElementById('opt_similar').checked) cs = cs.replace(SIMILAR, '');
+            return cs || LOWER;
+        }
+
+        function randPwd(len) {
+            const cs = getCharset();
+            const arr = new Uint8Array(len * 2);
+            crypto.getRandomValues(arr);
+            let pwd = '';
+            for (let i = 0; i < arr.length && pwd.length < len; i++) {
+                const idx = arr[i] % cs.length;
+                pwd += cs[idx];
+            }
+            return pwd.slice(0, len);
+        }
+
+        function calcStrength(pwd) {
+            let score = 0;
+            if (pwd.length >= 8) score++;
+            if (pwd.length >= 12) score++;
+            if (pwd.length >= 16) score++;
+            if (/[A-Z]/.test(pwd)) score++;
+            if (/[a-z]/.test(pwd)) score++;
+            if (/[0-9]/.test(pwd)) score++;
+            if (/[^A-Za-z0-9]/.test(pwd)) score++;
+            return score;
+        }
+
+        function updateStrength(pwd) {
+            const s = calcStrength(pwd);
+            const fill = document.getElementById('strengthFill');
+            const lbl = document.getElementById('strengthLabel');
+            const pct = Math.round((s / 7) * 100);
+            fill.style.width = pct + '%';
+            if (s <= 2) { fill.style.background = '#ef4444'; lbl.textContent = 'Strength: Weak'; }
+            else if (s <= 4) { fill.style.background = '#f59e0b'; lbl.textContent = 'Strength: Fair'; }
+            else if (s <= 5) { fill.style.background = '#22c55e'; lbl.textContent = 'Strength: Strong'; }
+            else { fill.style.background = 'linear-gradient(90deg,#16a34a,#7c3aed)'; lbl.textContent = 'Strength: Very Strong ✦'; }
+        }
+
+        function generatePwd() {
+            const len = parseInt(document.getElementById('lenSlider').value) || 16;
+            const pwd = randPwd(len);
+            document.getElementById('pwdText').textContent = pwd;
+            updateStrength(pwd);
+            // Flash animation
+            const out = document.getElementById('pgOutput');
+            out.style.transform = 'scale(1.01)';
+            setTimeout(() => out.style.transform = '', 200);
+        }
+
+        function autoGen() { generatePwd(); }
+
+        function copyPwd() {
+            const txt = document.getElementById('pwdText').textContent;
+            if (!txt || txt.includes('Click')) return;
+            navigator.clipboard.writeText(txt).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = '✓ Copied!';
+                btn.style.background = 'linear-gradient(135deg,#16a34a,#15803d)';
+                setTimeout(() => { btn.textContent = '📋 Copy'; btn.style.background = ''; }, 2000);
+            });
+        }
+
+        function generateBulk() {
+            const count = Math.min(parseInt(document.getElementById('bulkCount').value) || 10, 100);
+            const len = parseInt(document.getElementById('lenSlider').value) || 16;
+            const pwds = Array.from({ length: count }, () => randPwd(len));
+            document.getElementById('bulkArea').value = pwds.join('\n');
+        }
+
+        function copyBulk() {
+            const text = document.getElementById('bulkArea').value;
+            if (!text) return;
+            navigator.clipboard.writeText(text).then(() => {
+                showNotice('All passwords copied!');
+            });
+        }
+
+        function toggleOpt(id, card) {
+            // Don't let them uncheck all
+            const checks = ['opt_upper', 'opt_lower', 'opt_nums', 'opt_syms'];
+            const cb = document.getElementById('opt_' + id);
+            cb.checked = !cb.checked;
+            const allUnchecked = checks.every(c => !document.getElementById(c).checked);
+            if (allUnchecked) { cb.checked = true; }
+            const allCards = document.querySelectorAll('.ctrl-card');
+            // Update card states
+            ['upper', 'lower', 'nums', 'syms', 'ambig', 'similar'].forEach(k => {
+                const c = document.getElementById('card_' + k);
+                if (c) c.classList.toggle('on', document.getElementById('opt_' + k).checked);
+            });
+            autoGen();
+            return false;
+        }
+
+        function showNotice(msg) {
+            const n = document.createElement('div');
+            n.style.cssText = 'position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#16a34a;color:#fff;padding:0.65rem 1.25rem;border-radius:10px;font-weight:700;font-size:0.9rem;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.25)';
+            n.textContent = '✓ ' + msg;
+            document.body.appendChild(n);
+            setTimeout(() => n.remove(), 2500);
+        }
+
+        // Theme
+        const _t = document.getElementById('themeBtn');
+        if (_t) {
+            if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark'); _t.textContent = '☀️'; }
+            _t.onclick = () => { document.body.classList.toggle('dark'); const d = document.body.classList.contains('dark'); localStorage.setItem('theme', d ? 'dark' : 'light'); _t.textContent = d ? '☀️' : '🌙'; };
+        }
+
+        // Auto-generate on load
+        generatePwd();
+    </script>
+
+<script src="../site-enhancements.js"></script>
+<script src="../nav-enhancements.js"></script>
+</body>
+
+</html>
