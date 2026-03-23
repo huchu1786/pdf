@@ -27,6 +27,16 @@
 
   <!-- Background Removal (WASM, fully browser-side) -->
   <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.5/dist/background-removal.browser.umd.js"></script>
+  <script>
+    // Normalize the library export — different versions expose it differently
+    if (typeof window.BackgroundRemoval === 'undefined') {
+      if (typeof window.imglyBackgroundRemoval !== 'undefined') {
+        window.BackgroundRemoval = window.imglyBackgroundRemoval;
+      } else if (typeof window['@imgly/background-removal'] !== 'undefined') {
+        window.BackgroundRemoval = window['@imgly/background-removal'];
+      }
+    }
+  </script>
 
   <!-- jsPDF (pure frontend PDF generation) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -1580,8 +1590,15 @@ async function renderPreview(doc, photoW, photoH, spacing, margin, queue, imgCac
   // ── Run removal ──
   rmbgRunBtn.addEventListener('click', async () => {
     if (!rmbgSourceFile) return;
-    if (!window.BackgroundRemoval) {
-      showToast('Background removal library not loaded. Try refreshing.');
+
+    // Detect which API shape loaded
+    const BgLib = window.BackgroundRemoval
+      || window.imglyBackgroundRemoval
+      || window['@imgly/background-removal']
+      || null;
+
+    if (!BgLib || typeof BgLib.removeBackground !== 'function') {
+      showToast('Background removal library failed to load. Please check your internet connection and refresh.');
       return;
     }
     rmbgRunBtn.disabled = true;
@@ -1595,7 +1612,7 @@ async function renderPreview(doc, photoW, photoH, spacing, margin, queue, imgCac
         model:   'small',       // fast, smaller download
         output:  { format: 'image/png', quality: 1 },
       };
-      const resultBlob = await window.BackgroundRemoval.removeBackground(rmbgSourceFile, config);
+      const resultBlob = await BgLib.removeBackground(rmbgSourceFile, config);
       rmbgResultBlob = resultBlob;
       await compositeAndPreview(resultBlob);
       rmbgOptions.style.display      = 'block';

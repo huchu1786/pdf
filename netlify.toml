@@ -1,0 +1,11 @@
+[[redirects]]
+  from = "http://lovepdfs.in/*"
+  to = "https://lovepdfs.in/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.lovepdfs.in/*"
+  to = "https://lovepdfs.in/:splat"
+  status = 301
+  force = true
