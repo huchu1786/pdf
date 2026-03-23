@@ -1,0 +1,67 @@
+Grammar and Style Improvements Report
+============================================================
+
+File: 2026-03-15-how-to-merge-pdf-files-like-a-pro-in-2024.html
+  Changes: 12209
+  Repetitive phrases: 0
+  Improvements:
+    - Applied: Remove unnecessary comma before 'and' in simple lists
+    - Applied: Remove weak intensifier
+    - Split long sentence (127 words)
+    - Split long sentence (190 words)
+    - Split long sentence (140 words)
+    - Split long sentence (46 words)
+    - Split long sentence (36 words)
+    - Split long sentence (36 words)
+    - Split long sentence (323 words)
+
+File: 2026-03-15-how-to-compress-a-pdf-without-losing-quality-complete-guide.html
+  Changes: 11596
+  Repetitive phrases: 0
+  Improvements:
+    - Applied: Remove unnecessary comma before 'and' in simple lists
+    - Split long sentence (159 words)
+    - Split long sentence (340 words)
+    - Split long sentence (36 words)
+    - Split long sentence (38 words)
+
+File: 2026-03-16-convert-pdf-to-word-complete-guide-and-tutorial.html
+  Changes: 12190
+  Repetitive phrases: 3
+  Improvements:
+    - Found 3 repetitive phrases
+    - Applied: Add comma before 'which' for non-restrictive clauses
+    - Applied: Remove unnecessary comma before 'and' in simple lists
+    - Applied: Remove weak intensifier
+    - Applied: Remove casual intensifier
+    - Split long sentence (37 words)
+    - Split long sentence (41 words)
+    - Split long sentence (45 words)
+    - Split long sentence (40 words)
+    - Split long sentence (54 words)
+
+File: 2026-03-16-protect-pdf-complete-guide-and-tutorial.html
+  Changes: 11964
+  Repetitive phrases: 1
+  Improvements:
+    - Found 1 repetitive phrases
+    - Applied: Remove unnecessary comma before 'and' in simple lists
+    - Applied: Remove weak intensifier
+    - Applied: Remove casual intensifier
+    - Split long sentence (49 words)
+    - Split long sentence (43 words)
+    - Split long sentence (54 words)
+    - Split long sentence (38 words)
+    - Split long sentence (51 words)
+    - Split long sentence (58 words)
+
+File: 2026-03-15-best-free-pdf-tools-in-2026-complete-guide.html
+  Changes: 10893
+  Repetitive phrases: 0
+  Improvements:
+    - Applied: Remove unnecessary comma before 'and' in simple lists
+    - Split long sentence (93 words)
+    - Split long sentence (58 words)
+    - Split long sentence (92 words)
+    - Split long sentence (88 words)
+
