@@ -9,3 +9,19 @@
   to = "https://lovepdfs.in/:splat"
   status = 301
   force = true
+
+# Fix 404s — old blog-posts paths that Google indexed
+[[redirects]]
+  from = "/blog-posts/contact.html"
+  to = "/contact.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog-posts/blog.html"
+  to = "/blog.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog-posts/all-tools.html"
+  to = "/all-tools.html"
+  status = 301
