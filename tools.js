@@ -18,6 +18,7 @@ const TOOLS = [
   { id: 'xls2pdf', name: 'Excel to PDF', desc: 'Convert spreadsheets to PDF', icon: '📈', clr: '#16A34A', cat: 'convert' },
   { id: 'html2pdf', name: 'HTML to PDF', desc: 'Convert webpages to PDF', icon: '🌐', clr: '#7C3AED', cat: 'convert', badge: 'new' },
   { id: 'pdf2jpg', name: 'PDF to JPG', desc: 'Convert every page to images', icon: '🖼️', clr: '#DB2777', cat: 'convert' },
+  { id: 'pdf2ppt', name: 'PDF to PowerPoint', desc: 'Convert PDF pages into editable slides', icon: '🎞️', clr: '#F97316', cat: 'convert', badge: 'new' },
   { id: 'pdf2word', name: 'PDF to Word', desc: 'Convert PDF to editable DOCX', icon: '📄', clr: '#1D4ED8', cat: 'convert' },
   { id: 'pdf2xls', name: 'PDF to Excel', desc: 'Extract PDF data into CSV', icon: '📊', clr: '#15803D', cat: 'convert' },
   { id: 'pdf2pdfa', name: 'PDF to PDF/A', desc: 'Convert to archive-standard PDF', icon: '🗂️', clr: '#0369A1', cat: 'convert' },
@@ -87,7 +88,7 @@ const CATS = [
 const CAT_GROUPS = {
   organize: { label: '📂 Organize PDF', tools: ['organize', 'merge', 'split', 'removepg', 'extract', 'altmix', 'nup'] },
   optimize: { label: '⚡ Optimize PDF', tools: ['compress', 'repair', 'ocr', 'grayscale', 'flatten', 'deskew'] },
-  convert: { label: '🔄 Convert', tools: ['jpg2pdf', 'word2pdf', 'ppt2pdf', 'xls2pdf', 'html2pdf', 'pdf2jpg', 'pdf2word', 'pdf2xls', 'pdf2pdfa', 'pdf2txt'] },
+  convert: { label: '🔄 Convert', tools: ['jpg2pdf', 'word2pdf', 'ppt2pdf', 'xls2pdf', 'html2pdf', 'pdf2jpg', 'pdf2ppt', 'pdf2word', 'pdf2xls', 'pdf2pdfa', 'pdf2txt'] },
   edit: { label: '✏️ Edit PDF', tools: ['rotate', 'watermark', 'pagenums', 'crop', 'editpdf', 'editMeta', 'extractImg', 'resizepdf', 'headfoot', 'removeann'] },
   security: { label: '🔐 PDF Security', tools: ['unlock', 'protect', 'sign', 'redact', 'compare'] },
   image: { label: '🖼️ Image Tools', tools: ['passport_photo', 'resize_img', 'crop_img', 'compress_img', 'jpg2png_img', 'png2jpg_img'] },
@@ -140,6 +141,14 @@ function wrapText(text, font, size, maxW) {
   }
   if (line) lines.push(line);
   return lines;
+}
+function xmlEsc(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 }
 function dlB(bytes, name) { dlBlob(new Blob([bytes], { type: 'application/pdf' }), name); }
 function dlBlob(blob, name) {
@@ -439,6 +448,291 @@ async function doPdf2Word(s) {
   const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
   s.result = { type: 'zip', blob, filename: s.files[0].name.replace('.pdf', '_word.zip') };
   showRes('pdf2word', 'Converted!', `${total} pages → HTML+TXT (open in Word/LibreOffice)`); hideP('pdf2word');
+}
+
+async function doPdf2Ppt(s) {
+  setP('pdf2ppt', 5, 'Loading PDF…');
+  const ratio = document.getElementById('p2p_ratio')?.value || 'wide';
+  const titleMode = document.getElementById('p2p_title')?.value || 'firstline';
+  const bodyMode = document.getElementById('p2p_body')?.value || 'bullets';
+  const density = document.getElementById('p2p_density')?.value || 'balanced';
+  const pdf = await pjsLoad(await s.files[0].arrayBuffer());
+  const total = pdf.numPages;
+  const slides = [];
+
+  function groupLines(items) {
+    const ordered = items
+      .filter((it) => String(it.str || '').trim())
+      .map((it) => ({ text: String(it.str).trim(), x: it.transform[4] || 0, y: it.transform[5] || 0 }))
+      .sort((a, b) => Math.abs(b.y - a.y) > 3 ? b.y - a.y : a.x - b.x);
+    const rows = [];
+    for (const item of ordered) {
+      const prev = rows[rows.length - 1];
+      if (!prev || Math.abs(prev.y - item.y) > 4) rows.push({ y: item.y, parts: [item.text] });
+      else prev.parts.push(item.text);
+    }
+    return rows.map((r) => r.parts.join(' ').replace(/\s+/g, ' ').trim()).filter(Boolean);
+  }
+
+  function trimBody(lines) {
+    if (density === 'brief') return lines.slice(0, 6);
+    if (density === 'balanced') return lines.slice(0, 12);
+    return lines.slice(0, 22);
+  }
+
+  for (let i = 1; i <= total; i++) {
+    setP('pdf2ppt', 8 + (i / total) * 42, `Extracting page ${i}/${total}…`);
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    const lines = groupLines(content.items);
+    let title = titleMode === 'firstline' && lines.length ? lines[0].slice(0, 90) : `Slide ${i}`;
+    let bodyLines = titleMode === 'firstline' ? lines.slice(1) : lines.slice();
+    bodyLines = trimBody(bodyLines);
+    if (!title.trim()) title = `Slide ${i}`;
+    if (!bodyLines.length) bodyLines = ['No extractable text was found on this page.'];
+    slides.push({ title, bodyLines, pageNo: i });
+  }
+
+  const slideW = ratio === 'wide' ? 12192000 : 9144000;
+  const slideH = 6858000;
+  const zip = new JSZip();
+
+  function relsRoot() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="ppt/presentation.xml"/>
+  <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/>
+  <Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/>
+</Relationships>`;
+  }
+
+  function contentTypesXml() {
+    const slideOverrides = slides.map((_, i) => `<Override PartName="/ppt/slides/slide${i + 1}.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slide+xml"/>`).join('');
+    const slideRelOverrides = slides.map((_, i) => `<Override PartName="/ppt/slides/_rels/slide${i + 1}.xml.rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>`).join('');
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+  <Default Extension="xml" ContentType="application/xml"/>
+  <Override PartName="/ppt/presentation.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml"/>
+  <Override PartName="/ppt/presProps.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.presProps+xml"/>
+  <Override PartName="/ppt/viewProps.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.viewProps+xml"/>
+  <Override PartName="/ppt/tableStyles.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.tableStyles+xml"/>
+  <Override PartName="/ppt/slideMasters/slideMaster1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideMaster+xml"/>
+  <Override PartName="/ppt/slideLayouts/slideLayout1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideLayout+xml"/>
+  <Override PartName="/ppt/theme/theme1.xml" ContentType="application/vnd.openxmlformats-officedocument.theme+xml"/>
+  <Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>
+  <Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>
+  ${slideOverrides}
+  ${slideRelOverrides}
+</Types>`;
+  }
+
+  function appXml() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">
+  <Application>LovePDFs</Application>
+  <PresentationFormat>${ratio === 'wide' ? 'Widescreen' : 'Standard'}</PresentationFormat>
+  <Slides>${slides.length}</Slides>
+  <Notes>0</Notes>
+  <HiddenSlides>0</HiddenSlides>
+  <MMClips>0</MMClips>
+  <ScaleCrop>false</ScaleCrop>
+  <HeadingPairs><vt:vector size="2" baseType="variant"><vt:variant><vt:lpstr>Slides</vt:lpstr></vt:variant><vt:variant><vt:i4>${slides.length}</vt:i4></vt:variant></vt:vector></HeadingPairs>
+  <TitlesOfParts><vt:vector size="${slides.length}" baseType="lpstr">${slides.map((sl) => `<vt:lpstr>${xmlEsc(sl.title)}</vt:lpstr>`).join('')}</vt:vector></TitlesOfParts>
+</Properties>`;
+  }
+
+  function coreXml() {
+    const now = new Date().toISOString();
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <dc:title>${xmlEsc(s.files[0].name.replace(/\.pdf$/i, ''))}</dc:title>
+  <dc:creator>LovePDFs</dc:creator>
+  <cp:lastModifiedBy>LovePDFs</cp:lastModifiedBy>
+  <dcterms:created xsi:type="dcterms:W3CDTF">${now}</dcterms:created>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">${now}</dcterms:modified>
+</cp:coreProperties>`;
+  }
+
+  function presentationXml() {
+    const slideIds = slides.map((_, i) => `<p:sldId id="${256 + i}" r:id="rId${i + 4}"/>`).join('');
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:presentation xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" saveSubsetFonts="1" autoCompressPictures="0">
+  <p:sldMasterIdLst><p:sldMasterId id="2147483648" r:id="rId1"/></p:sldMasterIdLst>
+  <p:sldIdLst>${slideIds}</p:sldIdLst>
+  <p:sldSz cx="${slideW}" cy="${slideH}" type="${ratio === 'wide' ? 'screen16x9' : 'screen4x3'}"/>
+  <p:notesSz cx="6858000" cy="9144000"/>
+  <p:defaultTextStyle>
+    <a:defPPr><a:defRPr lang="en-US"/></a:defPPr>
+    <a:lvl1pPr marL="0" indent="0"><a:defRPr sz="1800"/></a:lvl1pPr>
+    <a:lvl2pPr marL="457200" indent="0"><a:defRPr sz="1600"/></a:lvl2pPr>
+  </p:defaultTextStyle>
+</p:presentation>`;
+  }
+
+  function presentationRelsXml() {
+    const slideRels = slides.map((_, i) => `<Relationship Id="rId${i + 4}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slide" Target="slides/slide${i + 1}.xml"/>`).join('');
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideMaster" Target="slideMasters/slideMaster1.xml"/>
+  <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/presProps" Target="presProps.xml"/>
+  <Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/viewProps" Target="viewProps.xml"/>
+  ${slideRels}
+</Relationships>`;
+  }
+
+  function slideMasterXml() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:sldMaster xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+  <p:cSld name="LovePDFs Theme">
+    <p:bg><p:bgRef idx="1001"><a:schemeClr val="bg1"/></p:bgRef></p:bg>
+    <p:spTree>
+      <p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>
+      <p:grpSpPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="0" cy="0"/><a:chOff x="0" y="0"/><a:chExt cx="0" cy="0"/></a:xfrm></p:grpSpPr>
+    </p:spTree>
+  </p:cSld>
+  <p:clrMap bg1="lt1" tx1="dk1" bg2="lt2" tx2="dk2" accent1="accent1" accent2="accent2" accent3="accent3" accent4="accent4" accent5="accent5" accent6="accent6" hlink="hlink" folHlink="folHlink"/>
+  <p:sldLayoutIdLst><p:sldLayoutId id="2147483649" r:id="rId1"/></p:sldLayoutIdLst>
+  <p:txStyles>
+    <p:titleStyle><a:lvl1pPr algn="l"><a:defRPr sz="3200" b="1"/></a:lvl1pPr></p:titleStyle>
+    <p:bodyStyle><a:lvl1pPr marL="342900" indent="-171450"><a:defRPr sz="2000"/></a:lvl1pPr></p:bodyStyle>
+    <p:otherStyle><a:defPPr><a:defRPr sz="1800"/></a:defPPr></p:otherStyle>
+  </p:txStyles>
+</p:sldMaster>`;
+  }
+
+  function slideMasterRelsXml() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout" Target="../slideLayouts/slideLayout1.xml"/>
+  <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/theme" Target="../theme/theme1.xml"/>
+</Relationships>`;
+  }
+
+  function slideLayoutXml() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:sldLayout xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" type="blank" preserve="1">
+  <p:cSld name="Blank">
+    <p:spTree>
+      <p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>
+      <p:grpSpPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="0" cy="0"/><a:chOff x="0" y="0"/><a:chExt cx="0" cy="0"/></a:xfrm></p:grpSpPr>
+    </p:spTree>
+  </p:cSld>
+  <p:clrMapOvr><a:masterClrMapping/></p:clrMapOvr>
+</p:sldLayout>`;
+  }
+
+  function slideLayoutRelsXml() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideMaster" Target="../slideMasters/slideMaster1.xml"/>
+</Relationships>`;
+  }
+
+  function themeXml() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<a:theme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="LovePDFs">
+  <a:themeElements>
+    <a:clrScheme name="LovePDFs">
+      <a:dk1><a:srgbClr val="1F2937"/></a:dk1>
+      <a:lt1><a:srgbClr val="FFFFFF"/></a:lt1>
+      <a:dk2><a:srgbClr val="111827"/></a:dk2>
+      <a:lt2><a:srgbClr val="F9FAFB"/></a:lt2>
+      <a:accent1><a:srgbClr val="E8321A"/></a:accent1>
+      <a:accent2><a:srgbClr val="F97316"/></a:accent2>
+      <a:accent3><a:srgbClr val="2563EB"/></a:accent3>
+      <a:accent4><a:srgbClr val="16A34A"/></a:accent4>
+      <a:accent5><a:srgbClr val="7C3AED"/></a:accent5>
+      <a:accent6><a:srgbClr val="0EA5E9"/></a:accent6>
+      <a:hlink><a:srgbClr val="2563EB"/></a:hlink>
+      <a:folHlink><a:srgbClr val="7C3AED"/></a:folHlink>
+    </a:clrScheme>
+    <a:fontScheme name="LovePDFs">
+      <a:majorFont><a:latin typeface="Arial"/><a:ea typeface="Arial"/><a:cs typeface="Arial"/></a:majorFont>
+      <a:minorFont><a:latin typeface="Arial"/><a:ea typeface="Arial"/><a:cs typeface="Arial"/></a:minorFont>
+    </a:fontScheme>
+    <a:fmtScheme name="LovePDFs">
+      <a:fillStyleLst><a:solidFill><a:schemeClr val="phClr"/></a:solidFill></a:fillStyleLst>
+      <a:lnStyleLst><a:ln w="9525" cap="flat" cmpd="sng" algn="ctr"><a:solidFill><a:schemeClr val="phClr"/></a:solidFill></a:ln></a:lnStyleLst>
+      <a:effectStyleLst><a:effectStyle/></a:effectStyleLst>
+      <a:bgFillStyleLst><a:solidFill><a:schemeClr val="lt1"/></a:solidFill></a:bgFillStyleLst>
+    </a:fmtScheme>
+  </a:themeElements>
+  <a:objectDefaults/>
+  <a:extraClrSchemeLst/>
+</a:theme>`;
+  }
+
+  function simpleShape(id, name, x, y, cx, cy, paragraphs, titleShape) {
+    const pXml = paragraphs.map((text, idx) => {
+      const safe = xmlEsc(text);
+      if (titleShape) {
+        return `<a:p><a:r><a:rPr lang="en-US" sz="2800" b="1"/><a:t>${safe}</a:t></a:r><a:endParaRPr lang="en-US" sz="2800" b="1"/></a:p>`;
+      }
+      if (bodyMode === 'bullets') {
+        return `<a:p><a:pPr lvl="0" marL="342900" indent="-171450"><a:buChar char="•"/></a:pPr><a:r><a:rPr lang="en-US" sz="1900"/><a:t>${safe}</a:t></a:r><a:endParaRPr lang="en-US" sz="1900"/></a:p>`;
+      }
+      return `<a:p><a:r><a:rPr lang="en-US" sz="1800"/><a:t>${safe}</a:t></a:r><a:endParaRPr lang="en-US" sz="1800"/></a:p>`;
+    }).join('');
+    return `<p:sp>
+  <p:nvSpPr><p:cNvPr id="${id}" name="${xmlEsc(name)}"/><p:cNvSpPr txBox="1"/><p:nvPr/></p:nvSpPr>
+  <p:spPr><a:xfrm><a:off x="${x}" y="${y}"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom><a:noFill/><a:ln><a:noFill/></a:ln></p:spPr>
+  <p:txBody><a:bodyPr wrap="square" rtlCol="0" anchor="t"/><a:lstStyle/>${pXml}</p:txBody>
+</p:sp>`;
+  }
+
+  function slideXml(slide, idx) {
+    const titleShape = simpleShape(2, `Title ${idx + 1}`, 457200, 228600, slideW - 914400, 685800, [slide.title], true);
+    const bodyShape = simpleShape(3, `Body ${idx + 1}`, 457200, 1280160, slideW - 914400, slideH - 1828800, slide.bodyLines, false);
+    const footerShape = simpleShape(4, `Footer ${idx + 1}`, slideW - 2286000, slideH - 457200, 1828800, 228600, [`Source page ${slide.pageNo}`], false);
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:sld xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+  <p:cSld>
+    <p:bg><p:bgRef idx="1001"><a:schemeClr val="lt1"/></p:bgRef></p:bg>
+    <p:spTree>
+      <p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>
+      <p:grpSpPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="0" cy="0"/><a:chOff x="0" y="0"/><a:chExt cx="0" cy="0"/></a:xfrm></p:grpSpPr>
+      ${titleShape}
+      ${bodyShape}
+      ${footerShape}
+    </p:spTree>
+  </p:cSld>
+  <p:clrMapOvr><a:masterClrMapping/></p:clrMapOvr>
+</p:sld>`;
+  }
+
+  function slideRelsXml() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout" Target="../slideLayouts/slideLayout1.xml"/>
+</Relationships>`;
+  }
+
+  zip.file('_rels/.rels', relsRoot());
+  zip.file('[Content_Types].xml', contentTypesXml());
+  zip.file('docProps/app.xml', appXml());
+  zip.file('docProps/core.xml', coreXml());
+  zip.file('ppt/presentation.xml', presentationXml());
+  zip.file('ppt/_rels/presentation.xml.rels', presentationRelsXml());
+  zip.file('ppt/presProps.xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><p:presentationPr xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main"/>`);
+  zip.file('ppt/viewProps.xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><p:viewPr xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" lastView="sldView"><p:normalViewPr/><p:slideViewPr><p:cSldViewPr/></p:slideViewPr><p:notesTextViewPr><p:cViewPr/></p:notesTextViewPr><p:gridSpacing cx="914400" cy="914400"/></p:viewPr>`);
+  zip.file('ppt/tableStyles.xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><a:tblStyleLst xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" def="{5C22544A-7EE6-4342-B048-85BDC9FD1C3A}"/>`);
+  zip.file('ppt/slideMasters/slideMaster1.xml', slideMasterXml());
+  zip.file('ppt/slideMasters/_rels/slideMaster1.xml.rels', slideMasterRelsXml());
+  zip.file('ppt/slideLayouts/slideLayout1.xml', slideLayoutXml());
+  zip.file('ppt/slideLayouts/_rels/slideLayout1.xml.rels', slideLayoutRelsXml());
+  zip.file('ppt/theme/theme1.xml', themeXml());
+
+  for (let i = 0; i < slides.length; i++) {
+    setP('pdf2ppt', 55 + ((i + 1) / slides.length) * 35, `Building slide ${i + 1}/${slides.length}…`);
+    zip.file(`ppt/slides/slide${i + 1}.xml`, slideXml(slides[i], i));
+    zip.file(`ppt/slides/_rels/slide${i + 1}.xml.rels`, slideRelsXml());
+  }
+
+  setP('pdf2ppt', 95, 'Packaging PPTX…');
+  const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
+  s.result = { type: 'zip', blob, filename: s.files[0].name.replace(/\.pdf$/i, '_slides.pptx') };
+  showRes('pdf2ppt', 'Converted!', `${slides.length} slide(s) → editable PPTX`); hideP('pdf2ppt');
 }
 
 async function doWord2Pdf(s) {
