@@ -1,645 +1,1018 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Convert PDF to PowerPoint Free Online | LovePDFs</title>
-  <meta name="description" content="Convert PDF pages into editable PowerPoint slides online for free. Browser-based, private, and easy to use with LovePDFs."/>
-<meta name="keywords" content="pdf to powerpoint converter free, pdf to ppt online, convert pdf to pptx, editable slide converter, free pdf tools, browser based pdf converter, private pdf conversion">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convert PDF to PowerPoint Free Online | LovePDFs</title>
+<meta name="description" content="Convert PDF to PowerPoint (PPTX) free online. Each PDF page becomes an editable slide with text and images extracted. No signup, no upload, 100% private browser-based conversion.">
+<meta name="keywords" content="pdf to ppt, pdf to powerpoint free, convert pdf to pptx online, pdf to slides free, pdf to powerpoint no signup">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://lovepdfs.in/pdf-to-ppt/">
 <meta property="og:title" content="Convert PDF to PowerPoint Free Online | LovePDFs">
-<meta property="og:description" content="Turn PDF pages into editable PowerPoint slides in your browser with a private, fast PDF to PPT converter.">
+<meta property="og:description" content="Convert PDF to editable PowerPoint slides free. Browser-based, private, no signup needed.">
+<meta property="og:url" content="https://lovepdfs.in/pdf-to-ppt/">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://lovepdfs.in/">
-<meta property="og:site_name" content="LovePDFs">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Convert PDF to PowerPoint Free Online | LovePDFs">
-<meta name="twitter:description" content="Turn PDF pages into editable PowerPoint slides in your browser with LovePDFs.">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "PDF to PowerPoint Free Online | LovePDFs",
-  "description": "Convert PDF pages into editable PowerPoint slides online for free in your browser.",
+  "name": "PDF to PowerPoint Converter",
+  "url": "https://lovepdfs.in/pdf-to-ppt/",
+  "description": "Convert PDF to editable PowerPoint PPTX slides free online. No signup required.",
   "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "All",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
 }
 </script>
 
-  <link rel="icon" type="image/png" sizes="512x512" href="../favicon.png">
-<link rel="apple-touch-icon" href="../favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-  <link rel="stylesheet" href="../shared.css">
-  <style>
-    /* ── TOOL PAGE PREMIUM STYLES ── */
-    
-    .tool-hero {
-      background: linear-gradient(170deg, var(--bg2) 0%, var(--bg) 100%);
-      padding: 7rem 2rem 6rem;
-      text-align: center;
-      border-bottom: 2px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-    .tool-hero::before {
-      content: '';
-      position: absolute; top: -80px; right: -100px;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(232,50,26,0.1) 0%, transparent 65%);
-      border-radius: 50%; pointer-events: none;
-    }
-    .tool-hero::after {
-      content: '';
-      position: absolute; bottom: -60px; left: -80px;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 65%);
-      border-radius: 50%; pointer-events: none;
-    }
-    .tool-hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(232,50,26,0.08); border: 1.5px solid rgba(232,50,26,0.2);
-      color: var(--red); padding: 0.45rem 1.1rem;
-      border-radius: 100px; font-size: 0.85rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      margin-bottom: 1.5rem; text-decoration: none;
-    }
-    .tool-hero-eyebrow:hover { background: rgba(232,50,26,0.14); }
-    .tool-hero h1 {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(3.5rem, 8vw, 68px);
-      font-weight: 900;
-      color: var(--text);
-      margin-bottom: 1.25rem;
-      letter-spacing: -0.035em;
-      line-height: 1.1;
-      position: relative; z-index: 1;
-    }
-    .tool-hero p {
-      color: var(--muted);
-      max-width: 650px;
-      margin: 0 auto 1.5rem;
-      font-size: 1.45rem;
-      line-height: 1.9;
-      position: relative; z-index: 1;
-    }
-    .tool-trust-row {
-      display: flex; gap: 1.5rem; justify-content: center;
-      flex-wrap: wrap; margin-top: 1.25rem;
-      position: relative; z-index: 1;
-    }
-    .tool-trust-item {
-      display: flex; align-items: center; gap: 0.4rem;
-      font-size: 1.1rem; color: var(--muted); font-weight: 500;
-    }
-    .tool-trust-item .check { color: var(--green); font-weight: 900; }
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    /* ── TOOL WORKSPACE ── */
-    .tool-workspace {
-      max-width: 840px;
-      margin: -3.5rem auto 5rem;
-      background: var(--card);
-      border: 2px solid var(--border);
-      border-radius: 26px;
-      padding: 3rem;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.12), 0 4px 20px rgba(0,0,0,0.06);
-      position: relative;
-      z-index: 10;
-    }
-    body.dark .tool-workspace {
-      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
-    }
+<style>
+:root {
+  --bg: #f5f3ef;
+  --surface: #ffffff;
+  --border: #e2ddd6;
+  --accent: #d4522a;
+  --accent-dark: #b8431f;
+  --accent-light: #fdf0ec;
+  --text: #1a1714;
+  --muted: #7a736a;
+  --slide-bg: #fff;
+  --success: #2a7d4f;
+  --shadow: 0 2px 16px rgba(26,23,20,0.08);
+}
 
-    /* ── SEO CONTENT ── */
-    .seo-content {
-      max-width: 840px;
-      margin: 0 auto 6rem;
-      padding: 0 2rem;
-    }
-    .seo-content h2 {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(2.4rem, 5vw, 46px);
-      font-weight: 900;
-      margin: 4rem 0 1.75rem;
-      color: var(--text);
-      letter-spacing: -0.025em;
-    }
-    .seo-content h2:first-child { margin-top: 2rem; }
-    .seo-content h3 {
-      font-family: 'Fraunces', serif;
-      font-size: 32px;
-      font-weight: 700;
-      margin: 2.5rem 0 1.1rem;
-      color: var(--text);
-    }
-    .seo-content p {
-      font-size: 1.25rem;
-      line-height: 1.9;
-      color: var(--text2);
-      margin-bottom: 1.1rem;
-    }
-    
-    /* ── STEPS LIST ── */
-    .steps-list {
-      list-style-type: none; padding: 0;
-      counter-reset: step-counter;
-      display: flex; flex-direction: column; gap: 1rem;
-    }
-    .steps-list li {
-      position: relative; padding: 1.35rem 1.5rem 1.35rem 4.75rem;
-      background: var(--bg2); border: 1.5px solid var(--border);
-      border-radius: 14px; font-size: 1.2rem; color: var(--text2);
-      line-height: 1.8; transition: all 0.25s;
-    }
-    .steps-list li:hover { border-color: rgba(232,50,26,0.3); background: var(--bg); }
-    .steps-list li::before {
-      counter-increment: step-counter;
-      content: counter(step-counter);
-      position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%);
-      width: 40px; height: 40px;
-      background: linear-gradient(135deg, rgba(232,50,26,0.12), rgba(232,50,26,0.06));
-      color: var(--red); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 1.1rem;
-      border: 1.5px solid rgba(232,50,26,0.2);
-    }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ── BENEFITS GRID ── */
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem; margin: 1.5rem 0;
-    }
-    .benefit-card {
-      background: var(--card);
-      border: 2px solid var(--border);
-      padding: 1.75rem; border-radius: 18px;
-      transition: all 0.25s; position: relative; overflow: hidden;
-    }
-    .benefit-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--red), #FF9A3A);
-      transform: scaleX(0); transform-origin: left; transition: transform 0.35s;
-    }
-    .benefit-card:hover { border-color: rgba(232,50,26,0.25); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
-    .benefit-card:hover::before { transform: scaleX(1); }
-    .benefit-card h4 {
-      margin: 0 0 0.65rem; font-size: 1.35rem;
-      color: var(--text); font-weight: 700;
-      font-family: 'Fraunces', serif;
-    }
-    .benefit-card p { margin: 0; font-size: 1.15rem; color: var(--muted); line-height: 1.75; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  min-height: 100vh;
+}
 
-    /* ── FAQ ── */
-    .faq-list {
-      background: var(--card); border: 2px solid var(--border);
-      border-radius: 18px; overflow: hidden;
-    }
-    .faq-item {
-      border-bottom: 1px solid var(--border); padding: 1.75rem 2rem;
-      transition: background 0.2s;
-    }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-item:hover { background: var(--bg2); }
-    .faq-q {
-      font-weight: 700; font-size: 1.2rem;
-      color: var(--text); margin-bottom: 0.65rem;
-      display: flex; align-items: flex-start; gap: 0.75rem;
-    }
-    .faq-q::before {
-      content: 'Q';
-      background: linear-gradient(135deg, var(--red), var(--red2));
-      color: white; border-radius: 8px; padding: 0.1rem 0.55rem;
-      font-size: 0.88rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;
-    }
-    .faq-a { color: var(--muted); margin: 0; font-size: 1.15rem; line-height: 1.85; padding-left: 2.2rem; }
+/* NAV */
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--accent);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 24px; }
+.nav-links a {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
 
-    /* ── RELATED TOOLS ── */
-    .related-links {
-      display: flex; gap: 0.875rem;
-      flex-wrap: wrap; margin-top: 1rem;
-    }
-    .related-chip {
-      padding: 0.85rem 1.65rem;
-      background: var(--card);
-      border: 2px solid var(--border);
-      border-radius: 50px;
-      text-decoration: none; color: var(--text); font-weight: 600;
-      font-size: 1.15rem; transition: all 0.25s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    .related-chip:hover {
-      border-color: var(--red); color: var(--red);
-      transform: translateY(-3px); box-shadow: 0 8px 24px rgba(232,50,26,0.15);
-    }
+/* HERO */
+.hero {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 48px 32px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% -20%, rgba(212,82,42,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--accent); }
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(26px, 5vw, 42px);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+.hero p {
+  color: var(--muted);
+  font-size: 16px;
+  max-width: 520px;
+  margin: 0 auto 24px;
+  font-weight: 300;
+}
+.trust-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+.trust-badge span { color: var(--success); font-size: 15px; }
 
-    /* ── CONTACT STRIP ── */
-    .contact-strip {
-      background: linear-gradient(135deg, rgba(232,50,26,0.06), rgba(124,58,237,0.04));
-      border: 2px solid rgba(232,50,26,0.15);
-      border-radius: 20px; padding: 2.25rem 2.5rem;
-      margin: 4rem 0; text-align: center;
-    }
-    .contact-strip h3 {
-      font-family: 'Fraunces', serif; font-size: 1.6rem;
-      font-weight: 900; color: var(--text); margin-bottom: 0.65rem;
-    }
-    .contact-strip p { color: var(--muted); margin-bottom: 1.25rem; font-size: 1.2rem; }
-    .contact-strip a {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: linear-gradient(135deg, var(--red), var(--red2));
-      color: white; padding: 0.875rem 2rem;
-      border-radius: 50px; font-weight: 700; font-size: 1rem;
-      text-decoration: none; transition: all 0.25s;
-      box-shadow: 0 6px 20px rgba(232,50,26,0.3);
-    }
-    .contact-strip a:hover { box-shadow: 0 10px 32px rgba(232,50,26,0.42); transform: translateY(-2px); }
-  </style>
-  <!-- ═══ GOOGLE ADSENSE ═══ Replace ca-pub-1303178479491171 with your Publisher ID ═══ -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1303178479491171"
-       crossorigin="anonymous"></script>
-  <!-- ════════════════════════════════════════════════════════════════ -->
+/* MAIN */
+.main { max-width: 860px; margin: 0 auto; padding: 40px 24px; }
 
-    <style>
-    .tool-content {
-        max-width: 800px;
-        margin: 3rem auto;
-        padding: 2rem;
-        background: var(--card);
-        border: 2px solid var(--border);
-        border-radius: 20px;
-    }
-    .tool-content h2 {
-        font-family: 'Fraunces', serif;
-        font-size: 1.8rem;
-        font-weight: 800;
-        color: var(--text);
-        margin: 2.5rem 0 1rem 0;
-        border-bottom: 2px solid var(--border);
-        padding-bottom: 0.5rem;
-    }
-    .tool-content h2:first-child {
-        margin-top: 0;
-    }
-    .tool-content p {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: var(--text2);
-        margin-bottom: 1.5rem;
-    }
-    .tool-content strong {
-        color: var(--red);
-        font-weight: 700;
-    }
-    </style>
+/* DROP ZONE */
+.drop-zone {
+  background: var(--surface);
+  border: 2px dashed var(--border);
+  border-radius: 20px;
+  padding: 56px 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+}
+.drop-zone:hover, .drop-zone.drag-over {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+.drop-icon {
+  width: 72px; height: 72px;
+  background: var(--accent-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 32px;
+  border: 2px solid rgba(212,82,42,0.2);
+}
+.drop-zone h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.drop-zone p { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-primary:hover { background: var(--accent-dark); }
+.btn-primary:active { transform: scale(0.98); }
+.btn-primary:disabled { background: #c5b8b0; cursor: not-allowed; }
+#fileInput { display: none; }
+.file-hint { font-size: 12px; color: var(--muted); margin-top: 12px; }
 
-<script type="application/ld+json">
-[
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Pdf To Ppt",
-    "url": "https://lovepdfs.in/pdf-to-ppt/",
-    "description": "Free online Pdf To Ppt tool - Process files instantly in your browser",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Any",
-    "browserRequirements": "Requires JavaScript",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "featureList": [
-      "Browser-based processing",
-      "No file uploads required",
-      "Instant processing",
-      "Privacy-focused",
-      "No registration needed"
-    ],
-    "screenshot": "https://lovepdfs.in/favicon.png",
-    "softwareVersion": "1.0",
-    "author": {
-      "@type": "Organization",
-      "name": "LovePDFs"
-    }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://lovepdfs.in"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Tools",
-        "item": "https://lovepdfs.in/all-tools.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Pdf To Ppt",
-        "item": "https://lovepdfs.in/pdf-to-ppt/"
-      }
-    ]
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "How to Pdf To Ppt",
-    "description": "Step-by-step guide on how to pdf to ppt using our free online tool",
-    "url": "https://lovepdfs.in/pdf-to-ppt/",
-    "image": "https://lovepdfs.in/favicon.png",
-    "estimatedCost": {
-      "@type": "MonetaryAmount",
-      "currency": "USD",
-      "value": "0"
-    },
-    "totalTime": "PT2M",
-    "supply": [
-      {
-        "@type": "HowToSupply",
-        "name": "PDF or image files"
-      }
-    ],
-    "tool": [
-      {
-        "@type": "HowToTool",
-        "name": "LovePDFs Online Tool"
-      }
-    ],
-    "step": [
-      {
-        "@type": "HowToStep",
-        "name": "Step 1",
-        "text": "Upload your files to the tool",
-        "image": "https://lovepdfs.in/favicon.png",
-        "url": "https://lovepdfs.in/pdf-to-ppt/#step1"
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Step 2",
-        "text": "Configure the tool settings if needed",
-        "image": "https://lovepdfs.in/favicon.png",
-        "url": "https://lovepdfs.in/pdf-to-ppt/#step2"
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Step 3",
-        "text": "Process your files",
-        "image": "https://lovepdfs.in/favicon.png",
-        "url": "https://lovepdfs.in/pdf-to-ppt/#step3"
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Step 4",
-        "text": "Download the results",
-        "image": "https://lovepdfs.in/favicon.png",
-        "url": "https://lovepdfs.in/pdf-to-ppt/#step4"
-      }
-    ]
-  }
-]
-</script>
+/* OPTIONS */
+.options-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-top: 20px;
+  display: none;
+}
+.options-panel.visible { display: block; }
+.options-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text);
+}
+.option-item input[type="checkbox"] {
+  width: 16px; height: 16px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.select-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.select-group { display: flex; flex-direction: column; gap: 6px; }
+.select-group label { font-size: 12px; color: var(--muted); font-weight: 500; }
+.select-group select {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg);
+  cursor: pointer;
+}
 
-  <style>
-    /* ── TOOL ABOUT SECTION ── */
-    .tool-about {
-      background: var(--card);
-      border: 2px solid var(--border);
-      border-radius: 20px;
-      padding: 2.25rem 2.5rem;
-      margin-bottom: 3.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .tool-about::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--red), #FF9A3A);
-    }
-    .tool-about h2 {
-      font-family: 'Fraunces', serif !important;
-      font-size: clamp(1.8rem, 4vw, 2.4rem) !important;
-      font-weight: 900 !important;
-      color: var(--text) !important;
-      margin: 0 0 1.25rem !important;
-      letter-spacing: -0.02em;
-    }
-    .tool-about-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.25rem;
-      margin: 1.5rem 0 0;
-    }
-    .tool-about-card {
-      background: var(--bg2);
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
-      padding: 1.25rem 1.4rem;
-      transition: border-color 0.2s;
-    }
-    .tool-about-card:hover { border-color: rgba(232,50,26,0.3); }
-    .tool-about-card h3 {
-      font-family: 'Fraunces', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--red);
-      margin: 0 0 0.5rem;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .tool-about-card p {
-      margin: 0;
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: var(--text2);
-    }
-    .tool-about-intro {
-      font-size: 1.2rem;
-      line-height: 1.85;
-      color: var(--text2);
-      margin: 0;
-    }
-  </style>
+/* FILE INFO */
+.file-info {
+  background: var(--accent-light);
+  border: 1px solid rgba(212,82,42,0.2);
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  display: none;
+}
+.file-info.visible { display: flex; }
+.file-name { font-size: 14px; font-weight: 500; color: var(--accent-dark); }
+.file-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.btn-clear {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  transition: color 0.2s;
+}
+.btn-clear:hover { color: var(--accent); }
+
+/* PROGRESS */
+.progress-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  margin-top: 20px;
+  display: none;
+  text-align: center;
+}
+.progress-section.visible { display: block; }
+.progress-label {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+.progress-bar-wrap {
+  background: var(--border);
+  border-radius: 999px;
+  height: 8px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.progress-bar {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+.progress-sub { font-size: 13px; color: var(--muted); }
+
+/* RESULT */
+.result-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  margin-top: 20px;
+  display: none;
+  text-align: center;
+}
+.result-section.visible { display: block; }
+.result-icon { font-size: 48px; margin-bottom: 12px; }
+.result-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.result-meta { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+.btn-download {
+  background: var(--success);
+  color: #fff;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 12px;
+  display: inline-block;
+  text-decoration: none;
+}
+.btn-download:hover { background: #236040; }
+.btn-again {
+  display: block;
+  margin: 12px auto 0;
+  background: none;
+  border: 1px solid var(--border);
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--muted);
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-again:hover { border-color: var(--accent); color: var(--accent); }
+
+/* SLIDE PREVIEW */
+.preview-section {
+  margin-top: 20px;
+  display: none;
+}
+.preview-section.visible { display: block; }
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.preview-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+.preview-count { font-size: 13px; color: var(--muted); }
+.slides-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+.slide-thumb {
+  background: var(--slide-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.slide-thumb:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(26,23,20,0.12); }
+.slide-canvas-wrap {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: #f9f7f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slide-canvas-wrap canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.slide-num {
+  padding: 6px 10px;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 500;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+
+/* CONTENT SECTIONS */
+.content-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  margin-top: 32px;
+}
+.content-section h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+.content-section h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  margin: 20px 0 8px;
+  color: var(--text);
+}
+.content-section p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 10px; }
+
+.use-case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+.use-case-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+.use-case-card .icon { font-size: 22px; margin-bottom: 8px; }
+.use-case-card strong { font-size: 14px; display: block; margin-bottom: 4px; }
+.use-case-card p { font-size: 13px; margin: 0; }
+
+.steps-list { counter-reset: steps; list-style: none; }
+.steps-list li {
+  counter-increment: steps;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.steps-list li::before {
+  content: counter(steps);
+  min-width: 28px; height: 28px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* FAQ */
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-q {
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.faq-q::after { content: '+'; font-size: 20px; color: var(--accent); flex-shrink: 0; }
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a { font-size: 14px; color: var(--muted); margin-top: 10px; line-height: 1.7; display: none; }
+.faq-item.open .faq-a { display: block; }
+
+.related-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.related-tool {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.related-tool:hover { border-color: var(--accent); color: var(--accent); }
+
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 32px;
+  margin-top: 60px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+.footer-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 32px 20px 28px; }
+  .main { padding: 24px 16px; }
+  nav { padding: 0 16px; }
+  .nav-links { display: none; }
+}
+</style>
 </head>
-<body data-tool-id="pdf2ppt">
+<body>
 
-<!-- NAV -->
-<nav class="site-nav" id="siteNav">
-  <a href="../index.html" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
-  <div class="nav-mid">
-    <a href="../all-tools.html" class="nav-link">All Tools</a>
-    <a href="../pdf-tools/index.html" class="nav-link">PDF Tools</a>
-    <a href="../blog.html" class="nav-link">Blog</a>
-  </div>
-  <div class="nav-right">
-    <button class="theme-btn" id="themeBtn">Theme</button>
-    <a href="../contact.html" class="nav-btn-o">Contact</a>
-    <a href="../all-tools.html" class="nav-btn-f">All Tools</a>
+<nav>
+  <a class="nav-logo" href="https://lovepdfs.in/">P LovePDFs</a>
+  <div class="nav-links">
+    <a href="https://lovepdfs.in/all-tools">All Tools</a>
+    <a href="https://lovepdfs.in/pdf-tools/">PDF Tools</a>
+    <a href="https://lovepdfs.in/blog">Blog</a>
+    <a href="https://lovepdfs.in/contact">Contact</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="tool-hero page-wrap">
-  <a href="../all-tools.html" class="tool-hero-eyebrow">Back to All Tools</a>
+<div class="hero">
+  <a class="back-link" href="https://lovepdfs.in/all-tools">← Back to All Tools</a>
   <h1>PDF to PowerPoint</h1>
-  <p>Convert PDF pages into editable PowerPoint slides with extracted titles, body text, and browser-based privacy.</p>
-  <div class="tool-trust-row">
-    <div class="tool-trust-item"><span class="check">✓</span> 100% Free</div>
-    <div class="tool-trust-item"><span class="check">✓</span> No Signup Required</div>
-    <div class="tool-trust-item"><span class="check">✓</span> Files Stay Private</div>
-    <div class="tool-trust-item"><span class="check">✓</span> Browser-Powered</div>
-  </div>
-</section>
-
-<!-- Google AdSense Banner – Tool Page – Above Tool -->
-<div class="adsense-wrap" style="text-align:center;padding:1.5rem 1rem;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:2rem 0;">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1303178479491171"
-       data-ad-slot="3333333333"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-<!-- THE ACTUAL TOOL UI WILL BE MOUNTED HERE BY APP.JS -->
-<div class="tool-workspace" id="toolWorkspace">
-  <div style="text-align:center; padding: 2.5rem; color: var(--muted); font-size:1.1rem">
-    <div style="font-size:2.5rem;margin-bottom:1rem">⚡</div>
-    Loading tool interface…
+  <p>Convert every PDF page into an editable PowerPoint slide — text, layout and images extracted instantly in your browser.</p>
+  <div class="trust-row">
+    <div class="trust-badge"><span>✓</span> 100% Free</div>
+    <div class="trust-badge"><span>✓</span> No Signup</div>
+    <div class="trust-badge"><span>✓</span> Files Stay Private</div>
+    <div class="trust-badge"><span>✓</span> Browser-Powered</div>
   </div>
 </div>
 
-<!-- Google AdSense Banner – Tool Page – Below Tool -->
-<div class="adsense-wrap" style="text-align:center;padding:1.5rem 1rem;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:2rem 0;">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1303178479491171"
-       data-ad-slot="4444444444"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-<!-- SEO CONTENT -->
-<section class="seo-content">
-  <!-- TOOL ABOUT SECTION -->
-  <div class="tool-about">
+<div class="main">
+
+  <!-- File Info Bar -->
+  <div class="file-info" id="fileInfo">
+    <div>
+      <div class="file-name" id="fileName">document.pdf</div>
+      <div class="file-meta" id="fileMeta">0 pages · 0 MB</div>
+    </div>
+    <button class="btn-clear" id="clearBtn" title="Remove file">✕</button>
+  </div>
+
+  <!-- Drop Zone -->
+  <div class="drop-zone" id="dropZone">
+    <div class="drop-icon">📄</div>
+    <h2>Drop your PDF here</h2>
+    <p>or click to browse from your device</p>
+    <button class="btn-primary" onclick="document.getElementById('fileInput').click()">Choose PDF File</button>
+    <input type="file" id="fileInput" accept=".pdf,application/pdf">
+    <p class="file-hint">PDF files only · Processed entirely in your browser · No server upload</p>
+  </div>
+
+  <!-- Options -->
+  <div class="options-panel" id="optionsPanel">
+    <div class="options-title">⚙️ Conversion Options</div>
+    <div class="select-row">
+      <div class="select-group">
+        <label>Slide Layout</label>
+        <select id="slideLayout">
+          <option value="widescreen">Widescreen (16:9)</option>
+          <option value="standard">Standard (4:3)</option>
+        </select>
+      </div>
+      <div class="select-group">
+        <label>Theme Color</label>
+        <select id="themeColor">
+          <option value="white">White (Clean)</option>
+          <option value="dark">Dark (Professional)</option>
+          <option value="blue">Blue (Corporate)</option>
+        </select>
+      </div>
+      <div class="select-group">
+        <label>Font Size</label>
+        <select id="fontSize">
+          <option value="auto">Auto Detect</option>
+          <option value="small">Small (10pt)</option>
+          <option value="medium">Medium (14pt)</option>
+          <option value="large">Large (18pt)</option>
+        </select>
+      </div>
+    </div>
+    <div class="options-grid">
+      <label class="option-item"><input type="checkbox" id="includeImages" checked> Include images</label>
+      <label class="option-item"><input type="checkbox" id="titleSlide" checked> Add title slide</label>
+      <label class="option-item"><input type="checkbox" id="slideNumbers" checked> Show slide numbers</label>
+      <label class="option-item"><input type="checkbox" id="preserveLayout"> Preserve PDF layout</label>
+    </div>
+    <button class="btn-primary" id="convertBtn">🔄 Convert to PowerPoint</button>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-section" id="progressSection">
+    <div class="progress-label" id="progressLabel">Reading PDF...</div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="progress-sub" id="progressSub">Please wait, processing in your browser</div>
+  </div>
+
+  <!-- Slide Preview -->
+  <div class="preview-section" id="previewSection">
+    <div class="preview-header">
+      <div class="preview-title">📊 Slide Preview</div>
+      <div class="preview-count" id="previewCount"></div>
+    </div>
+    <div class="slides-grid" id="slidesGrid"></div>
+  </div>
+
+  <!-- Result -->
+  <div class="result-section" id="resultSection">
+    <div class="result-icon">🎉</div>
+    <div class="result-title">Your PowerPoint is Ready!</div>
+    <div class="result-meta" id="resultMeta">0 slides created from 0 pages</div>
+    <a id="downloadBtn" class="btn-download" download>⬇ Download PPTX File</a>
+    <button class="btn-again" id="againBtn">Convert another PDF</button>
+  </div>
+
+  <!-- About -->
+  <div class="content-section">
     <h2>About PDF to PowerPoint</h2>
-    <p class="tool-about-intro">Converting a PDF to PowerPoint extracts the content of each page into editable slides. If you received a presentation as a PDF and need to edit or re-present the slides, converting to PPT gives you full control over the content again.</p>
-    <div class="tool-about-grid">
-      <div class="tool-about-card">
-        <h3>🎯 Who Uses This</h3>
-        <p>Teachers receive PDF lectures and convert them to editable PowerPoint for classroom customization. Consultants convert delivered PDF proposals back to slides for internal review. Students convert study material PDFs into slide decks for presentation practice.</p>
+    <p>This tool converts every page of your PDF into a fully editable PowerPoint slide. Text content, headings, and images are extracted and placed into a clean PPTX file you can open in Microsoft PowerPoint, Google Slides, or LibreOffice Impress.</p>
+    <h3>🎯 Who Uses This?</h3>
+    <div class="use-case-grid">
+      <div class="use-case-card">
+        <div class="icon">🎓</div>
+        <strong>Students</strong>
+        <p>Convert lecture PDFs into editable slides for study notes and presentations.</p>
       </div>
-      <div class="tool-about-card">
-        <h3>⚡ How It Works</h3>
-        <p>Each PDF page becomes a slide in the output PPTX file. Text blocks, images, and layout are mapped to PowerPoint elements as closely as possible. Conversion runs client-side — your document stays on your device.</p>
+      <div class="use-case-card">
+        <div class="icon">💼</div>
+        <strong>Consultants</strong>
+        <p>Re-edit delivered PDF proposals back into live slide decks for client reviews.</p>
       </div>
-      <div class="tool-about-card">
-        <h3>🔒 100% Private</h3>
-        <p>Your files never leave your browser. No account required, no server uploads — just fast, local processing. This is what it means to convert PDF to PowerPoint without uploading.</p>
+      <div class="use-case-card">
+        <div class="icon">🏫</div>
+        <strong>Teachers</strong>
+        <p>Adapt received PDF course material into customizable PowerPoint lessons.</p>
       </div>
+      <div class="use-case-card">
+        <div class="icon">📊</div>
+        <strong>Business Teams</strong>
+        <p>Convert PDF reports into presentation-ready slides for internal meetings.</p>
+      </div>
+    </div>
+
+    <h3>⚡ How to Use</h3>
+    <ol class="steps-list">
+      <li>Drop or select your PDF file using the upload box above.</li>
+      <li>Choose your slide layout, theme, and conversion options.</li>
+      <li>Click <strong>"Convert to PowerPoint"</strong> — processing happens instantly in your browser.</li>
+      <li>Preview the generated slides before downloading.</li>
+      <li>Download your <strong>.pptx file</strong> and open it in PowerPoint or Google Slides.</li>
+    </ol>
+
+    <h3>🔒 100% Private — No Server Upload</h3>
+    <p>Your PDF never leaves your device. All conversion processing runs locally using JavaScript — there is no server upload, no account required, and no file size stored anywhere.</p>
+  </div>
+
+  <!-- FAQ -->
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">Can I convert a PDF to PowerPoint without Adobe?</div>
+      <div class="faq-a">Yes — this tool requires no Adobe software or account. It runs entirely in your browser and converts the PDF directly to a .pptx file you can open in Microsoft PowerPoint, Google Slides, or any compatible software.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Will the formatting and layout be preserved?</div>
+      <div class="faq-a">Text blocks, headings, and images are extracted and placed into slides as accurately as possible. Complex multi-column layouts or custom fonts may not be reproduced exactly, but the content will be fully editable. Enable "Preserve PDF layout" in options for best results with layout-heavy PDFs.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Are my files safe? Are they uploaded to a server?</div>
+      <div class="faq-a">Your files are never uploaded anywhere. All processing happens inside your browser using PDF.js and pptxgenjs. Your documents stay completely private on your device — no account, no server, no data stored.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is the maximum file size I can convert?</div>
+      <div class="faq-a">Since conversion runs in your browser, the limit depends on your device's memory. PDFs up to 50MB (typically 200+ pages) convert reliably on most modern devices. For very large files, we recommend splitting the PDF first using our Split PDF tool.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I convert a scanned PDF to PowerPoint?</div>
+      <div class="faq-a">Scanned PDFs are image-based and don't contain extractable text. For best results with scanned documents, use our OCR tool first to extract text, then convert to PowerPoint. The tool will still extract images from scanned PDFs as image slides.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What formats can I open the PPTX file in?</div>
+      <div class="faq-a">The output .pptx file is fully compatible with Microsoft PowerPoint (all versions), Google Slides (upload via Drive), LibreOffice Impress, Apple Keynote (with import), and WPS Office.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Does it support multi-column PDF layouts?</div>
+      <div class="faq-a">Basic multi-column layouts are detected and split into text blocks per slide. Enable "Preserve PDF layout" in options to get closer positioning. For complex magazine-style layouts, results vary depending on how the original PDF was created.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Will slide transitions be included?</div>
+      <div class="faq-a">No. PDF files do not store transition data — they are static page-based documents. If the original presentation had transitions, those were lost when it was saved as a PDF. You can add new transitions manually in PowerPoint after conversion.</div>
     </div>
   </div>
 
-  <h2>How to Use This Tool</h2>
-  <ol class="steps-list">
-    <li>Oops! Note: Deep PDF to PPT conversion requires server software, but you can try using PDF to Word as an alternate extraction method for now.</li>
-    <li>Upload the PDF.</li>
-    <li>Download the extracted text.</li>
-    <li>Copy the text into a presentation layout.</li>
-  </ol>
-
-  <h2>Why Choose LovePDFs?</h2>
-  <div class="benefits-grid">
-    
-      <div class="benefit-card">
-        <h4>Fast text retrieval</h4>
-        <p>Quickly get the text out of slide-based PDFs.</p>
-      </div>
-      <div class="benefit-card">
-        <h4>Private</h4>
-        <p>Safe for confidential business presentations.</p>
-      </div>
+  <!-- Related Tools -->
+  <div class="content-section">
+    <h2>Related Tools</h2>
+    <div class="related-tools">
+      <a class="related-tool" href="https://lovepdfs.in/pdf-to-word/">PDF to Word</a>
+      <a class="related-tool" href="https://lovepdfs.in/pdf-to-excel/">PDF to Excel</a>
+      <a class="related-tool" href="https://lovepdfs.in/pdf-to-jpg/">PDF to JPG</a>
+      <a class="related-tool" href="https://lovepdfs.in/word-to-pdf/">Word to PDF</a>
+      <a class="related-tool" href="https://lovepdfs.in/merge-pdf/">Merge PDF</a>
+      <a class="related-tool" href="https://lovepdfs.in/split-pdf/">Split PDF</a>
+      <a class="related-tool" href="https://lovepdfs.in/compress-pdf/">Compress PDF</a>
+      <a class="related-tool" href="https://lovepdfs.in/ocr-extract-text/">OCR PDF</a>
+    </div>
   </div>
 
-<!-- Google AdSense In-Content – Tool Page – In-Content -->
-<div class="adsense-wrap" style="text-align:center;padding:1rem;margin:2.5rem auto;max-width:400px;">
-  <ins class="adsbygoogle"
-       style="display:inline-block;width:300px;height:250px"
-       data-ad-client="ca-pub-1303178479491171"
-       data-ad-slot="5555555555"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-  <h2>Frequently Asked Questions</h2>
-  <div class="faq-list">
-    
-      <div class="faq-item">
-        <div class="faq-q">Will it recreate the slide transitions?</div>
-        <p class="faq-a">No, PDFs do not contain transition data. The tool focuses on extracting the content.</p>
-      </div>
-  </div>
-<h2>Related Tools</h2>
-  <div class="related-links"><a href="../pdf-to-word/index.html" class="related-chip">Pdf To Word</a><a href="../pdf-to-excel/index.html" class="related-chip">Pdf To Excel</a><a href="../pdf-to-jpg/index.html" class="related-chip">Pdf To Jpg</a><a href="../word-to-pdf/index.html" class="related-chip">Word To Pdf</a><a href="../merge-pdf/index.html" class="related-chip">Merge Pdf</a><a href="../split-pdf/index.html" class="related-chip">Split Pdf</a>
-  </div>
 
-  <!-- CONTACT STRIP -->
-  <div class="contact-strip">
-    <h3>Need Help? Get in Touch</h3>
-    <p>Have a question, feedback, or feature request? We'd love to hear from you.</p>
-    <a href="../contact.html">Contact Support</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="site-footer">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
-      <div class="footer-tagline">Every PDF & Image tool you'll ever need &mdash; 100% free, private, running entirely in your browser.</div>
-      <div class="footer-contact"><a href="../contact.html">Contact us</a></div>
-      <div class="footer-badges"><span class="fbadge">&#128274; SSL</span><span class="fbadge">&#9889; WebAssembly</span><span class="fbadge">&#10022; Always Free</span></div>
-    </div>
-    <div><div class="footer-col-title">Product</div><div class="footer-links"><a href="../index.html">Home</a><a href="../features.html">Features</a><a href="../pricing.html">Pricing</a><a href="../index.html#tools">Tools</a><a href="../faq.html">FAQ</a></div></div>
-    <div><div class="footer-col-title">Solutions</div><div class="footer-links"><a href="../business.html">Business</a><a href="../education.html">Education</a></div></div>
-    <div><div class="footer-col-title">Legal</div><div class="footer-links"><a href="../security.html">Security</a><a href="../privacy.html">Privacy policy</a><a href="../terms.html">Terms & conditions</a><a href="../cookies.html">Cookies</a></div></div>
-    <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="../about.html">About us</a><a href="../contact.html">Contact us</a><a href="../blog.html">Blog</a><a href="../press.html">Press</a></div></div>
-  </div>
-  <div class="footer-bottom" style="max-width:1240px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
-    <div class="footer-copy" style="font-size:0.8rem;color:var(--muted)">&copy; LovePDFs 2026 &reg; · Private & Local Processing</div>
-    <div class="footer-sitemap"><a href="/sitemap.xml" style="color:var(--muted);font-size:0.82rem;text-decoration:none;transition:color 0.2s">Sitemap</a></div>
-  </div>
-
-  <h2>More Popular Tools</h2>
-  <div class="related-links">
-    <a href="../compress-pdf/index.html" class="related-chip">Compress PDF</a>
-    <a href="../merge-pdf/index.html" class="related-chip">Merge PDF</a>
-    <a href="../pdf-to-word/index.html" class="related-chip">PDF to Word</a>
-    <a href="../jpg-to-pdf/index.html" class="related-chip">JPG to PDF</a>
-  </div>
+<footer>
+  <span class="footer-logo">P LovePDFs</span>
+  Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.
+  <br><br>
+  <a href="https://lovepdfs.in/privacy" style="color:var(--muted);text-decoration:none;margin:0 8px">Privacy</a>
+  <a href="https://lovepdfs.in/terms" style="color:var(--muted);text-decoration:none;margin:0 8px">Terms</a>
+  <a href="https://lovepdfs.in/contact" style="color:var(--muted);text-decoration:none;margin:0 8px">Contact</a>
+  <br><br>
+  © LovePDFs 2026 · <a href="https://lovepdfs.in/sitemap.xml" style="color:var(--muted);text-decoration:none">Sitemap</a>
 </footer>
 
-<!-- TOAST -->
-<div class="toast" id="toast">
-  <div class="toast-i" id="tIcon"></div>
-  <div><div class="toast-t" id="tTitle"></div><div class="toast-m" id="tMsg"></div></div>
-</div>
+<!-- PDF.js 2.16.105 — exposes window.pdfjsLib, worker on same CDN origin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<!-- pptxgenjs -->
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
 
-<script src="../tools.js?v=5"></script>
-<script src="../app.js?v=5"></script>
+<script>
+const pdfjsLib = window.pdfjsLib;
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-<script src="../site-enhancements.js"></script>
-<script src="../nav-enhancements.js"></script>
+let pdfDoc = null;
+let pdfFile = null;
+
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+const fileInfo = document.getElementById('fileInfo');
+const optionsPanel = document.getElementById('optionsPanel');
+const progressSection = document.getElementById('progressSection');
+const previewSection = document.getElementById('previewSection');
+const resultSection = document.getElementById('resultSection');
+
+// Drag & Drop
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type === 'application/pdf') loadFile(file);
+  else alert('Please drop a valid PDF file.');
+});
+dropZone.addEventListener('click', e => {
+  if (e.target.tagName !== 'BUTTON') fileInput.click();
+});
+fileInput.addEventListener('change', () => {
+  if (fileInput.files[0]) loadFile(fileInput.files[0]);
+});
+
+document.getElementById('clearBtn').addEventListener('click', resetAll);
+document.getElementById('convertBtn').addEventListener('click', convertToPPT);
+document.getElementById('againBtn').addEventListener('click', resetAll);
+
+async function loadFile(file) {
+  pdfFile = file;
+  const sizeMB = (file.size / 1024 / 1024).toFixed(2);
+
+  const arrayBuffer = await file.arrayBuffer();
+  pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+  const numPages = pdfDoc.numPages;
+
+  document.getElementById('fileName').textContent = file.name;
+  document.getElementById('fileMeta').textContent = `${numPages} page${numPages > 1 ? 's' : ''} · ${sizeMB} MB`;
+  fileInfo.classList.add('visible');
+  optionsPanel.classList.add('visible');
+  resultSection.classList.remove('visible');
+  previewSection.classList.remove('visible');
+}
+
+function resetAll() {
+  pdfDoc = null; pdfFile = null;
+  fileInput.value = '';
+  fileInfo.classList.remove('visible');
+  optionsPanel.classList.remove('visible');
+  progressSection.classList.remove('visible');
+  previewSection.classList.remove('visible');
+  resultSection.classList.remove('visible');
+  document.getElementById('slidesGrid').innerHTML = '';
+  setProgress(0, 'Ready', '');
+}
+
+function setProgress(pct, label, sub) {
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = label;
+  document.getElementById('progressSub').textContent = sub;
+}
+
+async function convertToPPT() {
+  if (!pdfDoc) return;
+
+  const layout = document.getElementById('slideLayout').value;
+  const theme = document.getElementById('themeColor').value;
+  const fontSizeOpt = document.getElementById('fontSize').value;
+  const includeImages = document.getElementById('includeImages').checked;
+  const addTitleSlide = document.getElementById('titleSlide').checked;
+  const addSlideNumbers = document.getElementById('slideNumbers').checked;
+
+  optionsPanel.classList.remove('visible');
+  progressSection.classList.add('visible');
+  previewSection.classList.remove('visible');
+  resultSection.classList.remove('visible');
+  document.getElementById('slidesGrid').innerHTML = '';
+
+  // Theme config
+  const themes = {
+    white: { bg: 'FFFFFF', text: '1a1714', accent: 'd4522a', title: '1a1714' },
+    dark:  { bg: '1a1a2e', text: 'e8eaf0', accent: '4f8ef7', title: 'ffffff' },
+    blue:  { bg: '0a3161', text: 'ffffff', accent: 'f7a44f', title: 'ffffff' }
+  };
+  const t = themes[theme];
+
+  const isWide = layout === 'widescreen';
+  const slideW = isWide ? 10 : 10;
+  const slideH = isWide ? 5.625 : 7.5;
+
+  const prs = new pptxgen();
+  prs.layout = isWide ? 'LAYOUT_WIDE' : 'LAYOUT_4x3';
+
+  const totalPages = pdfDoc.numPages;
+  const slidesData = [];
+
+  // Title slide
+  if (addTitleSlide) {
+    const slide = prs.addSlide();
+    slide.background = { color: t.bg };
+    const fname = pdfFile.name.replace('.pdf', '');
+    slide.addText(fname, {
+      x: 0.5, y: slideH * 0.3, w: slideW - 1, h: 1.5,
+      fontSize: 32, bold: true, color: t.title,
+      align: 'center', fontFace: 'Calibri'
+    });
+    slide.addText('Converted with LovePDFs.in', {
+      x: 0.5, y: slideH * 0.6, w: slideW - 1, h: 0.5,
+      fontSize: 14, color: t.accent, align: 'center', fontFace: 'Calibri'
+    });
+    slide.addShape(prs.ShapeType.rect, {
+      x: slideW / 2 - 1.5, y: slideH * 0.55, w: 3, h: 0.04,
+      fill: { color: t.accent }
+    });
+  }
+
+  // Convert pages
+  for (let i = 1; i <= totalPages; i++) {
+    const pct = Math.round((i / totalPages) * 85);
+    setProgress(pct, \`Processing page \${i} of \${totalPages}...\`, 'Extracting text and rendering slides');
+
+    const page = await pdfDoc.getPage(i);
+    const viewport = page.getViewport({ scale: 1.5 });
+
+    // Render to canvas for image
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport }).promise;
+    const imgDataUrl = canvas.toDataURL('image/jpeg', 0.85);
+
+    // Extract text
+    const textContent = await page.getTextContent();
+    const textItems = textContent.items.filter(item => item.str.trim().length > 0);
+
+    const slide = prs.addSlide();
+    slide.background = { color: t.bg };
+
+    if (includeImages) {
+      // Place rendered page as background image
+      slide.addImage({
+        data: imgDataUrl,
+        x: 0, y: 0, w: slideW, h: slideH,
+        sizing: { type: 'contain', w: slideW, h: slideH }
+      });
+    } else {
+      // Text-only: place text blocks
+      if (textItems.length > 0) {
+        // Gather all text into a readable block
+        const pageVp = page.getViewport({ scale: 1 });
+        const pW = pageVp.width, pH = pageVp.height;
+
+        // Group into lines by y-position
+        const lines = {};
+        textItems.forEach(item => {
+          const tx = pdfjsLib.Util.transform(pdfjsLib.Util.transform(pageVp.transform, item.transform), [1,0,0,1,0,0]);
+          const y = Math.round(item.transform[5] / 10) * 10;
+          if (!lines[y]) lines[y] = [];
+          lines[y].push(item.str);
+        });
+
+        const sortedLines = Object.keys(lines).sort((a, b) => b - a)
+          .map(y => lines[y].join(' '))
+          .filter(l => l.trim().length > 0);
+
+        const titleLine = sortedLines[0] || \`Page \${i}\`;
+        const bodyText = sortedLines.slice(1).join('\\n');
+
+        // Title
+        slide.addText(titleLine, {
+          x: 0.4, y: 0.2, w: slideW - 0.8, h: 0.8,
+          fontSize: fontSizeOpt === 'auto' ? 20 : fontSizeOpt === 'small' ? 14 : fontSizeOpt === 'large' ? 24 : 18,
+          bold: true, color: t.title, fontFace: 'Calibri',
+          breakLine: false
+        });
+        // Body
+        if (bodyText.trim()) {
+          slide.addText(bodyText, {
+            x: 0.4, y: 1.2, w: slideW - 0.8, h: slideH - 1.6,
+            fontSize: fontSizeOpt === 'auto' ? 12 : fontSizeOpt === 'small' ? 10 : fontSizeOpt === 'large' ? 16 : 13,
+            color: t.text, fontFace: 'Calibri', valign: 'top',
+            breakLine: true, wrap: true
+          });
+        }
+      } else {
+        slide.addText(\`Page \${i}\`, {
+          x: 0.4, y: slideH / 2 - 0.3, w: slideW - 0.8, h: 0.6,
+          fontSize: 18, color: t.text, align: 'center', fontFace: 'Calibri'
+        });
+      }
+    }
+
+    // Slide number
+    if (addSlideNumbers) {
+      slide.addText(\`\${addTitleSlide ? i + 1 : i}\`, {
+        x: slideW - 0.6, y: slideH - 0.35, w: 0.5, h: 0.25,
+        fontSize: 9, color: t.accent, align: 'right', fontFace: 'Calibri'
+      });
+    }
+
+    slidesData.push({ imgDataUrl, pageNum: i });
+  }
+
+  setProgress(92, 'Building PPTX file...', 'Packaging slides');
+
+  // Preview thumbnails
+  previewSection.classList.add('visible');
+  document.getElementById('previewCount').textContent = \`\${totalPages} slide\${totalPages > 1 ? 's' : ''}\`;
+  const grid = document.getElementById('slidesGrid');
+  slidesData.forEach(({ imgDataUrl, pageNum }) => {
+    const thumb = document.createElement('div');
+    thumb.className = 'slide-thumb';
+    thumb.innerHTML = \`
+      <div class="slide-canvas-wrap">
+        <img src="\${imgDataUrl}" style="width:100%;height:100%;object-fit:contain;" alt="Slide \${pageNum}">
+      </div>
+      <div class="slide-num">Slide \${pageNum}</div>\`;
+    grid.appendChild(thumb);
+  });
+
+  // Generate and download
+  setProgress(98, 'Finalising...', 'Almost done');
+  const blob = await prs.write({ outputType: 'blob' });
+  const url = URL.createObjectURL(blob);
+  const outName = pdfFile.name.replace('.pdf', '') + '.pptx';
+
+  document.getElementById('downloadBtn').href = url;
+  document.getElementById('downloadBtn').download = outName;
+  document.getElementById('resultMeta').textContent = \`\${totalPages} slide\${totalPages > 1 ? 's' : ''} created from \${totalPages} page\${totalPages > 1 ? 's' : ''}\`;
+
+  setProgress(100, 'Done!', '');
+  progressSection.classList.remove('visible');
+  resultSection.classList.add('visible');
+}
+
+// FAQ toggle
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    q.parentElement.classList.toggle('open');
+  });
+});
+</script>
 </body>
 </html>
