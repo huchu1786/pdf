@@ -1,0 +1,178 @@
+{
+  "sign-pdf": {
+    "primary": "Sign PDF Online Free",
+    "long_tails": ["how to sign a pdf without printing", "add signature to pdf free no account", "sign pdf on iphone free", "electronic signature pdf legally valid", "sign pdf document online free no adobe"]
+  },
+  "pdf-to-word": {
+    "primary": "Convert PDF to Word Free Online",
+    "long_tails": ["pdf to word without losing formatting", "convert pdf to word free no signup", "pdf to docx online free", "why does my pdf to word look wrong", "convert scanned pdf to word free"]
+  },
+  "pdf-to-excel": {
+    "primary": "Convert PDF to Excel Free Online",
+    "long_tails": ["extract table from pdf to excel", "pdf invoice to excel free", "convert pdf to spreadsheet free", "pdf to xlsx no signup", "how to get data out of a pdf into excel"]
+  },
+  "compress-pdf": {
+    "primary": "Compress PDF Without Losing Quality",
+    "long_tails": ["compress pdf to 100kb online free", "reduce pdf size for email", "make pdf smaller without losing quality", "compress pdf to 1mb free", "why is my pdf so large and how to fix"]
+  },
+  "merge-pdf": {
+    "primary": "Merge PDF Files Free Online",
+    "long_tails": ["combine pdf files into one free", "merge pdf without adobe", "join multiple pdfs together free", "merge pdf files on iphone", "how to combine pdfs no watermark"]
+  },
+  "ocr-extract-text": {
+    "primary": "Extract Text from PDF Online Free",
+    "long_tails": ["ocr pdf free online", "extract text from scanned pdf", "make scanned pdf searchable free", "copy text from pdf that won't let you", "how to extract text from image pdf"]
+  },
+  "split-pdf": {
+    "primary": "Split PDF into Multiple Files Free",
+    "long_tails": ["extract one page from pdf free", "split pdf by page range online", "separate pdf pages free no signup", "how to split a large pdf into smaller files", "split pdf every n pages free"]
+  },
+  "word-to-pdf": {
+    "primary": "Convert Word to PDF Free Online",
+    "long_tails": ["docx to pdf free no watermark", "word to pdf keeps formatting free", "microsoft word to pdf converter free", "convert word document to pdf on phone", "how to save word as pdf without losing formatting"]
+  },
+  "pdf-to-jpg": {
+    "primary": "Convert PDF to JPG Free Online",
+    "long_tails": ["pdf to image converter free", "convert pdf page to jpg high quality", "save pdf as image free online", "pdf to jpg no signup no watermark", "how to screenshot a pdf as an image"]
+  },
+  "jpg-to-pdf": {
+    "primary": "Convert JPG to PDF Free Online",
+    "long_tails": ["image to pdf converter free", "multiple photos to pdf free", "jpg to pdf no watermark", "combine images into one pdf free", "convert photo to pdf on android free"]
+  },
+  "unlock-pdf": {
+    "primary": "Remove Password from PDF Free Online",
+    "long_tails": ["unlock pdf without password free", "how to open a password protected pdf", "pdf password remover free online", "decrypt pdf free no software", "remove restrictions from pdf free"]
+  },
+  "protect-pdf": {
+    "primary": "Password Protect PDF Free Online",
+    "long_tails": ["lock pdf with password free", "encrypt pdf free no software", "add password to pdf without acrobat", "how to protect pdf from editing free", "secure pdf file online free"]
+  },
+  "edit-pdf": {
+    "primary": "Edit PDF Online Free",
+    "long_tails": ["edit text in pdf free without adobe", "add text to pdf free online", "draw on pdf free online", "annotate pdf online free no signup", "highlight text in pdf online free"]
+  },
+  "redact-pdf": {
+    "primary": "Redact PDF Online Free",
+    "long_tails": ["black out text in pdf free", "permanently remove text from pdf free", "how to redact sensitive information pdf", "hide personal information in pdf free", "pdf redaction tool no software"]
+  },
+  "pdf-to-ppt": {
+    "primary": "Convert PDF to PowerPoint Free Online",
+    "long_tails": ["pdf to pptx free no signup", "turn pdf into editable slides free", "convert pdf presentation to powerpoint", "pdf to google slides free online", "how to edit a pdf in powerpoint free"]
+  },
+  "compare-pdf": {
+    "primary": "Compare Two PDF Files Online Free",
+    "long_tails": ["pdf difference checker free", "find differences between two pdfs", "compare pdf documents side by side", "pdf version comparison tool free", "how to check what changed in a pdf"]
+  },
+  "add-watermark-pdf": {
+    "primary": "Add Watermark to PDF Free Online",
+    "long_tails": ["add text watermark to pdf free", "stamp pdf with logo free", "add confidential watermark to pdf", "watermark all pages of pdf free", "add image watermark to pdf online"]
+  },
+  "excel-to-pdf": {
+    "primary": "Convert Excel to PDF Free Online",
+    "long_tails": ["xlsx to pdf free no watermark", "excel spreadsheet to pdf converter", "convert excel to pdf fit to page", "multiple excel sheets to one pdf", "excel to pdf without microsoft office"]
+  },
+  "ppt-to-pdf": {
+    "primary": "Convert PowerPoint to PDF Free Online",
+    "long_tails": ["pptx to pdf free no signup", "save powerpoint as pdf with notes", "presentation to pdf free online", "ppt to pdf without powerpoint installed", "convert slides to pdf free"]
+  },
+  "rotate-pdf": {
+    "primary": "Rotate PDF Pages Free Online",
+    "long_tails": ["flip pdf upside down free", "rotate pdf 90 degrees free", "rotate specific pages in pdf free", "permanently rotate pdf online", "fix sideways pdf free"]
+  },
+  "compress-image": {
+    "primary": "Compress Image Online Free",
+    "long_tails": ["reduce image file size free", "compress jpg without losing quality", "compress image to 100kb free", "reduce photo size for upload free", "compress png free online no watermark"]
+  },
+  "resize-image": {
+    "primary": "Resize Image Free Online",
+    "long_tails": ["resize image to specific pixels free", "change image dimensions online free", "resize photo for passport free", "resize image without losing quality", "bulk resize images free online"]
+  },
+  "crop-image": {
+    "primary": "Crop Image Online Free",
+    "long_tails": ["crop photo to circle free online", "crop image to specific aspect ratio", "crop image without background free", "cut out part of image free online", "free online image cropper no signup"]
+  },
+  "jpg-to-png": {
+    "primary": "Convert JPG to PNG Free Online",
+    "long_tails": ["jpg to png transparent background free", "convert jpeg to png without quality loss", "change image format jpg to png free", "jpg to png converter no watermark", "make jpg background transparent free"]
+  },
+  "png-to-jpg": {
+    "primary": "Convert PNG to JPG Free Online",
+    "long_tails": ["png to jpg no white background free", "reduce png file size by converting to jpg", "bulk png to jpg converter free", "png to jpeg free no signup", "convert transparent png to jpg free"]
+  },
+  "remove-pages-pdf": {
+    "primary": "Delete Pages from PDF Free Online",
+    "long_tails": ["remove a page from pdf without acrobat", "delete blank pages from pdf free", "remove first page from pdf free", "how to delete multiple pages from pdf", "strip pages from pdf online free"]
+  },
+  "extract-pages-pdf": {
+    "primary": "Extract Pages from PDF Free Online",
+    "long_tails": ["save specific pages from pdf free", "extract single page from pdf", "pull pages out of pdf free", "save page range from pdf free online", "how to get one page from a pdf"]
+  },
+  "crop-pdf": {
+    "primary": "Crop PDF Pages Free Online",
+    "long_tails": ["remove white margins from pdf free", "trim pdf borders online free", "crop pdf to specific size free", "remove header footer from pdf pages", "cut edges of pdf online free"]
+  },
+  "add-page-numbers-pdf": {
+    "primary": "Add Page Numbers to PDF Free Online",
+    "long_tails": ["number pages in pdf free", "add page numbers to existing pdf", "insert page numbers pdf without acrobat", "add page numbers to pdf footer free", "auto number pdf pages free online"]
+  },
+  "header-footer-pdf": {
+    "primary": "Add Header and Footer to PDF Free",
+    "long_tails": ["insert header in pdf online free", "add footer text to all pdf pages", "pdf header footer editor free", "add date to pdf header free", "pdf footer stamp free online"]
+  },
+  "repair-pdf": {
+    "primary": "Repair Corrupted PDF Free Online",
+    "long_tails": ["fix damaged pdf file free", "pdf won't open how to repair free", "recover corrupt pdf online", "pdf file corrupted fix free", "how to repair a broken pdf file"]
+  },
+  "flatten-pdf": {
+    "primary": "Flatten PDF Form Fields Free Online",
+    "long_tails": ["flatten fillable pdf free", "lock pdf form fields free", "make pdf form non-editable free", "flatten annotations in pdf free", "convert pdf form to flat pdf", "remove layers from pdf free", "embed fonts flatten pdf free"]
+  },
+  "grayscale-pdf": {
+    "primary": "Convert PDF to Black and White Free",
+    "long_tails": ["make pdf grayscale free online", "remove colour from pdf free", "print pdf in black and white free", "pdf to greyscale converter free", "save ink by converting pdf to grayscale"]
+  },
+  "pdf-to-text": {
+    "primary": "Extract Text from PDF Free Online",
+    "long_tails": ["copy all text from pdf free", "pdf to plain text converter free", "get text out of pdf free", "pdf text extractor no signup", "convert pdf to txt file free"]
+  },
+  "html-to-pdf": {
+    "primary": "Convert HTML to PDF Free Online",
+    "long_tails": ["save webpage as pdf free", "html file to pdf converter free", "url to pdf free online", "convert web page to pdf no watermark", "print html as pdf free"]
+  },
+  "extract-images-pdf": {
+    "primary": "Extract Images from PDF Free Online",
+    "long_tails": ["save images from pdf free", "download pictures from pdf free", "pull images out of pdf free", "export all photos from pdf free", "pdf image extractor free online"]
+  },
+  "organize-pdf": {
+    "primary": "Rearrange PDF Pages Free Online",
+    "long_tails": ["reorder pages in pdf free", "drag and drop pdf pages free", "change order of pdf pages free", "reorganize pdf pages online free", "move pages in pdf without acrobat"]
+  },
+  "alternate-mix-pdf": {
+    "primary": "Interleave PDF Pages Free Online",
+    "long_tails": ["merge alternate pages two pdfs free", "interleave two pdf files free", "mix pages from two pdfs free", "alternate page merge pdf free", "odd even pages merge pdf online", "combine front and back scans pdf", "interleave duplex scan pdf free", "combine odd even scanned pages"]
+  },
+  "nup-pdf": {
+    "primary": "Print Multiple PDF Pages per Sheet Free",
+    "long_tails": ["2 pages per sheet pdf free", "4 up pdf layout free online", "booklet print pdf free", "n-up pdf converter free", "fit multiple slides per page pdf"]
+  },
+  "resize-pdf": {
+    "primary": "Resize PDF Page Size Free Online",
+    "long_tails": ["change pdf page size to a4 free", "convert pdf letter to a4 free", "resize pdf dimensions free online", "scale pdf page size free", "pdf a4 to letter converter free"]
+  },
+  "deskew-pdf": {
+    "primary": "Straighten Scanned PDF Free Online",
+    "long_tails": ["deskew pdf free", "fix crooked scan pdf free", "auto rotate scanned pages pdf", "correct tilted pdf scan free", "pdf straightener free online", "automatic page orientation pdf free", "scanned pdf page alignment free"]
+  },
+  "edit-pdf-metadata": {
+    "primary": "Edit PDF Metadata Free Online",
+    "long_tails": ["change pdf author name free", "remove pdf metadata free", "edit pdf title author free", "change created date in pdf free", "pdf properties editor online free"]
+  },
+  "remove-annotations-pdf": {
+    "primary": "Remove Annotations from PDF Free Online",
+    "long_tails": ["delete comments from pdf free", "strip highlights from pdf free", "remove sticky notes from pdf", "clean pdf remove all markup free", "remove highlights and comments pdf"]
+  },
+  "pdf-to-pdfa": {
+    "primary": "Convert PDF to PDF/A Free Online",
+    "long_tails": ["pdf to pdfa-1b free converter", "archival pdf conversion free", "make pdf iso compliant free", "long term pdf archiving free tool", "pdf/a for legal documents free"]
+  }
+}
