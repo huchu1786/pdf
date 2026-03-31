@@ -33,6 +33,41 @@
 <link rel="stylesheet" href="../shared.css"/>
 
 <style>
+.tool-hero { background: linear-gradient(170deg, var(--bg2) 0%, var(--bg) 100%); padding: 7rem 2rem 6rem; text-align: center; border-bottom: 2px solid var(--border); position: relative; overflow: hidden; }
+.tool-hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(232,50,26,0.08); border: 1.5px solid rgba(232,50,26,0.2); color: var(--red); padding: 0.45rem 1.1rem; border-radius: 100px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.5rem; text-decoration: none; }
+.tool-hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2.5rem, 8vw, 68px); font-weight: 900; color: var(--text); margin-bottom: 1.25rem; letter-spacing: -0.035em; line-height: 1.1; }
+.tool-hero p { color: var(--muted); max-width: 650px; margin: 0 auto 1.5rem; font-size: 1.45rem; line-height: 1.9; }
+.tool-trust-row { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1.25rem; }
+.tool-trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 1.1rem; color: var(--muted); font-weight: 500; }
+.tool-trust-item .check { color: var(--green); font-weight: 900; }
+.seo-content { max-width: 840px; margin: 0 auto 6rem; padding: 0 2rem; }
+.seo-content h2 { font-family: 'Fraunces', serif; font-size: clamp(2.4rem, 5vw, 46px); font-weight: 900; margin: 4rem 0 1.75rem; color: var(--text); letter-spacing: -0.025em; }
+.tool-about { background: var(--card); border: 2px solid var(--border); border-radius: 20px; padding: 2.25rem 2.5rem; margin-bottom: 3.5rem; }
+.tool-about-title { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 900; color: var(--text); margin: 0 0 1.25rem; }
+.tool-about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+.tool-about-card { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 1.25rem 1.4rem; }
+.tool-about-card h3 { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin: 0 0 0.5rem; }
+.steps-list { list-style-type: none; padding: 0; counter-reset: step-counter; display: flex; flex-direction: column; gap: 1rem; }
+.steps-list li { position: relative; padding: 1.35rem 1.5rem 1.35rem 4.75rem; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; font-size: 1.2rem; color: var(--text2); line-height: 1.8; }
+.steps-list li::before { counter-increment: step-counter; content: counter(step-counter); position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: linear-gradient(135deg, rgba(232,50,26,0.12), rgba(232,50,26,0.06)); color: var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; border: 1.5px solid rgba(232,50,26,0.2); }
+.benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+.benefit-card { background: var(--card); border: 2px solid var(--border); padding: 1.75rem; border-radius: 18px; }
+.benefit-card h4 { margin: 0 0 0.65rem; font-size: 1.35rem; color: var(--text); font-weight: 700; font-family: 'Fraunces', serif; }
+.faq-list { background: var(--card); border: 2px solid var(--border); border-radius: 18px; overflow: hidden; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 1.75rem 2rem; }
+.faq-item:last-child { border-bottom: none; }
+.faq-q { font-weight: 700; font-size: 1.2rem; color: var(--text); margin-bottom: 0.65rem; display: flex; align-items: flex-start; gap: 0.75rem; }
+.faq-q::before { content: 'Q'; background: var(--red); color: white; border-radius: 8px; padding: 0.1rem 0.55rem; font-size: 0.88rem; font-weight: 800; flex-shrink: 0; margin-top: 2px; }
+.faq-a { color: var(--muted); margin: 0; font-size: 1.15rem; line-height: 1.85; padding-left: 2.2rem; }
+.related-links { display: flex; gap: 0.875rem; flex-wrap: wrap; margin-top: 1rem; }
+.related-chip { padding: 0.85rem 1.65rem; background: var(--card); border: 2px solid var(--border); border-radius: 50px; text-decoration: none; color: var(--text); font-weight: 600; font-size: 1.05rem; transition: all 0.25s; box-shadow: 0 2px 8px rgba(0,0,0,0.05); white-space: nowrap; }
+.related-chip:hover { border-color: var(--red); color: var(--red); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(232,50,26,0.15); }
+.contact-strip { background: linear-gradient(135deg, rgba(232,50,26,0.06), rgba(124,58,237,0.04)); border: 2px solid rgba(232,50,26,0.15); border-radius: 20px; padding: 2.25rem 2.5rem; margin: 4rem 0; text-align: center; }
+.contact-strip h3 { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 900; color: var(--text); margin-bottom: 0.65rem; }
+.contact-strip p { color: var(--muted); margin-bottom: 1.25rem; font-size: 1.2rem; }
+.contact-strip a { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, var(--red), var(--red2)); color: white; padding: 0.875rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: all 0.25s; box-shadow: 0 6px 20px rgba(232,50,26,0.3); }
+.contact-strip a:hover { box-shadow: 0 10px 32px rgba(232,50,26,0.42); transform: translateY(-2px); }
+
 /* SLIDE PREVIEW */
 .preview-section { margin-top: 20px; display: none; }
 .preview-section.visible { display: block !important; }
@@ -47,11 +82,23 @@
 .slide-num { padding: 6px 10px; font-size: 11px; color: var(--muted); font-weight: 500; background: var(--bg); text-align:center; }
 .visible { display: block !important; }
 .file-info { display: none; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 0.75rem 1rem; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+.file-info > div { min-width: 0; flex: 1; margin-right: 1rem; }
 .file-info.visible { display: flex !important; }
-.file-name { font-weight: 700; font-size: 0.9rem; }
-.file-meta { font-size: 0.8rem; color: var(--muted); }
-.btn-clear { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1.1rem; }
+.file-name { font-weight: 700; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.file-meta { font-size: 0.8rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.btn-clear { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1.1rem; flex-shrink: 0; padding: 0.2rem; }
 .btn-clear:hover { color: var(--red); }
+
+@media (max-width: 640px) {
+  .tool-hero { padding: 4rem 1.2rem 4rem; }
+  .tool-hero h1 { font-size: 2.2rem; }
+  .tool-hero p { font-size: 1.05rem; }
+  .seo-content { padding: 0 1.25rem; }
+  .tool-trust-row { flex-direction: column; align-items: center; gap: 0.75rem; }
+  .prog-hd { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+  .act-row { flex-direction: column; }
+  .act-row .btn-go, .act-row .btn-rst { width: 100%; }
+}
 </style>
 </head>
 <body>
@@ -173,7 +220,7 @@
 <section class="seo-content">
   <div class="tool-about">
     <h2 class="tool-about-title">About PDF to PowerPoint</h2>
-    <p>This tool converts every page of your PDF into a fully editable PowerPoint slide. Text content, headings, and images are extracted and placed into a clean PPTX file you can open in Microsoft PowerPoint, Google Slides, or LibreOffice Impress.</p>
+    <p>This tool converts every page of your PDF into a fully editable PowerPoint slide. Text content, headings, and images are extracted and placed into a clean PPTX file you can open in Microsoft PowerPoint, Google Slides, or LibreOffice Impress. If you need to edit your document as a text file instead of a presentation, try our <a href="../pdf-to-word/index.html" style="color:var(--red); font-weight:600; text-decoration:none;">PDF to Word converter</a>.</p>
     <div class="tool-about-grid">
       <div class="tool-about-card">
         <h3>🎓 Students</h3>
@@ -227,11 +274,11 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" style="cursor:default;">What is the maximum file size I can convert?</div>
-      <div class="faq-a" style="display:block;">Since conversion runs in your browser, the limit depends on your device's memory. PDFs up to 50MB (typically 200+ pages) convert reliably on most modern devices. For very large files, we recommend splitting the PDF first using our Split PDF tool.</div>
+      <div class="faq-a" style="display:block;">Since conversion runs in your browser, the limit depends on your device's memory. PDFs up to 50MB (typically 200+ pages) convert reliably on most modern devices. For very large files, we recommend splitting the PDF first using our <a href="../split-pdf/index.html" style="color:var(--red); font-weight:600; text-decoration:none;">Split PDF tool</a>.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" style="cursor:default;">Can I convert a scanned PDF to PowerPoint?</div>
-      <div class="faq-a" style="display:block;">Scanned PDFs are image-based and don't contain extractable text. For best results with scanned documents, use our OCR tool first to extract text, then convert to PowerPoint. The tool will still extract images from scanned PDFs as image slides.</div>
+      <div class="faq-a" style="display:block;">Scanned PDFs are image-based and don't contain extractable text. For best results with scanned documents, use our <a href="../ocr-extract-text/index.html" style="color:var(--red); font-weight:600; text-decoration:none;">OCR tool</a> first to extract text, then convert to PowerPoint. The tool will still extract images from scanned PDFs as image slides.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" style="cursor:default;">What formats can I open the PPTX file in?</div>
@@ -249,14 +296,22 @@
 
   <h2>Related Tools</h2>
   <div class="related-links">
-    <a class="related-chip" href="../pdf-to-word/">PDF to Word</a>
-    <a class="related-chip" href="../pdf-to-excel/">PDF to Excel</a>
-    <a class="related-chip" href="../pdf-to-jpg/">PDF to JPG</a>
-    <a class="related-chip" href="../word-to-pdf/">Word to PDF</a>
-    <a class="related-chip" href="../merge-pdf/">Merge PDF</a>
-    <a class="related-chip" href="../split-pdf/">Split PDF</a>
-    <a class="related-chip" href="../compress-pdf/">Compress PDF</a>
-    <a class="related-chip" href="../ocr-extract-text/">OCR PDF</a>
+    <a href="../merge-pdf/index.html" class="related-chip">Merge PDF</a>
+    <a href="../split-pdf/index.html" class="related-chip">Split PDF</a>
+    <a href="../compress-pdf/index.html" class="related-chip">Compress PDF</a>
+    <a href="../edit-pdf/index.html" class="related-chip">Edit PDF</a>
+    <a href="../ocr-extract-text/index.html" class="related-chip">OCR - Extract Text</a>
+    <a href="../pdf-to-word/index.html" class="related-chip">PDF to Word</a>
+    <a href="../protect-pdf/index.html" class="related-chip">Protect PDF</a>
+    <a href="../redact-pdf/index.html" class="related-chip">Redact PDF</a>
+    <a href="../pdf-to-text/index.html" class="related-chip">PDF to Text</a>
+    <a href="../extract-pages-pdf/index.html" class="related-chip">Extract Pages</a>
+  </div>
+
+  <div class="contact-strip">
+    <h3>Need Help? Get in Touch</h3>
+    <p>Have a question, feedback, or feature request? We'd love to hear from you.</p>
+    <a href="../contact.html">Contact Support</a>
   </div>
 </section>
 
@@ -508,7 +563,7 @@ async function convertToPPT() {
             .filter(l => l.trim().length > 0);
 
           const titleLine = sortedLines[0] || `Page ${i}`;
-          const bodyText = sortedLines.slice(1).join('\\n');
+          const bodyText = sortedLines.slice(1).join('\n');
 
           // Title
           slide.addText(titleLine, {
