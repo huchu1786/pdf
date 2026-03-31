@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Picker Wheel – Free Spin the Wheel Tool | LovePDFs</title>
+<meta name="description" content="Free online picker wheel. Add names or choices, spin the wheel and get a truly random result. Weights, sound themes, save & share wheels – no signup needed."/>
+<meta name="keywords" content="picker wheel, spin the wheel, random wheel, decision wheel, wheel spinner, random name picker, wheel of names"/>
+<link rel="canonical" href="https://lovepdfs.in/picker-wheel/"/>
+<link rel="icon" type="image/png" sizes="512x512" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1303178479491171" crossorigin="anonymous"></script>
+<style>
+/* ──────── PICKER WHEEL STYLES ──────── */
+:root { --pw-size: 420px; }
+
+.pw-wrap { max-width: 1160px; margin: 0 auto; }
+
+/* LAYOUT */
+.pw-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 22px;
+  align-items: start;
+  padding: 0 1rem 2.5rem;
+}
+@media(max-width:860px){ .pw-layout{ grid-template-columns:1fr; } }
+
+/* WHEEL CARD */
+.pw-wheel-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 24px;
+  padding: 28px 24px;
+  display: flex; flex-direction: column; align-items: center;
+  box-shadow: var(--shadow-xs);
+  gap: 4px;
+}
+.wheel-wrapper {
+  position: relative;
+  width: var(--pw-size); height: var(--pw-size);
+  display: flex; align-items: center; justify-content: center;
+}
+@media(max-width:480px){
+  :root { --pw-size: 300px; }
+  #wheelCanvas { width: 300px !important; height: 300px !important; }
+}
+#wheelCanvas { border-radius: 50%; filter: drop-shadow(0 10px 36px rgba(0,0,0,0.18)); cursor: pointer; }
+.wheel-pointer {
+  position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-top: 46px solid var(--red);
+  filter: drop-shadow(0 4px 8px rgba(232,50,26,0.4));
+  z-index: 10;
+}
+.wheel-center-btn {
+  position: absolute;
+  width: 62px; height: 62px; border-radius: 50%;
+  background: linear-gradient(135deg,#fff 40%,#f5f5f5);
+  border: 4px solid #fff;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.2);
+  cursor: pointer;
+  font-family: 'Instrument Sans',sans-serif;
+  font-weight: 900; font-size: .62rem; letter-spacing: .5px;
+  color: var(--red); text-transform: uppercase;
+  z-index: 10; transition: transform .15s;
+  display: flex; align-items: center; justify-content: center;
+}
+.wheel-center-btn:hover{ transform: scale(1.12); }
+.wheel-center-btn:active{ transform: scale(0.92); }
+
+/* SPIN BUTTON */
+.pw-spin-btn {
+  margin-top: 16px;
+  background: linear-gradient(135deg, var(--red), #ff6b6b);
+  color: #fff; border: none;
+  padding: 15px 56px; border-radius: 50px;
+  font-family: 'Instrument Sans',sans-serif;
+  font-weight: 900; font-size: 1.08rem; letter-spacing: .3px;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(232,50,26,0.34);
+  transition: all .2s;
+}
+.pw-spin-btn:hover{ transform: translateY(-2px); box-shadow: 0 12px 36px rgba(232,50,26,0.44); }
+.pw-spin-btn:disabled{ opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* ACTION BUTTONS */
+.pw-actions { display: flex; gap: 7px; margin-top: 10px; flex-wrap: wrap; justify-content: center; }
+.pw-action-btn {
+  background: var(--bg2); border: 1.5px solid var(--border);
+  padding: 7px 13px; border-radius: 10px;
+  font-family: 'Instrument Sans',sans-serif;
+  font-weight: 700; font-size: .78rem;
+  color: var(--text); cursor: pointer; transition: all .18s;
+}
+.pw-action-btn:hover{ background: var(--red); color: #fff; border-color: var(--red); }
+
+/* SPIN COUNTER */
+#spinCounter { font-size: .78rem; color: var(--muted); margin-top: 6px; text-align: center; }
+
+/* RESULT */
+.pw-result {
+  margin-top: 14px; width: 100%;
+  background: linear-gradient(135deg,rgba(232,50,26,.07),rgba(232,50,26,.02));
+  border: 2px solid rgba(232,50,26,.2);
+  border-radius: 16px; padding: 14px 24px; text-align: center; display: none;
+}
+.pw-result.show{ display: block; animation: popIn .4s cubic-bezier(.36,1.56,.64,1); }
+.pw-result-label{ font-size: .72rem; color: var(--muted); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.pw-result-value{ font-family: 'Fraunces',serif; font-size: 1.7rem; font-weight: 900; color: var(--red); margin-top: 4px; word-break: break-word; }
+@keyframes popIn{ 0%{transform:scale(.6);opacity:0} 100%{transform:scale(1);opacity:1} }
+
+/* SIDE PANEL */
+.pw-side { display: flex; flex-direction: column; gap: 16px; }
+.pw-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 22px; overflow: hidden;
+  box-shadow: var(--shadow-xs);
+}
+.pw-card-head {
+  padding: 12px 16px;
+  background: linear-gradient(135deg, var(--red), #ff6b6b);
+  color: #fff;
+  font-family: 'Instrument Sans',sans-serif;
+  font-weight: 800; font-size: .92rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.pw-card-body{ padding: 14px 16px; }
+.pw-count { background: rgba(255,255,255,.25); color: #fff; font-weight: 800; padding: 2px 10px; border-radius: 20px; font-size: .78rem; }
+
+/* TABS */
+.pw-tabs{ display: flex; border-bottom: 2px solid var(--border); }
+.pw-tab{ flex: 1; padding: 9px; text-align: center; font-weight: 700; font-size: .8rem; cursor: pointer; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all .18s; }
+.pw-tab.active{ color: var(--red); border-bottom-color: var(--red); }
+.pw-tab-content{ display: none; padding-top: 12px; }
+.pw-tab-content.active{ display: block; }
+
+/* INPUTS */
+.pw-add-row{ display: flex; gap: 8px; }
+.pw-add-row input{ flex: 1; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'Instrument Sans',sans-serif; font-size: .88rem; font-weight: 600; outline: none; background: var(--bg2); color: var(--text); transition: border .2s; }
+.pw-add-row input:focus{ border-color: var(--red); }
+.pw-add-btn{ background: var(--red); color: #fff; border: none; padding: 9px 16px; border-radius: 10px; font-family: 'Instrument Sans',sans-serif; font-weight: 800; font-size: .88rem; cursor: pointer; white-space: nowrap; }
+.pw-add-btn:hover{ background: var(--red2); }
+.pw-bulk-input{ width: 100%; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'Instrument Sans',sans-serif; font-size: .84rem; resize: vertical; min-height: 90px; outline: none; background: var(--bg2); color: var(--text); transition: border .2s; }
+.pw-bulk-input:focus{ border-color: var(--red); }
+.pw-bulk-hint{ font-size: .73rem; color: var(--muted); margin-top: 4px; line-height: 1.6; }
+
+/* ENTRIES LIST */
+.pw-entries-list{ list-style: none; max-height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: 5px; margin-top: 10px; padding-right: 2px; }
+.pw-entries-list::-webkit-scrollbar{ width: 4px; }
+.pw-entries-list::-webkit-scrollbar-thumb{ background: var(--border); border-radius: 4px; }
+.pw-entry{ display: flex; align-items: center; gap: 6px; background: var(--bg2); border-radius: 10px; padding: 5px 8px; border: 1.5px solid var(--border); }
+.pw-entry-clr{ width: 22px; height: 22px; border-radius: 6px; border: none; padding: 0; cursor: pointer; flex-shrink: 0; }
+.pw-entry-text{ flex: 1; font-weight: 700; font-size: .84rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
+.pw-entry-wt{ width: 44px; border: 1.5px solid var(--border); border-radius: 7px; padding: 3px 5px; font-size: .78rem; font-weight: 700; background: var(--card); color: var(--text); outline: none; text-align: center; }
+.pw-entry-wt:focus{ border-color: var(--red); }
+.pw-entry-up,.pw-entry-dn{ background: none; border: none; cursor: pointer; font-size: .78rem; padding: 2px 4px; border-radius: 5px; color: var(--muted); transition: all .15s; }
+.pw-entry-up:hover,.pw-entry-dn:hover{ background: rgba(232,50,26,.12); color: var(--red); }
+.pw-entry-del{ background: none; border: none; cursor: pointer; font-size: .78rem; padding: 2px 5px; border-radius: 5px; color: var(--muted); transition: all .15s; }
+.pw-entry-del:hover{ background: rgba(232,50,26,.12); color: var(--red); }
+#pwTotalWeight{ font-size: .72rem; color: var(--muted); margin-top: 5px; }
+
+/* SORT ROW */
+.pw-sort-row{ display: flex; gap: 6px; margin-top: 9px; flex-wrap: wrap; }
+.pw-sort-btn{ padding: 5px 10px; border-radius: 8px; border: 1.5px solid var(--border); background: var(--bg2); font-family: 'Instrument Sans',sans-serif; font-weight: 700; font-size: .74rem; cursor: pointer; color: var(--text); transition: all .15s; }
+.pw-sort-btn:hover{ background: var(--red); color: #fff; border-color: var(--red); }
+
+/* SAVED WHEELS */
+.pw-saved-item{ display: flex; gap: 6px; margin-bottom: 5px; }
+.pw-saved-item button{ padding: 5px 10px; border-radius: 8px; border: 1.5px solid var(--border); background: var(--bg2); font-family: 'Instrument Sans',sans-serif; font-weight: 700; font-size: .78rem; cursor: pointer; color: var(--text); flex: 1; text-align: left; transition: all .15s; }
+.pw-saved-item button:hover{ border-color: var(--red); color: var(--red); }
+.pw-del-saved{ flex: 0 !important; background: none !important; padding: 5px 9px !important; color: var(--muted) !important; }
+.pw-del-saved:hover{ color: var(--red) !important; background: rgba(232,50,26,.1) !important; }
+
+/* SETTINGS */
+.pw-settings{ display: flex; flex-direction: column; gap: 12px; }
+.pw-setting-row{ display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.pw-setting-label{ font-weight: 700; font-size: .84rem; color: var(--text); }
+.pw-toggle{ position: relative; width: 44px; height: 24px; background: var(--border); border-radius: 12px; cursor: pointer; transition: background .25s; flex-shrink: 0; }
+.pw-toggle.on{ background: var(--red); }
+.pw-toggle::after{ content: ''; position: absolute; top: 4px; left: 4px; width: 16px; height: 16px; background: #fff; border-radius: 50%; transition: left .25s; box-shadow: 0 1px 4px rgba(0,0,0,.2); }
+.pw-toggle.on::after{ left: 24px; }
+.pw-select{ width: 100%; padding: 7px 10px; border-radius: 9px; border: 1.5px solid var(--border); background: var(--bg2); color: var(--text); font-family: 'Instrument Sans',sans-serif; font-weight: 600; font-size: .84rem; outline: none; cursor: pointer; }
+.pw-select:focus{ border-color: var(--red); }
+
+/* PALETTE */
+.pw-palette{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 7px; }
+.pw-palette-btn{ width: 28px; height: 28px; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: transform .15s, border-color .15s; }
+.pw-palette-btn:hover,.pw-palette-btn.selected{ transform: scale(1.2); border-color: #fff; box-shadow: 0 0 0 2px var(--text); }
+
+/* HISTORY */
+.pw-history-list{ list-style: none; display: flex; flex-direction: column; gap: 5px; max-height: 180px; overflow-y: auto; }
+.pw-history-item{ display: flex; align-items: center; gap: 8px; padding: 6px 10px; background: var(--bg2); border-radius: 10px; border: 1.5px solid var(--border); }
+.pw-history-num{ border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-size: .68rem; font-weight: 800; flex-shrink: 0; color: #fff; }
+.pw-history-winner{ flex: 1; font-weight: 700; font-size: .84rem; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pw-history-time{ color: var(--muted); font-size: .72rem; flex-shrink: 0; }
+
+/* WIN MODAL */
+.pw-modal-overlay{
+  position: fixed; inset: 0; background: rgba(0,0,0,.5);
+  z-index: 600; display: none; align-items: center; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.pw-modal-overlay.show{ display: flex; animation: fadeIn .22s; }
+@keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+.pw-modal{
+  background: var(--card); border-radius: 26px;
+  padding: 32px 28px; width: 420px; max-width: 94vw;
+  box-shadow: 0 24px 72px rgba(0,0,0,.26);
+  animation: slideUp .3s cubic-bezier(.36,1.2,.64,1);
+  position: relative; text-align: center;
+}
+@keyframes slideUp{ from{transform:translateY(50px);opacity:0} to{transform:translateY(0);opacity:1} }
+.pw-modal h2{ font-family: 'Fraunces',serif; font-weight: 900; font-size: 1.5rem; color: var(--red); margin-bottom: 14px; }
+.pw-modal-result{ font-family: 'Fraunces',serif; font-size: 2.1rem; font-weight: 900; color: var(--text); padding: 18px 20px; background: var(--bg2); border-radius: 16px; margin-bottom: 20px; word-break: break-word; border-left: 5px solid var(--red); }
+.pw-modal-close{ position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--muted); }
+.pw-modal-close:hover{ color: var(--red); }
+.pw-modal-btns{ display: flex; gap: 10px; justify-content: center; }
+.pw-modal-btn{ padding: 12px 26px; border-radius: 14px; font-family: 'Instrument Sans',sans-serif; font-weight: 800; font-size: .94rem; cursor: pointer; border: none; transition: all .18s; }
+.pw-modal-btn.primary{ background: var(--red); color: #fff; box-shadow: 0 6px 20px rgba(232,50,26,.28); }
+.pw-modal-btn.primary:hover{ background: var(--red2); }
+.pw-modal-btn.secondary{ background: var(--bg2); color: var(--text); border: 1.5px solid var(--border); }
+.pw-modal-btn.secondary:hover{ background: var(--border); }
+
+/* CONFETTI */
+.pw-confetti-canvas{ position: fixed; inset: 0; pointer-events: none; z-index: 700; display: none; }
+
+/* SHORTCUTS BADGE */
+.pw-shortcuts{ display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.pw-shortcut{ display: flex; align-items: center; gap: 5px; font-size: .73rem; color: var(--muted); }
+.pw-shortcut kbd{ background: var(--bg2); border: 1.5px solid var(--border); border-radius: 5px; padding: 1px 6px; font-family: mono; font-size: .7rem; color: var(--text); }
+
+/* INFO */
+.pw-info{
+  background: linear-gradient(135deg,rgba(232,50,26,.05),rgba(232,50,26,.02));
+  border: 1.5px solid rgba(232,50,26,.14);
+  border-radius: 22px; padding: 2rem;
+  margin: 0 1rem 2.5rem;
+}
+.pw-info h2{ font-family: 'Fraunces',serif; font-size: 1.5rem; font-weight: 900; color: var(--text); margin-bottom: .8rem; }
+.pw-info h3{ font-family: 'Fraunces',serif; font-size: 1.05rem; font-weight: 800; color: var(--text); margin: 1.2rem 0 .4rem; }
+.pw-info p,.pw-info li{ font-size: .93rem; color: var(--text2); line-height: 1.75; }
+.pw-info ul{ padding-left: 1.4rem; }
+.pw-info li{ margin-bottom: .3rem; }
+.pw-use-grid{ display: grid; grid-template-columns: repeat(auto-fit,minmax(145px,1fr)); gap: .7rem; margin-top: .7rem; }
+.pw-use-card{ background: var(--card); border: 1.5px solid var(--border); border-radius: 14px; padding: .85rem; text-align: center; font-size: .82rem; color: var(--text2); }
+.pw-use-card span{ display: block; font-size: 1.5rem; margin-bottom: .3rem; }
+.pw-use-card strong{ display: block; color: var(--text); font-weight: 800; font-size: .84rem; }
+
+/* RANDOMNESS BADGE */
+.pw-random-badge{
+  display: inline-flex; align-items: center; gap: 7px;
+  background: linear-gradient(135deg,rgba(46,204,113,.1),rgba(52,152,219,.1));
+  border: 1.5px solid rgba(46,204,113,.3);
+  border-radius: 10px; padding: 7px 13px;
+  font-size: .78rem; font-weight: 700; color: var(--text);
+  margin-top: 10px;
+}
+
+/* SECTION HEADER */
+.pw-section-title{ font-family: 'Fraunces',serif; font-size: .85rem; font-weight: 900; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="../index.html" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
+  <div class="nav-mid">
+    <a href="../all-tools.html" class="nav-link">All Tools</a>
+    <a href="../features.html" class="nav-link">Features</a>
+    <a href="../blog.html" class="nav-link">Blog</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn">🌙</button>
+    <a href="../index.html" class="nav-btn-f">← Home</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <section class="inner-hero">
+    <div class="inner-hero-eyebrow">🎡 Fun &amp; Decision Tools</div>
+    <h1>Picker Wheel</h1>
+    <p>Add your choices, spin the wheel, and get a truly random result — free, no signup, works offline.</p>
+  </section>
+
+  <!-- AD TOP -->
+  <div style="text-align:center;padding:0 1rem 1rem">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1303178479491171"
+      data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="pw-wrap content-section">
+    <div class="pw-layout">
+
+      <!-- LEFT: WHEEL -->
+      <div class="pw-wheel-card">
+        <div class="wheel-wrapper">
+          <div class="wheel-pointer"></div>
+          <canvas id="wheelCanvas" width="420" height="420" onclick="spinWheel()"></canvas>
+          <button class="wheel-center-btn" onclick="spinWheel()">SPIN</button>
+        </div>
+
+        <button class="pw-spin-btn" id="spinBtn" onclick="spinWheel()">🎡 SPIN THE WHEEL</button>
+
+        <div class="pw-actions">
+          <button class="pw-action-btn" onclick="shuffleEntries()">🔀 Shuffle</button>
+          <button class="pw-action-btn" onclick="sortEntries()">🔤 Sort</button>
+          <button class="pw-action-btn" onclick="shareWheel()">🔗 Share</button>
+          <button class="pw-action-btn" onclick="fullscreenWheel()">⛶ Fullscreen</button>
+          <button class="pw-action-btn" onclick="saveNamedWheel()">💾 Save</button>
+          <button class="pw-action-btn" onclick="exportWheelJSON()">📤 Export</button>
+          <button class="pw-action-btn" onclick="importWheelJSON()">📥 Import</button>
+        </div>
+
+        <div id="spinCounter"></div>
+
+        <div class="pw-shortcuts">
+          <span class="pw-shortcut"><kbd>Space</kbd> Spin</span>
+          <span class="pw-shortcut"><kbd>F</kbd> Fullscreen</span>
+          <span class="pw-shortcut"><kbd>S</kbd> Shuffle</span>
+          <span class="pw-shortcut"><kbd>Esc</kbd> Close</span>
+        </div>
+
+        <div class="pw-random-badge">🔐 Uses <code>crypto.getRandomValues()</code> — true randomness</div>
+
+        <div class="pw-result" id="pwResult">
+          <div class="pw-result-label">🎉 Winner!</div>
+          <div class="pw-result-value" id="pwResultValue">—</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: SIDE PANEL -->
+      <div class="pw-side">
+
+        <!-- ENTRIES CARD -->
+        <div class="pw-card">
+          <div class="pw-card-head">
+            <span>✏️ Wheel Entries</span>
+            <span class="pw-count" id="pwCount">0</span>
+          </div>
+          <div class="pw-card-body">
+            <div class="pw-tabs" id="pwTabs">
+              <div class="pw-tab active" onclick="switchTab('manual')">Manual</div>
+              <div class="pw-tab" onclick="switchTab('bulk')">Bulk</div>
+              <div class="pw-tab" onclick="switchTab('import')">Import</div>
+            </div>
+
+            <div class="pw-tab-content active" id="tab-manual">
+              <div class="pw-add-row" style="margin-top:10px">
+                <input type="text" id="entryInput" placeholder="Type a name or option…" maxlength="60" onkeydown="if(event.key==='Enter') addEntry()">
+                <button class="pw-add-btn" onclick="addEntry()">Add</button>
+              </div>
+            </div>
+
+            <div class="pw-tab-content" id="tab-bulk">
+              <div class="pw-bulk-hint">One entry per line. Add weight with <code>Name ×3</code> or <code>Name,3</code></div>
+              <textarea class="pw-bulk-input" id="bulkInput" placeholder="Apple&#10;Banana&#10;Cherry ×2&#10;Dave,3"></textarea>
+              <button class="pw-add-btn" style="margin-top:8px;width:100%" onclick="addBulk()">Add All Entries</button>
+            </div>
+
+            <div class="pw-tab-content" id="tab-import">
+              <div class="pw-bulk-hint">Import from .txt or .csv file (one entry per row)</div>
+              <input type="file" id="importFile" accept=".txt,.csv" style="margin-top:10px;width:100%;font-size:.82rem;color:var(--text)" onchange="importFile()">
+              <input type="file" id="importJSONFile" accept=".json" style="display:none" onchange="onImportJSON(event)">
+            </div>
+
+            <div class="pw-sort-row">
+              <button class="pw-sort-btn" onclick="clearAll()">🗑️ Clear</button>
+              <button class="pw-sort-btn" onclick="loadExample()">📋 Example</button>
+              <button class="pw-sort-btn" onclick="removeDuplicates()">⚡ Dedupe</button>
+            </div>
+
+            <div id="pwTotalWeight"></div>
+            <ul class="pw-entries-list" id="entriesList"></ul>
+          </div>
+        </div>
+
+        <!-- SAVED WHEELS -->
+        <div class="pw-card">
+          <div class="pw-card-head">💾 Saved Wheels</div>
+          <div class="pw-card-body">
+            <div id="savedWheelsList" style="display:flex;flex-direction:column;gap:4px;min-height:30px"></div>
+          </div>
+        </div>
+
+        <!-- SETTINGS CARD -->
+        <div class="pw-card">
+          <div class="pw-card-head">⚙️ Settings</div>
+          <div class="pw-card-body">
+            <div class="pw-settings">
+              <div class="pw-setting-row">
+                <span class="pw-setting-label">🔊 Sound</span>
+                <div class="pw-toggle on" id="soundToggle" onclick="toggleSetting('sound')"></div>
+              </div>
+              <div>
+                <div class="pw-section-title">Sound Theme</div>
+                <select class="pw-select" id="soundThemeSelect">
+                  <option value="tick">🎵 Tick</option>
+                  <option value="click">🖱️ Click</option>
+                  <option value="drum">🥁 Drum</option>
+                  <option value="silent">🔇 Silent</option>
+                </select>
+              </div>
+              <div>
+                <div class="pw-setting-label" style="margin-bottom:5px">🔊 Volume</div>
+                <input type="range" id="volumeRange" min="0" max="1" value="0.6" step="0.05" style="width:100%;accent-color:var(--red)">
+              </div>
+              <div class="pw-setting-row">
+                <span class="pw-setting-label">🎉 Confetti</span>
+                <div class="pw-toggle on" id="confettiToggle" onclick="toggleSetting('confetti')"></div>
+              </div>
+              <div class="pw-setting-row">
+                <span class="pw-setting-label">🗑️ Remove on win</span>
+                <div class="pw-toggle" id="removeToggle" onclick="toggleSetting('remove')"></div>
+              </div>
+              <div class="pw-setting-row">
+                <span class="pw-setting-label">💬 Result popup</span>
+                <div class="pw-toggle on" id="popupToggle" onclick="toggleSetting('popup')"></div>
+              </div>
+              <div>
+                <div class="pw-setting-label" style="margin-bottom:5px">⚡ Spin Speed</div>
+                <input type="range" id="spinSpeedRange" min="1" max="5" value="3" step="1" style="width:100%;accent-color:var(--red)">
+                <div style="display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted)"><span>Slow</span><span>Fast</span></div>
+              </div>
+              <div>
+                <div class="pw-setting-label" style="margin-bottom:6px">🎨 Color Theme</div>
+                <div class="pw-palette" id="pwPalette"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HISTORY CARD -->
+        <div class="pw-card">
+          <div class="pw-card-head">
+            <span>📜 Spin History</span>
+            <div style="display:flex;gap:6px">
+              <button onclick="exportHistory()" style="background:rgba(255,255,255,.22);border:none;color:#fff;font-size:.73rem;padding:3px 8px;border-radius:6px;cursor:pointer;font-weight:700">📥 CSV</button>
+              <button onclick="clearHistory()" style="background:rgba(255,255,255,.22);border:none;color:#fff;font-size:.73rem;padding:3px 8px;border-radius:6px;cursor:pointer;font-weight:700">Clear</button>
+            </div>
+          </div>
+          <div class="pw-card-body">
+            <ul class="pw-history-list" id="historyList">
+              <li style="color:var(--muted);font-size:.82rem;padding:6px">No spins yet…</li>
+            </ul>
+          </div>
+        </div>
+
+      </div><!-- end side -->
+    </div><!-- end layout -->
+
+    <!-- AD MID -->
+    <div style="text-align:center;margin:0 1rem 1.5rem">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1303178479491171"
+        data-ad-slot="2222222222" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- COMPREHENSIVE SEO SECTION (1200+ Words) -->
+    <div class="pw-info">
+      <h2>🎡 What Is a Picker Wheel? The Ultimate Guide to the Random Name Picker</h2>
+      <p>A <strong>Picker Wheel</strong> (sometimes known as a <em>Spin the Wheel</em>, <em>Wheel of Names</em>, or <em>Random Decision Maker</em>) is a dynamic, interactive virtual spinning wheel designed to help you make choices effortlessly. Whether you are a teacher looking to engage students, a business owner selecting a contest winner, a tabletop gamer assigning roles, or simply a group of friends trying to decide where to eat dinner tonight, a random wheel spinner eliminates choice paralysis and ensures absolute fairness.</p>
+      
+      <p>Unlike simple lists or rolling a physical die, our digital <strong>Picker Wheel</strong> provides an exciting visual and auditory experience. The suspense builds as the wheel spins rapidly, slowing down tick by tick, until it lands on the winning segment with a burst of celebratory confetti. It transforms a mundane decision-making process into an engaging mini-event.</p>
+
+      <h3>How Does the Picker Wheel Guarantee True Randomness?</h3>
+      <p>Many online spinning wheels rely on basic, predictable algorithms, primarily the standard <code>Math.random()</code> function built into web browsers. While this is sufficient for basic web animations, it is not considered cryptographically secure and can sometimes produce discernible patterns over a large number of spins.</p>
+      <p>Our wheel uses advanced <strong>cryptographically secure randomness</strong> by leveraging the browser's native <code>crypto.getRandomValues()</code> API. This is the exact same high-security technology used by banks and secure communications to generate encryption keys. By using high-entropy hardware sources (such as microscopic variations in your computer's internal clock, mouse movements, and thermal noise), we guarantee that every single spin is 100% independent, unbiased, and genuinely unpredictable. If you spin the wheel 10,000 times, every entry has an exactly equal statistical probability of winning based on its assigned weight.</p>
+
+      <h3>Key Features of Our Spin the Wheel Tool</h3>
+      <p>We've built this tool to be the most comprehensive and customizable random decision maker on the internet, rivaling and exceeding the features of classic tools like the Wheel of Names.</p>
+      
+      <ul>
+        <li><strong>Weighted Entries:</strong> Not all decisions are created equal. Suppose you are running a raffle where someone bought three tickets, and someone else bought one. You can assign a weight of '3' to the first person and '1' to the second. The wheel automatically resizes the segments, giving the first person a 75% chance of winning and the second a 25% chance.</li>
+        <li><strong>Remove on Win (Fair Draw Mode):</strong> If you are drawing multiple winners for a giveaway and want to ensure nobody wins twice, simply toggle the "Remove on win" setting. The wheel will automatically animate the removal of the winning slice after the spin, seamlessly resizing the remaining options.</li>
+        <li><strong>Customizable Sound Themes:</strong> The auditory experience is crucial for building suspense. Choose from our classic 'Tick' sound (like a game show wheel), a mechanical 'Click', a dramatic 'Drum' roll, or run it in 'Silent' mode if you are in a quiet environment like a library or classroom.</li>
+        <li><strong>Save, Load, and Export Wheels:</strong> Have a roster of 30 students? Don't type them out every day. Save your configured wheel directly to your browser's local storage and pull it up instantly next time. You can also export your entire setup as a JSON file to share with colleagues or move to another device.</li>
+        <li><strong>Bulk Import from CSV/TXT:</strong> Setting up a large giveaway with thousands of entrants is exhausting by hand. Just drag and drop your spreadsheet export (CSV) or text file into our Import tab, and the wheel will instantly populate all entries in milliseconds.</li>
+        <li><strong>Full Screen Mode & Keyboard Shortcuts:</strong> Give presentations or livestream giveaways flawlessly by clicking the Fullscreen button. Press the <kbd>Spacebar</kbd> to trigger a spin without having to touch your mouse, ensuring a smooth, professional broadcast.</li>
+        <li><strong>Detailed Spin History:</strong> Was there a dispute over who was picked three rounds ago? Our tool logs every single spin systematically. You can view the history in the side panel or export the entire session as a CSV file to prove the fairness of your contest.</li>
+      </ul>
+
+      <h3>10 Popular Use Cases for the Random Spin Wheel</h3>
+      <p>The versatility of a random picker wheel is boundless. Here are the most common ways our users utilize the tool every single day:</p>
+
+      <div class="pw-use-grid">
+        <div class="pw-use-card"><span>🏫</span><strong>Classrooms & Education</strong>Teachers use it to cold-call students, pick reading groups, assign presentation topics, or choose the daily classroom helper. It makes student selection feel like a game rather than a chore.</div>
+        <div class="pw-use-card"><span>🎮</span><strong>Livestreaming (Twitch/YouTube)</strong>Streamers use the wheel to choose game handicaps, select which character to play, or pick random viewers from the chat for subscriber giveaways.</div>
+        <div class="pw-use-card"><span>🎁</span><strong>Business Giveaways</strong>Running an Instagram or Facebook contest? Paste the list of commenters into the wheel, screen-record the spin, and post the video. It proves absolute transparency to your followers.</div>
+        <div class="pw-use-card"><span>🍕</span><strong>Daily Decisions</strong>"Where should we eat?" "What movie should we watch?" Input the options, spin the wheel, and end the 30-minute debate instantly. The wheel's decision is final!</div>
+        <div class="pw-use-card"><span>📋</span><strong>Agile Standups & Team Meetings</strong>Scrum masters use the wheel to decide the speaking order during daily standup meetings, keeping the team engaged and alert as they wait to see whose name comes up next.</div>
+        <div class="pw-use-card"><span>🎲</span><strong>Tabletop & Roleplaying Games</strong>Dungeon Masters (D&D) use it to select random encounters, distribute loot, or determine random weather patterns in campaigns.</div>
+      </div>
+
+      <h3>How to Setup Your First Wheel of Names</h3>
+      <p>Getting started is incredibly simple. This tool operates entirely in your web browser—there is no app to download, no account to create, and nothing to install. It even works completely offline once the page has loaded!</p>
+      
+      <p><strong>Step 1: Add Your Choices</strong><br>
+      On the right side of the screen, you'll see the "Wheel Entries" panel. You can type names one at a time and press Enter. If you have a long list, click the <em>Bulk</em> tab and paste them all at once. You can also specify weights by using a comma or a multiplication sign (e.g., typing <code>John Doe ×5</code> gives John five slices on the wheel).</p>
+      
+      <p><strong>Step 2: Customize the Look and Feel</strong><br>
+      Open the <em>Settings</em> panel. Here, you can change the color palette of the wheel. If you want a specific brand color for a particular segment, click the color swatch next to that entry in the list to override the theme. Adjust the spin speed—faster for quick successive draws, or slower to build maximum suspense for a major prize.</p>
+      
+      <p><strong>Step 3: Spin and Win!</strong><br>
+      Click the giant "SPIN" button, click the center of the wheel itself, or press the Spacebar. The wheel will accelerate, play your selected sound effect, and smoothly decelerate until the pointer lands on a winner. A celebratory popup will appear, showering the screen in confetti.</p>
+      
+      <p><strong>Step 4: Manage the Results</strong><br>
+      Once a winner is declared, you have options. If you are doing an elimination tournament or a singular prize draw, the "Remove on win" setting will automatically handle taking them off the board. If you need a record of what happened, look at the Spin History tab and click "CSV" to download a spreadsheet of the results.</p>
+
+      <h3>Frequently Asked Questions (FAQ)</h3>
+      
+      <h4>Is this tool actually free?</h4>
+      <p>Yes. The LovePDFs Picker Wheel is 100% free to use. There are no limits on how many times you can spin, no limits on the number of entries you can add, and no premium paywalls blocking features like saving or exporting.</p>
+      
+      <h4>Is the outcome predetermined?</h4>
+      <p>Absolutely not. As explained above, the spin velocity, deceleration curve, and final resting angle are calculated the exact millisecond you click the Spin button, using cryptographically secure randomized variables. Not even the developer of this website can predict where the wheel will land.</p>
+      
+      <h4>How many names can I add to the wheel?</h4>
+      <p>The wheel can technically handle thousands of entries. However, for the best visual experience, we recommend keeping it under 500. If you add 1,000 entries, the slices will become as thin as a single pixel, though the math and probability behind the selection will still remain perfectly accurate.</p>
+      
+      <h4>Can I use this on my mobile phone?</h4>
+      <p>Yes! The wheel is fully responsive. It resizes perfectly to fit smartphones and tablets. You can easily tap the center of the wheel on your touchscreen device to initiate a spin, making it a great party game to pass around the room.</p>
+      
+      <h4>Does it work offline?</h4>
+      <p>Yes. Because the entire application logic is processed client-side (directly inside your browser), once the webpage has loaded initially, you can disconnect from the internet and continue spinning the wheel, adding entries, and changing settings.</p>
+
+      <h3>Start Making Decisions Now</h3>
+      <p>Stop wasting time debating and start spinning! Scroll up to the top of the page, add your options, and let the unbiased Picker Wheel make the tough calls for you.</p>
+    </div>
+
+  </div><!-- pw-wrap -->
+</div><!-- page-wrap -->
+
+<!-- WIN MODAL -->
+<div class="pw-modal-overlay" id="winModal">
+  <div class="pw-modal">
+    <button class="pw-modal-close" onclick="closeModal()">✕</button>
+    <h2>🎉 We Have a Winner!</h2>
+    <div style="font-size:2.6rem;margin-bottom:10px" id="winEmoji">🏆</div>
+    <div class="pw-modal-result" id="winResultText">—</div>
+    <div class="pw-modal-btns">
+      <button class="pw-modal-btn secondary" onclick="closeModal()">Close</button>
+      <button class="pw-modal-btn primary" onclick="closeModal();setTimeout(spinWheel,180)">🎡 Spin Again</button>
+    </div>
+  </div>
+</div>
+
+<canvas class="pw-confetti-canvas" id="confettiCanvas"></canvas>
+
+<footer class="simple-footer">
+  <p>© LovePDFs 2026 · <a href="../index.html">Home</a> · <a href="../all-tools.html">All Tools</a> · <a href="../blog.html">Blog</a></p>
+</footer>
+
+<script src="../nav-enhancements.js" defer></script>
+<script src="../site-enhancements.js" defer></script>
+<script src="wheel.js"></script>
+</body>
+</html>

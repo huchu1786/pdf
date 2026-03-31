@@ -70,6 +70,7 @@ const TOOLS = [
   { id: 'json_fmt', name: 'JSON Formatter', desc: 'Format, validate and beautify JSON data instantly', icon: '🧩', clr: '#16A34A', cat: 'utilities', badge: 'new' },
   { id: 'email_val', name: 'Email Validator', desc: 'Validate and bulk-check email addresses for errors', icon: '📧', clr: '#F59E0B', cat: 'utilities', badge: 'new' },
   { id: 'csv_excel', name: 'CSV to Excel', desc: 'Convert CSV files to styled Excel spreadsheets', icon: '📊', clr: '#E8321A', cat: 'utilities', badge: 'new' },
+  { id: 'picker_wheel', name: 'Picker Wheel', desc: 'Spin the wheel to decide a random choice', icon: '🎡', clr: '#8B5CF6', cat: 'utilities', badge: 'new' },
 ];
 
 const CATS = [
@@ -93,7 +94,7 @@ const CAT_GROUPS = {
   security: { label: '🔐 PDF Security', tools: ['unlock', 'protect', 'sign', 'redact', 'compare'] },
   image: { label: '🖼️ Image Tools', tools: ['passport_photo', 'resize_img', 'crop_img', 'compress_img', 'jpg2png_img', 'png2jpg_img'] },
   calculators: { label: '🧠 Calculators & Tools', tools: ['age_calc', 'word_counter', 'pct_calc', 'gst_calc', 'loan_calc', 'bmi_calc', 'date_calc', 'currency'] },
-  utilities: { label: '🛠️ Utility Tools', tools: ['password_gen', 'qr_gen', 'color_picker', 'json_fmt', 'email_val', 'csv_excel'] },
+  utilities: { label: '🛠️ Utility Tools', tools: ['password_gen', 'qr_gen', 'color_picker', 'json_fmt', 'email_val', 'csv_excel', 'picker_wheel'] },
   advanced: { label: '🧰 Advanced PDF', tools: ['grayscale', 'flatten', 'editMeta', 'extractImg', 'resizepdf', 'altmix', 'headfoot', 'removeann', 'deskew', 'pdf2txt'] },
 };
 

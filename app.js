@@ -56,7 +56,8 @@ function toolCard(t) {
     'age_calc': 'age-calculator', 'word_counter': 'word-counter', 'pct_calc': 'percentage-calculator', 'gst_calc': 'gst-calculator',
     'loan_calc': 'loan-calculator', 'bmi_calc': 'bmi-calculator', 'date_calc': 'date-calculator', 'currency': 'currency-converter',
     'password_gen': 'password-generator', 'qr_gen': 'qr-code-generator', 'color_picker': 'color-picker',
-    'json_fmt': 'json-formatter', 'email_val': 'email-validator', 'csv_excel': 'csv-to-excel'
+    'json_fmt': 'json-formatter', 'email_val': 'email-validator', 'csv_excel': 'csv-to-excel',
+    'picker_wheel': 'picker-wheel'
   };
 
 
