@@ -1157,6 +1157,58 @@ const TOOLS_SEO = [
   },
 
   {
+    id: 'epub-reader',
+    toolId: 'epub_reader',
+    title: 'Read EPUB Online Free - Browser EPUB Reader | LovePDFs',
+    meta: 'Open and read EPUB files online for free. Private browser EPUB reader with chapter navigation, themes, font controls, and no upload required.',
+    h1: 'Read EPUB Books Online Free',
+    desc: 'Open EPUB ebooks directly in your browser with a clean reader, table of contents, search-friendly navigation, and private local processing.',
+    instructions: [
+      'Upload your EPUB file from your device.',
+      'Wait for the book to load and generate its table of contents.',
+      'Use next and previous controls or jump to chapters from the sidebar.',
+      'Adjust font size, theme, and page width for comfortable reading.'
+    ],
+    benefits: [
+      { title: 'Private reading', desc: 'Your EPUB opens locally in the browser. The book is not uploaded to any server.' },
+      { title: 'Comfort controls', desc: 'Switch theme, tune font size, and widen the reading area for long reading sessions.' },
+      { title: 'Chapter navigation', desc: 'Open the table of contents and jump to any chapter or section instantly.' }
+    ],
+    faqs: [
+      { q: 'How to open an EPUB file online for free?', a: 'Upload the EPUB into the LovePDFs EPUB Reader and it opens directly in your browser with no app installation needed.' },
+      { q: 'Does the EPUB file get uploaded?', a: 'No. The reader processes the file locally in your browser so your ebook stays on your device.' },
+      { q: 'Can I read EPUB on mobile?', a: 'Yes. The reader page works on modern mobile browsers and lets you swipe or use chapter navigation on smaller screens.' }
+    ],
+    related: ['epub-to-pdf', 'pdf-to-text', 'pdf-to-word', 'html-to-pdf']
+  },
+
+  {
+    id: 'epub-to-pdf',
+    toolId: 'epub2pdf',
+    title: 'Convert EPUB to PDF Free Online | LovePDFs',
+    meta: 'Convert EPUB to PDF online for free. Turn EPUB ebooks into downloadable PDF files in your browser with no signup and no server upload.',
+    h1: 'Convert EPUB to PDF Free',
+    desc: 'Turn EPUB ebooks into PDF documents right in your browser. Great for printing, sharing, and keeping a simple offline PDF copy.',
+    instructions: [
+      'Upload your EPUB file into the converter.',
+      'Choose PDF theme, font size, and page format options.',
+      'Start the conversion to prepare a chapter-by-chapter PDF.',
+      'Download the generated PDF file when processing finishes.'
+    ],
+    benefits: [
+      { title: 'No upload required', desc: 'EPUB conversion runs locally in your browser for better privacy and faster turnaround.' },
+      { title: 'Readable PDF output', desc: 'The converter creates a clean, text-first PDF that is easy to read, print, and archive.' },
+      { title: 'Custom export settings', desc: 'Choose dark or light styling, page size, and typography before you export.' }
+    ],
+    faqs: [
+      { q: 'How to convert EPUB to PDF online free?', a: 'Upload the EPUB to LovePDFs, choose your export settings, and click Convert. The tool builds a downloadable PDF in your browser.' },
+      { q: 'Will the PDF keep all EPUB styling?', a: 'The converter focuses on a clean, readable PDF layout. Complex interactive EPUB styling may simplify during export.' },
+      { q: 'Why convert EPUB to PDF?', a: 'PDF is easier to print, share, and open consistently across devices, especially when you need a fixed-layout copy.' }
+    ],
+    related: ['epub-reader', 'html-to-pdf', 'pdf-to-text', 'word-to-pdf']
+  },
+
+  {
     id: 'pdf-to-text',
     toolId: 'pdf2text',
     title: 'Extract Text from PDF Free Online — PDF to TXT | LovePDFs',

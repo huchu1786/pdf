@@ -17,6 +17,8 @@ const TOOLS = [
   { id: 'ppt2pdf', name: 'PowerPoint to PDF', desc: 'Convert presentations to PDF', icon: '📊', clr: '#EA580C', cat: 'convert' },
   { id: 'xls2pdf', name: 'Excel to PDF', desc: 'Convert spreadsheets to PDF', icon: '📈', clr: '#16A34A', cat: 'convert' },
   { id: 'html2pdf', name: 'HTML to PDF', desc: 'Convert webpages to PDF', icon: '🌐', clr: '#7C3AED', cat: 'convert', badge: 'new' },
+  { id: 'epub_reader', name: 'EPUB Reader', desc: 'Read EPUB books online in your browser', icon: '📚', clr: '#0F766E', cat: 'convert', badge: 'new' },
+  { id: 'epub2pdf', name: 'EPUB to PDF', desc: 'Convert EPUB ebooks into downloadable PDF files', icon: '📘', clr: '#B45309', cat: 'convert', badge: 'new' },
   { id: 'pdf2jpg', name: 'PDF to JPG', desc: 'Convert every page to images', icon: '🖼️', clr: '#DB2777', cat: 'convert' },
   { id: 'pdf2ppt', name: 'PDF to PowerPoint', desc: 'Convert PDF pages into editable slides', icon: '🎞️', clr: '#F97316', cat: 'convert', badge: 'new' },
   { id: 'pdf2word', name: 'PDF to Word', desc: 'Convert PDF to editable DOCX', icon: '📄', clr: '#1D4ED8', cat: 'convert' },
@@ -89,7 +91,7 @@ const CATS = [
 const CAT_GROUPS = {
   organize: { label: '📂 Organize PDF', tools: ['organize', 'merge', 'split', 'removepg', 'extract', 'altmix', 'nup'] },
   optimize: { label: '⚡ Optimize PDF', tools: ['compress', 'repair', 'ocr', 'grayscale', 'flatten', 'deskew'] },
-  convert: { label: '🔄 Convert', tools: ['jpg2pdf', 'word2pdf', 'ppt2pdf', 'xls2pdf', 'html2pdf', 'pdf2jpg', 'pdf2ppt', 'pdf2word', 'pdf2xls', 'pdf2pdfa', 'pdf2txt'] },
+  convert: { label: '🔄 Convert', tools: ['jpg2pdf', 'word2pdf', 'ppt2pdf', 'xls2pdf', 'html2pdf', 'epub_reader', 'epub2pdf', 'pdf2jpg', 'pdf2ppt', 'pdf2word', 'pdf2xls', 'pdf2pdfa', 'pdf2txt'] },
   edit: { label: '✏️ Edit PDF', tools: ['rotate', 'watermark', 'pagenums', 'crop', 'editpdf', 'editMeta', 'extractImg', 'resizepdf', 'headfoot', 'removeann'] },
   security: { label: '🔐 PDF Security', tools: ['unlock', 'protect', 'sign', 'redact', 'compare'] },
   image: { label: '🖼️ Image Tools', tools: ['passport_photo', 'resize_img', 'crop_img', 'compress_img', 'jpg2png_img', 'png2jpg_img'] },

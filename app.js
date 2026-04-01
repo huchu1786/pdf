@@ -48,6 +48,7 @@ function toolCard(t) {
     'jpg2png_img': 'jpg-to-png', 'png2jpg_img': 'png-to-jpg',
     'editpdf': 'edit-pdf', 'extract': 'extract-pages-pdf', 'repair': 'repair-pdf', 'ocr': 'ocr-extract-text',
     'sign': 'sign-pdf', 'redact': 'redact-pdf', 'compare': 'compare-pdf', 'html2pdf': 'html-to-pdf',
+    'epub_reader': 'epub-reader', 'epub2pdf': 'epub-to-pdf',
     'pdf2pdfa': 'pdf-to-pdfa', 'pagenums': 'add-page-numbers-pdf', 'pdf2ppt': 'pdf-to-ppt',
     'grayscale': 'grayscale-pdf', 'flatten': 'flatten-pdf', 'editMeta': 'edit-pdf-metadata',
     'extractImg': 'extract-images-pdf', 'resizepdf': 'resize-pdf', 'altmix': 'alternate-mix-pdf',

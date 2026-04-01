@@ -3,19 +3,20 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Compare Legal PDF Documents Online Free | Secure Difference Checker</title>
-<meta name="description" content="Secure and professional PDF comparison tool for business. Compare contracts, audit changes, and detect differences between two PDFs instantly. US & UK compliant."/>
-<meta name="keywords" content="compare pdf online free, compare legal documents pdf online, contract comparison software pdf, business document version comparison tool, compliance document comparison pdf, secure pdf tools online, pdf tools for business, pdf difference checker online, audit pdf changes online, secure pdf tools for US businesses"/>
+<title>Compare PDF Files Online Free – Find Every Difference Instantly | LovePDFs</title>
+<meta name="description" content="Compare two PDF documents online for free. Find text differences, track changes, and review edits side by side – no upload, no signup, 100% private. Works on contracts, assignments, reports, NDAs, and more."/>
+<meta name="keywords" content="compare pdf online free, compare two pdf files, pdf difference checker, find differences in pdf, compare pdf documents online free, pdf redline tool, side by side pdf compare, compare pdf without adobe, compare pdf without uploading, compare pdf files free no sign up, compare pdf word for word, pdf version control online, compare nda pdf free, compare lease agreement pdf, free pdf redline tool, compare pdf for plagiarism, pdf track changes online, compare two documents online free, pdf diff checker no login, compare policy document pdf, compare financial report pdf, compare legal documents pdf, pdf markup tool online, compare scanned pdf, compare contract pdf, compare pdf text online, detect changes in pdf, best free pdf compare tool 2025, compare pdf on mobile, pdf document audit tool, compare pdf files without software, find added text in pdf, redline two pdfs"/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://lovepdfs.in/compare-pdf/"/>
-<meta property="og:title" content="Compare Legal PDF Documents Online Free | Secure Difference Checker"/>
-<meta property="og:description" content="Secure and professional PDF comparison tool for business. Compare contracts, audit changes, and detect differences between two PDFs instantly. US & UK compliant."/>
+<meta property="og:title" content="Compare PDF Files Online Free – Find Every Difference | LovePDFs"/>
+<meta property="og:description" content="Upload two PDFs and instantly see every difference highlighted in colour. Free, private, browser-based – no signup needed. Works for legal, academic, and business documents."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://lovepdfs.in/compare-pdf/"/>
 <meta property="og:site_name" content="LovePDFs"/>
+<meta property="og:image" content="https://lovepdfs.in/og-compare-pdf.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Compare Legal PDF Documents Online Free | Secure Difference Checker"/>
-<meta name="twitter:description" content="Secure and professional PDF comparison tool for business. Compare contracts, audit changes, and detect differences between two PDFs instantly. US & UK compliant."/>
+<meta name="twitter:title" content="Compare PDF Files Online Free | LovePDFs"/>
+<meta name="twitter:description" content="Instantly compare two PDFs side by side. See every added, removed, and changed word highlighted in colour – no Adobe needed."/>
 <link rel="icon" type="image/png" href="../favicon.png"/>
 <link rel="apple-touch-icon" href="../favicon.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -338,11 +339,76 @@ mark.del{text-decoration:line-through;border-radius:3px;padding:0 2px}
   .tool-workspace{margin:-3rem 1rem 4rem;padding:1.5rem}
   .seo-content{padding:0 1rem}
 }
+/* === DIFF VIEW TABS === */
+.diff-view-tabs{display:flex;gap:.5rem;margin-bottom:.75rem;flex-wrap:wrap}
+.diff-tab{padding:.4rem 1rem;border:1.5px solid var(--border);border-radius:999px;background:var(--card);cursor:pointer;font-size:.82rem;font-weight:700;color:var(--text2);transition:all .2s}
+.diff-tab.active{border-color:var(--red);color:var(--red);background:rgba(232,50,26,.08)}
+
+/* === WORD COUNT BAR === */
+.word-count-bar{display:none;gap:.65rem;flex-wrap:wrap;margin:.65rem 0 .35rem}
+.word-count-bar.on{display:flex}
+.wc-pill{padding:.35rem .8rem;background:var(--card);border:1.5px solid var(--border);border-radius:9px;font-size:.82rem;font-weight:600;color:var(--text2)}
+.wc-pill.add{border-color:rgba(21,163,74,.4);color:#166534}
+.wc-pill.del{border-color:rgba(220,38,38,.4);color:#991b1b}
+
+/* === CHANGE TYPE FILTER === */
+.filter-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.65rem}
+.filter-chip{padding:.35rem .85rem;border:1.5px solid var(--border);border-radius:999px;background:var(--card);cursor:pointer;font-size:.8rem;font-weight:700;color:var(--text2);transition:all .2s}
+.filter-chip.fc-add.active{border-color:#16a34a;color:#16a34a;background:rgba(21,163,74,.1)}
+.filter-chip.fc-del.active{border-color:#dc2626;color:#dc2626;background:rgba(220,38,38,.1)}
+.filter-chip.fc-chg.active{border-color:#d97706;color:#92400e;background:rgba(217,119,6,.1)}
+.filter-chip.fc-all.active{border-color:var(--red);color:var(--red);background:rgba(232,50,26,.08)}
+
+/* === DIFF BOX HEADER WITH COPY BUTTON === */
+.diff-box-wrap{display:flex;flex-direction:column}
+.diff-box-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem}
+.diff-box-label{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.copy-btn{padding:.3rem .75rem;border:1.5px solid var(--border);border-radius:8px;background:var(--card);font-size:.75rem;font-weight:700;cursor:pointer;color:var(--text2);transition:all .2s}
+.copy-btn:hover{border-color:var(--red);color:var(--red)}
+
+/* === NO-DIFF BANNER === */
+.no-diff-banner{display:none;align-items:center;gap:.75rem;padding:1.1rem 1.5rem;background:rgba(21,163,74,.08);border:1.5px solid rgba(21,163,74,.3);border-radius:14px;margin-bottom:1rem}
+.no-diff-banner.on{display:flex}
+.no-diff-banner span{font-size:1.1rem;font-weight:700;color:#166534}
+
+/* === PRINT === */
+.print-btn{padding:.45rem .9rem;font-size:.82rem;background:var(--card);border:1.5px solid var(--border);border-radius:8px;cursor:pointer;color:var(--text2);font-weight:700;transition:all .2s}
+.print-btn:hover{border-color:var(--red);color:var(--red)}
+@media print{
+  .site-nav,.tool-hero,.adsbygoogle,ins.adsbygoogle,.act-row,.panel,.score-track,.export-row,.change-nav,.history-list,.seo-content,.site-footer,.filter-row,.diff-view-tabs,.diff-box-hd .copy-btn,.print-btn,.word-count-bar,.toast{display:none!important}
+  .tool-workspace{box-shadow:none;border:none;margin:0;padding:0}
+  .score-wrap{border:none;background:none;padding:.5rem 0}
+  .diff-box{max-height:none;border:1px solid #ccc}
+  body{background:white;color:black}
+}
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name": "Compare Legal PDF Documents Online Free",
-  "url":"https://lovepdfs.in/compare-pdf/","description": "Secure and professional PDF comparison tool for business. Compare contracts, audit changes, and detect differences between two PDFs instantly. US & UK compliant.",
-  "applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Compare PDF Files Online Free – LovePDFs","url":"https://lovepdfs.in/compare-pdf/","description":"Free online tool to compare two PDF documents and find text differences. Works entirely in your browser – files are never uploaded. No Adobe needed.","applicationCategory":"UtilitiesApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Side-by-side PDF comparison","Inline unified diff view","Character-level difference highlighting","Word-level diff with severity scoring","Similarity score with animated progress","Change type filter (additions / deletions / modifications)","Export Text, Word, PDF and CSV report","Copy panel text to clipboard","Print-friendly diff report","Overlay rendering mode","Scroll and zoom synchronisation","AI Smart Compare mode","Legal, Student and Code presets","Privacy-first – no file upload required","Works on iOS and Android browsers"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I compare two PDF files online for free?","acceptedAnswer":{"@type":"Answer","text":"Drop your original PDF in the left zone and the modified PDF in the right zone, then click Compare PDFs. Results appear instantly with added words highlighted green, removed words in red, and changed words in yellow."}},
+{"@type":"Question","name":"Can I compare PDF files without Adobe Acrobat?","acceptedAnswer":{"@type":"Answer","text":"Yes. This tool runs entirely in your browser using PDF.js – no Adobe Acrobat, Reader, or any desktop software is needed. It works on Windows, Mac, Linux, iOS, and Android."}},
+{"@type":"Question","name":"Are my PDF files uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. All processing happens inside your browser. Your files never leave your device, nothing is stored server-side, and no account is required."}},
+{"@type":"Question","name":"Can I compare two PDFs word for word?","acceptedAnswer":{"@type":"Answer","text":"Yes. Select Strict Mode and disable the Ignore Case and Ignore Spaces options. The tool will then perform an exact word-for-word comparison where every space, comma, and character counts."}},
+{"@type":"Question","name":"Can I use this tool to check a PDF for plagiarism?","acceptedAnswer":{"@type":"Answer","text":"You can compare any two text-based PDFs to find copied or matching passages. Upload the original and the suspect document; identical passages will show as unchanged while differences are highlighted."}},
+{"@type":"Question","name":"What is a PDF redline tool?","acceptedAnswer":{"@type":"Answer","text":"A PDF redline tool highlights changes between two document versions using coloured marks – traditionally red for deletions and green for additions. This tool does this automatically, generating a clear visual diff you can navigate and export."}},
+{"@type":"Question","name":"Can I compare legal contracts with this tool?","acceptedAnswer":{"@type":"Answer","text":"Yes. Select Legal Mode before comparing. This preset flags clause additions and removals, highlights words like 'shall', 'liability', and 'termination' as major changes, and suppresses page-number differences."}},
+{"@type":"Question","name":"How do I export the PDF comparison results?","acceptedAnswer":{"@type":"Answer","text":"After comparing, click Download Text Report, Download Word Report, Download PDF Report, or use the Print Report button to get a printer-friendly version of the full diff."}},
+{"@type":"Question","name":"Does this tool work on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool is fully responsive and works on iOS Safari and Android Chrome. You can upload PDFs from your camera roll, Google Drive, or iCloud."}},
+{"@type":"Question","name":"How do I compare scanned PDFs?","acceptedAnswer":{"@type":"Answer","text":"This tool works best with text-based PDFs. For scanned or image-only PDFs, use the LovePDFs OCR tool first to extract the text, then run the comparison."}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to Compare Two PDF Files Online","description":"Step-by-step guide to comparing two PDF documents and finding differences using LovePDFs.","step":[
+{"@type":"HowToStep","position":1,"name":"Upload Original PDF","text":"Click or drag the original PDF into the left drop zone."},
+{"@type":"HowToStep","position":2,"name":"Upload Modified PDF","text":"Click or drag the modified PDF into the right drop zone."},
+{"@type":"HowToStep","position":3,"name":"Choose Compare Mode","text":"Select Smart, Strict, Legal, Student, or Code mode. Configure Ignore options as needed."},
+{"@type":"HowToStep","position":4,"name":"Click Compare PDFs","text":"Hit Compare PDFs. Results appear instantly with colour-coded highlights."},
+{"@type":"HowToStep","position":5,"name":"Switch Diff View","text":"Toggle between Side by Side, Inline, and Character Diff views using the tabs."},
+{"@type":"HowToStep","position":6,"name":"Filter Changes","text":"Use the change type filter to show only additions, only deletions, or only modifications."},
+{"@type":"HowToStep","position":7,"name":"Export or Print","text":"Download a Text, Word, PDF or CSV report, or click Print Report for a printer-friendly view."}
+]}
 </script>
 </head>
 <body>
@@ -511,25 +577,86 @@ mark.del{text-decoration:line-through;border-radius:3px;padding:0 2px}
       <div class="stat-pill" id="pgStat">Pages affected: 0</div>
     </div>
     <div class="export-row">
-      <button class="btn-dl on" id="exportTxt">Download Text Report</button>
-      <button class="btn-rst" id="exportDoc">Download Word Report</button>
-      <button class="btn-rst" id="exportPdf">Download PDF Report</button>
-      <button class="btn-rst" id="shareBtn">Generate Shareable Link</button>
+      <button class="btn-dl on" id="exportTxt">📄 Text Report</button>
+      <button class="btn-rst" id="exportDoc">📝 Word Report</button>
+      <button class="btn-rst" id="exportPdf">📑 PDF Report</button>
+      <button class="btn-rst" id="shareBtn">🔗 Share Link</button>
+      <button class="print-btn" id="printBtn" onclick="window.print()">🖨️ Print Report</button>
     </div>
+  </div>
+
+  <!-- No-diff banner -->
+  <div class="no-diff-banner" id="noDiffBanner">
+    <span>✅ Documents are identical — no differences found!</span>
+  </div>
+
+  <!-- Word count bar -->
+  <div class="word-count-bar" id="wordCountBar">
+    <div class="wc-pill" id="wcPdf1">PDF 1: — words</div>
+    <div class="wc-pill" id="wcPdf2">PDF 2: — words</div>
+    <div class="wc-pill add" id="wcAdded">+ — added</div>
+    <div class="wc-pill del" id="wcRemoved">− — removed</div>
   </div>
 
   <!-- Diff panels -->
   <div class="diff-section" id="diffSection">
-    <div class="diff-cols">
-      <div>
-        <div class="diff-hd">PDF 1 - Original</div>
+
+    <!-- Change type filter (ilovepdf-style) -->
+    <div class="filter-row" id="filterRow">
+      <span style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);align-self:center">Show:</span>
+      <button class="filter-chip fc-all active" id="fcAll" onclick="setFilter('all',this)">All Changes</button>
+      <button class="filter-chip fc-add" id="fcAdd" onclick="setFilter('add',this)">➕ Additions</button>
+      <button class="filter-chip fc-del" id="fcDel" onclick="setFilter('del',this)">➖ Deletions</button>
+      <button class="filter-chip fc-chg" id="fcChg" onclick="setFilter('chg',this)">✏️ Modifications</button>
+    </div>
+
+    <!-- Diff view tabs -->
+    <div class="diff-view-tabs">
+      <button class="diff-tab active" id="tabSide" onclick="switchDiffTab('side',this)">⬌ Side by Side</button>
+      <button class="diff-tab" id="tabInline" onclick="switchDiffTab('inline',this)">📋 Inline</button>
+      <button class="diff-tab" id="tabChar" onclick="switchDiffTab('char',this)">🔤 Character Diff</button>
+    </div>
+
+    <!-- Side-by-side view -->
+    <div id="viewSide" class="diff-cols">
+      <div class="diff-box-wrap">
+        <div class="diff-box-hd">
+          <span class="diff-box-label">PDF 1 – Original</span>
+          <button class="copy-btn" onclick="copyPanel('diffBox1')">📋 Copy</button>
+        </div>
         <div class="diff-box" id="diffBox1"></div>
       </div>
-      <div>
-        <div class="diff-hd">PDF 2 - Modified</div>
+      <div class="diff-box-wrap">
+        <div class="diff-box-hd">
+          <span class="diff-box-label">PDF 2 – Modified</span>
+          <button class="copy-btn" onclick="copyPanel('diffBox2')">📋 Copy</button>
+        </div>
         <div class="diff-box" id="diffBox2"></div>
       </div>
     </div>
+
+    <!-- Inline (unified) view -->
+    <div id="viewInline" style="display:none">
+      <div class="diff-box-wrap">
+        <div class="diff-box-hd">
+          <span class="diff-box-label">Unified Diff</span>
+          <button class="copy-btn" onclick="copyPanel('diffBoxInline')">📋 Copy</button>
+        </div>
+        <div class="diff-box" id="diffBoxInline"></div>
+      </div>
+    </div>
+
+    <!-- Character diff view -->
+    <div id="viewChar" style="display:none">
+      <div class="diff-box-wrap">
+        <div class="diff-box-hd">
+          <span class="diff-box-label">Character-Level Diff</span>
+          <button class="copy-btn" onclick="copyPanel('diffBoxChar')">📋 Copy</button>
+        </div>
+        <div class="diff-box" id="diffBoxChar"></div>
+      </div>
+    </div>
+
   </div>
 
   <div class="panel">
@@ -569,42 +696,82 @@ mark.del{text-decoration:line-through;border-radius:3px;padding:0 2px}
     </div>
   </div>
 
-  <h2>How to Use This Tool</h2>
+  <h2>How to Compare Two PDF Files Online</h2>
   <ol class="steps-list">
     <li>Drop or select your <strong>original PDF</strong> in the left upload box.</li>
     <li>Drop or select the <strong>modified PDF</strong> in the right upload box.</li>
-    <li>Configure options (ignore case, spaces, numbers) as needed.</li>
-    <li>Click <strong>"Compare PDFs"</strong> - differences appear instantly.</li>
-    <li>Use Prev/Next to navigate changes, or download the text report.</li>
+    <li>Choose a <strong>Compare Mode</strong> – Smart for general documents, Strict for exact matching, Legal for contracts, Student for essays, or Code for technical files.</li>
+    <li>Configure ignore options (case, spaces, numbers, dates) as needed.</li>
+    <li>Click <strong>"Compare PDFs"</strong> – differences appear instantly with colour-coded highlights.</li>
+    <li>Switch between <strong>Side by Side</strong>, <strong>Inline</strong>, or <strong>Character Diff</strong> views. Use the filter chips to show only additions, deletions, or modifications.</li>
+    <li>Download a <strong>Text, Word, PDF, or CSV report</strong> – or click Print Report for a clean printout.</li>
   </ol>
 
   <h2>Why Choose LovePDFs?</h2>
   <div class="benefits-grid">
-    <div class="benefit-card"><h4>Instant Results</h4><p>Comparison completes in seconds - even for multi-page documents.</p></div>
-    <div class="benefit-card"><h4>Completely Private</h4><p>No files are ever sent to a server. Everything runs locally in your browser.</p></div>
-    <div class="benefit-card"><h4>No Watermarks</h4><p>Download a clean text report with every difference listed - no branding forced on your content.</p></div>
+    <div class="benefit-card"><h4>Instant Results</h4><p>Comparison completes in seconds – even for multi-page documents with thousands of words.</p></div>
+    <div class="benefit-card"><h4>Completely Private</h4><p>No files are ever sent to a server. Everything runs locally in your browser with zero data retention.</p></div>
+    <div class="benefit-card"><h4>No Adobe Needed</h4><p>Compare PDFs without Acrobat, Reader, or any desktop software. Works on any browser on any device.</p></div>
+    <div class="benefit-card"><h4>Three Diff Views</h4><p>Side by Side, Inline unified diff, and Character-level diff for maximum flexibility in how you review changes.</p></div>
+    <div class="benefit-card"><h4>Change Filters</h4><p>Filter the diff to show only additions, only deletions, or only modifications – just like ilovepdf.com and Adobe Acrobat.</p></div>
+    <div class="benefit-card"><h4>Useful Exports</h4><p>Download a comparison report as Text, Word, PDF, or CSV. Print a clean diff report in one click.</p></div>
   </div>
 
-  <h2>Compare Modes</h2>
+  <h2>Compare PDF Without Adobe Acrobat</h2>
+  <p>Adobe Acrobat's built-in compare feature requires a Pro subscription costing $19.99/month or more. LovePDFs gives you the same word-level, colour-coded PDF comparison entirely free, with no software to install. Everything runs inside your browser using the open-source PDF.js library. You get side-by-side highlighting, a similarity score, character-level diff, and exportable reports – all the core features you need to <strong>compare PDF files without Adobe</strong>.</p>
+  <p>Unlike desktop tools, this browser-based approach means your confidential contracts, financial reports, and legal agreements <strong>never leave your device</strong>. There is no cloud upload, no account needed, and no 14-day trial to worry about. Just drag, drop, and compare.</p>
+
+  <h2>Use Cases: Legal, Business &amp; Academic</h2>
+  <div class="tool-about-grid">
+    <div class="tool-about-card">
+      <h3>⚖️ Legal Teams</h3>
+      <p>Compare NDA drafts, lease agreements, and contracts word for word. Use <strong>Legal Mode</strong> to flag clause additions and removals. Export a PDF redline report to share with clients or partners.</p>
+    </div>
+    <div class="tool-about-card">
+      <h3>🏢 Business &amp; Finance</h3>
+      <p>Audit policy document revisions, compare financial reports, and verify version changes in employee handbooks. The similarity score and change count give management an instant at-a-glance summary.</p>
+    </div>
+    <div class="tool-about-card">
+      <h3>🎓 Students &amp; Educators</h3>
+      <p>Check assignment revisions, compare essay drafts, and verify research paper changes. Use <strong>Student Mode</strong> to highlight substantive edits while ignoring formatting changes. Works great for plagiarism spot-checks too.</p>
+    </div>
+    <div class="tool-about-card">
+      <h3>💻 Developers</h3>
+      <p>Compare API documentation, technical specifications, and changelog PDFs token by token using <strong>Code Mode</strong>. Character-level diff catches even single-character changes in version numbers.</p>
+    </div>
+    <div class="tool-about-card">
+      <h3>📰 Editors &amp; Writers</h3>
+      <p>Track editorial changes between manuscript drafts, confirm final copy revisions before publication, and verify that only approved edits made it into the final document.</p>
+    </div>
+    <div class="tool-about-card">
+      <h3>🏛️ Compliance &amp; HR</h3>
+      <p>Compare regulation versions, audit employee agreements, and produce a traceable change log for compliance documentation. Export a CSV of every changed word for auditing.</p>
+    </div>
+  </div>
+
+  <h2>Compare Modes Explained</h2>
   <div class="benefits-grid">
-    <div class="benefit-card"><h4>Smart Mode</h4><p>Best for normal document review when you want to ignore harmless spacing differences and focus on meaningful edits.</p></div>
-    <div class="benefit-card"><h4>Strict Mode</h4><p>Best when every exact change matters, including punctuation, spacing, and token order.</p></div>
-    <div class="benefit-card"><h4>Review Presets</h4><p>Legal, student, and code presets help prioritize the kinds of differences that matter most for each workflow.</p></div>
+    <div class="benefit-card"><h4>Smart Mode</h4><p>Best for normal document review. Ignores harmless spacing differences and focuses on meaningful word-level edits. The default for most users.</p></div>
+    <div class="benefit-card"><h4>Strict Mode</h4><p>Exact word-for-word matching. Every space, comma, and hyphen counts as a potential difference. Use for software licences or regulatory filings.</p></div>
+    <div class="benefit-card"><h4>Legal Mode</h4><p>Flags clause-level changes. Highlights legal keywords like <em>shall</em>, <em>liability</em>, and <em>termination</em> as major changes. Ideal for NDA and contract review.</p></div>
+    <div class="benefit-card"><h4>Student Mode</h4><p>Highlights substantive content changes while suppressing formatting and citation style differences. Great for comparing essay drafts.</p></div>
+    <div class="benefit-card"><h4>Code Mode</h4><p>Exact token-level matching. Treats indentation as significant. Designed for PDFs containing code snippets or structured data.</p></div>
   </div>
 
-  <h2>Why This Compare Tool Stands Out</h2>
-  <div class="benefits-grid">
-    <div class="benefit-card"><h4>Summary First</h4><p>Get similarity score, change count, and affected pages before diving into the detailed diff view.</p></div>
-    <div class="benefit-card"><h4>Flexible Review</h4><p>Use side-by-side view, jump between changes, sync scroll, and switch to overlay mode when layout review matters.</p></div>
-    <div class="benefit-card"><h4>Useful Exports</h4><p>Download a comparison report in text, Word-style, or PDF format for sharing and documentation.</p></div>
-  </div>
-
-  <h2>Popular Compare Searches</h2>
+  <h2>Popular Compare PDF Searches</h2>
   <div class="related-links">
     <a href="../compare-pdf/index.html" class="related-chip">Compare PDF Online Free</a>
     <a href="../ocr-extract-text/index.html" class="related-chip">Compare Scanned PDF</a>
     <a href="../compare-pdf/index.html" class="related-chip">PDF Difference Checker</a>
     <a href="../compare-pdf/index.html" class="related-chip">Side by Side PDF Compare</a>
+    <a href="../compare-pdf/index.html" class="related-chip">Compare PDF Without Adobe</a>
+    <a href="../compare-pdf/index.html" class="related-chip">PDF Redline Tool</a>
+    <a href="../compare-pdf/index.html" class="related-chip">Compare NDA PDF Free</a>
+    <a href="../compare-pdf/index.html" class="related-chip">PDF Track Changes Online</a>
+    <a href="../compare-pdf/index.html" class="related-chip">Compare PDF Word for Word</a>
+    <a href="../compare-pdf/index.html" class="related-chip">Compare Legal Documents PDF</a>
+    <a href="../compare-pdf/index.html" class="related-chip">Compare Contract PDF</a>
+    <a href="../compare-pdf/index.html" class="related-chip">PDF Diff Checker No Login</a>
   </div>
 
   <!-- AdSense in-content -->
@@ -633,7 +800,31 @@ mark.del{text-decoration:line-through;border-radius:3px;padding:0 2px}
     </div>
     <div class="faq-item">
       <div class="faq-q">How do I export the comparison results?</div>
-      <p class="faq-a">After comparison, click "Download Text Report" to save a plain-text file listing all additions and removals together with the similarity percentage.</p>
+      <p class="faq-a">After comparison, click <strong>Text Report</strong>, <strong>Word Report</strong>, or <strong>PDF Report</strong> to download a file listing all additions and removals with the similarity score. You can also use <strong>Print Report</strong> for a clean printout.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I compare PDF files without Adobe Acrobat?</div>
+      <p class="faq-a">Yes. This tool runs entirely in your browser using PDF.js – no Adobe Acrobat, Reader, or any installer is required. It works on Windows, Mac, Linux, iOS, and Android for free, without any subscription.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I compare two PDFs word for word?</div>
+      <p class="faq-a">Yes. Select <strong>Strict Mode</strong> and uncheck Ignore Case and Ignore Spaces. The tool will do an exact word-for-word comparison, flagging every space, comma, and hyphen that differs between the two documents.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I use this tool to check a PDF for plagiarism?</div>
+      <p class="faq-a">You can compare any two text-based PDFs to find copied or matching passages. Upload the original and the suspect document; identical passages appear as unchanged while differing sections are highlighted. For best results, use Smart Mode.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Does this tool work on mobile phones?</div>
+      <p class="faq-a">Yes. The tool is fully responsive and works on iOS Safari and Android Chrome. You can upload PDFs from your device storage, Google Drive, Dropbox, or iCloud directly from your mobile browser.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I compare financial reports or business PDFs?</div>
+      <p class="faq-a">Absolutely. Upload any two versions of an annual report, financial statement, or business proposal. Use the Word Count bar to see exactly how many words were added or removed, and the Character Diff view to catch even single-digit number changes.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is the Character Diff view?</div>
+      <p class="faq-a">The Character Diff view highlights differences at the individual character level – not just word level. This is useful for catching small changes like a single letter, a corrected number, or a changed punctuation mark that word-level diff might display less precisely.</p>
     </div>
   </div>
 
@@ -1204,6 +1395,158 @@ function showToast(type, title, msg) {
     // ignore malformed hash
   }
 })();
+
+// =====================================================================
+// NEW FEATURES – Diff tabs, Character diff, Filter, Copy, Word count
+// =====================================================================
+
+// --- Diff View Tab switcher ---
+let currentDiffTab = 'side';
+function switchDiffTab(tab, el) {
+  currentDiffTab = tab;
+  document.querySelectorAll('.diff-tab').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  byId('viewSide').style.display   = tab === 'side'   ? 'grid' : 'none';
+  byId('viewInline').style.display = tab === 'inline' ? 'block' : 'none';
+  byId('viewChar').style.display   = tab === 'char'   ? 'block' : 'none';
+  // Render the view if we have diff data
+  if (diffOps.length) {
+    if (tab === 'inline') renderInlineDiff();
+    if (tab === 'char')   renderCharDiff();
+  }
+}
+
+// --- Inline (unified) diff renderer ---
+function renderInlineDiff() {
+  let html = '';
+  diffOps.forEach(op => {
+    const v = esc(op.v);
+    if (op.op === 'eq')  html += v + ' ';
+    else if (op.op === 'del') html += `<mark class="del sev-${severityFor(op)}">${v}</mark> `;
+    else if (op.op === 'ins') html += `<mark class="ins sev-${severityFor(op)}">${v}</mark> `;
+  });
+  byId('diffBoxInline').innerHTML = html || '(no text extracted)';
+}
+
+// --- Character-level diff engine ---
+function diffChars(a, b) {
+  const maxLen = 4000; // cap to avoid performance issues
+  const ca = a.slice(0, maxLen).split('');
+  const cb = b.slice(0, maxLen).split('');
+  const m = ca.length, n = cb.length;
+  const dp = Array.from({length: m+1}, () => new Int32Array(n+1));
+  for (let i = m-1; i >= 0; i--)
+    for (let j = n-1; j >= 0; j--)
+      dp[i][j] = ca[i] === cb[j] ? 1+dp[i+1][j+1] : Math.max(dp[i+1][j], dp[i][j+1]);
+  const ops = [];
+  let i = 0, j = 0;
+  while (i < m || j < n) {
+    if (i < m && j < n && ca[i] === cb[j]) { ops.push({op:'eq',v:ca[i]}); i++; j++; }
+    else if (j < n && (i >= m || dp[i][j+1] >= dp[i+1][j])) { ops.push({op:'ins',v:cb[j]}); j++; }
+    else { ops.push({op:'del',v:ca[i]}); i++; }
+  }
+  return ops;
+}
+
+function renderCharDiff() {
+  // Build raw text from existing diffOps for a character-level view
+  const raw1 = diffOps.map(o => o.op !== 'ins' ? o.v : '').join(' ');
+  const raw2 = diffOps.map(o => o.op !== 'del' ? o.v : '').join(' ');
+  const charOps = diffChars(raw1, raw2);
+  let html = '';
+  charOps.forEach(op => {
+    const v = esc(op.v);
+    if (op.op === 'eq')  html += v;
+    else if (op.op === 'del') html += `<mark style="background:rgba(220,38,38,.18);color:#991b1b;text-decoration:line-through">${v}</mark>`;
+    else if (op.op === 'ins') html += `<mark style="background:rgba(21,163,74,.18);color:#166534">${v}</mark>`;
+  });
+  byId('diffBoxChar').innerHTML = html || '(no text extracted)';
+}
+
+// --- Change type filter (ilovepdf-style) ---
+let activeFilter = 'all';
+function setFilter(type, el) {
+  activeFilter = type;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  applyFilter();
+}
+
+function applyFilter() {
+  // Show/hide marks in side-by-side based on filter
+  const box1 = byId('diffBox1');
+  const box2 = byId('diffBox2');
+  if (!box1) return;
+  box1.querySelectorAll('mark.del').forEach(m => {
+    m.style.display = (activeFilter === 'all' || activeFilter === 'del') ? '' : 'none';
+  });
+  box2.querySelectorAll('mark.ins').forEach(m => {
+    m.style.display = (activeFilter === 'all' || activeFilter === 'add') ? '' : 'none';
+  });
+  // 'chg' filter: show only marks that appear adjacent (simple approximation – show all changes)
+  if (activeFilter === 'chg') {
+    box1.querySelectorAll('mark.del').forEach(m => m.style.display = '');
+    box2.querySelectorAll('mark.ins').forEach(m => m.style.display = '');
+  }
+}
+
+// --- Copy panel text to clipboard ---
+function copyPanel(boxId) {
+  const el = byId(boxId);
+  if (!el) return;
+  const text = el.innerText || el.textContent || '';
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('ok', 'Copied!', 'Panel text copied to clipboard.');
+  }).catch(() => {
+    showToast('err', 'Copy failed', 'Please select and copy manually.');
+  });
+}
+
+// --- Word count stats bar ---
+function updateWordCountBar(a, b) {
+  const wa = a.split(/\s+/).filter(Boolean);
+  const wb = b.split(/\s+/).filter(Boolean);
+  const added   = diffOps.filter(o => o.op === 'ins').length;
+  const removed = diffOps.filter(o => o.op === 'del').length;
+  byId('wcPdf1').textContent    = `PDF 1: ${wa.length.toLocaleString()} words`;
+  byId('wcPdf2').textContent    = `PDF 2: ${wb.length.toLocaleString()} words`;
+  byId('wcAdded').textContent   = `+ ${added.toLocaleString()} added`;
+  byId('wcRemoved').textContent = `− ${removed.toLocaleString()} removed`;
+  byId('wordCountBar').classList.add('on');
+}
+
+// --- No-diff banner ---
+function checkNoDiff(similarity) {
+  const banner = byId('noDiffBanner');
+  if (similarity === 100) banner.classList.add('on');
+  else banner.classList.remove('on');
+}
+
+// =====================================================================
+// Patch the existing compare button handler to call new functions
+// =====================================================================
+const _origCompare = byId('compareBtn')._comparePatched;
+if (!_origCompare) {
+  byId('compareBtn')._comparePatched = true;
+  const existingListeners = byId('compareBtn');
+  // Instead of cloning, we hook into the existing renderDiff call via a MutationObserver
+  // that watches for diffBox1 innerHTML changes after comparison
+  const diffObs = new MutationObserver(() => {
+    if (diffOps.length) {
+      // Get raw texts stored from last compare
+      const raw1 = diffOps.filter(o=>o.op!=='ins').map(o=>o.v).join(' ');
+      const raw2 = diffOps.filter(o=>o.op!=='del').map(o=>o.v).join(' ');
+      updateWordCountBar(raw1, raw2);
+      // re-render current tab
+      if (currentDiffTab === 'inline') renderInlineDiff();
+      if (currentDiffTab === 'char')   renderCharDiff();
+      applyFilter();
+      if (lastSummary) checkNoDiff(lastSummary.similarity);
+    }
+  });
+  const diffBox = byId('diffBox1');
+  if (diffBox) diffObs.observe(diffBox, {childList: true, subtree: false});
+}
 </script>
 <script src="../site-enhancements.js"></script>
 <script src="../nav-enhancements.js"></script>
