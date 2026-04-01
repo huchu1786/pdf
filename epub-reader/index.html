@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Read EPUB Online Free | LovePDFs EPUB Reader</title>
+<meta name="description" content="Read EPUB books online for free with a private browser reader. Open EPUB files locally, browse chapters, and customize font size and theme.">
+<meta name="keywords" content="epub reader online, read epub online free, open epub in browser, browser epub reader, private epub reader">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://lovepdfs.in/epub-reader/">
+<meta property="og:title" content="Read EPUB Online Free | LovePDFs EPUB Reader">
+<meta property="og:description" content="Open EPUB books in your browser with chapter navigation, font controls, and no upload required.">
+<meta property="og:url" content="https://lovepdfs.in/epub-reader/">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "LovePDFs EPUB Reader",
+  "url": "https://lovepdfs.in/epub-reader/",
+  "description": "Read EPUB books online in your browser with private local processing.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared.css">
+<style>
+.tool-hero{background:linear-gradient(170deg,var(--bg2) 0%,var(--bg) 100%);padding:7rem 2rem 5rem;text-align:center;border-bottom:2px solid var(--border)}
+.tool-hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(15,118,110,.08);border:1.5px solid rgba(15,118,110,.22);color:#0f766e;padding:.45rem 1.1rem;border-radius:999px;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1.4rem;text-decoration:none}
+.tool-hero h1{font-family:'Fraunces',serif;font-size:clamp(2.5rem,8vw,68px);font-weight:900;letter-spacing:-.035em;line-height:1.08;margin-bottom:1rem}
+.tool-hero p{max-width:760px;margin:0 auto;font-size:1.15rem;line-height:1.9;color:var(--muted)}
+.tool-trust-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.4rem}
+.tool-trust-item{font-size:1rem;color:var(--muted);font-weight:600}
+.reader-shell{max-width:1380px;margin:0 auto;padding:2rem}
+.upload-card,.info-card,.toc-card,.reader-card,.seo-card{background:var(--card);border:2px solid var(--border);border-radius:22px;box-shadow:var(--shadow-xs)}
+.upload-card{padding:1.25rem;margin-bottom:1.5rem}
+.drop-zone{border:2px dashed var(--border);border-radius:18px;padding:2.3rem 1.25rem;text-align:center;background:linear-gradient(180deg,var(--bg2),var(--bg));cursor:pointer;transition:all .25s}
+.drop-zone.drag{border-color:#0f766e;background:rgba(15,118,110,.06)}
+.drop-zone h3{margin:.8rem 0 .35rem;font-size:1.3rem}
+.drop-zone p{margin:0;color:var(--muted)}
+.drop-btn{display:inline-flex;align-items:center;justify-content:center;margin-top:1rem;padding:.95rem 1.25rem;border-radius:14px;background:linear-gradient(135deg,#0f766e,#115e59);color:#fff;font-weight:800;text-decoration:none;border:none;cursor:pointer}
+.reader-grid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:1.5rem}
+.sidebar-col{display:flex;flex-direction:column;gap:1.5rem}
+.info-card{padding:1.25rem}
+.meta-title{font-family:'Fraunces',serif;font-size:1.55rem;font-weight:800;line-height:1.25}
+.meta-author{margin-top:.45rem;color:var(--muted)}
+.meta-list{display:grid;gap:.75rem;margin-top:1rem}
+.meta-pill{padding:.8rem .95rem;border-radius:14px;background:var(--bg2);border:1.5px solid var(--border);font-size:.92rem;color:var(--text2)}
+.toc-card{padding:1rem;max-height:70vh;overflow:auto}
+.toc-card h3,.reader-head h3,.seo-card h2{font-family:'Fraunces',serif}
+.toc-list{display:flex;flex-direction:column;gap:.55rem;margin-top:.9rem}
+.toc-btn{width:100%;text-align:left;border:1.5px solid var(--border);background:var(--bg2);color:var(--text);padding:.85rem .95rem;border-radius:14px;cursor:pointer;font-weight:650;transition:all .2s;font-size:.9rem}
+.toc-btn:hover,.toc-btn.active{border-color:#0f766e;color:#0f766e;background:rgba(15,118,110,.06)}
+.reader-card{padding:1rem}
+.reader-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:.35rem .35rem 1rem}
+.control-row{display:flex;gap:.75rem;flex-wrap:wrap}
+.reader-select,.reader-btn{border:1.5px solid var(--border);background:var(--bg2);color:var(--text);border-radius:14px;padding:.8rem .95rem;font-weight:700;font-family:inherit}
+.reader-btn{cursor:pointer}
+.reader-btn.primary{background:linear-gradient(135deg,#0f766e,#115e59);color:#fff;border-color:transparent}
+.reader-stage{border:2px solid var(--border);border-radius:18px;background:linear-gradient(180deg,var(--bg),var(--bg2));min-height:72vh;padding:1rem;position:relative;overflow:hidden}
+#viewer{height:68vh;border-radius:14px;overflow:hidden;position:relative}
+#viewer iframe{width:100%;height:100%;border:none;border-radius:14px;display:block}
+.empty-state{display:flex;align-items:center;justify-content:center;min-height:60vh;text-align:center;color:var(--muted);padding:2rem}
+.reader-footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:1rem}
+.status-text{color:var(--muted);font-size:.95rem}
+.seo-wrap{max-width:980px;margin:4rem auto 5rem;padding:0 2rem}
+.seo-card{padding:2rem 2.2rem;margin-bottom:1.5rem}
+.seo-card h2{font-size:clamp(2rem,4vw,2.6rem);margin-bottom:1rem}
+.seo-card p,.seo-card li{color:var(--text2);line-height:1.8}
+.seo-card ol,.seo-card ul{padding-left:1.2rem}
+.seo-card a{color:#0f766e;font-weight:700;text-decoration:none}
+.seo-card a:hover{text-decoration:underline}
+.link-grid{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.1rem}
+.link-chip{display:inline-flex;align-items:center;justify-content:center;padding:.8rem 1rem;border-radius:999px;border:1.5px solid var(--border);background:var(--bg2);color:var(--text);font-weight:700;text-decoration:none;transition:all .2s}
+.link-chip:hover{border-color:#0f766e;color:#0f766e;background:rgba(15,118,110,.06)}
+@media (max-width: 980px){.reader-grid{grid-template-columns:1fr}.toc-card{max-height:none}}
+@media (max-width: 640px){.tool-hero{padding:4.4rem 1.2rem 3.6rem}.reader-shell,.seo-wrap{padding-left:1rem;padding-right:1rem}#viewer{height:60vh}.reader-footer,.reader-head{align-items:stretch}}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="siteNav">
+  <a href="../index.html" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
+  <div class="nav-mid">
+    <a href="../all-tools.html" class="nav-link">All Tools</a>
+    <a href="../converter-tools/" class="nav-link">Converters</a>
+    <a href="../blog.html" class="nav-link">Blog</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn">Theme</button>
+    <a href="../contact.html" class="nav-btn-o">Contact</a>
+    <a href="../all-tools.html" class="nav-btn-f">All Tools</a>
+  </div>
+</nav>
+<section class="tool-hero">
+  <a href="../all-tools.html" class="tool-hero-eyebrow">Back to All Tools</a>
+  <h1>Read EPUB Books Online</h1>
+  <p>Open EPUB files directly in your browser with chapter navigation, comfortable typography controls, and private local reading.</p>
+  <div class="tool-trust-row">
+    <div class="tool-trust-item">100% Free</div>
+    <div class="tool-trust-item">No Signup</div>
+    <div class="tool-trust-item">No Upload</div>
+    <div class="tool-trust-item">Browser Powered</div>
+  </div>
+</section>
+<main class="reader-shell">
+  <section class="upload-card">
+    <div class="drop-zone" id="dropZone" tabindex="0" role="button" aria-label="Upload EPUB file">
+      <div style="font-size:2.2rem;">EPUB</div>
+      <h3>Drop your EPUB here</h3>
+      <p>or choose an ebook from your device</p>
+      <button class="drop-btn" type="button" id="chooseBtn">Choose EPUB File</button>
+      <input id="fileInput" type="file" accept=".epub,application/epub+zip" style="display:none">
+    </div>
+  </section>
+  <section class="reader-grid">
+    <div class="sidebar-col">
+      <div class="info-card">
+        <div class="meta-title" id="bookTitle">No book loaded</div>
+        <div class="meta-author" id="bookAuthor">Upload an EPUB to start reading.</div>
+        <div class="meta-list">
+          <div class="meta-pill" id="bookDetails">File info will appear here after loading.</div>
+          <div class="meta-pill" id="bookLocation">Current location: waiting for book</div>
+        </div>
+      </div>
+      <div class="toc-card">
+        <h3>Table of Contents</h3>
+        <div class="toc-list" id="tocList"><div class="status-text">Chapters will appear after the EPUB is loaded.</div></div>
+      </div>
+    </div>
+    <div class="reader-card">
+      <div class="reader-head">
+        <h3 style="margin:0;">Reader</h3>
+        <div class="control-row">
+          <select class="reader-select" id="themeSelect">
+            <option value="paper">Paper Theme</option>
+            <option value="night">Night Theme</option>
+            <option value="sepia">Sepia Theme</option>
+          </select>
+          <select class="reader-select" id="fontSizeSelect">
+            <option value="90%">Small Type</option>
+            <option value="100%" selected>Default Type</option>
+            <option value="115%">Comfort Type</option>
+            <option value="130%">Large Type</option>
+          </select>
+          <select class="reader-select" id="fontFamilySelect">
+            <option value="Georgia, serif" selected>Serif</option>
+            <option value="system-ui, sans-serif">Sans-serif</option>
+            <option value="'Courier New', monospace">Monospace</option>
+          </select>
+        </div>
+      </div>
+      <div class="reader-stage">
+        <div id="viewer"><div class="empty-state">Upload an EPUB file to open the reader.</div></div>
+      </div>
+      <div class="reader-footer">
+        <div class="control-row">
+          <button class="reader-btn" type="button" id="prevBtn">&#8592; Previous</button>
+          <button class="reader-btn primary" type="button" id="nextBtn">Next &#8594;</button>
+        </div>
+        <div class="status-text" id="readerStatus">Ready to load an EPUB file.</div>
+      </div>
+    </div>
+  </section>
+</main>
+<section class="seo-wrap">
+  <div class="seo-card">
+    <h2>How the EPUB reader works</h2>
+    <p>This online EPUB reader opens ebook files directly in your browser using local client-side processing. Once the file is loaded, you can browse chapters, move between sections, and adjust reading settings without sending the book to a remote server. If you want a downloadable fixed-layout copy after reading, you can continue to our <a href="../epub-to-pdf/index.html">EPUB to PDF converter</a>.</p>
+  </div>
+  <div class="seo-card">
+    <h2>How to use it</h2>
+    <ol>
+      <li>Choose an EPUB file from your device.</li>
+      <li>Wait for the book metadata and chapter list to load.</li>
+      <li>Use Previous, Next, or the table of contents to move around the book.</li>
+      <li>Change the theme, font size, or font style to match your reading preference.</li>
+    </ol>
+  </div>
+  <div class="seo-card">
+    <h2>Why use an online EPUB reader</h2>
+    <p>An online EPUB reader is useful when you want to open an ebook quickly without installing extra software. It is especially handy on shared devices, Chromebooks, and systems where you just need a fast browser-based reading experience.</p>
+  </div>
+  <div class="seo-card">
+    <h2>Related tools</h2>
+    <div class="link-grid">
+      <a class="link-chip" href="../epub-to-pdf/index.html">EPUB to PDF</a>
+      <a class="link-chip" href="../pdf-to-text/index.html">PDF to Text</a>
+      <a class="link-chip" href="../pdf-to-word/index.html">PDF to Word</a>
+      <a class="link-chip" href="../html-to-pdf/index.html">HTML to PDF</a>
+      <a class="link-chip" href="../all-tools.html">Browse All Tools</a>
+    </div>
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="../nav-enhancements.js"></script>
+<script src="../site-enhancements.js"></script>
+<script>
+// ─── State ───────────────────────────────────────────────────────────────────
+let book = null; // { zip, resourceMap, spineItems, tocItems, currentIndex, currentBlobUrl }
+let currentTheme = 'paper';
+
+// ─── DOM refs ─────────────────────────────────────────────────────────────────
+const fileInput   = document.getElementById('fileInput');
+const chooseBtn   = document.getElementById('chooseBtn');
+const dropZone    = document.getElementById('dropZone');
+const tocList     = document.getElementById('tocList');
+const readerStatus= document.getElementById('readerStatus');
+const bookTitle   = document.getElementById('bookTitle');
+const bookAuthor  = document.getElementById('bookAuthor');
+const bookDetails = document.getElementById('bookDetails');
+const bookLocation= document.getElementById('bookLocation');
+const viewer      = document.getElementById('viewer');
+
+// ─── Events ──────────────────────────────────────────────────────────────────
+chooseBtn.addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', (e) => { const f = e.target.files && e.target.files[0]; if (f) loadBook(f); });
+['dragenter','dragover'].forEach(t => dropZone.addEventListener(t, e => { e.preventDefault(); dropZone.classList.add('drag'); }));
+['dragleave','drop'].forEach(t => dropZone.addEventListener(t, e => { e.preventDefault(); dropZone.classList.remove('drag'); }));
+dropZone.addEventListener('drop', e => { const f = e.dataTransfer.files && e.dataTransfer.files[0]; if (f) loadBook(f); });
+document.getElementById('prevBtn').addEventListener('click', () => book && showChapter(book.currentIndex - 1));
+document.getElementById('nextBtn').addEventListener('click', () => book && showChapter(book.currentIndex + 1));
+document.getElementById('themeSelect').addEventListener('change', e => { currentTheme = e.target.value; if (book) showChapter(book.currentIndex); });
+document.getElementById('fontSizeSelect').addEventListener('change', () => { if (book) showChapter(book.currentIndex); });
+document.getElementById('fontFamilySelect').addEventListener('change', () => { if (book) showChapter(book.currentIndex); });
+window.addEventListener('keydown', e => {
+  if (!book) return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') showChapter(book.currentIndex + 1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   showChapter(book.currentIndex - 1);
+});
+
+// ─── Path utilities ────────────────────────────────────────────────────────────
+function resolveEpubPath(base, relative) {
+  if (!relative) return '';
+  if (relative.startsWith('/')) return relative.slice(1);
+  // Strip fragment and query
+  const clean = relative.split('#')[0].split('?')[0];
+  const parts = (base + clean).split('/');
+  const out = [];
+  for (const p of parts) {
+    if (p === '..') out.pop();
+    else if (p && p !== '.') out.push(p);
+  }
+  return out.join('/');
+}
+
+// ─── XML metadata helper ───────────────────────────────────────────────────────
+function getXmlMeta(doc, localName) {
+  // Try Dublin Core namespace
+  try {
+    const els = doc.getElementsByTagNameNS('http://purl.org/dc/elements/1.1/', localName);
+    if (els.length) return (els[0].textContent || '').trim();
+  } catch(e) {}
+  // Fallback: plain tag name
+  const els2 = doc.getElementsByTagName(localName);
+  if (els2.length) return (els2[0].textContent || '').trim();
+  return '';
+}
+
+// ─── Load book ─────────────────────────────────────────────────────────────────
+async function loadBook(file) {
+  if (!/\.epub$/i.test(file.name)) { readerStatus.textContent = 'Please choose a valid .epub file.'; return; }
+  try {
+    cleanupBook();
+    readerStatus.textContent = 'Reading EPUB file...';
+    viewer.innerHTML = '<div class="empty-state">Opening your book, please wait...</div>';
+
+    const zip = await JSZip.loadAsync(file);
+
+    // 1. container.xml → OPF path
+    const containerText = await zip.file('META-INF/container.xml').async('text');
+    const parser = new DOMParser();
+    const containerDoc = parser.parseFromString(containerText, 'application/xml');
+    const rootfileEl = containerDoc.querySelector('rootfile');
+    if (!rootfileEl) throw new Error('Invalid EPUB: no rootfile in container.xml');
+    const opfPath = rootfileEl.getAttribute('full-path');
+    const opfBase = opfPath.includes('/') ? opfPath.substring(0, opfPath.lastIndexOf('/') + 1) : '';
+
+    // 2. Parse OPF
+    const opfText = await zip.file(opfPath).async('text');
+    const opfDoc = parser.parseFromString(opfText, 'application/xml');
+
+    const title   = getXmlMeta(opfDoc, 'title')   || file.name.replace(/\.epub$/i, '');
+    const creator = getXmlMeta(opfDoc, 'creator') || 'Unknown author';
+
+    // 3. Build manifest: id → { fullPath, mediaType }
+    const manifest = {};
+    opfDoc.querySelectorAll('manifest item').forEach(item => {
+      const href = item.getAttribute('href');
+      if (!href) return;
+      manifest[item.getAttribute('id')] = {
+        fullPath: resolveEpubPath(opfBase, href),
+        mediaType: item.getAttribute('media-type') || '',
+        properties: item.getAttribute('properties') || ''
+      };
+    });
+
+    // 4. Spine → ordered list of chapter paths (skip linear="no")
+    const spineItems = [];
+    opfDoc.querySelectorAll('spine itemref').forEach(ref => {
+      if (ref.getAttribute('linear') === 'no') return;
+      const id = ref.getAttribute('idref');
+      if (manifest[id] && manifest[id].fullPath) spineItems.push(manifest[id].fullPath);
+    });
+    if (!spineItems.length) throw new Error('No readable chapters found in this EPUB.');
+
+    // 5. Build all resource blob URLs in parallel (images, CSS, fonts, etc.)
+    readerStatus.textContent = 'Loading resources...';
+    const resourceMap = {};
+    await Promise.all(
+      Object.keys(zip.files).filter(p => !zip.files[p].dir).map(async path => {
+        try {
+          const blob = await zip.file(path).async('blob');
+          resourceMap[path] = URL.createObjectURL(blob);
+        } catch(e) {}
+      })
+    );
+
+    // 6. Parse TOC
+    const tocItems = await parseToc(opfDoc, opfBase, zip, manifest, parser);
+
+    // 7. Update UI
+    bookTitle.textContent   = title;
+    bookAuthor.textContent  = creator;
+    bookDetails.textContent = 'File: ' + file.name + ' | Size: ' + formatSize(file.size) + ' | Chapters: ' + spineItems.length;
+
+    book = { zip, resourceMap, spineItems, tocItems, currentIndex: 0, currentBlobUrl: null, parser };
+
+    buildToc(tocItems, spineItems);
+    await showChapter(0);
+    readerStatus.textContent = 'Book loaded — use Previous / Next or the TOC to navigate.';
+  } catch (err) {
+    console.error(err);
+    readerStatus.textContent = 'Could not open EPUB: ' + (err.message || 'Unknown error');
+    bookTitle.textContent  = 'Unable to load book';
+    bookAuthor.textContent = 'Try another EPUB file.';
+    viewer.innerHTML = '<div class="empty-state">Could not open this EPUB file. Please try another.</div>';
+  }
+}
+
+// ─── Display a chapter ─────────────────────────────────────────────────────────
+async function showChapter(index) {
+  if (!book) return;
+  index = Math.max(0, Math.min(index, book.spineItems.length - 1));
+  book.currentIndex = index;
+
+  const chapterPath = book.spineItems[index];
+  const chapterBase = chapterPath.includes('/') ? chapterPath.substring(0, chapterPath.lastIndexOf('/') + 1) : '';
+
+  let htmlText = '';
+  try {
+    const fileObj = book.zip.file(chapterPath);
+    if (!fileObj) throw new Error('File not found: ' + chapterPath);
+    htmlText = await fileObj.async('text');
+  } catch(e) {
+    htmlText = '<html><body><p style="padding:2rem;color:#888;">Could not load this chapter.</p></body></html>';
+  }
+
+  const styledHtml = injectStylesAndFixUrls(htmlText, chapterBase);
+
+  // Create iframe if not yet present
+  let frame = viewer.querySelector('iframe');
+  if (!frame) {
+    viewer.innerHTML = '';
+    frame = document.createElement('iframe');
+    frame.setAttribute('sandbox', 'allow-same-origin allow-scripts');
+    frame.title = 'EPUB Chapter Content';
+    viewer.appendChild(frame);
+  }
+  frame.srcdoc = styledHtml;
+
+  const total = book.spineItems.length;
+  const pct = total > 1 ? Math.round((index / (total - 1)) * 100) : 100;
+  bookLocation.textContent = 'Chapter ' + (index + 1) + ' of ' + total + ' (' + pct + '%)';
+  markActiveToc(index);
+
+  // Scroll iframe to top when switching chapters
+  frame.onload = () => {
+    try { frame.contentWindow.scrollTo(0, 0); } catch(e) {}
+  };
+}
+
+// ─── Inject reader styles and fix asset URLs ───────────────────────────────────
+function injectStylesAndFixUrls(html, chapterBase) {
+  const themeStyles = {
+    paper: { bg: '#fffdf6', color: '#1c1917', link: '#0f766e',  headColor: '#111' },
+    night: { bg: '#111827', color: '#e5e7eb', link: '#60a5fa',  headColor: '#f9fafb' },
+    sepia: { bg: '#f5ecd9', color: '#3f2d1f', link: '#92400e',  headColor: '#1c0d00' }
+  };
+  const t = themeStyles[currentTheme] || themeStyles.paper;
+  const fontSize   = document.getElementById('fontSizeSelect').value;
+  const fontFamily = document.getElementById('fontFamilySelect').value;
+
+  const css = `<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:${t.bg};color:${t.color};font-family:${fontFamily};font-size:${fontSize};line-height:1.85;}
+body{max-width:740px;margin:0 auto;padding:2rem 2.5rem 4rem;background:${t.bg};color:${t.color};}
+p{margin-bottom:1em;}
+h1,h2,h3,h4,h5,h6{color:${t.headColor};line-height:1.3;margin-top:1.5em;margin-bottom:.5em;font-weight:700;}
+h1{font-size:1.8em;}h2{font-size:1.5em;}h3{font-size:1.25em;}
+a{color:${t.link};text-decoration:underline;}
+img{max-width:100%;height:auto;display:block;margin:1em auto;}
+blockquote{border-left:4px solid ${t.link};padding:0.5em 1em;margin:1em 0;opacity:.85;}
+pre,code{font-family:monospace;white-space:pre-wrap;font-size:.9em;}
+table{width:100%;border-collapse:collapse;margin:1em 0;}
+td,th{border:1px solid #ccc;padding:.5em;}
+ul,ol{padding-left:1.5em;margin-bottom:1em;}
+li{margin-bottom:.3em;}
+</style>`;
+
+  // Fix resource URLs: replace relative src/href with blob URLs
+  let fixed = html.replace(/((?:src|href|data-src)\s*=\s*)["']([^"'#][^"']*)["']/gi, (match, attr, url) => {
+    if (url.startsWith('http') || url.startsWith('data:') || url.startsWith('//')) return match;
+    const resolved = resolveEpubPath(chapterBase, url);
+    const blob = book.resourceMap[resolved];
+    if (blob) return attr + '"' + blob + '"';
+    return match;
+  });
+
+  // Fix CSS url() references
+  fixed = fixed.replace(/url\(\s*['"]?([^'")#][^'")]*?)['"]?\s*\)/gi, (match, url) => {
+    if (url.startsWith('data:') || url.startsWith('http') || url.startsWith('//')) return match;
+    const resolved = resolveEpubPath(chapterBase, url);
+    const blob = book.resourceMap[resolved];
+    if (blob) return 'url("' + blob + '")';
+    return match;
+  });
+
+  // Inject our CSS into <head> or prepend
+  if (/<head[\s>]/i.test(fixed)) {
+    fixed = fixed.replace(/(<head[^>]*>)/i, '$1' + css);
+  } else {
+    fixed = css + fixed;
+  }
+  return fixed;
+}
+
+// ─── Parse TOC ─────────────────────────────────────────────────────────────────
+async function parseToc(opfDoc, opfBase, zip, manifest, parser) {
+  // Try EPUB 3: item with properties="nav"
+  let navItem = null;
+  for (const id in manifest) {
+    if (manifest[id].properties.includes('nav')) { navItem = manifest[id]; break; }
+  }
+  if (navItem) {
+    try {
+      const navText = await zip.file(navItem.fullPath).async('text');
+      const navDoc = parser.parseFromString(navText, 'text/html');
+      const navEl = navDoc.querySelector('nav[epub\\:type="toc"], nav[epub\\:type*="toc"], nav');
+      if (navEl) {
+        const list = navEl.querySelector('ol, ul');
+        if (list) return parseNavList(list, navItem.fullPath);
+      }
+    } catch(e) {}
+  }
+
+  // Try EPUB 2: NCX
+  const ncxId = opfDoc.querySelector('spine') && opfDoc.querySelector('spine').getAttribute('toc');
+  if (ncxId && manifest[ncxId]) {
+    try {
+      const ncxText = await zip.file(manifest[ncxId].fullPath).async('text');
+      const ncxDoc = parser.parseFromString(ncxText, 'application/xml');
+      return parseNcxNavMap(ncxDoc.querySelector('navMap'), manifest[ncxId].fullPath);
+    } catch(e) {}
+  }
+  return [];
+}
+
+function parseNavList(listEl, baseFile) {
+  const items = [];
+  if (!listEl) return items;
+  listEl.querySelectorAll(':scope > li').forEach(li => {
+    const a = li.querySelector('a');
+    const label = a ? (a.textContent || '').trim() : '';
+    const href  = a ? (a.getAttribute('href') || '') : '';
+    const fullPath = href ? resolveEpubPath(baseFile.includes('/') ? baseFile.substring(0, baseFile.lastIndexOf('/') + 1) : '', href) : '';
+    const sub = li.querySelector('ol, ul');
+    items.push({ label, fullPath, subitems: sub ? parseNavList(sub, baseFile) : [] });
+  });
+  return items;
+}
+
+function parseNcxNavMap(navMap, ncxBasePath) {
+  const items = [];
+  if (!navMap) return items;
+  navMap.querySelectorAll(':scope > navPoint').forEach(np => {
+    const label = np.querySelector('navLabel > text') ? (np.querySelector('navLabel > text').textContent || '').trim() : '';
+    const src   = np.querySelector('content') ? (np.querySelector('content').getAttribute('src') || '') : '';
+    const fullPath = src ? resolveEpubPath(ncxBasePath.includes('/') ? ncxBasePath.substring(0, ncxBasePath.lastIndexOf('/') + 1) : '', src) : '';
+    const splitPath = fullPath.split('#')[0];
+    const sub = np.querySelector('navPoint') ? np : null;
+    const subItems = [];
+    if (sub) {
+      np.querySelectorAll(':scope > navPoint').forEach(child => {
+        const cl = child.querySelector('navLabel > text') ? (child.querySelector('navLabel > text').textContent || '').trim() : '';
+        const cs = child.querySelector('content') ? (child.querySelector('content').getAttribute('src') || '') : '';
+        const cp = cs ? resolveEpubPath(ncxBasePath.includes('/') ? ncxBasePath.substring(0, ncxBasePath.lastIndexOf('/') + 1) : '', cs).split('#')[0] : '';
+        subItems.push({ label: cl, fullPath: cp, subitems: [] });
+      });
+    }
+    items.push({ label, fullPath: splitPath, subitems: subItems });
+  });
+  return items;
+}
+
+// ─── Build sidebar TOC ─────────────────────────────────────────────────────────
+function buildToc(tocItems, spineItems) {
+  if (tocItems.length) {
+    tocList.innerHTML = '';
+    tocItems.forEach(item => appendTocItem(item, spineItems, 0));
+  } else {
+    // Fallback: list spine items numerically
+    tocList.innerHTML = '';
+    spineItems.forEach((path, index) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'toc-btn';
+      btn.textContent = 'Chapter ' + (index + 1);
+      btn.dataset.chapterIndex = index;
+      btn.addEventListener('click', () => showChapter(index));
+      tocList.appendChild(btn);
+    });
+  }
+}
+
+function appendTocItem(item, spineItems, depth) {
+  if (!item.label) return;
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'toc-btn';
+  btn.textContent = (depth > 0 ? '\u00a0\u00a0'.repeat(depth) + '› ' : '') + item.label;
+
+  // Find which spine index corresponds to this TOC href
+  const targetPath = item.fullPath ? item.fullPath.split('#')[0] : '';
+  let chapterIndex = spineItems.findIndex(p => p === targetPath || p.endsWith('/' + targetPath));
+  if (chapterIndex === -1 && targetPath) {
+    // Try partial match
+    chapterIndex = spineItems.findIndex(p => p.includes(targetPath) || targetPath.includes(p.split('/').pop() || ''));
+  }
+  btn.dataset.chapterIndex = chapterIndex >= 0 ? chapterIndex : -1;
+  btn.addEventListener('click', () => {
+    const idx = parseInt(btn.dataset.chapterIndex, 10);
+    if (idx >= 0) showChapter(idx);
+  });
+  tocList.appendChild(btn);
+  if (item.subitems && item.subitems.length) {
+    item.subitems.forEach(child => appendTocItem(child, spineItems, depth + 1));
+  }
+}
+
+function markActiveToc(index) {
+  tocList.querySelectorAll('.toc-btn').forEach(btn => {
+    btn.classList.toggle('active', parseInt(btn.dataset.chapterIndex, 10) === index);
+  });
+}
+
+// ─── Cleanup ───────────────────────────────────────────────────────────────────
+function cleanupBook() {
+  if (!book) return;
+  Object.values(book.resourceMap).forEach(url => URL.revokeObjectURL(url));
+  book = null;
+  viewer.innerHTML = '<div class="empty-state">Upload an EPUB file to open the reader.</div>';
+  tocList.innerHTML = '<div class="status-text">Chapters will appear after the EPUB is loaded.</div>';
+  bookTitle.textContent   = 'No book loaded';
+  bookAuthor.textContent  = 'Upload an EPUB to start reading.';
+  bookDetails.textContent = 'File info will appear here after loading.';
+  bookLocation.textContent= 'Current location: waiting for book';
+}
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+function formatSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / 1048576).toFixed(2) + ' MB';
+}
+</script>
+</body>
+</html>
