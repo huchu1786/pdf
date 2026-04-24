@@ -49,21 +49,44 @@
   status = 301
   force = true
 
-# Fix 404s — old blog-posts paths that Google indexed
+# Fix 404s — blog-posts/features.html and blog-posts/index.html (old crawled URLs)
 [[redirects]]
-  from = "/blog-posts/contact.html"
-  to = "/contact.html"
+  from = "/blog-posts/features.html"
+  to = "/features.html"
   status = 301
+  force = true
 
 [[redirects]]
-  from = "/blog-posts/blog.html"
-  to = "/blog.html"
+  from = "/blog-posts/index.html"
+  to = "/"
   status = 301
+  force = true
+
+# Fix "Alternate page with proper canonical" — /features should redirect to /features.html (canonical)
+[[redirects]]
+  from = "/features"
+  to = "/features.html"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/blog-posts/all-tools.html"
   to = "/all-tools.html"
   status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-posts/contact.html"
+  to = "/contact.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-posts/blog.html"
+  to = "/blog.html"
+  status = 301
+  force = true
+
 
 [[redirects]]
   from = "/add-page-numbers-pdf/index.html"
