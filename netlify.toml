@@ -1,6 +1,6 @@
-# ── Fix GSC Redirect Errors: enforce trailing slash on tool pages ──
+# Redirect old flat file URL to canonical folder URL
 [[redirects]]
-  from = "/passport-photo"
+  from = "/passport-photo.html"
   to = "/passport-photo/"
   status = 301
   force = true
