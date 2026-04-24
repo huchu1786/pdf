@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Color Picker – HEX, RGB, HSL Color Tool | LovePDFs</title>
+    <meta name="description"
+        content="Pick, convert and explore colors in HEX, RGB, and HSL formats. Get complementary colors, shades, and tints. Free browser-based color picker tool." />
+    <link rel="canonical" href="https://lovepdfs.in/color-picker/"/>
+    <meta property="og:title" content="Color Picker – HEX, RGB, HSL Color Tool | LovePDFs">
+    <meta property="og:description" content="Pick, convert and explore colors in HEX, RGB, and HSL formats. Get complementary colors, shades, and tints. Free browser-based color picker tool.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lovepdfs.in/color-picker/">
+    <meta property="og:site_name" content="LovePDFs">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Color Picker – HEX, RGB, HSL Color Tool | LovePDFs">
+    <meta name="twitter:description" content="Pick, convert and explore colors in HEX, RGB, and HSL formats. Get complementary colors, shades, and tints. Free browser-based color picker tool.">
+    <link rel="icon" type="image/png" sizes="512x512" href="../favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../shared.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1303178479491171"
+        crossorigin="anonymous"></script>
+    <style>
+        .cp-wrap {
+            max-width: 820px;
+            margin: 0 auto
+        }
+
+        .color-preview {
+            width: 100%;
+            height: 120px;
+            border-radius: 18px;
+            border: 2px solid var(--border);
+            transition: background 0.25s;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 0.75rem;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12)
+        }
+
+        .color-code-badge {
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border-radius: 8px;
+            padding: 0.3rem 0.7rem;
+            font-family: monospace;
+            font-size: 0.88rem;
+            font-weight: 700;
+            backdrop-filter: blur(6px)
+        }
+
+        .picker-row {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1.25rem
+        }
+
+        input[type=color] {
+            width: 80px;
+            height: 60px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 0.2rem;
+            cursor: pointer;
+            background: none;
+            flex-shrink: 0
+        }
+
+        .hex-input {
+            flex: 1;
+            padding: 0.85rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg2);
+            color: var(--text);
+            font-family: monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: border-color 0.2s
+        }
+
+        .hex-input:focus {
+            outline: none;
+            border-color: var(--red)
+        }
+
+        .format-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.85rem;
+            margin-bottom: 1.5rem
+        }
+
+        .format-card {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 13px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative
+        }
+
+        .format-card:hover {
+            border-color: rgba(232, 50, 26, 0.4)
+        }
+
+        .format-label {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-bottom: 0.3rem
+        }
+
+        .format-val {
+            font-family: monospace;
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text);
+            word-break: break-all
+        }
+
+        .copy-hint {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            font-size: 0.65rem;
+            color: var(--muted);
+            font-weight: 600
+        }
+
+        .section-divider {
+            border: none;
+            border-top: 2px solid var(--border);
+            margin: 1.5rem 0
+        }
+
+        .palette-grid {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.75rem
+        }
+
+        .swatch {
+            width: 52px;
+            height: 52px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            position: relative
+        }
+
+        .swatch:hover {
+            transform: scale(1.12);
+            border-color: var(--border2)
+        }
+
+        .swatch-label {
+            position: absolute;
+            bottom: -1.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6rem;
+            font-family: monospace;
+            color: var(--muted);
+            white-space: nowrap
+        }
+
+        .harmony-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+            flex-wrap: wrap
+        }
+
+        .harmony-swatch {
+            flex: 1;
+            min-width: 80px;
+            height: 72px;
+            border-radius: 12px;
+            cursor: pointer;
+            border: 2px solid var(--border);
+            transition: all 0.2s;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 0.3rem
+        }
+
+        .harmony-swatch span {
+            font-size: 0.65rem;
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.4);
+            color: #fff;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px
+        }
+
+        .sliders-section {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem
+        }
+
+        .slider-row {
+            margin-bottom: 0.85rem
+        }
+
+        .slider-row:last-child {
+            margin-bottom: 0
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--muted);
+            margin-bottom: 0.3rem
+        }
+
+        input[type=range].r-r {
+            --c: #ef4444;
+            accent-color: var(--c)
+        }
+
+        input[type=range].r-g {
+            --c: #22c55e;
+            accent-color: var(--c)
+        }
+
+        input[type=range].r-b {
+            --c: #3b82f6;
+            accent-color: var(--c)
+        }
+
+        input[type=range].r-h {
+            accent-color: hsl(240, 60%, 50%)
+        }
+
+        input[type=range].r-s {
+            accent-color: #ec4899
+        }
+
+        input[type=range].r-l {
+            accent-color: #94a3b8
+        }
+
+        .info-section {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.05), rgba(168, 85, 247, 0.03));
+            border: 1.5px solid rgba(236, 72, 153, 0.15);
+            border-radius: 18px;
+            padding: 2rem;
+            margin-top: 2.5rem
+        }
+
+        .info-section h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 1rem
+        }
+
+        .info-section h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 1.2rem 0 0.5rem
+        }
+
+        .info-section p,
+        .info-section li {
+            font-size: 0.95rem;
+            color: var(--text2);
+            line-height: 1.75
+        }
+
+        .info-section ul {
+            padding-left: 1.5rem
+        }
+
+        .info-section li {
+            margin-bottom: 0.35rem
+        }
+
+        @media(max-width:600px) {
+            .format-grid {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="site-nav">
+        <a href="../index.html" class="nav-logo">
+            <div class="nav-logo-ic">P</div>LovePDFs
+        </a>
+        <div class="nav-mid">
+            <a href="../all-tools.html" class="nav-link">All Tools</a>
+            <a href="../features.html" class="nav-link">Features</a>
+            <a href="../blog.html" class="nav-link">Blog</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-btn" id="themeBtn">🌙</button>
+            <a href="../index.html" class="nav-btn-f">← Home</a>
+        </div>
+    </nav>
+
+    <div class="page-wrap">
+        <section class="inner-hero">
+            <div class="inner-hero-eyebrow">🎨 Utility Tools</div>
+            <h1>Color Picker</h1>
+            <p>Pick any color and instantly get HEX, RGB, HSL values. Explore shades, tints, and color harmonies.</p>
+        </section>
+
+        <div class="cp-wrap content-section">
+            <div style="text-align:center;margin-bottom:1.5rem">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1303178479491171"
+                    data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+
+            <!-- Color Preview -->
+            <div class="color-preview" id="colorPreview" style="background:#EC4899">
+                <span class="color-code-badge" id="previewBadge">#EC4899</span>
+            </div>
+
+            <!-- Picker Row -->
+            <div class="picker-row">
+                <input type="color" id="colorPicker" value="#EC4899" oninput="onColorInput(this.value)">
+                <input type="text" class="hex-input" id="hexInput" value="#EC4899" placeholder="#000000"
+                    oninput="onHexInput(this.value)" maxlength="7" spellcheck="false">
+                <button class="btn-go" style="flex:0 0 auto;padding:0.75rem 1.25rem;font-size:0.88rem"
+                    onclick="copyToClipboard(document.getElementById('hexInput').value)">📋 Copy HEX</button>
+            </div>
+
+            <!-- RGB Sliders -->
+            <div class="sliders-section">
+                <div class="opt-section-title" style="margin-bottom:1rem">RGB Sliders</div>
+                <div class="slider-row">
+                    <div class="slider-label"><span>Red (R)</span><span id="rVal">236</span></div>
+                    <input type="range" class="r-r" id="rSlider" min="0" max="255" value="236" oninput="onRGBSlider()">
+                </div>
+                <div class="slider-row">
+                    <div class="slider-label"><span>Green (G)</span><span id="gVal">72</span></div>
+                    <input type="range" class="r-g" id="gSlider" min="0" max="255" value="72" oninput="onRGBSlider()">
+                </div>
+                <div class="slider-row">
+                    <div class="slider-label"><span>Blue (B)</span><span id="bVal">153</span></div>
+                    <input type="range" class="r-b" id="bSlider" min="0" max="255" value="153" oninput="onRGBSlider()">
+                </div>
+            </div>
+
+            <!-- Color Formats -->
+            <div class="format-grid">
+                <div class="format-card" onclick="copyToClipboard(document.getElementById('fHex').textContent)">
+                    <div class="format-label">HEX</div>
+                    <div class="format-val" id="fHex">#EC4899</div>
+                    <span class="copy-hint">click to copy</span>
+                </div>
+                <div class="format-card" onclick="copyToClipboard(document.getElementById('fRgb').textContent)">
+                    <div class="format-label">RGB</div>
+                    <div class="format-val" id="fRgb">rgb(236, 72, 153)</div>
+                    <span class="copy-hint">click to copy</span>
+                </div>
+                <div class="format-card" onclick="copyToClipboard(document.getElementById('fHsl').textContent)">
+                    <div class="format-label">HSL</div>
+                    <div class="format-val" id="fHsl">hsl(330, 81%, 60%)</div>
+                    <span class="copy-hint">click to copy</span>
+                </div>
+                <div class="format-card" onclick="copyToClipboard(document.getElementById('fRgba').textContent)">
+                    <div class="format-label">RGBA (100%)</div>
+                    <div class="format-val" id="fRgba">rgba(236, 72, 153, 1)</div>
+                    <span class="copy-hint">click to copy</span>
+                </div>
+                <div class="format-card" onclick="copyToClipboard(document.getElementById('fCss').textContent)">
+                    <div class="format-label">CSS Variable</div>
+                    <div class="format-val" id="fCss">--color: #EC4899;</div>
+                    <span class="copy-hint">click to copy</span>
+                </div>
+                <div class="format-card" onclick="copyToClipboard(document.getElementById('fTailwind').textContent)">
+                    <div class="format-label">Tailwind-style</div>
+                    <div class="format-val" id="fTailwind">text-[#EC4899]</div>
+                    <span class="copy-hint">click to copy</span>
+                </div>
+            </div>
+
+            <hr class="section-divider">
+
+            <!-- Shades -->
+            <div class="opt-section-title">Shades & Tints</div>
+            <div class="palette-grid" id="shadesPalette"></div>
+
+            <hr class="section-divider" style="margin-top:2rem">
+
+            <!-- Color Harmonies -->
+            <div class="opt-section-title">Color Harmonies</div>
+            <div style="margin-bottom:0.5rem">
+                <button class="preset-btn on" onclick="showHarmony('comp',this)">Complementary</button>
+                <button class="preset-btn" onclick="showHarmony('split',this)">Split-Complementary</button>
+                <button class="preset-btn" onclick="showHarmony('tri',this)">Triadic</button>
+                <button class="preset-btn" onclick="showHarmony('ana',this)">Analogous</button>
+            </div>
+            <div class="harmony-row" id="harmonyRow"></div>
+
+            <!-- Info Section -->
+            <div class="info-section">
+                <h2>🎨 Understanding Color Formats</h2>
+                <p>Colors in web design and digital media can be expressed in several formats. Each has its strengths
+                    depending on the context.</p>
+
+                <h3>HEX (Hexadecimal)</h3>
+                <p>The most common format for web development. Written as <code
+                        style="background:var(--bg3);padding:0.1rem 0.4rem;border-radius:5px;font-size:0.88rem">#RRGGBB</code>
+                    where each pair of characters represents Red, Green, Blue values in base-16 (0–FF). Example:
+                    <code>#EC4899</code> = R:236, G:72, B:153.</p>
+
+                <h3>RGB (Red, Green, Blue)</h3>
+                <p>Specifies colors by mixing red, green, and blue light, each from 0–255. Used in CSS as
+                    <code>rgb(R, G, B)</code>. Ideal when you need to manipulate individual color channels
+                    programmatically.</p>
+
+                <h3>HSL (Hue, Saturation, Lightness)</h3>
+                <p>A more intuitive format. <strong>Hue</strong> is the color wheel angle (0–360°),
+                    <strong>Saturation</strong> is intensity (0–100%), and <strong>Lightness</strong> is brightness
+                    (0–100%). Makes it easy to create shades and tints by adjusting only the lightness.</p>
+
+                <h3>How to Use This Tool</h3>
+                <ul>
+                    <li>Use the <strong>color picker</strong> or type a HEX code directly.</li>
+                    <li>Adjust <strong>RGB sliders</strong> for fine-tuned control.</li>
+                    <li><strong>Click any format card</strong> to copy that color code to your clipboard.</li>
+                    <li>Explore <strong>shades and tints</strong> — perfect for design systems.</li>
+                    <li>Use <strong>Color Harmonies</strong> to find colors that work well together.</li>
+                </ul>
+
+                <h3>Color Harmony Types</h3>
+                <ul>
+                    <li><strong>Complementary:</strong> Opposite on the color wheel — creates high contrast and energy.
+                    </li>
+                    <li><strong>Analogous:</strong> Adjacent on the color wheel — creates harmony and unity.</li>
+                    <li><strong>Triadic:</strong> Three evenly spaced colors — vibrant and balanced.</li>
+                    <li><strong>Split-Complementary:</strong> A variation of complementary, offering softer contrast.
+                    </li>
+                </ul>
+            </div>
+
+            <div style="text-align:center;margin-top:2rem">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1303178479491171"
+                    data-ad-slot="2222222222" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+        </div>
+    </div>
+
+    <footer class="simple-footer">
+        <p>© LovePDFs 2026 · <a href="../index.html">Home</a> · <a href="../all-tools.html">All Tools</a> · <a
+                href="../blog.html">Blog</a></p>
+    </footer>
+
+    <script>
+        let curHarmony = 'comp';
+        let currentHex = '#EC4899';
+
+        function hexToRgb(hex) {
+            const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+            return { r, g, b };
+        }
+        function rgbToHex(r, g, b) { '#' + (r < 16 ? '0' : '') + r.toString(16) + (g < 16 ? '0' : '') + g.toString(16) + (b < 16 ? '0' : '') + b.toString(16); }
+        function rgbToHsl(r, g, b) {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            if (max === min) { h = s = 0; } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) { case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break; case g: h = ((b - r) / d + 2) / 6; break; case b: h = ((r - g) / d + 4) / 6; break; }
+            }
+            return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+        }
+        function hslToHex(h, s, l) {
+            s /= 100; l /= 100;
+            const a = s * Math.min(l, 1 - l);
+            const f = n => { const k = (n + h / 30) % 12; const col = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1); return Math.round(255 * col).toString(16).padStart(2, '0'); };
+            return '#' + f(0) + f(8) + f(4);
+        }
+
+        function updateAll(hex) {
+            if (!hex.match(/^#[0-9a-fA-F]{6}$/)) return;
+            currentHex = hex;
+            const { r, g, b } = hexToRgb(hex);
+            const { h, s, l } = rgbToHsl(r, g, b);
+            // Preview
+            document.getElementById('colorPreview').style.background = hex;
+            document.getElementById('previewBadge').textContent = hex.toUpperCase();
+            // Picker
+            document.getElementById('colorPicker').value = hex;
+            document.getElementById('hexInput').value = hex.toUpperCase();
+            // Sliders
+            document.getElementById('rSlider').value = r; document.getElementById('rVal').textContent = r;
+            document.getElementById('gSlider').value = g; document.getElementById('gVal').textContent = g;
+            document.getElementById('bSlider').value = b; document.getElementById('bVal').textContent = b;
+            // Formats
+            document.getElementById('fHex').textContent = hex.toUpperCase();
+            document.getElementById('fRgb').textContent = `rgb(${r}, ${g}, ${b})`;
+            document.getElementById('fHsl').textContent = `hsl(${h}, ${s}%, ${l}%)`;
+            document.getElementById('fRgba').textContent = `rgba(${r}, ${g}, ${b}, 1)`;
+            document.getElementById('fCss').textContent = `--color: ${hex.toUpperCase()};`;
+            document.getElementById('fTailwind').textContent = `text-[${hex.toUpperCase()}]`;
+            // Shades
+            renderShades(h, s);
+            // Harmony
+            showHarmony(curHarmony);
+        }
+
+        function renderShades(h, s) {
+            const el = document.getElementById('shadesPalette');
+            const lightnesses = [10, 20, 30, 40, 50, 60, 70, 80, 90, 95];
+            el.innerHTML = lightnesses.map(l => {
+                const hex = hslToHex(h, s, l);
+                return `<div class="swatch" style="background:${hex}" title="${hex}" onclick="updateAll('${hex}')"><span class="swatch-label">${l}%</span></div>`;
+            }).join('');
+        }
+
+        function showHarmony(type, btn) {
+            curHarmony = type;
+            if (btn) { document.querySelectorAll('.palette-grid~*~* .preset-btn,.harmony-row~* .preset-btn,.opt-section-title+* .preset-btn').forEach(b => b.classList.remove('on')); btn.classList.add('on'); }
+            const { h, s, l } = rgbToHsl(...Object.values(hexToRgb(currentHex)));
+            let hues = [];
+            if (type === 'comp') hues = [(h + 180) % 360];
+            else if (type === 'split') hues = [(h + 150) % 360, (h + 210) % 360];
+            else if (type === 'tri') hues = [(h + 120) % 360, (h + 240) % 360];
+            else if (type === 'ana') hues = [(h + 30) % 360, (h - 30 + 360) % 360, (h + 60) % 360];
+            const swatches = [{ h, s, l, label: 'Base' }, ...hues.map((hh, i) => ({ h: hh, s, l, label: `Color ${i + 2}` }))];
+            document.getElementById('harmonyRow').innerHTML = swatches.map(c => {
+                const hex = hslToHex(c.h, c.s, c.l);
+                return `<div class="harmony-swatch" style="background:${hex}" onclick="updateAll('${hex}')" title="${c.label}: ${hex}"><span>${hex.toUpperCase()}</span></div>`;
+            }).join('');
+        }
+
+        function onColorInput(v) { updateAll(v); }
+        function onHexInput(v) { if (v.match(/^#?[0-9a-fA-F]{6}$/)) { updateAll(v.startsWith('#') ? v : '#' + v); } }
+        function onRGBSlider() {
+            const r = parseInt(document.getElementById('rSlider').value);
+            const g = parseInt(document.getElementById('gSlider').value);
+            const b = parseInt(document.getElementById('bSlider').value);
+            document.getElementById('rVal').textContent = r;
+            document.getElementById('gVal').textContent = g;
+            document.getElementById('bVal').textContent = b;
+            const hex = '#' + (r < 16 ? '0' : '') + r.toString(16) + (g < 16 ? '0' : '') + g.toString(16) + (b < 16 ? '0' : '') + b.toString(16);
+            updateAll(hex);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const n = document.createElement('div');
+                n.style.cssText = 'position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#16a34a;color:#fff;padding:0.55rem 1.2rem;border-radius:9px;font-weight:700;font-size:0.88rem;z-index:9999';
+                n.textContent = '✓ Copied: ' + text;
+                document.body.appendChild(n);
+                setTimeout(() => n.remove(), 2000);
+            });
+        }
+
+        // Theme
+        const _t = document.getElementById('themeBtn');
+        if (_t) {
+            if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark'); _t.textContent = '☀️'; }
+            _t.onclick = () => { document.body.classList.toggle('dark'); const d = document.body.classList.contains('dark'); localStorage.setItem('theme', d ? 'dark' : 'light'); _t.textContent = d ? '☀️' : '🌙'; };
+        }
+
+        // Init
+        updateAll('#EC4899');
+    </script>
+
+<script src="../site-enhancements.js"></script>
+<script src="../nav-enhancements.js"></script>
+</body>
+
+</html>

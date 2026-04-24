@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Passport Photo Maker in Seconds | Free Online Passport Size Photo | LovePDFs</title>
+  <meta name="description" content="Create passport size photo in seconds. Upload a photo, crop to the exact passport proportions, choose sizes (mm/cm/inch), and download a print-ready A4 PDF sheet. Private, browser-based, no signup required."/>
+  <link rel="canonical" href="https://lovepdfs.in/passport-photo/"/>
+
+  <meta name="keywords" content="passport size photo, passport photo maker, passport size photo in seconds, passport size photo in mm, passport size photo size in cm, passport size photo in inch, crop photo to passport size, UK passport size photo, US passport size photo, high resolution passport size photo, passport size photo in photoshop"/>
+  <meta property="og:title" content="Passport Photo Maker in Seconds | LovePDFs">
+  <meta property="og:description" content="Create passport size photo in seconds. Upload, crop to size, and download a print-ready A4 PDF sheet. Private, browser-based.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lovepdfs.in/passport-photo/">
+  <meta property="og:site_name" content="LovePDFs">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Passport Photo Maker in Seconds | LovePDFs">
+  <meta name="twitter:description" content="Create passport size photo in seconds. Upload, crop to size, and download a print-ready A4 PDF sheet. Private, browser-based.">
+
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="stylesheet" href="shared.css">
+
+  <!-- Cropper.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
+  <!-- Background Removal (WASM, fully browser-side) -->
+  <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.5/dist/background-removal.browser.umd.js"></script>
+  <script>
+    // Normalize the library export — different versions expose it differently
+    if (typeof window.BackgroundRemoval === 'undefined') {
+      if (typeof window.imglyBackgroundRemoval !== 'undefined') {
+        window.BackgroundRemoval = window.imglyBackgroundRemoval;
+      } else if (typeof window['@imgly/background-removal'] !== 'undefined') {
+        window.BackgroundRemoval = window['@imgly/background-removal'];
+      }
+    }
+  </script>
+
+  <!-- jsPDF (pure frontend PDF generation) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    /* Scoped design tokens (so we don't override site-wide shared.css vars) */
+    #passport-photo-page {
+      --bg:        #FFFFFF;
+      --surface:   #FFFFFF;
+      --surface2:  #F9F9F9;
+      --border:    #E8E8E8;
+      --border2:   #E0E0E0;
+      --accent:    #E8321A;
+      --accent2:   #7028D4;
+      --green:     #15A34A;
+      --red:       #E8321A;
+      --text:      #1C1C18;
+      --muted:     #8C8C80;
+      --radius:    20px;
+    }
+
+    body.dark #passport-photo-page {
+      --bg:        #0A0A08;
+      --surface:   #161614;
+      --surface2:  #1C1C1A;
+      --border:    #272724;
+      --border2:   #333330;
+      --accent:    #E8321A;
+      --accent2:   #7028D4;
+      --green:     #16A34A;
+      --red:       #E8321A;
+      --text:      #F4F4EE;
+      --muted:     #606058;
+      --radius:    20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* (Removed body-wide styles to avoid conflicting with shared.css theme) */
+
+    /* ── Header ── */
+    #passport-photo-page header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(13,15,20,.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--text); text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .logo span { color: var(--accent); }
+    .back-link {
+      font-size: .85rem; color: var(--muted);
+      text-decoration: none; display: flex; align-items: center; gap: 5px;
+      transition: color .2s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 28px 24px 32px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(79,142,247,.1); border: 1px solid rgba(79,142,247,.25);
+      color: var(--accent); font-size: .75rem; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 999px; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700; line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero p {
+      color: var(--muted); font-size: 1rem;
+      max-width: 480px; margin: 0 auto;
+    }
+
+    /* ── Main card ── */
+    .card {
+      position: relative; z-index: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px;
+      max-width: 780px; margin: 0 auto 28px;
+    }
+
+    .main-wrap {
+      padding: 0 24px 60px;
+      max-width: 1100px; margin: 0 auto;
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-label::after {
+      content: ''; flex: 1;
+      height: 1px; background: var(--border);
+    }
+
+    /* ── Dropzone ── */
+    #dropZone {
+      border: 2px dashed var(--border2);
+      border-radius: var(--radius);
+      background: var(--surface2);
+      padding: 44px 24px;
+      text-align: center; cursor: pointer;
+      transition: border-color .25s, background .25s;
+    }
+    #dropZone:hover, #dropZone.drag-over {
+      border-color: var(--accent);
+      background: rgba(79,142,247,.05);
+    }
+    .drop-icon {
+      width: 52px; height: 52px;
+      background: rgba(79,142,247,.12);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .drop-icon svg { color: var(--accent); }
+    #dropZone h3 {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 1rem; font-weight: 600; margin-bottom: 5px;
+    }
+    #dropZone p { font-size: .82rem; color: var(--muted); }
+
+    /* ── Photo cards ── */
+    #photoList { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+
+    .photo-card {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 12px 14px;
+      transition: border-color .2s;
+    }
+    .photo-card:hover { border-color: var(--border2); }
+    .photo-card img {
+      width: 52px; height: 64px; object-fit: cover;
+      border-radius: 8px; border: 1px solid var(--border2);
+      flex-shrink: 0;
+    }
+    .photo-info { flex: 1; min-width: 0; }
+    .photo-info .name {
+      font-size: .85rem; font-weight: 500;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .photo-info .status {
+      font-size: .72rem; color: var(--muted); margin-top: 2px;
+    }
+    .photo-info .status.cropped { color: var(--green); }
+
+    .copies-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .copies-wrap label { font-size: .7rem; color: var(--muted); }
+    .copies-input {
+      background: var(--bg); border: 1px solid var(--border2);
+      color: var(--text); border-radius: 8px;
+      width: 58px; padding: 6px; text-align: center;
+      font-size: .85rem;
+    }
+    .copies-input:focus { outline: none; border-color: var(--accent); }
+
+    .card-actions { display: flex; flex-direction: column; gap: 6px; }
+    .btn-sm {
+      font-size: .72rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 7px; border: 1px solid; cursor: pointer;
+      transition: background .18s, transform .12s;
+    }
+    .btn-sm:hover { transform: translateY(-1px); }
+    .btn-crop {
+      background: rgba(79,142,247,.1); border-color: rgba(79,142,247,.3);
+      color: var(--accent);
+    }
+    .btn-crop:hover { background: rgba(79,142,247,.2); }
+    .btn-remove {
+      background: rgba(242,92,92,.08); border-color: rgba(242,92,92,.3);
+      color: var(--red);
+    }
+    .btn-remove:hover { background: rgba(242,92,92,.18); }
+
+    /* ── Add more ── */
+    #addMoreWrapper { margin-top: 12px; text-align: center; display: none; }
+    .btn-ghost {
+      background: transparent; border: 1px solid var(--border2);
+      color: var(--accent); font-size: .82rem; font-weight: 500;
+      padding: 8px 20px; border-radius: 9px; cursor: pointer;
+      transition: background .18s, border-color .18s;
+    }
+    .btn-ghost:hover { background: rgba(79,142,247,.08); border-color: rgba(79,142,247,.4); }
+
+    /* ── Advanced options ── */
+    .adv-toggle {
+      background: none; border: none; color: var(--muted);
+      font-size: .82rem; cursor: pointer; display: flex;
+      align-items: center; gap: 5px; transition: color .2s;
+    }
+    .adv-toggle:hover { color: var(--accent); }
+    .adv-toggle svg { transition: transform .25s; }
+    .adv-toggle.open svg { transform: rotate(180deg); }
+
+    #advancedPanel {
+      display: none; margin-top: 16px;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px;
+    }
+    .adv-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 14px;
+    }
+    .adv-field label {
+      display: block; font-size: .72rem; color: var(--muted);
+      margin-bottom: 6px; font-weight: 500;
+    }
+    .adv-field input {
+      width: 100%; background: var(--bg);
+      border: 1px solid var(--border2); border-radius: 8px;
+      color: var(--text); padding: 8px 10px; font-size: .85rem;
+    }
+    .adv-field input:focus { outline: none; border-color: var(--accent); }
+
+    /* ── Preset buttons ── */
+    .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .preset-btn {
+      background: var(--surface2); border: 1px solid var(--border2);
+      color: var(--muted); font-size: .72rem; font-weight: 600;
+      padding: 5px 12px; border-radius: 7px; cursor: pointer;
+      transition: all .18s;
+    }
+    .preset-btn:hover, .preset-btn.active {
+      border-color: var(--accent); color: var(--accent);
+      background: rgba(79,142,247,.08);
+    }
+
+    /* ── Action buttons ── */
+    .actions {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      justify-content: center; margin-top: 28px;
+    }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: .9rem; font-weight: 700;
+      padding: 12px 32px; border-radius: 10px;
+      border: none; cursor: pointer;
+      transition: opacity .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(79,142,247,.35);
+    }
+    .btn-primary:hover { opacity: .88; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(79,142,247,.45); }
+    .btn-primary:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+
+    .btn-success {
+      background: var(--green); color: #0d0f14;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: .9rem; font-weight: 700;
+      padding: 12px 32px; border-radius: 10px;
+      border: none; cursor: pointer;
+      transition: opacity .2s, transform .15s;
+      display: none;
+    }
+    .btn-success:hover { opacity: .85; transform: translateY(-2px); }
+
+    /* ── Progress/loading ── */
+    #loadingMsg {
+      display: none; text-align: center;
+      color: var(--accent); font-size: .85rem; margin-top: 12px;
+    }
+    .spinner {
+      display: inline-block; width: 14px; height: 14px;
+      border: 2px solid rgba(79,142,247,.3);
+      border-top-color: var(--accent);
+      border-radius: 50%; animation: spin .7s linear infinite;
+      vertical-align: middle; margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── PDF Preview ── */
+    #previewSection { display: none; margin-top: 28px; }
+    #previewSection .section-label { margin-bottom: 14px; }
+    #pdfCanvas {
+      width: 100%; border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+
+    /* ── Cropper Modal ── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.82); backdrop-filter: blur(6px);
+      z-index: 200; display: flex; align-items: center; justify-content: center;
+      padding: 16px;
+      opacity: 0; pointer-events: none; transition: opacity .25s;
+    }
+    .modal-overlay.visible { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 18px; padding: 24px;
+      max-width: 600px; width: 100%;
+      max-height: 95vh;
+      transform: translateY(18px); transition: transform .25s;
+    }
+    .modal-overlay.visible .modal-box { transform: translateY(0); }
+    .modal-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.05rem; font-weight: 700; margin-bottom: 16px;
+    }
+    .crop-container {
+      position: relative; width: 100%; height: 400px;
+      background: #111; border-radius: 10px; overflow: hidden;
+    }
+    .crop-container img { display: block; max-width: 100%; }
+    .crop-container .cropper-container { width: 100% !important; height: 400px !important; }
+    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 16px; }
+
+    /* ── Toast notification ── */
+    #toast {
+      position: fixed; bottom: 28px; right: 28px; z-index: 500;
+      padding: 12px 20px; border-radius: 10px;
+      font-size: .85rem; font-weight: 500;
+      transform: translateX(120%); transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+      max-width: 300px;
+    }
+    #toast.show { transform: translateX(0); }
+    #toast.success { background: var(--green); color: #0d0f14; }
+    #toast.error   { background: var(--red);   color: #fff; }
+
+    /* ── How it works ── */
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px; margin-bottom: 36px;
+    }
+    .step {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px 18px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .step-num {
+      width: 32px; height: 32px;
+      background: rgba(79,142,247,.12); border: 1px solid rgba(79,142,247,.25);
+      border-radius: 9px;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: .85rem; font-weight: 700; color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step h4 {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: .88rem; font-weight: 600;
+    }
+    .step p { font-size: .78rem; color: var(--muted); }
+
+    /* ── Country presets info ── */
+    .info-note {
+      background: rgba(79,142,247,.07); border: 1px solid rgba(79,142,247,.18);
+      border-radius: 10px; padding: 12px 16px;
+      font-size: .8rem; color: var(--muted); margin-top: 14px;
+      line-height: 1.6;
+    }
+    .info-note strong { color: var(--text); }
+
+    /* ── Remove Background Panel ── */
+    .rmbg-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 32px;
+      max-width: 780px;
+      margin: 0 auto 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .rmbg-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #7028D4, #E8321A);
+    }
+    .rmbg-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px; flex-wrap: wrap; gap: 10px;
+    }
+    .rmbg-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem; font-weight: 800; color: var(--text);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .rmbg-badge {
+      font-size: 0.68rem; font-weight: 700;
+      background: rgba(112,40,212,0.12); border: 1px solid rgba(112,40,212,0.25);
+      color: #7028D4; padding: 2px 10px; border-radius: 999px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .rmbg-body {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start;
+    }
+    @media (max-width: 580px) { .rmbg-body { grid-template-columns: 1fr; } }
+    .rmbg-drop {
+      border: 2px dashed var(--border2);
+      border-radius: 14px; background: var(--surface2);
+      padding: 28px 16px; text-align: center; cursor: pointer;
+      transition: border-color .2s, background .2s;
+      min-height: 140px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px;
+    }
+    .rmbg-drop:hover { border-color: #7028D4; background: rgba(112,40,212,0.04); }
+    .rmbg-drop-icon { font-size: 2rem; }
+    .rmbg-drop p { font-size: 0.82rem; color: var(--muted); margin: 0; }
+    .rmbg-drop strong { font-size: 0.88rem; color: var(--text); }
+    .rmbg-right { display: flex; flex-direction: column; gap: 12px; }
+    .rmbg-preview-wrap {
+      position: relative; border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border); display: none;
+      background: repeating-conic-gradient(#ccc 0% 25%, #fff 0% 50%) 0 0 / 14px 14px;
+    }
+    .rmbg-preview-wrap img { width: 100%; display: block; }
+    .rmbg-preview-label {
+      position: absolute; bottom: 6px; right: 8px;
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: #fff;
+      background: rgba(0,0,0,0.55); border-radius: 6px; padding: 2px 7px;
+    }
+    .rmbg-options {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .rmbg-options label { font-size: 0.75rem; font-weight: 700; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .rmbg-colors {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    }
+    .rmbg-color-btn {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 2px solid var(--border2); cursor: pointer; transition: all .15s;
+      flex-shrink: 0;
+    }
+    .rmbg-color-btn.active { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(232,50,26,0.2); }
+    .rmbg-color-btn[data-bg="transparent"] {
+      background: repeating-conic-gradient(#aaa 0% 25%, #fff 0% 50%) 0 0 / 8px 8px;
+    }
+    .rmbg-color-btn[data-bg="#ffffff"] { background: #fff; }
+    .rmbg-color-btn[data-bg="#f5f5f5"] { background: #f5f5f5; }
+    .rmbg-color-btn[data-bg="#e8e8e8"] { background: #e8e8e8; }
+    .rmbg-color-btn[data-bg="#87ceeb"] { background: #87ceeb; }
+    .rmbg-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn-rmbg {
+      flex: 1; padding: 10px 14px; border-radius: 10px; border: none;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.82rem; font-weight: 700; cursor: pointer;
+      transition: opacity .2s, transform .12s;
+    }
+    .btn-rmbg:hover { opacity: .88; transform: translateY(-1px); }
+    .btn-rmbg:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+    .btn-rmbg-primary { background: linear-gradient(135deg,#7028D4,#9B5DE5); color: #fff; }
+    .btn-rmbg-dl { background: var(--green); color: #0d0f14; display: none; }
+    .btn-rmbg-inject { background: var(--accent); color: #fff; display: none; }
+    .rmbg-progress {
+      font-size: 0.78rem; color: #7028D4; display: none;
+      align-items: center; gap: 6px; justify-content: center;
+      text-align: center; padding: 4px 0;
+    }
+    .rmbg-progress .spinner { border-top-color: #7028D4; }
+    .rmbg-input-original { display: none; }
+
+    /* ── Footer ── */
+    #passport-photo-page footer:not(.site-footer) {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: .78rem; color: var(--muted);
+    }
+    #passport-photo-page footer:not(.site-footer) a { color: var(--muted); text-decoration: none; }
+    #passport-photo-page footer:not(.site-footer) a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      .card { padding: 22px 16px; }
+      .photo-card { flex-wrap: wrap; }
+    }
+
+    /* ── SEO / Editorial Content Styles ── */
+    .seo-content{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 56px;
+      color: var(--text);
+      position: relative;
+      z-index: 1;
+    }
+    .seo-content h2{
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.55rem, 3.2vw, 2.25rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin: 3rem 0 1rem;
+    }
+    .seo-content h2:first-of-type{ margin-top: 1.6rem; }
+    .seo-content h3{
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      margin: 1.6rem 0 0.65rem;
+      color: var(--text);
+    }
+    .seo-content p{
+      color: var(--muted);
+      font-size: 1.03rem;
+      line-height: 1.9;
+      margin: 0 0 1rem;
+    }
+    .seo-subtle{ margin-top: -0.25rem; }
+
+    .steps-list{
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
+      display: grid;
+      gap: 0.85rem;
+    }
+    .steps-list li{
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 16px;
+      padding: 1.05rem 1.1rem;
+      color: var(--text);
+      font-size: 1.05rem;
+    }
+
+    .size-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .size-card{
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 18px;
+      padding: 1.15rem 1.15rem;
+    }
+
+    .note-block{
+      background: rgba(79,142,247,.08);
+      border: 1px solid rgba(79,142,247,.18);
+      border-radius: 18px;
+      padding: 1.05rem 1.15rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.9;
+      margin: 0.5rem 0 1.5rem;
+    }
+    .seo-ul{
+      margin: 0 0 2.2rem;
+      padding-left: 1.3rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.9;
+    }
+    .seo-ul a{
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .seo-ul a:hover{ text-decoration: underline; }
+
+    .pp-keywords{
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 18px;
+      padding: 1.25rem 1.25rem;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.85;
+      columns: 2;
+      column-gap: 2.5rem;
+    }
+
+    .related-links{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .related-chip{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.15rem;
+      background: var(--surface2);
+      border: 2px solid var(--border);
+      border-radius: 999px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      font-family: 'Instrument Sans', sans-serif;
+      transition: transform .18s, border-color .18s;
+    }
+    .related-chip:hover{
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .faq-list{
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .faq-item{
+      padding: 1.35rem 1.35rem;
+      border-bottom: 1px solid var(--border2);
+    }
+    .faq-item:last-child{ border-bottom: none; }
+    .faq-q{
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 0.55rem;
+      font-size: 1.12rem;
+    }
+    .faq-a{
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 1.02rem;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" id="siteNav">
+  <a href="index.html" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
+  <div class="nav-mid">
+    <a href="all-tools.html" class="nav-link">All Tools</a>
+    <a href="image-tools/index.html" class="nav-link">Image Tools</a>
+    <a href="pdf-tools/index.html" class="nav-link">PDF Tools</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn">🌙</button>
+    <a href="contact.html" class="nav-btn-o">Contact</a>
+    <a href="all-tools.html" class="nav-btn-f">All Tools →</a>
+  </div>
+</nav>
+
+<div id="passport-photo-page" class="page-wrap">
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-badge">
+    <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    Free &amp; No Signup
+  </div>
+  <h1>Passport Photo <em>Maker</em></h1>
+  <p>Upload, crop, and print a passport-ready photo sheet — entirely in your browser. Nothing leaves your device.</p>
+</div>
+
+<!-- Main -->
+<div class="main-wrap">
+
+  <!-- ═══ REMOVE BACKGROUND CARD ═══ -->
+  <div class="rmbg-card" id="rmbgCard">
+    <div class="rmbg-header">
+      <div class="rmbg-title">
+        ✨ Remove Background
+        <span class="rmbg-badge">AI · Browser-Only</span>
+      </div>
+      <span style="font-size:0.78rem;color:var(--muted)">Optional — use before cropping for a clean white background</span>
+    </div>
+
+    <div class="rmbg-body">
+      <!-- Left: drop zone -->
+      <div>
+        <div class="rmbg-drop" id="rmbgDrop">
+          <input type="file" id="rmbgInput" accept="image/*" class="rmbg-input-original">
+          <div class="rmbg-drop-icon">🖼️</div>
+          <strong>Click or drop a photo here</strong>
+          <p>JPG · PNG · WEBP</p>
+        </div>
+        <!-- After removal, options appear -->
+        <div class="rmbg-options" id="rmbgOptions" style="display:none;margin-top:12px">
+          <label>Replace background with</label>
+          <div class="rmbg-colors">
+            <div class="rmbg-color-btn active" data-bg="#ffffff" title="White"></div>
+            <div class="rmbg-color-btn" data-bg="#f5f5f5" title="Light grey"></div>
+            <div class="rmbg-color-btn" data-bg="#e8e8e8" title="Grey"></div>
+            <div class="rmbg-color-btn" data-bg="#87ceeb" title="Light blue"></div>
+            <div class="rmbg-color-btn" data-bg="transparent" title="Transparent (PNG)"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: preview + actions -->
+      <div class="rmbg-right">
+        <div class="rmbg-preview-wrap" id="rmbgPreviewWrap">
+          <img id="rmbgPreviewImg" alt="Background removed">
+          <span class="rmbg-preview-label">Preview</span>
+        </div>
+        <div class="rmbg-progress" id="rmbgProgress">
+          <span class="spinner"></span>
+          Removing background… this may take 10–20 s on first run
+        </div>
+        <div class="rmbg-actions">
+          <button class="btn-rmbg btn-rmbg-primary" id="rmbgRunBtn" disabled>Remove Background</button>
+          <button class="btn-rmbg btn-rmbg-dl" id="rmbgDlBtn">⬇ Download</button>
+          <button class="btn-rmbg btn-rmbg-inject" id="rmbgInjectBtn">➕ Add to Photo Sheet</button>
+        </div>
+        <p style="font-size:0.72rem;color:var(--muted);margin:0">🔒 All AI processing runs in your browser — your photo is never uploaded.</p>
+      </div>
+    </div>
+  </div>
+  <!-- ═══ END REMOVE BACKGROUND ═══ -->
+
+  <!-- Steps -->
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Upload Photo</h4>
+      <p>Drag & drop or click to select your photo. JPG, PNG or WEBP.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>Crop & Adjust</h4>
+      <p>Crop to exact passport proportions using the built-in cropper.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Set Copies</h4>
+      <p>Choose how many prints per photo and pick your sheet preset.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>Download PDF</h4>
+      <p>Get a print-ready A4 PDF sheet, generated right in your browser.</p>
+    </div>
+  </div>
+
+  <!-- Tool card -->
+  <div class="card">
+
+    <!-- Presets -->
+    <div class="section-label">Country Presets</div>
+    <div class="presets" id="presets">
+      <button class="preset-btn active" data-w="35" data-h="45" data-label="India (35×45mm)">🇮🇳 India</button>
+      <button class="preset-btn" data-w="50" data-h="50" data-label="USA (2×2 in)">🇺🇸 USA</button>
+      <button class="preset-btn" data-w="35" data-h="45" data-label="UK (35×45mm)">🇬🇧 UK</button>
+      <button class="preset-btn" data-w="35" data-h="45" data-label="EU Schengen (35×45mm)">🇪🇺 EU/Schengen</button>
+      <button class="preset-btn" data-w="33" data-h="48" data-label="Canada (33×48mm)">🇨🇦 Canada</button>
+      <button class="preset-btn" data-w="40" data-h="60" data-label="UAE (40×60mm)">🇦🇪 UAE</button>
+      <button class="preset-btn" data-w="40" data-h="40" data-label="China (33×48mm)">🇨🇳 China</button>
+      <button class="preset-btn" data-w="0" data-h="0" data-label="Custom">✏️ Custom</button>
+    </div>
+
+    <div class="info-note" id="presetInfo">
+      <strong>India (35 × 45 mm)</strong> — Standard passport, visa &amp; government ID size. White background recommended.
+    </div>
+
+    <!-- Upload -->
+    <div style="margin-top:26px">
+      <div class="section-label">Photos</div>
+      <div id="dropZone">
+        <input type="file" id="imageInput" accept="image/*" multiple style="display:none"/>
+        <div class="drop-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+          </svg>
+        </div>
+        <h3>Drag &amp; Drop or Click to Upload</h3>
+        <p>JPG, PNG, WEBP supported &nbsp;·&nbsp; Multiple photos allowed</p>
+      </div>
+
+      <div id="photoList"></div>
+
+      <div id="addMoreWrapper">
+        <button class="btn-ghost" id="addMoreBtn">+ Add More Photos</button>
+      </div>
+    </div>
+
+    <!-- Advanced options -->
+    <div style="margin-top:22px">
+      <button class="adv-toggle" id="advToggle">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        Advanced Options
+      </button>
+      <div id="advancedPanel">
+        <div class="adv-grid">
+          <div class="adv-field">
+            <label>Width (mm)</label>
+            <input type="number" id="photoW" value="35"/>
+          </div>
+          <div class="adv-field">
+            <label>Height (mm)</label>
+            <input type="number" id="photoH" value="45"/>
+          </div>
+          <div class="adv-field">
+            <label>Spacing (mm)</label>
+            <input type="number" id="spacing" value="3"/>
+          </div>
+          <div class="adv-field">
+            <label>Border (px)</label>
+            <input type="number" id="border" value="1"/>
+          </div>
+          <div class="adv-field">
+            <label>DPI</label>
+            <input type="number" id="dpi" value="300"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="btn-primary" id="generateBtn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="vertical-align:middle;margin-right:5px"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+        Generate Sheet
+      </button>
+      <button class="btn-success" id="downloadBtn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="vertical-align:middle;margin-right:5px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Download PDF
+      </button>
+    </div>
+    <div id="loadingMsg"><span class="spinner"></span>Generating your photo sheet…</div>
+
+    <!-- Preview -->
+    <div id="previewSection">
+      <div class="section-label" style="margin-top:0">Preview</div>
+      <canvas id="pdfCanvas"></canvas>
+    </div>
+
+  </div><!-- /card -->
+
+</div><!-- /main-wrap -->
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <h2>How to Use Passport Photo Maker</h2>
+  <ol class="steps-list">
+    <li id="step1"><strong>Upload</strong> your photo.</li>
+    <li id="step2"><strong>Select a size preset</strong> (India, USA, UK, EU/Schengen, etc.).</li>
+    <li id="step3"><strong>Crop to passport proportions</strong> using the built-in cropper.</li>
+    <li id="step4"><strong>Choose copies</strong>, then click <strong>Generate Sheet</strong>.</li>
+    <li id="step5"><strong>Download</strong> your print-ready <strong>A4 PDF</strong> and print.</li>
+  </ol>
+
+  <h2>Passport Size Photo Size Guide (mm, cm, inch)</h2>
+  <p>
+    Need <strong>passport size photo in mm</strong>, <strong>passport size photo size in cm</strong>, or
+    <strong>passport size photo in inch</strong>? Use the presets for common requirements, or switch to
+    <strong>Custom</strong> in Advanced Options for exact <strong>passport size photo size</strong> control.
+  </p>
+  <div class="size-grid">
+    <div class="size-card">
+      <h3 id="size-mm">Passport size photo in mm</h3>
+      <p>Common dimensions often include 35 x 45 mm (many passports/visas). Always verify with your issuing authority.</p>
+      <p>Search phrases: <strong>passport size photo size in mm</strong>, <strong>passport size photo in mm</strong>.</p>
+    </div>
+    <div class="size-card">
+      <h3 id="size-cm">Passport size photo in cm</h3>
+      <p>If you’re working in centimeters, you can convert and then set the exact width/height in the tool.</p>
+      <p>Search phrases: <strong>passport size photo size in cm</strong>, <strong>passport size photo in cm</strong>.</p>
+    </div>
+    <div class="size-card">
+      <h3 id="size-inch">Passport size photo in inch</h3>
+      <p>For formats like “2 x 2 in”, select the preset or use Custom to match your required ratio.</p>
+      <p>Search phrases: <strong>passport size photo size in inch</strong>, <strong>passport size photo inch</strong>.</p>
+    </div>
+  </div>
+
+  <h2 id="uk-us">UK & US Passport Photo</h2>
+  <p>
+    For <strong>UK passport size photo</strong> and <strong>how to take passport size photo in UK</strong>,
+    choose the UK preset, then crop so your face fits comfortably within the frame.
+    For <strong>us passport size photo</strong> and <strong>us passport size photo in photoshop</strong>,
+    pick the USA preset (or use Custom for exact requirements).
+  </p>
+  <div class="note-block">
+    <strong>Tip:</strong> For best results, start with a clear photo from the front, avoid heavy shadows,
+    and keep the background simple. Then use <strong>crop photo to passport size</strong> with our one-click workflow.
+  </div>
+
+  <h2>Crop, Edit & Print (High Quality Output)</h2>
+  <p>
+    Want <strong>high resolution passport size photo</strong> and <strong>passport size photo high quality</strong>?
+    Upload your sharpest image, crop precisely, then generate the PDF sheet. You can also use other LovePDFs tools
+    for extra adjustments.
+  </p>
+  <ul class="seo-ul">
+    <li><a href="crop-image/index.html">Crop Image</a> if you want to pre-trim your photo.</li>
+    <li><a href="resize-image/index.html">Resize Image</a> to match pixel density requirements.</li>
+    <li><a href="jpg-to-pdf/index.html">JPG to PDF</a> if you prefer a different printing workflow.</li>
+  </ul>
+
+  <h2>Search Keywords (SEO)</h2>
+  <p class="seo-subtle">
+    These are common phrases users search for when looking for passport photo tools, including
+    <strong>passport size photo in seconds</strong>, <strong>passport size photo one click</strong>,
+    and country-specific formats like <strong>uk visa passport size photo</strong>.
+  </p>
+  <div class="pp-keywords">
+    passport size photo in seconds, passport size photo in size, passport size photo in ps, passport size photo size photo,
+    passport size photo in app, passport size photo in 4r, passport size photo one click,
+    passport size photo in photoshop 12, passport size photo in cs3, passport size photo in cm,
+    cuet passport size photo size, crop photo to passport size, hd passport size photo,
+    passport size photo high quality, passport size photo to full size photo, high resolution passport size photo,
+    passport size photo in a4, passport size photo one click me, passport size photo editing in google,
+    passport size photo in google, passport size photo in ai, uk passport size photo,
+    how to take passport size photo in uk, uk visa passport size photo, passport size photo inch,
+    passport size photo size in cm, passport size photo in ms, mo.se passport size photo kaise banaye,
+    passport size photo size in mm, passport size photo in mm, passport size photo original size,
+    passport size photo from phone, passport size photo size in inch, us passport size photo,
+    us passport size photo in photoshop, passport size photo for us visa, passport size photo size in word,
+    passport size photo length and width, passport size photo in 2 minutes, passport size photo by techila,
+    passport size photo ka size, 8 passport size photo one click me, 1 click me passport size photo kaise banaye,
+    12 passport size photo in 4x6 paper action, 12 passport size photo in 4x6 paper, which paper is best for passport size photo,
+    2*2 passport size photo, passport size photo crop size, 2 person passport size photo,
+    3 passport size photo action, 8 passport size photo in 4x6 paper, 30 passport size photo,
+    4*6 passport size photo action, 4*6 passport size photo, 4 passport size photo in photoshop,
+    5x7 passport size photo, 4*6 passport size photo print, passport size photo print 4*6,
+    passport size photo with 80 face, 8 passport size photo in 4x6 paper action,
+    8 passport size photo in photoshop, developers projects
+  </div>
+
+  <h2>Related Tools</h2>
+  <div class="related-links">
+    <a href="crop-image/index.html" class="related-chip">Crop Image</a>
+    <a href="resize-image/index.html" class="related-chip">Resize Image</a>
+    <a href="jpg-to-pdf/index.html" class="related-chip">JPG to PDF</a>
+    <a href="html-to-pdf/index.html" class="related-chip">HTML to PDF</a>
+    <a href="all-tools.html" class="related-chip">All Tools</a>
+  </div>
+
+  <h2>FAQs</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">How do I crop photo to passport size?</div>
+      <p class="faq-a">Upload your image, pick a preset, and use the cropper to match the exact proportions. Then generate the A4 PDF sheet.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I make a passport size photo in seconds?</div>
+      <p class="faq-a">Yes. This tool is fully browser-based: upload, crop, set copies, and download in one flow.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What paper is best for passport size photo print 4*6?</div>
+      <p class="faq-a">For sharper results, use photo paper or high-quality inkjet paper. If you’re printing from the A4 PDF, ensure your printer settings match the paper type.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
+      <div class="footer-tagline">Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.</div>
+      <div class="footer-contact"><a href="contact.html">Contact us</a></div>
+      <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>
+    </div>
+    <div><div class="footer-col-title">Product</div><div class="footer-links"><a href="index.html">Home</a><a href="features.html">Features</a><a href="pricing.html">Pricing</a><a href="all-tools.html">Tools</a><a href="faq.html">FAQ</a></div></div>
+    <div><div class="footer-col-title">Solutions</div><div class="footer-links"><a href="business.html">Business</a><a href="education.html">Education</a></div></div>
+    <div><div class="footer-col-title">Legal</div><div class="footer-links"><a href="security.html">Security</a><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms & conditions</a><a href="cookies.html">Cookies</a></div></div>
+    <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="about.html">About us</a><a href="contact.html">Contact us</a><a href="blog.html">Blog</a><a href="press.html">Press</a></div></div>
+  </div>
+  <div class="footer-stats" style="max-width:1240px; margin: 2.5rem auto 0; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; justify-content: space-around; gap: 2rem; text-align: center;">
+    <div><div style="font-family:'Fraunces',serif; font-size:1.45rem; font-weight:900; color:var(--text);" id="stat-tools">43</div><div style="font-size:0.82rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; font-weight:700; margin-top:0.25rem;">Tools Available</div></div>
+    <div><div style="font-family:'Fraunces',serif; font-size:1.45rem; font-weight:900; color:var(--text);" id="stat-files">100%</div><div style="font-size:0.82rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; font-weight:700; margin-top:0.25rem;">Browser Based</div></div>
+    <div><div style="font-family:'Fraunces',serif; font-size:1.45rem; font-weight:900; color:var(--text);" id="stat-time">&lt; 1s</div><div style="font-size:0.82rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; font-weight:700; margin-top:0.25rem;">Processing Time</div></div>
+  </div>
+  <div class="footer-bottom" style="max-width:1240px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+    <div class="footer-copy" style="font-size:0.85rem;color:var(--muted)">&copy; LovePDFs 2026 &reg; · Private & Local Processing</div>
+    <div class="footer-sitemap"><a href="sitemap.xml" style="color:var(--muted);font-size:0.82rem;text-decoration:none;transition:color 0.2s">Sitemap</a></div>
+  </div>
+</footer>
+
+<!-- Cropper Modal -->
+<div class="modal-overlay" id="cropModal">
+  <div class="modal-box">
+    <div class="modal-title">Crop Photo</div>
+    <div class="crop-container">
+      <img id="cropImage" alt="crop"/>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="cancelCrop">Cancel</button>
+      <button class="btn-primary" id="confirmCrop" style="padding:9px 22px">Crop &amp; Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+</div>
+<script>
+// ═══════════════════════════════════════════════════════
+//  PASSPORT PHOTO MAKER — Pure Frontend
+//  All PDF generation done with jsPDF in-browser
+// ═══════════════════════════════════════════════════════
+
+const { jsPDF } = window.jspdf;
+
+// ── State ──────────────────────────────────────────────
+let photos = [];
+let nextId = 0;
+let activeCropper = null;
+let pendingCropId = null;
+let currentAspectRatio = 35 / 45;
+let pdfBlob = null;
+
+// ── Preset info ────────────────────────────────────────
+const presetInfoMap = {
+  'India (35×45mm)':     'Standard passport, visa & government ID size. <strong>White background required.</strong>',
+  'USA (2×2 in)':        '51 × 51 mm — US passport & visa applications. <strong>White or off-white background.</strong>',
+  'UK (35×45mm)':        'UK passport standard. Neutral grey or cream background recommended.',
+  'EU/Schengen (35×45mm)':'EU/Schengen visa applications. <strong>Light grey or white background.</strong>',
+  'Canada (33×48mm)':    'IRCC Canada standard. <strong>White background, taken within 6 months.</strong>',
+  'UAE (40×60mm)':       'UAE residence/visa applications. <strong>White background required.</strong>',
+  'China (33×48mm)':     'Chinese passport & visa standard. <strong>White background required.</strong>',
+  'Custom':              'Set your own dimensions in Advanced Options.',
+};
+
+// ── DOM refs ───────────────────────────────────────────
+const dropZone     = document.getElementById('dropZone');
+const imageInput   = document.getElementById('imageInput');
+const photoListEl  = document.getElementById('photoList');
+const addMoreWrap  = document.getElementById('addMoreWrapper');
+const addMoreBtn   = document.getElementById('addMoreBtn');
+const generateBtn  = document.getElementById('generateBtn');
+const downloadBtn  = document.getElementById('downloadBtn');
+const loadingMsg   = document.getElementById('loadingMsg');
+const previewSec   = document.getElementById('previewSection');
+const pdfCanvas    = document.getElementById('pdfCanvas');
+const advToggle    = document.getElementById('advToggle');
+const advPanel     = document.getElementById('advancedPanel');
+const cropModal    = document.getElementById('cropModal');
+const cropImage    = document.getElementById('cropImage');
+const confirmCrop  = document.getElementById('confirmCrop');
+const cancelCrop   = document.getElementById('cancelCrop');
+const toast        = document.getElementById('toast');
+const presetInfo   = document.getElementById('presetInfo');
+const photoWInput  = document.getElementById('photoW');
+const photoHInput  = document.getElementById('photoH');
+
+// ── Toast ──────────────────────────────────────────────
+let toastTimer;
+function showToast(msg, type = 'error') {
+  clearTimeout(toastTimer);
+  toast.textContent = msg;
+  toast.className = `show ${type}`;
+  toastTimer = setTimeout(() => toast.className = '', 3500);
+}
+
+// ── Presets ────────────────────────────────────────────
+document.getElementById('presets').addEventListener('click', e => {
+  const btn = e.target.closest('.preset-btn');
+  if (!btn) return;
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const w = parseFloat(btn.dataset.w);
+  const h = parseFloat(btn.dataset.h);
+  const label = btn.dataset.label;
+
+  if (w > 0 && h > 0) {
+    photoWInput.value = w;
+    photoHInput.value = h;
+    currentAspectRatio = w / h;
+  }
+
+  presetInfo.innerHTML = `<strong>${label}</strong> — ${presetInfoMap[label] || ''}`;
+
+  // If custom, open advanced
+  if (label === 'Custom') {
+    advPanel.style.display = 'block';
+    advToggle.classList.add('open');
+  }
+});
+
+// ── Advanced toggle ────────────────────────────────────
+advToggle.addEventListener('click', () => {
+  const open = advPanel.style.display === 'block';
+  advPanel.style.display = open ? 'none' : 'block';
+  advToggle.classList.toggle('open', !open);
+});
+
+// Update aspect ratio when dims change
+[photoWInput, photoHInput].forEach(inp => {
+  inp.addEventListener('input', () => {
+    const w = parseFloat(photoWInput.value);
+    const h = parseFloat(photoHInput.value);
+    if (w > 0 && h > 0) currentAspectRatio = w / h;
+  });
+});
+
+// ── Drop zone ──────────────────────────────────────────
+dropZone.addEventListener('click', () => imageInput.click());
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault(); dropZone.classList.remove('drag-over');
+  addFiles(e.dataTransfer.files);
+});
+imageInput.addEventListener('change', () => { addFiles(imageInput.files); imageInput.value = ''; });
+addMoreBtn.addEventListener('click', () => imageInput.click());
+
+function addFiles(files) {
+  const valid = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+  let added = 0;
+  Array.from(files).forEach(file => {
+    if (!valid.includes(file.type)) return;
+    const id = nextId++;
+    const reader = new FileReader();
+    reader.onload = e => {
+      photos.push({ id, originalFile: file, croppedBlob: null, previewUrl: e.target.result, copies: 6 });
+      renderPhotoList();
+    };
+    reader.readAsDataURL(file);
+    added++;
+  });
+  if (added === 0) return showToast('Please upload JPG, PNG or WEBP images.');
+  pdfBlob = null;
+  downloadBtn.style.display = 'none';
+  previewSec.style.display = 'none';
+}
+
+// ── Render photo list ──────────────────────────────────
+function renderPhotoList() {
+  photoListEl.innerHTML = '';
+  photos.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'photo-card';
+    card.innerHTML = `
+      <img src="${p.previewUrl}" alt="photo"/>
+      <div class="photo-info">
+        <div class="name">${p.originalFile.name}</div>
+        <div class="status ${p.croppedBlob ? 'cropped' : ''}">${p.croppedBlob ? '✓ Cropped' : '⚠ Not cropped yet'}</div>
+      </div>
+      <div class="copies-wrap">
+        <label>Copies</label>
+        <input class="copies-input" type="number" min="1" max="54" value="${p.copies}" data-id="${p.id}"/>
+      </div>
+      <div class="card-actions">
+        <button class="btn-sm btn-crop" data-id="${p.id}">Crop</button>
+        <button class="btn-sm btn-remove" data-id="${p.id}">Remove</button>
+      </div>
+    `;
+    photoListEl.appendChild(card);
+  });
+
+  // Bind copies
+  photoListEl.querySelectorAll('.copies-input').forEach(inp => {
+    inp.addEventListener('change', e => {
+      const ph = photos.find(p => p.id === +e.target.dataset.id);
+      if (ph) ph.copies = Math.max(1, parseInt(e.target.value) || 1);
+    });
+  });
+
+  // Bind crop
+  photoListEl.querySelectorAll('.btn-crop').forEach(btn => {
+    btn.addEventListener('click', e => openCropper(+e.currentTarget.dataset.id));
+  });
+
+  // Bind remove
+  photoListEl.querySelectorAll('.btn-remove').forEach(btn => {
+    btn.addEventListener('click', e => {
+      const id = +e.currentTarget.dataset.id;
+      photos = photos.filter(p => p.id !== id);
+      renderPhotoList();
+      if (photos.length === 0) addMoreWrap.style.display = 'none';
+    });
+  });
+
+  addMoreWrap.style.display = photos.length ? 'block' : 'none';
+}
+
+// ── Cropper ────────────────────────────────────────────
+function openCropper(id) {
+  const ph = photos.find(p => p.id === id);
+  if (!ph) return;
+  pendingCropId = id;
+
+  if (activeCropper) {
+    try { activeCropper.destroy(); } catch(e) {}
+    activeCropper = null;
+  }
+
+  // Disable save until Cropper.ready fires
+  confirmCrop.disabled = true;
+  confirmCrop.textContent = 'Loading…';
+  cropModal.classList.add('visible');
+
+  blobToDataURL(ph.croppedBlob || ph.originalFile, dataUrl => {
+    if (!dataUrl) {
+      showToast('Failed to read image.');
+      cropModal.classList.remove('visible');
+      return;
+    }
+    cropImage.onload = null;
+    cropImage.onerror = null;
+
+    cropImage.onload = () => {
+      cropImage.onload = null;
+      try {
+        activeCropper = new Cropper(cropImage, {
+          aspectRatio: currentAspectRatio,
+          viewMode: 1,
+          dragMode: 'move',
+          autoCropArea: 0.85,
+          background: true,
+          movable: true,
+          zoomable: true,
+          scalable: true,
+          rotatable: false,
+          responsive: true,
+          restore: false,
+          ready() {
+            // Cropper is fully initialized — safe to call getCroppedCanvas now
+            confirmCrop.disabled = false;
+            confirmCrop.textContent = 'Crop & Save';
+          }
+        });
+      } catch(e) {
+        console.error('Cropper init error:', e);
+        showToast('Failed to open cropper. Try again.');
+        cropModal.classList.remove('visible');
+      }
+    };
+
+    cropImage.onerror = () => {
+      showToast('Failed to load image for cropping.');
+      cropModal.classList.remove('visible');
+    };
+
+    cropImage.src = dataUrl;
+  });
+}
+
+// Convert a Blob or File → data URL reliably
+function blobToDataURL(blobOrFile, callback) {
+  // If it's already a data URL somehow, pass through
+  if (typeof blobOrFile === 'string') return callback(blobOrFile);
+  const reader = new FileReader();
+  reader.onload = e => callback(e.target.result);
+  reader.onerror = () => callback(null);
+  reader.readAsDataURL(blobOrFile);
+}
+
+confirmCrop.addEventListener('click', () => {
+  if (!activeCropper || pendingCropId === null) {
+    showToast('Please wait for the cropper to load.');
+    return;
+  }
+
+  confirmCrop.disabled = true;
+  confirmCrop.textContent = 'Saving…';
+
+  let canvas = null;
+  try {
+    canvas = activeCropper.getCroppedCanvas({
+      width: 1200,
+      height: Math.round(1200 / currentAspectRatio),
+      imageSmoothingEnabled: true,
+      imageSmoothingQuality: 'high',
+      fillColor: '#fff',
+    });
+  } catch(e) {
+    console.error('getCroppedCanvas error:', e);
+  }
+
+  if (!canvas) {
+    confirmCrop.disabled = false;
+    confirmCrop.textContent = 'Crop & Save';
+    showToast('Crop failed — please try re-uploading the image.');
+    return;
+  }
+
+  canvas.toBlob(blob => {
+    if (!blob) {
+      confirmCrop.disabled = false;
+      confirmCrop.textContent = 'Crop & Save';
+      showToast('Failed to save cropped image. Try again.');
+      return;
+    }
+    const ph = photos.find(p => p.id === pendingCropId);
+    if (!ph) return;
+    ph.croppedBlob = blob;
+
+    // Convert to data URL for thumbnail so it never gets revoked
+    const reader = new FileReader();
+    reader.onload = e => {
+      ph.previewUrl = e.target.result;
+      try { activeCropper.destroy(); } catch(e2) {}
+      activeCropper = null;
+      pendingCropId = null;
+      confirmCrop.disabled = false;
+      confirmCrop.textContent = 'Crop & Save';
+      cropModal.classList.remove('visible');
+      renderPhotoList();
+      showToast('Photo cropped!', 'success');
+    };
+    reader.readAsDataURL(blob);
+  }, 'image/jpeg', 0.95);
+});
+
+cancelCrop.addEventListener('click', () => {
+  if (activeCropper) { activeCropper.destroy(); activeCropper = null; }
+  pendingCropId = null;
+  confirmCrop.disabled = false;
+  confirmCrop.textContent = 'Crop & Save';
+  cropModal.classList.remove('visible');
+});
+
+// ── Generate PDF (pure browser) ────────────────────────
+generateBtn.addEventListener('click', async () => {
+  if (photos.length === 0) return showToast('Please upload at least one photo.');
+
+  // Params (mm)
+  const photoW   = Math.max(5, parseFloat(photoWInput.value) || 35);
+  const photoH   = Math.max(5, parseFloat(photoHInput.value) || 45);
+  const spacing  = Math.max(0, parseFloat(document.getElementById('spacing').value) || 3);
+  const borderPx = Math.max(0, parseInt(document.getElementById('border').value) || 0);
+
+  // A4 in mm
+  const pageW = 210, pageH = 297;
+  const margin = 10;
+
+  generateBtn.disabled = true;
+  downloadBtn.style.display = 'none';
+  previewSec.style.display = 'none';
+  loadingMsg.style.display = 'block';
+
+  try {
+    const doc = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+
+    // Build a flat list of all copies
+    const queue = [];
+    photos.forEach(ph => {
+      for (let i = 0; i < ph.copies; i++) queue.push(ph);
+    });
+
+    // Load all images as high-quality data URLs via FileReader
+    const loadImg = (ph) => new Promise(resolve => {
+      const source = ph.croppedBlob || ph.originalFile;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = new Image();
+        img.onload = () => {
+          // Use native resolution (capped at 2400px wide to avoid huge PDFs)
+          const maxW = 2400;
+          const scale = img.naturalWidth > maxW ? maxW / img.naturalWidth : 1;
+          const w = Math.round(img.naturalWidth * scale);
+          const h = Math.round(img.naturalHeight * scale);
+
+          const c = document.createElement('canvas');
+          c.width  = w;
+          c.height = h;
+          const ctx = c.getContext('2d');
+          ctx.fillStyle = '#fff';
+          ctx.fillRect(0, 0, w, h);
+
+          if (borderPx > 0) {
+            const b = Math.round(borderPx * scale);
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, w, h);
+            ctx.drawImage(img, b, b, w - b * 2, h - b * 2);
+          } else {
+            ctx.drawImage(img, 0, 0, w, h);
+          }
+
+          resolve(c.toDataURL('image/jpeg', 0.98));
+        };
+        img.onerror = () => resolve(null);
+        img.src = e.target.result;
+      };
+      reader.onerror = () => resolve(null);
+      reader.readAsDataURL(source);
+    });
+
+    // Unique image cache — keyed by id, reload fresh each generate call
+    const imgCache = new Map();
+    for (const ph of photos) {
+      imgCache.set(ph.id, await loadImg(ph));
+    }
+
+    // Layout photos on A4
+    let x = margin, y = margin;
+
+    for (const ph of queue) {
+      const dataUrl = imgCache.get(ph.id);
+      if (!dataUrl) continue;
+
+      // Wrap to next row if this photo won't fit horizontally
+      if (x + photoW > pageW - margin + 0.01) {
+        x = margin;
+        y += photoH + spacing;
+      }
+      // New page if it won't fit vertically
+      if (y + photoH > pageH - margin + 0.01) {
+        doc.addPage();
+        x = margin; y = margin;
+      }
+
+      doc.addImage(dataUrl, 'JPEG', x, y, photoW, photoH);
+      x += photoW + spacing;
+    }
+
+    pdfBlob = doc.output('blob');
+
+    // Render preview via image trick (render first page as canvas)
+    renderPreview(doc, photoW, photoH, spacing, margin, queue, imgCache, pageW, pageH);
+
+    // Store for download
+    downloadBtn.style.display = 'inline-flex';
+    downloadBtn.onclick = () => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(pdfBlob);
+      a.download = 'passport-photo-sheet.pdf';
+      a.click();
+    };
+
+    previewSec.style.display = 'block';
+    previewSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    showToast(`Sheet generated with ${queue.length} photo(s)!`, 'success');
+
+  } catch (err) {
+    console.error(err);
+    showToast('Failed to generate PDF. Please try again.');
+  } finally {
+    generateBtn.disabled = false;
+    loadingMsg.style.display = 'none';
+  }
+});
+
+// ── Canvas preview (first page) ────────────────────────
+async function renderPreview(doc, photoW, photoH, spacing, margin, queue, imgCache, pageW, pageH) {
+  const scale = 2.5; // px per mm for preview
+  pdfCanvas.width  = pageW  * scale;
+  pdfCanvas.height = pageH  * scale;
+
+  const ctx = pdfCanvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, pdfCanvas.width, pdfCanvas.height);
+
+  let x = margin, y = margin;
+
+  for (const ph of queue) {
+    if (x + photoW > pageW - margin) { x = margin; y += photoH + spacing; }
+    if (y + photoH > pageH - margin) break; // only preview first page
+
+    const dataUrl = imgCache.get(ph.id);
+    if (!dataUrl) continue;
+
+    await new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => {
+        ctx.drawImage(img, x * scale, y * scale, photoW * scale, photoH * scale);
+        resolve();
+      };
+      img.onerror = resolve;
+      img.src = dataUrl;
+    });
+
+    x += photoW + spacing;
+  }
+
+  // Light grid lines
+  ctx.strokeStyle = 'rgba(0,0,0,0.08)';
+  ctx.lineWidth = 0.5;
+  x = margin; y = margin;
+  for (const ph of queue) {
+    if (x + photoW > pageW - margin) { x = margin; y += photoH + spacing; }
+    if (y + photoH > pageH - margin) break;
+    ctx.strokeRect(x * scale, y * scale, photoW * scale, photoH * scale);
+    x += photoW + spacing;
+  }
+}
+</script>
+
+<!-- ═══ REMOVE BACKGROUND SCRIPT ═══ -->
+<script>
+(function () {
+  // ── State ──
+  let rmbgSourceFile = null;    // the File the user dropped
+  let rmbgResultBlob = null;    // the output blob (PNG with transparency)
+  let rmbgBgColor    = '#ffffff'; // chosen background colour
+
+  // DOM refs
+  const rmbgDrop        = document.getElementById('rmbgDrop');
+  const rmbgInput       = document.getElementById('rmbgInput');
+  const rmbgRunBtn      = document.getElementById('rmbgRunBtn');
+  const rmbgDlBtn       = document.getElementById('rmbgDlBtn');
+  const rmbgInjectBtn   = document.getElementById('rmbgInjectBtn');
+  const rmbgProgress    = document.getElementById('rmbgProgress');
+  const rmbgPreviewWrap = document.getElementById('rmbgPreviewWrap');
+  const rmbgPreviewImg  = document.getElementById('rmbgPreviewImg');
+  const rmbgOptions     = document.getElementById('rmbgOptions');
+
+  // ── Drop zone ──
+  rmbgDrop.addEventListener('click', () => rmbgInput.click());
+  rmbgDrop.addEventListener('dragover',  e => { e.preventDefault(); rmbgDrop.style.borderColor='#7028D4'; });
+  rmbgDrop.addEventListener('dragleave', () => { rmbgDrop.style.borderColor=''; });
+  rmbgDrop.addEventListener('drop', e => {
+    e.preventDefault(); rmbgDrop.style.borderColor='';
+    const f = e.dataTransfer.files[0];
+    if (f && f.type.startsWith('image/')) setRmbgFile(f);
+  });
+  rmbgInput.addEventListener('change', () => {
+    if (rmbgInput.files[0]) setRmbgFile(rmbgInput.files[0]);
+    rmbgInput.value = '';
+  });
+
+  function setRmbgFile(file) {
+    rmbgSourceFile = file;
+    rmbgResultBlob = null;
+    rmbgRunBtn.disabled = false;
+    rmbgDlBtn.style.display = 'none';
+    rmbgInjectBtn.style.display = 'none';
+    rmbgOptions.style.display = 'none';
+    rmbgPreviewWrap.style.display = 'none';
+    // Show thumbnail in drop zone
+    const url = URL.createObjectURL(file);
+    rmbgDrop.innerHTML = `<img src="${url}" style="max-height:110px;border-radius:8px;object-fit:contain;">
+      <p style="margin-top:6px;font-size:0.75rem;color:var(--muted)">${file.name}</p>`;
+  }
+
+  // ── Background colour picker ──
+  document.querySelectorAll('.rmbg-color-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.rmbg-color-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      rmbgBgColor = btn.dataset.bg;
+      // Re-composite if we already have a result
+      if (rmbgResultBlob) compositeAndPreview(rmbgResultBlob);
+    });
+  });
+
+  // ── Run removal ──
+  rmbgRunBtn.addEventListener('click', async () => {
+    if (!rmbgSourceFile) return;
+
+    // Detect which API shape loaded
+    const BgLib = window.BackgroundRemoval
+      || window.imglyBackgroundRemoval
+      || window['@imgly/background-removal']
+      || null;
+
+    if (!BgLib || typeof BgLib.removeBackground !== 'function') {
+      showToast('Background removal library failed to load. Please check your internet connection and refresh.');
+      return;
+    }
+    rmbgRunBtn.disabled = true;
+    rmbgProgress.style.display = 'flex';
+    rmbgDlBtn.style.display = 'none';
+    rmbgInjectBtn.style.display = 'none';
+
+    try {
+      // The library returns a Blob of type image/png with transparency
+      const config = {
+        model:   'small',       // fast, smaller download
+        output:  { format: 'image/png', quality: 1 },
+      };
+      const resultBlob = await BgLib.removeBackground(rmbgSourceFile, config);
+      rmbgResultBlob = resultBlob;
+      await compositeAndPreview(resultBlob);
+      rmbgOptions.style.display      = 'block';
+      rmbgDlBtn.style.display        = 'inline-block';
+      rmbgInjectBtn.style.display    = 'inline-block';
+      showToast('Background removed!', 'success');
+    } catch (err) {
+      console.error('BG removal error:', err);
+      showToast('Background removal failed. Please try a different photo.');
+    } finally {
+      rmbgRunBtn.disabled = false;
+      rmbgProgress.style.display = 'none';
+    }
+  });
+
+  // ── Composite transparency onto chosen background & show preview ──
+  async function compositeAndPreview(pngBlob) {
+    return new Promise(resolve => {
+      const url = URL.createObjectURL(pngBlob);
+      const img = new Image();
+      img.onload = () => {
+        const c = document.createElement('canvas');
+        c.width  = img.naturalWidth;
+        c.height = img.naturalHeight;
+        const ctx = c.getContext('2d');
+
+        if (rmbgBgColor !== 'transparent') {
+          ctx.fillStyle = rmbgBgColor;
+          ctx.fillRect(0, 0, c.width, c.height);
+        }
+        ctx.drawImage(img, 0, 0);
+        URL.revokeObjectURL(url);
+
+        const ext  = rmbgBgColor === 'transparent' ? 'image/png' : 'image/jpeg';
+        const qual = rmbgBgColor === 'transparent' ? 1 : 0.95;
+        c.toBlob(composited => {
+          const previewUrl = URL.createObjectURL(composited || pngBlob);
+          rmbgPreviewImg.src = previewUrl;
+          rmbgPreviewWrap.style.display = 'block';
+          // Store composited blob for download / inject
+          rmbgRunBtn._compositedBlob = composited;
+          resolve();
+        }, ext, qual);
+      };
+      img.onerror = () => resolve();
+      img.src = url;
+    });
+  }
+
+  // ── Download result ──
+  rmbgDlBtn.addEventListener('click', () => {
+    const blob = rmbgRunBtn._compositedBlob || rmbgResultBlob;
+    if (!blob) return;
+    const ext = rmbgBgColor === 'transparent' ? 'png' : 'jpg';
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `bg-removed.${ext}`;
+    a.click();
+  });
+
+  // ── Inject into passport photo flow ──
+  rmbgInjectBtn.addEventListener('click', () => {
+    const blob = rmbgRunBtn._compositedBlob || rmbgResultBlob;
+    if (!blob) return;
+    // Create a synthetic File from the composited blob
+    const ext      = rmbgBgColor === 'transparent' ? 'png' : 'jpg';
+    const newFile  = new File([blob], `bg-removed.${ext}`, { type: blob.type });
+    // Use the existing addFiles() function from the main passport-photo script
+    if (typeof addFiles === 'function') {
+      addFiles([newFile]);
+      showToast('Photo added to the sheet! Crop & generate PDF now.', 'success');
+      // Scroll down to the photo list
+      document.getElementById('photoList').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      showToast('Could not add to sheet automatically. Download and re-upload the photo.');
+    }
+  });
+})();
+</script>
+
+<script>
+  // Theme toggle (shared.css uses .dark variables)
+  (function () {
+    const btn = document.getElementById('themeBtn');
+    if (!btn) return;
+    btn.onclick = function () {
+      document.body.classList.toggle('dark');
+      const d = document.body.classList.contains('dark');
+      this.textContent = d ? '☀️' : '🌙';
+      localStorage.setItem('theme', d ? 'dark' : 'light');
+    };
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+      btn.textContent = '☀️';
+    }
+  })();
+</script>
+<script src="nav-enhancements.js"></script>
+<script src="site-enhancements.js"></script>
+</body>
+</html>

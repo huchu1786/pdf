@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Color Theory for Designers: HEX, RGB, HSL and Color Harmony Explained | LovePDFs Blog</title>
+    <meta name="description"
+        content="A practical guide to color theory for web designers and developers. Learn the difference between HEX, RGB and HSL, how color harmonies work, and how to choose palettes that pop." />
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1303178479491171"
+        crossorigin="anonymous"></script>
+    <style>
+        .blog-article {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem
+        }
+
+        .blog-tag {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.12), rgba(168, 85, 247, 0.08));
+            color: #db2777;
+            border: 1px solid rgba(236, 72, 153, 0.25);
+            border-radius: 100px;
+            padding: 0.3rem 0.85rem;
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em
+        }
+
+        .blog-date,
+        .blog-author {
+            font-size: 0.84rem;
+            color: var(--muted);
+            font-weight: 600
+        }
+
+        .blog-hero-img {
+            width: 100%;
+            border-radius: 20px;
+            height: 280px;
+            background: linear-gradient(135deg, #EC4899, #8B5CF6, #3B82F6, #10B981, #F59E0B);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 20px 60px rgba(236, 72, 153, 0.3)
+        }
+
+        .blog-article h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 900;
+            line-height: 1.2;
+            color: var(--text);
+            margin-bottom: 1.25rem
+        }
+
+        .blog-article h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text);
+            margin: 2.2rem 0 0.75rem;
+            padding-left: 1rem;
+            border-left: 4px solid #EC4899
+        }
+
+        .blog-article h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 1.4rem 0 0.5rem
+        }
+
+        .blog-article p {
+            font-size: 1rem;
+            line-height: 1.85;
+            color: var(--text2);
+            margin-bottom: 1.15rem
+        }
+
+        .blog-article ul,
+        .blog-article ol {
+            padding-left: 1.6rem;
+            color: var(--text2);
+            margin-bottom: 1.15rem
+        }
+
+        .blog-article li {
+            font-size: 0.97rem;
+            line-height: 1.8;
+            margin-bottom: 0.4rem
+        }
+
+        .blog-article strong {
+            color: var(--text);
+            font-weight: 700
+        }
+
+        .palette-demo {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap
+        }
+
+        .palette-swatch {
+            flex: 1;
+            min-width: 80px;
+            height: 60px;
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 0.35rem
+        }
+
+        .palette-swatch span {
+            font-size: 0.65rem;
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.45);
+            color: #fff;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px
+        }
+
+        .callout {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.07), rgba(168, 85, 247, 0.04));
+            border: 1.5px solid rgba(236, 72, 153, 0.2);
+            border-radius: 14px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0
+        }
+
+        .callout-title {
+            font-weight: 800;
+            color: #EC4899;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem
+        }
+
+        .harmony-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1.5px solid var(--border)
+        }
+
+        .harmony-table th {
+            background: linear-gradient(135deg, #EC4899, #8B5CF6);
+            color: #fff;
+            padding: 0.65rem 1rem;
+            text-align: left;
+            font-size: 0.8rem;
+            font-weight: 800
+        }
+
+        .harmony-table td {
+            padding: 0.6rem 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.88rem;
+            color: var(--text2)
+        }
+
+        .harmony-table tr:hover td {
+            background: var(--bg2)
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #EC4899, #8B5CF6);
+            border-radius: 18px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2.5rem;
+            color: #fff
+        }
+
+        .cta-box h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 0.65rem
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem
+        }
+
+        .cta-box a {
+            display: inline-block;
+            background: #fff;
+            color: #EC4899;
+            font-weight: 800;
+            border-radius: 12px;
+            padding: 0.85rem 2rem;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-family: 'Instrument Sans', sans-serif
+        }
+
+        .cta-box a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2)
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--muted);
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color 0.2s
+        }
+
+        .back-link:hover {
+            color: var(--red)
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="site-nav">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-ic">P</div>LovePDFs
+        </a>
+        <div class="nav-mid"><a href="all-tools.html" class="nav-link">All Tools</a><a href="features.html"
+                class="nav-link">Features</a><a href="blog.html" class="nav-link">Blog</a></div>
+        <div class="nav-right"><button class="theme-btn" id="themeBtn">🌙</button></div>
+    </nav>
+    <div class="page-wrap">
+        <article class="blog-article">
+            <a href="blog.html" class="back-link">← Back to Blog</a>
+            <div class="blog-meta">
+                <span class="blog-tag">🎨 Design</span>
+                <span class="blog-date">March 10, 2026</span>
+                <span class="blog-author">by LovePDFs Team</span>
+                <span class="blog-date">· 7 min read</span>
+            </div>
+            <h1>Color Theory for Designers: HEX, RGB, HSL and Color Harmony Explained</h1>
+            <div class="blog-hero-img">🎨</div>
+
+            <p>Color is one of the most powerful tools in a designer's arsenal — and one of the most misunderstood. Bad
+                color choices make interfaces look amateur, create accessibility violations, and confuse users. Good
+                color choices create instant mood, guide attention, and build trust. This guide covers the theory you
+                need to make better decisions.</p>
+
+            <h2>The Three Color Models You Need to Know</h2>
+
+            <h3>HEX — The Web Standard</h3>
+            <p>HEX codes are the most common way to specify color in web design. Written as <code
+                    style="background:var(--bg3);padding:0.1rem 0.35rem;border-radius:4px">#RRGGBB</code>, each pair of
+                characters represents a Red, Green, Blue channel value in base-16 (0–255 mapped to 00–FF).</p>
+            <ul>
+                <li><code style="background:var(--bg3);padding:0.1rem 0.35rem;border-radius:4px">#000000</code> — Pure
+                    Black (R:0, G:0, B:0)</li>
+                <li><code style="background:var(--bg3);padding:0.1rem 0.35rem;border-radius:4px">#FFFFFF</code> — Pure
+                    White (R:255, G:255, B:255)</li>
+                <li><code style="background:var(--bg3);padding:0.1rem 0.35rem;border-radius:4px">#EC4899</code> — Hot
+                    Pink (R:236, G:72, B:153)</li>
+            </ul>
+
+            <h3>RGB — Programmers' Friend</h3>
+            <p>RGB is identical to HEX conceptually but uses decimal values (0–255) instead of hexadecimal. It's more
+                human-readable for fine-tuning. Use it when you need to programmatically manipulate channels — for
+                example, creating a darker or lighter variant of a color by adjusting the values mathematically.</p>
+
+            <h3>HSL — Designers' Best Friend</h3>
+            <p>HSL stands for <strong>Hue, Saturation, Lightness</strong>. This is the most intuitive model for
+                designers:</p>
+            <ul>
+                <li><strong>Hue</strong> (0°–360°) — The base color on the wheel. 0° = red, 120° = green, 240° = blue.
+                </li>
+                <li><strong>Saturation</strong> (0%–100%) — How vivid is it? 0% is gray, 100% is full color.</li>
+                <li><strong>Lightness</strong> (0%–100%) — How bright? 0% is black, 100% is white, 50% is the "pure"
+                    color.</li>
+            </ul>
+            <p>The power of HSL: to create shades of a color, you change <em>only the Lightness</em>, keeping Hue and
+                Saturation constant. To desaturate, change <em>only Saturation</em>. This is how design systems like
+                Tailwind generate their color palettes (e.g., <code
+                    style="background:var(--bg3);padding:0.1rem 0.35rem;border-radius:4px">blue-100</code> through <code
+                    style="background:var(--bg3);padding:0.1rem 0.35rem;border-radius:4px">blue-900</code>).</p>
+
+            <div class="palette-demo">
+                <div class="palette-swatch" style="background:hsl(330,81%,95%)"><span>hsl(330,81%,95%)</span></div>
+                <div class="palette-swatch" style="background:hsl(330,81%,80%)"><span>80%</span></div>
+                <div class="palette-swatch" style="background:hsl(330,81%,65%)"><span>65%</span></div>
+                <div class="palette-swatch" style="background:hsl(330,81%,50%)"><span>50%</span></div>
+                <div class="palette-swatch" style="background:hsl(330,81%,35%)"><span>35%</span></div>
+                <div class="palette-swatch" style="background:hsl(330,81%,20%)"><span>20%</span></div>
+            </div>
+
+            <h2>Color Harmonies — The Rules of Combination</h2>
+            <p>A color harmony is a set of colors that naturally look good together based on their positions on the
+                color wheel.</p>
+            <table class="harmony-table">
+                <thead>
+                    <tr>
+                        <th>Harmony</th>
+                        <th>Formula</th>
+                        <th>Effect</th>
+                        <th>Use Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Complementary</strong></td>
+                        <td>Base + 180°</td>
+                        <td>High contrast, vibrant</td>
+                        <td>CTAs, attention-grabbing elements</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Analogous</strong></td>
+                        <td>Base ± 30°</td>
+                        <td>Harmonious, calm</td>
+                        <td>Backgrounds, nature themes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Triadic</strong></td>
+                        <td>Base, +120°, +240°</td>
+                        <td>Balanced, colorful</td>
+                        <td>Children's apps, creative brands</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Split-Complement</strong></td>
+                        <td>Base, +150°, +210°</td>
+                        <td>Softer contrast</td>
+                        <td>Elegant interfaces</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tetradic</strong></td>
+                        <td>Base, +90°, +180°, +270°</td>
+                        <td>Rich, complex</td>
+                        <td>Advanced design systems</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Accessibility — The Part Most Designers Skip</h2>
+            <p>Color contrast is a legal requirement in most jurisdictions under WCAG 2.1 accessibility guidelines. The
+                contrast ratio between foreground (text) and background must be:</p>
+            <ul>
+                <li><strong>4.5:1</strong> minimum for normal text (AA level)</li>
+                <li><strong>3:1</strong> minimum for large text (18pt+ or 14pt+ bold)</li>
+                <li><strong>7:1</strong> for enhanced accessibility (AAA level)</li>
+            </ul>
+            <p>Light gray text on a white background might look sophisticated, but it often fails WCAG AA. Always check
+                contrast ratios with a tool before shipping.</p>
+
+            <div class="callout">
+                <div class="callout-title">🎨 Pro Tip: 60-30-10 Rule</div>
+                <p style="margin:0;font-size:0.93rem;color:var(--text2)">A classic interior design principle that works
+                    perfectly in UI: use your primary color for <strong>60%</strong> of the design (backgrounds, base),
+                    a secondary color for <strong>30%</strong> (cards, sections), and an accent color for
+                    <strong>10%</strong> (buttons, highlights, CTAs). This ratio creates visual balance without
+                    monotony.</p>
+            </div>
+
+            <h2>Building a Design Palette Step by Step</h2>
+            <ol>
+                <li><strong>Pick your primary hue</strong> — Choose one color that represents your brand personality.
+                    Trust = blue, Energy = orange, Growth = green, Premium = purple.</li>
+                <li><strong>Generate 9 shades</strong> — Use HSL, keep Hue and Saturation fixed, vary Lightness from 10%
+                    to 95%.</li>
+                <li><strong>Define semantic tokens</strong> — Assign shades to roles: <code>--color-bg</code>,
+                    <code>--color-text</code>, <code>--color-button</code>, <code>--color-danger</code>.</li>
+                <li><strong>Add a complementary accent</strong> — Use the complementary or split-complementary for
+                    interactive elements (links, CTAs).</li>
+                <li><strong>Test in both light and dark modes</strong> — Colors that look great in light mode can fail
+                    in dark mode if they're too bright or low-contrast.</li>
+            </ol>
+
+            <div class="cta-box">
+                <h3>🎨 Explore Colors Visually</h3>
+                <p>Use our free Color Picker to convert between HEX, RGB, and HSL, generate shades and tints, and
+                    explore color harmonies interactively.</p>
+                <a href="color-picker/index.html">Open Color Picker →</a>
+            </div>
+        
+    <div style="max-width:760px;margin:0 auto 2rem;padding:0 1rem;">
+      <div style="padding:1.25rem 1.4rem;background:var(--bg2);border:1.5px solid var(--border);border-radius:16px;">
+        <div style="font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--red);margin-bottom:0.6rem;">Related Tools</div>
+        <p style="margin:0;color:var(--text2);line-height:1.8;">
+          Try <a href="color-picker/index.html" style="color:var(--red);font-weight:700;">Color Picker</a> &middot;
+          <a href="image-to-pdf/index.html" style="color:var(--red);font-weight:700;">Image to PDF</a> &middot;
+          <a href="png-to-jpg/index.html" style="color:var(--red);font-weight:700;">PNG to JPG</a> &middot;
+          <a href="compress-image/index.html" style="color:var(--red);font-weight:700;">Compress Image</a> &middot;
+          <a href="resize-image/index.html" style="color:var(--red);font-weight:700;">Resize Image</a>
+        </p>
+        <p style="margin:0.65rem 0 0;color:var(--text2);line-height:1.8;">Also read:
+          <a href="blog-png-vs-jpg.html" style="color:var(--red);font-weight:700;">PNG vs JPG Guide</a> &middot;
+          <a href="blog-json-explained.html" style="color:var(--red);font-weight:700;">JSON Explained</a> &middot;
+          <a href="blog-password-security.html" style="color:var(--red);font-weight:700;">Password Security</a> &middot;
+          <a href="blog.html" style="color:var(--red);font-weight:700;">All Blog Posts</a>
+        </p>
+      </div>
+    </div>
+    </article>
+    </div>
+    <footer class="simple-footer">
+        <p>© LovePDFs 2026 · <a href="blog.html">Blog</a> · <a href="all-tools.html">All Tools</a></p>
+    </footer>
+    <script>const _t = document.getElementById('themeBtn'); if (_t) { if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark'); _t.textContent = '☀️'; } _t.onclick = () => { document.body.classList.toggle('dark'); const d = document.body.classList.contains('dark'); localStorage.setItem('theme', d ? 'dark' : 'light'); _t.textContent = d ? '☀️' : '🌙'; }; }</script>
+<script src="nav-enhancements.js"></script>
+<script src="site-enhancements.js"></script>
+</body>
+
+</html>

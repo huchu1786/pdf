@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>CSV to Excel Converter – Free Online Tool | LovePDFs</title>
+    <meta name="description"
+        content="Convert CSV files to Excel-compatible spreadsheets instantly. Free, browser-based CSV to Excel converter with preview table, delimiter detection, and download." />
+    <link rel="icon" type="image/png" sizes="512x512" href="../favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../shared.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1303178479491171"
+        crossorigin="anonymous"></script>
+    <style>
+        .csv-wrap {
+            max-width: 920px;
+            margin: 0 auto
+        }
+
+        .csv-table-wrap {
+            overflow: auto;
+            max-height: 420px;
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            margin: 1.25rem 0
+        }
+
+        .csv-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem
+        }
+
+        .csv-table th {
+            background: linear-gradient(135deg, var(--red), var(--red2));
+            color: #fff;
+            padding: 0.65rem 1rem;
+            text-align: left;
+            font-weight: 800;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 2
+        }
+
+        .csv-table td {
+            padding: 0.55rem 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text2);
+            background: var(--card)
+        }
+
+        .csv-table tr:nth-child(even) td {
+            background: var(--bg2)
+        }
+
+        .csv-table tr:hover td {
+            background: rgba(232, 50, 26, 0.04)
+        }
+
+        .csv-stats {
+            display: flex;
+            gap: 0.85rem;
+            flex-wrap: wrap;
+            margin: 0.75rem 0
+        }
+
+        .csv-stat {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 0.5rem 0.9rem;
+            font-size: 0.82rem;
+            font-weight: 700
+        }
+
+        .csv-stat span {
+            color: var(--red)
+        }
+
+        .delim-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem
+        }
+
+        .delim-btn {
+            padding: 0.45rem 1rem;
+            border: 1.5px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            background: var(--bg2);
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Instrument Sans', sans-serif
+        }
+
+        .delim-btn:hover {
+            border-color: var(--red);
+            color: var(--red)
+        }
+
+        .delim-btn.on {
+            background: linear-gradient(135deg, var(--red), var(--red2));
+            border-color: var(--red);
+            color: #fff
+        }
+
+        .info-section {
+            background: linear-gradient(135deg, rgba(232, 50, 26, 0.05), rgba(255, 90, 58, 0.03));
+            border: 1.5px solid rgba(232, 50, 26, 0.15);
+            border-radius: 18px;
+            padding: 2rem;
+            margin-top: 2.5rem
+        }
+
+        .info-section h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 1rem
+        }
+
+        .info-section h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 1.2rem 0 0.5rem
+        }
+
+        .info-section p,
+        .info-section li {
+            font-size: 0.95rem;
+            color: var(--text2);
+            line-height: 1.75
+        }
+
+        .info-section ul {
+            padding-left: 1.5rem
+        }
+
+        .info-section li {
+            margin-bottom: 0.35rem
+        }
+
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 0.75rem
+        }
+
+        .cmp-box {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 1.1rem
+        }
+
+        .cmp-box h4 {
+            font-family: 'Fraunces', serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem
+        }
+
+        .cmp-box ul {
+            padding-left: 1.2rem;
+            margin: 0;
+            font-size: 0.88rem;
+            color: var(--text2)
+        }
+
+        .cmp-box li {
+            margin-bottom: 0.25rem
+        }
+
+        @media(max-width:600px) {
+            .compare-grid {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="site-nav">
+        <a href="../index.html" class="nav-logo">
+            <div class="nav-logo-ic">P</div>LovePDFs
+        </a>
+        <div class="nav-mid">
+            <a href="../all-tools.html" class="nav-link">All Tools</a>
+            <a href="../features.html" class="nav-link">Features</a>
+            <a href="../blog.html" class="nav-link">Blog</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-btn" id="themeBtn">🌙</button>
+            <a href="../index.html" class="nav-btn-f">← Home</a>
+        </div>
+    </nav>
+    <div class="page-wrap">
+        <section class="inner-hero">
+            <div class="inner-hero-eyebrow">📊 Utility Tools</div>
+            <h1>CSV to Excel Converter</h1>
+            <p>Convert CSV files to Excel-compatible spreadsheets instantly. Automatic delimiter detection, preview
+                table, and one-click download.</p>
+        </section>
+        <div class="csv-wrap content-section">
+            <div style="text-align:center;margin-bottom:1.25rem">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1303178479491171"
+                    data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+
+            <!-- Drop Zone -->
+            <div class="dzone" id="csvDZ" onclick="document.getElementById('csvFile').click()">
+                <span class="dzone-icon">📊</span>
+                <h3>Drop your CSV file here</h3>
+                <p>Supports .csv, .tsv, .txt files</p>
+                <div class="dzone-btn">Choose File</div>
+            </div>
+            <input type="file" id="csvFile" accept=".csv,.tsv,.txt" style="display:none"
+                onchange="loadCSV(this.files[0])">
+
+            <!-- Delimiter Controls -->
+            <div style="margin-top:1rem;display:none" id="delimControls">
+                <div class="opt-l" style="margin-bottom:0.5rem">Delimiter</div>
+                <div class="delim-row">
+                    <button class="delim-btn on" id="db_comma" onclick="setDelim(',',this)">Comma (,)</button>
+                    <button class="delim-btn" id="db_semi" onclick="setDelim(';',this)">Semicolon (;)</button>
+                    <button class="delim-btn" id="db_tab" onclick="setDelim('\t',this)">Tab</button>
+                    <button class="delim-btn" id="db_pipe" onclick="setDelim('|',this)">Pipe (|)</button>
+                    <div class="opt-g" style="display:flex;align-items:center;gap:0.5rem">
+                        <span style="font-size:0.8rem;color:var(--muted)">Custom:</span>
+                        <input type="text" class="opt-i" id="customDelim" maxlength="1" placeholder="e.g. #"
+                            style="width:60px;padding:0.4rem 0.6rem" oninput="if(this.value)setDelim(this.value,null)">
+                    </div>
+                </div>
+
+                <!-- Options -->
+                <div class="opt-row" style="margin-bottom:1rem">
+                    <div class="opt-g">
+                        <div class="opt-l">First row is header</div>
+                        <select class="opt-s" id="hasHeader" onchange="renderPreview()">
+                            <option value="yes" selected>Yes — use as column headers</option>
+                            <option value="no">No — treat as data row</option>
+                        </select>
+                    </div>
+                    <div class="opt-g">
+                        <div class="opt-l">Text encoding</div>
+                        <select class="opt-s" id="encoding">
+                            <option value="utf-8" selected>UTF-8 (recommended)</option>
+                            <option value="latin1">Latin-1 / ISO-8859-1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="csv-stats" id="csvStats" style="display:none">
+                <div class="csv-stat">Rows: <span id="statRows">—</span></div>
+                <div class="csv-stat">Columns: <span id="statCols">—</span></div>
+                <div class="csv-stat">File size: <span id="statSize">—</span></div>
+                <div class="csv-stat">Delimiter: <span id="statDelim">auto</span></div>
+            </div>
+
+            <!-- Preview Table -->
+            <div class="csv-table-wrap" id="tableWrap" style="display:none">
+                <table class="csv-table" id="previewTable"></table>
+            </div>
+
+            <!-- Actions -->
+            <div class="act-row" id="csvActions" style="display:none">
+                <button class="btn-go" id="downloadXlsxBtn" onclick="downloadExcel()">📊 Download as Excel
+                    (.xlsx)</button>
+                <button class="btn-dl on" onclick="downloadCSVClean()">⬇ Download Clean CSV</button>
+                <button class="btn-rst" onclick="resetCSV()">↺ Reset</button>
+            </div>
+            <div class="result-box" id="csvResult" style="display:none;margin-top:1rem">
+                <div class="result-ic">✅</div>
+                <div>
+                    <div class="result-t" id="csvResultTitle">Ready!</div>
+                    <div class="result-m" id="csvResultMsg"></div>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <div class="info-section">
+                <h2>📊 CSV vs Excel — What's the Difference?</h2>
+                <p>Both formats store tabular data, but they have key differences that affect how you should use them.
+                </p>
+                <div class="compare-grid">
+                    <div class="cmp-box">
+                        <h4>📄 CSV (Comma-Separated Values)</h4>
+                        <ul>
+                            <li>Plain text format — universally compatible</li>
+                            <li>No formatting, formulas, or styles</li>
+                            <li>Smaller file size</li>
+                            <li>Editable in any text editor</li>
+                            <li>Perfect for data export/import</li>
+                            <li>Supported by every database and tool</li>
+                        </ul>
+                    </div>
+                    <div class="cmp-box">
+                        <h4>📊 Excel (.xlsx)</h4>
+                        <ul>
+                            <li>Rich formatting (colors, fonts, borders)</li>
+                            <li>Formulas and calculated cells</li>
+                            <li>Multiple sheets per file</li>
+                            <li>Charts and pivot tables</li>
+                            <li>Larger file size (ZIP-based XML)</li>
+                            <li>Native Microsoft Excel format</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>How to Use This Tool</h3>
+                <ul>
+                    <li><strong>Upload</strong> your CSV file by dropping it on the zone or clicking "Choose File".</li>
+                    <li>The tool <strong>auto-detects the delimiter</strong> (comma, semicolon, tab, pipe) — or you can
+                        set it manually.</li>
+                    <li>Toggle whether the <strong>first row is a header</strong> row.</li>
+                    <li><strong>Preview</strong> the parsed data in the table before downloading.</li>
+                    <li>Click <strong>Download as Excel (.xlsx)</strong> to save the file.</li>
+                </ul>
+
+                <h3>Common Use Cases</h3>
+                <ul>
+                    <li>Converting exported data from Google Sheets, databases, or APIs to Excel format for sharing.
+                    </li>
+                    <li>Cleaning up CSV files before importing them into Excel for analysis.</li>
+                    <li>Converting TSV (tab-separated) or pipe-delimited exports to standard CSV or Excel.</li>
+                    <li>Previewing large CSV files without opening them in Excel (which can be slow for large files).
+                    </li>
+                </ul>
+
+                <h3>Tips for Better Results</h3>
+                <ul>
+                    <li>If your data has commas inside fields, make sure they're wrapped in double quotes: <code
+                            style="background:var(--bg3);padding:0.1rem 0.35rem;border-radius:5px;font-size:0.85rem">"Smith, John"</code>
+                    </li>
+                    <li>Use <strong>UTF-8 encoding</strong> to preserve special characters like accents and non-Latin
+                        scripts.</li>
+                    <li>For very large files (100k+ rows), consider splitting the CSV before conversion.</li>
+                </ul>
+            </div>
+
+            <div style="text-align:center;margin-top:2rem">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1303178479491171"
+                    data-ad-slot="2222222222" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+        </div>
+    </div>
+    <footer class="simple-footer">
+        <p>© LovePDFs 2026 · <a href="../index.html">Home</a> · <a href="../all-tools.html">All Tools</a> · <a
+                href="../blog.html">Blog</a></p>
+    </footer>
+
+    <!-- SheetJS for Excel export -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
+    <script>
+        let csvData = [];
+        let currentDelim = ',';
+        let rawText = '';
+        let currentFile = null;
+
+        // Drag & drop
+        const dz = document.getElementById('csvDZ');
+        dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('over'); });
+        dz.addEventListener('dragleave', () => dz.classList.remove('over'));
+        dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('over'); if (e.dataTransfer.files[0]) loadCSV(e.dataTransfer.files[0]); });
+
+        function loadCSV(file) {
+            if (!file) return;
+            currentFile = file;
+            const reader = new FileReader();
+            reader.onload = e => {
+                rawText = e.target.result;
+                // Auto-detect delimiter
+                currentDelim = detectDelim(rawText);
+                updateDelimBtns(currentDelim);
+                document.getElementById('delimControls').style.display = 'block';
+                renderPreview();
+                // Stats
+                document.getElementById('statSize').textContent = formatSize(file.size);
+                document.getElementById('csvStats').style.display = 'flex';
+                document.getElementById('csvActions').style.display = 'flex';
+            };
+            reader.readAsText(file);
+        }
+
+        function detectDelim(text) {
+            const sample = text.split('\n').slice(0, 5).join('\n');
+            const counts = { ',': 0, ';': 0, '\t': 0, '|': 0 };
+            for (const d of Object.keys(counts)) counts[d] = (sample.match(new RegExp('\\' + d, 'g')) || []).length;
+            return Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
+        }
+
+        function setDelim(d, btn) {
+            currentDelim = d;
+            updateDelimBtns(d);
+            renderPreview();
+        }
+        function updateDelimBtns(d) {
+            document.querySelectorAll('.delim-btn').forEach(b => b.classList.remove('on'));
+            const map = { ',': [document.getElementById('db_comma')], ';': [document.getElementById('db_semi')], '\t': [document.getElementById('db_tab')], '|': [document.getElementById('db_pipe')] };
+            if (map[d]) map[d].forEach(b => b && b.classList.add('on'));
+            const st = { ',': `comma (,)`, ';': 'semicolon (;)', '\t': 'tab', '|': 'pipe (|)' };
+            document.getElementById('statDelim').textContent = st[d] || `"${d}"`;
+        }
+
+        function parseCSV(text, delim) {
+            const lines = text.split(/\r?\n/);
+            const rows = [];
+            for (const line of lines) {
+                if (!line.trim()) continue;
+                const cells = [];
+                let inQ = false, cell = '';
+                for (let i = 0; i < line.length; i++) {
+                    const c = line[i];
+                    if (c === '"') { inQ = !inQ; }
+                    else if (c === delim && !inQ) { cells.push(cell); cell = ''; }
+                    else { cell += c; }
+                }
+                cells.push(cell);
+                rows.push(cells.map(c => c.trim()));
+            }
+            return rows;
+        }
+
+        function renderPreview() {
+            const rows = parseCSV(rawText, currentDelim);
+            csvData = rows;
+            if (!rows.length) return;
+            const hasHdr = document.getElementById('hasHeader').value === 'yes';
+            const headers = hasHdr ? rows[0] : rows[0].map((_, i) => `Column ${i + 1}`);
+            const dataRows = hasHdr ? rows.slice(1) : rows;
+            const maxRows = Math.min(dataRows.length, 200);
+            const table = document.getElementById('previewTable');
+            table.innerHTML = `<thead><tr>${headers.map(h => `<th>${escH(h)}</th>`).join('')}</tr></thead><tbody>${dataRows.slice(0, maxRows).map(r => `<tr>${r.map((c, i) => `<td>${escH(c)}</td>`).join('')}</tr>`).join('')}</tbody>`;
+            document.getElementById('tableWrap').style.display = 'block';
+            document.getElementById('statRows').textContent = dataRows.length.toLocaleString();
+            document.getElementById('statCols').textContent = headers.length;
+            if (dataRows.length > maxRows) {
+                const note = document.createElement('div');
+                note.style.cssText = 'padding:0.5rem 1rem;background:rgba(245,158,11,0.08);color:#b45309;font-size:0.82rem;border-top:1px solid var(--border)';
+                note.textContent = `Showing first ${maxRows} of ${dataRows.length} rows in preview. All rows will be included in the download.`;
+                document.getElementById('tableWrap').appendChild(note);
+            }
+        }
+
+        function downloadExcel() {
+            if (!csvData.length) return;
+            try {
+                const hasHdr = document.getElementById('hasHeader').value === 'yes';
+                const headers = hasHdr ? csvData[0] : csvData[0].map((_, i) => `Column ${i + 1}`);
+                const dataRows = hasHdr ? csvData.slice(1) : csvData;
+                const wsData = [headers, ...dataRows];
+                const ws = XLSX.utils.aoa_to_sheet(wsData);
+                // Style headers (basic)
+                const range = XLSX.utils.decode_range(ws['!ref']);
+                for (let C = range.s.c; C <= range.e.c; C++) {
+                    const addr = XLSX.utils.encode_cell({ r: 0, c: C });
+                    if (!ws[addr]) continue;
+                    ws[addr].s = { font: { bold: true }, fill: { fgColor: { rgb: 'E8321A' } } };
+                }
+                // Auto column widths
+                ws['!cols'] = headers.map(h => ({ wch: Math.max(h ? h.length : 8, 10, Math.min(40, Math.max(...dataRows.map(r => r[headers.indexOf(h)]?.length || 0)))) }));
+                const wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+                const fn = (currentFile?.name || 'data').replace(/\.csv$/i, '').replace(/\.tsv$/i, '') + '.xlsx';
+                XLSX.writeFile(wb, fn);
+                showResult('✅ Excel file downloaded!', `${csvData.length} rows × ${csvData[0].length} columns`);
+            } catch (e) {
+                // Fallback if SheetJS not loaded
+                downloadCSVClean();
+                showResult('⬇ Downloaded as CSV', '(Excel library unavailable — saved as CSV instead)');
+            }
+        }
+
+        function downloadCSVClean() {
+            const rows = csvData.map(row => row.map(c => c.includes(',') || c.includes('"') ? `"${c.replace(/"/g, '""')}"` : c).join(',')).join('\n');
+            const blob = new Blob([rows], { type: 'text/csv' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = (currentFile?.name || 'data').replace(/\.tsv$/i, '.csv');
+            a.click();
+            showResult('⬇ CSV downloaded!', `Clean CSV with ${csvData.length} rows`);
+        }
+
+        function showResult(title, msg) {
+            document.getElementById('csvResult').style.display = 'flex';
+            document.getElementById('csvResultTitle').textContent = title;
+            document.getElementById('csvResultMsg').textContent = msg;
+        }
+
+        function resetCSV() {
+            csvData = []; rawText = ''; currentFile = null; currentDelim = ',';
+            document.getElementById('csFont') || null;
+            document.getElementById('csvDZ').style.border = '';
+            document.getElementById('delimControls').style.display = 'none';
+            document.getElementById('csvStats').style.display = 'none';
+            document.getElementById('tableWrap').style.display = 'none';
+            document.getElementById('csvActions').style.display = 'none';
+            document.getElementById('csvResult').style.display = 'none';
+            document.getElementById('csvFile').value = '';
+        }
+
+        function formatSize(bytes) { if (bytes < 1024) return bytes + ' B'; if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB'; return (bytes / 1048576).toFixed(2) + ' MB'; }
+        function escH(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+        const _t = document.getElementById('themeBtn');
+        if (_t) {
+            if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark'); _t.textContent = '☀️'; }
+            _t.onclick = () => { document.body.classList.toggle('dark'); const d = document.body.classList.contains('dark'); localStorage.setItem('theme', d ? 'dark' : 'light'); _t.textContent = d ? '☀️' : '🌙'; };
+        }
+    </script>
+
+<script src="../site-enhancements.js"></script>
+<script src="../nav-enhancements.js"></script>
+</body>
+
+</html>

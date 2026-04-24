@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>GST Calculator | LovePDFs — Free Online GST Calculator India</title>
+<meta name="description" content="Free online GST calculator for India. Calculate GST exclusive and inclusive, CGST, SGST, IGST for all slab rates."/>
+<link rel="icon" type="image/png" sizes="512x512" href="../favicon.png">
+<link rel="apple-touch-icon" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1303178479491171" crossorigin="anonymous"></script>
+<style>
+.calc-box{background:var(--card);border:2.5px solid var(--border);border-radius:22px;padding:2.5rem;max-width:680px;margin:-3.5rem auto 3rem;box-shadow:0 24px 64px rgba(0,0,0,0.12);position:relative;z-index:10}
+.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem}
+.calc-row.single{grid-template-columns:1fr}
+.calc-label{font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.5rem}
+.calc-input{width:100%;padding:0.9rem 1.1rem;border:2px solid var(--border);border-radius:12px;background:var(--bg2);color:var(--text);font-size:1.15rem;font-family:'Instrument Sans',sans-serif;transition:all 0.2s;outline:none}
+.calc-input:focus{border-color:var(--red);box-shadow:0 0 0 4px rgba(232,50,26,0.1)}
+.calc-btn{width:100%;padding:1.1rem;background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border:none;border-radius:14px;font-size:1.1rem;font-weight:700;cursor:pointer;font-family:'Instrument Sans',sans-serif;transition:all 0.2s;box-shadow:0 6px 20px rgba(232,50,26,0.3);margin-top:0.5rem}
+.calc-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,50,26,0.4)}
+.calc-result{display:none;background:linear-gradient(135deg,rgba(22,163,74,0.08),transparent);border:2px solid rgba(22,163,74,0.25);border-radius:14px;padding:1.5rem;text-align:center;margin-top:1.25rem}
+.calc-result-val{font-family:'Fraunces',serif;font-size:2.8rem;font-weight:900;color:var(--text);line-height:1.1}
+.calc-result-label{font-size:0.9rem;color:var(--muted);margin-top:0.35rem}
+.calc-select{width:100%;padding:0.85rem 1.1rem;border:2px solid var(--border);border-radius:12px;background:var(--bg2);color:var(--text);font-size:1rem;font-family:'Instrument Sans',sans-serif;outline:none;cursor:pointer}
+.calc-select:focus{border-color:var(--red)}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;margin:2rem 0}
+.info-card-c{background:var(--card);border:2px solid var(--border);border-radius:16px;padding:1.5rem}
+.info-card-c h3{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;margin:0 0 0.5rem}
+.info-card-c p{margin:0;color:var(--muted);font-size:0.95rem;line-height:1.6}
+</style>
+
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Gst Calculator",
+    "url": "https://lovepdfs.in/gst-calculator/",
+    "description": "Free online Gst Calculator tool - Process files instantly in your browser",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Browser-based processing",
+      "No file uploads required",
+      "Instant processing",
+      "Privacy-focused",
+      "No registration needed"
+    ],
+    "screenshot": "https://lovepdfs.in/favicon.png",
+    "softwareVersion": "1.0",
+    "author": {
+      "@type": "Organization",
+      "name": "LovePDFs"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lovepdfs.in"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": "https://lovepdfs.in/all-tools.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Gst Calculator",
+        "item": "https://lovepdfs.in/gst-calculator/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Gst Calculator",
+    "description": "Step-by-step guide on how to gst calculator using our free online tool",
+    "url": "https://lovepdfs.in/gst-calculator/",
+    "image": "https://lovepdfs.in/favicon.png",
+    "estimatedCost": {
+      "@type": "MonetaryAmount",
+      "currency": "USD",
+      "value": "0"
+    },
+    "totalTime": "PT2M",
+    "supply": [
+      {
+        "@type": "HowToSupply",
+        "name": "PDF or image files"
+      }
+    ],
+    "tool": [
+      {
+        "@type": "HowToTool",
+        "name": "LovePDFs Online Tool"
+      }
+    ],
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Step 1",
+        "text": "Upload your files to the tool",
+        "image": "https://lovepdfs.in/favicon.png",
+        "url": "https://lovepdfs.in/gst-calculator/#step1"
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Step 2",
+        "text": "Configure the tool settings if needed",
+        "image": "https://lovepdfs.in/favicon.png",
+        "url": "https://lovepdfs.in/gst-calculator/#step2"
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Step 3",
+        "text": "Process your files",
+        "image": "https://lovepdfs.in/favicon.png",
+        "url": "https://lovepdfs.in/gst-calculator/#step3"
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Step 4",
+        "text": "Download the results",
+        "image": "https://lovepdfs.in/favicon.png",
+        "url": "https://lovepdfs.in/gst-calculator/#step4"
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+<nav class="site-nav" id="siteNav">
+  <a href="../index.html" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
+  <div class="nav-mid">
+    <a href="../#tools" class="nav-link">All Tools</a>
+    <a href="../features.html" class="nav-link">Features</a>
+    <a href="../pricing.html" class="nav-link">Pricing</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn">🌙</button>
+    <a href="../contact.html" class="nav-btn-o">Contact</a>
+    <a href="../index.html" class="nav-btn-f">← Tools</a>
+  </div>
+</nav>
+<section class="tool-hero page-wrap" style="background:linear-gradient(170deg,var(--bg2) 0%,var(--bg) 100%);padding:6rem 2rem 5rem;text-align:center;border-bottom:2px solid var(--border)">
+  <a href="../index.html#tools" class="tool-hero-eyebrow" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(232,50,26,0.08);border:1.5px solid rgba(232,50,26,0.2);color:var(--red);padding:0.45rem 1.1rem;border-radius:100px;font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1.5rem;text-decoration:none;">Free Calculator</a>
+  <h1 style="font-family:'Fraunces',serif;font-size:clamp(2.8rem,7vw,64px);font-weight:900;margin-bottom:1rem;letter-spacing:-0.03em">GST Calculator</h1>
+  <p style="color:var(--muted);max-width:560px;margin:0 auto;font-size:1.25rem;line-height:1.75">Calculate GST for any amount — exclusive or inclusive — with CGST & SGST breakdown.</p>
+</section>
+
+<div class="calc-box">
+<div class="calc-row">
+  <div>
+    <div class="calc-label">Amount (₹ or any currency)</div>
+    <input class="calc-input" type="number" id="gst_amt" placeholder="e.g. 1000" oninput="calcGst()">
+  </div>
+  <div>
+    <div class="calc-label">GST Rate (%)</div>
+    <select class="calc-select" id="gst_rate" onchange="calcGst()">
+      <option value="5">5% (Essential goods)</option>
+      <option value="12">12% (Standard goods)</option>
+      <option value="18" selected>18% (Standard services)</option>
+      <option value="28">28% (Luxury goods)</option>
+      <option value="0">0% (Exempt)</option>
+    </select>
+  </div>
+</div>
+<div class="calc-row">
+  <div>
+    <div class="calc-label">Amount Type</div>
+    <select class="calc-select" id="gst_type" onchange="calcGst()">
+      <option value="excl">Exclusive (add GST to amount)</option>
+      <option value="incl">Inclusive (GST already included)</option>
+    </select>
+  </div>
+</div>
+<div id="gst_result" style="display:none;margin-top:1.25rem">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;text-align:center">
+    <div style="background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:1rem"><div style="font-family:'Fraunces',serif;font-size:1.8rem;font-weight:900;color:var(--text)" id="gst_base">—</div><div style="font-size:0.78rem;color:var(--muted);font-weight:700;text-transform:uppercase">Base Amount</div></div>
+    <div style="background:rgba(232,50,26,0.06);border:2px solid rgba(232,50,26,0.2);border-radius:12px;padding:1rem"><div style="font-family:'Fraunces',serif;font-size:1.8rem;font-weight:900;color:var(--red)" id="gst_tax">—</div><div style="font-size:0.78rem;color:var(--muted);font-weight:700;text-transform:uppercase">GST Amount</div></div>
+    <div style="background:rgba(22,163,74,0.06);border:2px solid rgba(22,163,74,0.2);border-radius:12px;padding:1rem"><div style="font-family:'Fraunces',serif;font-size:1.8rem;font-weight:900;color:var(--green)" id="gst_total">—</div><div style="font-size:0.78rem;color:var(--muted);font-weight:700;text-transform:uppercase">Total (with GST)</div></div>
+  </div>
+  <div style="margin-top:0.75rem;background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:1rem;font-size:0.9rem;color:var(--muted)" id="gst_breakdown"></div>
+</div>
+<script>
+function fmt(n){return n.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calcGst(){
+  var amt=parseFloat(document.getElementById('gst_amt').value);
+  var rate=parseFloat(document.getElementById('gst_rate').value);
+  var type=document.getElementById('gst_type').value;
+  if(isNaN(amt)||amt<=0){document.getElementById('gst_result').style.display='none';return;}
+  var base,tax,total;
+  if(type==='excl'){base=amt;tax=amt*rate/100;total=amt+tax;}
+  else{total=amt;base=amt/(1+rate/100);tax=total-base;}
+  document.getElementById('gst_base').textContent=fmt(base);
+  document.getElementById('gst_tax').textContent=fmt(tax);
+  document.getElementById('gst_total').textContent=fmt(total);
+  var cgst=tax/2,sgst=tax/2;
+  document.getElementById('gst_breakdown').innerHTML='CGST ('+rate/2+'%) = '+fmt(cgst)+' &nbsp;|&nbsp; SGST ('+rate/2+'%) = '+fmt(sgst)+' &nbsp;|&nbsp; IGST ('+rate+'%) = '+fmt(tax);
+  document.getElementById('gst_result').style.display='block';
+}
+</script>
+</div>
+
+<div class="content-section" style="max-width:980px;margin:0 auto 6rem;padding:0 2rem">
+<div class="info-grid">
+  <div class="info-card-c"><h3>What is GST?</h3><p>Goods and Services Tax (GST) is an indirect tax used in India. It replaced multiple cascading taxes and is applied at rates of 0%, 5%, 12%, 18%, or 28%.</p></div>
+  <div class="info-card-c"><h3>GST Exclusive vs Inclusive</h3><p><strong>Exclusive:</strong> GST is added on top of the price (e.g., price ₹1000 + 18% GST = ₹1180). <strong>Inclusive:</strong> GST is already included in the stated price.</p></div>
+  <div class="info-card-c"><h3>CGST + SGST = IGST</h3><p>For intra-state transactions, GST is split equally into CGST (Central) and SGST (State). For inter-state, it's charged as IGST (Integrated).</p></div>
+</div>
+<div class="info-card-c" style="margin-top:1.5rem">
+  <h3>How to use this GST calculator</h3>
+  <p>This GST calculator helps you work out tax-inclusive and tax-exclusive prices without opening a spreadsheet or doing reverse calculations by hand. Enter the amount, choose the GST slab, and switch between exclusive and inclusive pricing to see the base amount, GST amount, and final total instantly. The breakdown is useful when preparing invoices, checking vendor quotes, reviewing online selling prices, or confirming how much tax is included in a final bill.</p>
+  <p style="margin-top:0.9rem">It works well for freelancers, agencies, accountants, small businesses, and shoppers who want a quick answer before creating a quotation or invoice. If you also need to compare discounts or total repayment costs, the <a href="../percentage-calculator/index.html" style="color:var(--red);font-weight:700;">Percentage Calculator</a>, <a href="../loan-calculator/index.html" style="color:var(--red);font-weight:700;">Loan Calculator</a>, and <a href="../currency-converter/index.html" style="color:var(--red);font-weight:700;">Currency Converter</a> are good next steps.</p>
+</div>
+<div class="info-grid">
+  <div class="info-card-c"><h3>Example use cases</h3><p>Add 18% GST to a service invoice, extract 12% GST from a tax-inclusive product price, or compare base value versus total selling price before sending a customer quote.</p></div>
+  <div class="info-card-c"><h3>Why it saves time</h3><p>You do not need to remember separate formulas for exclusive and inclusive tax calculations. The page handles the math and displays the result clearly for faster checks.</p></div>
+  <div class="info-card-c"><h3>Rates covered</h3><p>The calculator supports the common GST slabs used in India, including 0%, 5%, 12%, 18%, and 28%, which covers many everyday goods and service scenarios.</p></div>
+</div>
+<div class="info-card-c" style="margin-top:1.5rem">
+  <h3>GST Calculator FAQ</h3>
+  <p><strong>How is GST calculated on an exclusive amount?</strong><br>Multiply the amount by the GST rate and add that tax value to the original price.</p>
+  <p style="margin-top:0.9rem"><strong>How do I remove GST from an inclusive amount?</strong><br>Select the inclusive option and the tool separates the original base amount from the GST portion automatically.</p>
+  <p style="margin-top:0.9rem"><strong>What is the difference between CGST, SGST, and IGST?</strong><br>CGST and SGST are typically used for intra-state transactions, while IGST applies to inter-state transactions.</p>
+  <p style="margin-top:0.9rem"><strong>Can I use this for both goods and services?</strong><br>Yes. As long as you know the correct GST slab, the calculator works for both.</p>
+</div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
+      <div class="footer-tagline">Every PDF & Image tool you'll ever need &mdash; 100% free, private, running entirely in your browser.</div>
+      <div class="footer-contact"><a href="../contact.html">Contact us</a></div>
+      <div class="footer-badges"><span class="fbadge">&#128274; SSL</span><span class="fbadge">&#9889; WebAssembly</span><span class="fbadge">&#10022; Always Free</span></div>
+    </div>
+    <div><div class="footer-col-title">Product</div><div class="footer-links"><a href="../index.html">Home</a><a href="../features.html">Features</a><a href="../pricing.html">Pricing</a><a href="../all-tools.html">Tools</a><a href="../faq.html">FAQ</a></div></div>
+    <div><div class="footer-col-title">Solutions</div><div class="footer-links"><a href="../business.html">Business</a><a href="../education.html">Education</a></div></div>
+    <div><div class="footer-col-title">Legal</div><div class="footer-links"><a href="../security.html">Security</a><a href="../privacy.html">Privacy policy</a><a href="../terms.html">Terms & conditions</a><a href="../cookies.html">Cookies</a></div></div>
+    <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="../about.html">About us</a><a href="../contact.html">Contact us</a><a href="../blog.html">Blog</a><a href="../press.html">Press</a></div></div>
+  </div>
+  <div class="footer-stats" style="max-width:1240px; margin: 2.5rem auto 0; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; justify-content: space-around; gap: 2rem; text-align: center;">
+    <div><div style="font-family:'Fraunces',serif; font-size:48px; font-weight:900; color:var(--text);" id="stat-tools">43</div><div style="font-size:26px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:0.2rem;">Tools Available</div></div>
+    <div><div style="font-family:'Fraunces',serif; font-size:48px; font-weight:900; color:var(--text);" id="stat-files">18M+</div><div style="font-size:26px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:0.2rem;">Files Processed</div></div>
+    <div><div style="font-family:'Fraunces',serif; font-size:48px; font-weight:900; color:var(--text);" id="stat-time">&lt; 1.2s</div><div style="font-size:26px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:0.2rem;">Processing Time</div></div>
+  </div>
+<div class="footer-bottom" style="max-width:1240px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+    <div class="footer-copy" style="font-size:0.85rem;color:var(--muted)">&copy; LovePDFs 2026 &reg; · Private & Local Processing</div>
+    <div class="footer-sitemap"><a href="/sitemap.xml" style="color:var(--muted);font-size:0.82rem;text-decoration:none;transition:color 0.2s">Sitemap</a></div>
+  </div>
+</footer>
+<script>
+  const _t = document.getElementById('themeBtn');
+  if (_t) {
+    const _s = localStorage.getItem('theme');
+    if (_s === 'dark') { document.body.classList.add('dark'); _t.textContent = '☀️'; }
+    _t.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      _t.textContent = isDark ? '☀️' : '🌙';
+    });
+  }
+</script>
+
+<script src="../site-enhancements.js"></script>
+<script src="../nav-enhancements.js"></script>
+</body>
+</html>

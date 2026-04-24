@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Email Validator – Bulk Email Checker | LovePDFs</title>
+    <meta name="description"
+        content="Validate and bulk-check email addresses instantly. Detect format errors, domain issues, and typos. Free, browser-based email validator — no data sent to server." />
+    <link rel="icon" type="image/png" sizes="512x512" href="../favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../shared.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1303178479491171"
+        crossorigin="anonymous"></script>
+    <style>
+        .ev-wrap {
+            max-width: 860px;
+            margin: 0 auto
+        }
+
+        .single-row {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap
+        }
+
+        .ev-input {
+            flex: 1;
+            min-width: 220px;
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            background: var(--bg2);
+            color: var(--text);
+            font-size: 1.05rem;
+            font-family: 'Instrument Sans', sans-serif;
+            transition: all 0.25s
+        }
+
+        .ev-input:focus {
+            outline: none;
+            border-color: var(--amber);
+            box-shadow: 0 0 0 4px rgba(201, 103, 0, 0.1)
+        }
+
+        .ev-input.valid {
+            border-color: #16a34a
+        }
+
+        .ev-input.invalid {
+            border-color: #ef4444
+        }
+
+        .result-badge {
+            padding: 0.75rem 1.25rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1rem;
+            white-space: nowrap;
+            min-width: 130px;
+            text-align: center
+        }
+
+        .badge-ok {
+            background: rgba(22, 163, 74, 0.12);
+            color: #16a34a;
+            border: 1.5px solid rgba(22, 163, 74, 0.3)
+        }
+
+        .badge-err {
+            background: rgba(232, 50, 26, 0.1);
+            color: var(--red);
+            border: 1.5px solid rgba(232, 50, 26, 0.3)
+        }
+
+        .badge-idle {
+            background: var(--bg3);
+            color: var(--muted);
+            border: 1.5px solid var(--border)
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 1.5rem
+        }
+
+        .detail-card {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 0.9rem 1rem
+        }
+
+        .detail-card .label {
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            margin-bottom: 0.3rem
+        }
+
+        .detail-card .value {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text)
+        }
+
+        .value-ok {
+            color: #16a34a
+        }
+
+        .value-err {
+            color: #ef4444
+        }
+
+        .bulk-section {
+            margin-top: 1.5rem
+        }
+
+        .bulk-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.5rem
+        }
+
+        .ev-textarea {
+            width: 100%;
+            min-height: 180px;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 13px;
+            background: var(--bg2);
+            color: var(--text);
+            font-family: monospace;
+            font-size: 0.88rem;
+            resize: vertical;
+            transition: border-color 0.2s
+        }
+
+        .ev-textarea:focus {
+            outline: none;
+            border-color: var(--amber)
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1.5px solid var(--border)
+        }
+
+        .results-table th {
+            background: var(--bg3);
+            padding: 0.65rem 1rem;
+            text-align: left;
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted)
+        }
+
+        .results-table td {
+            padding: 0.65rem 1rem;
+            font-size: 0.88rem;
+            border-top: 1px solid var(--border)
+        }
+
+        .results-table tr:hover td {
+            background: var(--bg2)
+        }
+
+        .tag-valid {
+            display: inline-block;
+            background: rgba(22, 163, 74, 0.12);
+            color: #16a34a;
+            border-radius: 6px;
+            padding: 0.1rem 0.55rem;
+            font-size: 0.75rem;
+            font-weight: 800
+        }
+
+        .tag-invalid {
+            display: inline-block;
+            background: rgba(232, 50, 26, 0.1);
+            color: var(--red);
+            border-radius: 6px;
+            padding: 0.1rem 0.55rem;
+            font-size: 0.75rem;
+            font-weight: 800
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.75rem;
+            flex-wrap: wrap
+        }
+
+        .stat-pill {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text2)
+        }
+
+        .stat-pill span {
+            font-weight: 800;
+            color: var(--text)
+        }
+
+        .info-section {
+            background: linear-gradient(135deg, rgba(201, 103, 0, 0.05), rgba(245, 158, 11, 0.03));
+            border: 1.5px solid rgba(201, 103, 0, 0.15);
+            border-radius: 18px;
+            padding: 2rem;
+            margin-top: 2.5rem
+        }
+
+        .info-section h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 1rem
+        }
+
+        .info-section h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 1.2rem 0 0.5rem
+        }
+
+        .info-section p,
+        .info-section li {
+            font-size: 0.95rem;
+            color: var(--text2);
+            line-height: 1.75
+        }
+
+        .info-section ul {
+            padding-left: 1.5rem
+        }
+
+        .info-section li {
+            margin-bottom: 0.35rem
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="site-nav">
+        <a href="../index.html" class="nav-logo">
+            <div class="nav-logo-ic">P</div>LovePDFs
+        </a>
+        <div class="nav-mid">
+            <a href="../all-tools.html" class="nav-link">All Tools</a>
+            <a href="../features.html" class="nav-link">Features</a>
+            <a href="../blog.html" class="nav-link">Blog</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-btn" id="themeBtn">🌙</button>
+            <a href="../index.html" class="nav-btn-f">← Home</a>
+        </div>
+    </nav>
+    <div class="page-wrap">
+        <section class="inner-hero">
+            <div class="inner-hero-eyebrow">📧 Utility Tools</div>
+            <h1>Email Validator</h1>
+            <p>Check if email addresses are valid in format. Validate single addresses or bulk-check hundreds at once —
+                all in your browser.</p>
+        </section>
+        <div class="ev-wrap content-section">
+            <div style="text-align:center;margin-bottom:1.25rem">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1303178479491171"
+                    data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+
+            <!-- Single Email -->
+            <h2 class="section-h" style="font-size:1.25rem;margin-bottom:0.75rem">Single Email Check</h2>
+            <div class="single-row">
+                <input type="email" class="ev-input" id="singleEmail" placeholder="name@example.com"
+                    oninput="validateSingle(this.value)" autocomplete="off" spellcheck="false">
+                <div class="result-badge badge-idle" id="singleBadge">—</div>
+            </div>
+            <div class="detail-grid" id="detailGrid" style="display:none">
+                <div class="detail-card">
+                    <div class="label">Local Part</div>
+                    <div class="value" id="dLocal">—</div>
+                </div>
+                <div class="detail-card">
+                    <div class="label">Domain</div>
+                    <div class="value" id="dDomain">—</div>
+                </div>
+                <div class="detail-card">
+                    <div class="label">TLD</div>
+                    <div class="value" id="dTld">—</div>
+                </div>
+                <div class="detail-card">
+                    <div class="label">Format</div>
+                    <div class="value" id="dFormat">—</div>
+                </div>
+                <div class="detail-card">
+                    <div class="label">Length</div>
+                    <div class="value" id="dLen">—</div>
+                </div>
+                <div class="detail-card">
+                    <div class="label">Suggestion</div>
+                    <div class="value" id="dSuggest">—</div>
+                </div>
+            </div>
+
+            <!-- Bulk Email -->
+            <div class="bulk-section">
+                <div class="bulk-header">
+                    <h2 class="section-h" style="font-size:1.25rem;margin:0">Bulk Email Validator</h2>
+                    <div style="display:flex;gap:0.5rem">
+                        <button class="jf-btn"
+                            style="padding:0.5rem 0.9rem;border:1.5px solid var(--border);border-radius:9px;font-size:0.8rem;font-weight:700;color:var(--muted);background:var(--card);cursor:pointer;font-family:'Instrument Sans',sans-serif"
+                            onclick="loadBulkSample()">Load Sample</button>
+                        <button class="btn-go" style="padding:0.6rem 1.1rem;font-size:0.85rem"
+                            onclick="validateBulk()">✅ Validate All</button>
+                        <button class="btn-rst" style="padding:0.55rem 0.85rem" onclick="clearBulk()">Clear</button>
+                    </div>
+                </div>
+                <p style="font-size:0.85rem;color:var(--muted);margin-bottom:0.75rem">Enter one email per line (up to
+                    1000)</p>
+                <textarea class="ev-textarea" id="bulkInput"
+                    placeholder="alice@example.com&#10;bob@company.org&#10;invalid-email&#10;test@domain.co.uk"></textarea>
+                <div id="bulkResults" style="display:none">
+                    <div class="stats-row" id="statsRow"></div>
+                    <div style="display:flex;gap:0.5rem;margin:0.75rem 0;flex-wrap:wrap">
+                        <button class="dl-btn"
+                            style="padding:0.45rem 0.9rem;border:1.5px solid var(--border);border-radius:9px;font-size:0.8rem;font-weight:700;color:var(--muted);background:var(--card);cursor:pointer;font-family:'Instrument Sans',sans-serif"
+                            onclick="exportResults('valid')">⬇ Export Valid</button>
+                        <button class="dl-btn"
+                            style="padding:0.45rem 0.9rem;border:1.5px solid var(--border);border-radius:9px;font-size:0.8rem;font-weight:700;color:var(--muted);background:var(--card);cursor:pointer;font-family:'Instrument Sans',sans-serif"
+                            onclick="exportResults('invalid')">⬇ Export Invalid</button>
+                        <button class="dl-btn"
+                            style="padding:0.45rem 0.9rem;border:1.5px solid var(--border);border-radius:9px;font-size:0.8rem;font-weight:700;color:var(--muted);background:var(--card);cursor:pointer;font-family:'Instrument Sans',sans-serif"
+                            onclick="exportResults('all')">⬇ Export CSV Report</button>
+                    </div>
+                    <div style="overflow-x:auto">
+                        <table class="results-table" id="resultsTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Issue</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsTbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h2>📧 Email Validation Explained</h2>
+                <p>Email validation checks whether an email address is correctly formatted according to RFC 5322
+                    standards. It does <strong>not</strong> confirm whether the mailbox actually exists (that requires a
+                    live SMTP check), but it catches the vast majority of typos and formatting errors.</p>
+
+                <h3>What Gets Checked</h3>
+                <ul>
+                    <li><strong>Format validity</strong> — Must match <code
+                            style="background:var(--bg3);padding:0.1rem 0.4rem;border-radius:5px;font-size:0.88rem">local@domain.tld</code>
+                        pattern.</li>
+                    <li><strong>Local part</strong> — Characters before @ must contain only valid characters. No
+                        double-dots, no leading/trailing dot.</li>
+                    <li><strong>@-sign presence</strong> — Exactly one @ symbol required.</li>
+                    <li><strong>Domain</strong> — Must contain at least one dot, valid characters only.</li>
+                    <li><strong>TLD</strong> — Top-level domain must be 2–63 characters, letters only.</li>
+                    <li><strong>Length</strong> — Total email must not exceed 254 characters (RFC 5321).</li>
+                    <li><strong>Common typos</strong> — Detects misspelled domains like gamil.com, yaho.com, outook.com.
+                    </li>
+                </ul>
+
+                <h3>Why Validate Emails?</h3>
+                <ul>
+                    <li>Reduce <strong>bounce rates</strong> in email campaigns.</li>
+                    <li>Prevent <strong>fake sign-ups</strong> on your web application.</li>
+                    <li>Improve <strong>data quality</strong> in your CRM or database.</li>
+                    <li>Catch <strong>typos</strong> at the point of entry before users get frustrated.</li>
+                    <li>Save <strong>email sending costs</strong> by not sending to invalid addresses.</li>
+                </ul>
+
+                <h3>Limitations</h3>
+                <p>This tool validates email format only. To verify if a mailbox actually exists, you need an SMTP
+                    verification service. Common reasons a format-valid email may still not deliver: the domain has no
+                    mail server (MX record), the mailbox doesn't exist, or the mailbox is full.</p>
+            </div>
+
+            <div style="text-align:center;margin-top:2rem">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1303178479491171"
+                    data-ad-slot="2222222222" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+        </div>
+    </div>
+    <footer class="simple-footer">
+        <p>© LovePDFs 2026 · <a href="../index.html">Home</a> · <a href="../all-tools.html">All Tools</a> · <a
+                href="../blog.html">Blog</a></p>
+    </footer>
+    <script>
+        const EMAIL_RE = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$/;
+        const TYPO_DOMAINS = { 'gamil.com': 'gmail.com', 'gmal.com': 'gmail.com', 'gmail.co': 'gmail.com', 'yahooo.com': 'yahoo.com', 'yaho.com': 'yahoo.com', 'outook.com': 'outlook.com', 'hotmail.co': 'hotmail.com', 'gmial.com': 'gmail.com' };
+        let bulkResults = [];
+
+        function checkEmail(email) {
+            email = email.trim();
+            if (!email) return { valid: false, reason: 'Empty' };
+            if (email.length > 254) return { valid: false, reason: 'Too long (max 254 chars)' };
+            const atIdx = email.lastIndexOf('@');
+            if (atIdx < 1) return { valid: false, reason: 'Missing @' };
+            if (atIdx !== email.indexOf('@')) return { valid: false, reason: 'Multiple @ symbols' };
+            const local = email.slice(0, atIdx), domain = email.slice(atIdx + 1);
+            if (!local) return { valid: false, reason: 'Local part empty' };
+            if (local.startsWith('.') || local.endsWith('.')) return { valid: false, reason: 'Local part cannot start/end with dot' };
+            if (local.includes('..')) return { valid: false, reason: 'Local part has consecutive dots' };
+            if (!domain.includes('.')) return { valid: false, reason: 'Domain has no TLD' };
+            const tld = domain.split('.').pop();
+            if (!/^[a-zA-Z]{2,63}$/.test(tld)) return { valid: false, reason: 'Invalid TLD' };
+            if (!EMAIL_RE.test(email)) return { valid: false, reason: 'Invalid format' };
+            const suggestion = TYPO_DOMAINS[domain.toLowerCase()] ? `Did you mean ${local}@${TYPO_DOMAINS[domain.toLowerCase()]}?` : null;
+            return { valid: true, local, domain, tld, suggestion, reason: 'Valid format' };
+        }
+
+        function validateSingle(val) {
+            const email = val.trim();
+            const badge = document.getElementById('singleBadge');
+            const grid = document.getElementById('detailGrid');
+            if (!email) { badge.textContent = '—'; badge.className = 'result-badge badge-idle'; grid.style.display = 'none'; return; }
+            const r = checkEmail(email);
+            document.getElementById('ev-input') || document.getElementById('singleEmail'); // ref
+            const inp = document.getElementById('singleEmail');
+            if (r.valid) {
+                badge.textContent = '✓ Valid'; badge.className = 'result-badge badge-ok';
+                inp.className = 'ev-input valid';
+                grid.style.display = 'grid';
+                document.getElementById('dLocal').innerHTML = `<span class="value-ok">${r.local}</span>`;
+                document.getElementById('dDomain').innerHTML = `<span class="value-ok">${r.domain}</span>`;
+                document.getElementById('dTld').innerHTML = `<span class="value-ok">.${r.tld}</span>`;
+                document.getElementById('dFormat').innerHTML = `<span class="value-ok">RFC 5322 ✓</span>`;
+                document.getElementById('dLen').textContent = `${email.length} chars`;
+                document.getElementById('dSuggest').innerHTML = r.suggestion ? `<span style="color:#f59e0b">${r.suggestion}</span>` : `<span class="value-ok">None</span>`;
+            } else {
+                badge.textContent = '✕ Invalid'; badge.className = 'result-badge badge-err';
+                inp.className = 'ev-input invalid';
+                grid.style.display = 'grid';
+                document.getElementById('dLocal').textContent = '—';
+                document.getElementById('dDomain').textContent = '—';
+                document.getElementById('dTld').textContent = '—';
+                document.getElementById('dFormat').innerHTML = `<span class="value-err">${r.reason}</span>`;
+                document.getElementById('dLen').textContent = `${email.length} chars`;
+                document.getElementById('dSuggest').textContent = '—';
+            }
+        }
+
+        function validateBulk() {
+            const lines = document.getElementById('bulkInput').value.split('\n').map(l => l.trim()).filter(Boolean).slice(0, 1000);
+            if (!lines.length) return;
+            bulkResults = lines.map((email, i) => ({ index: i + 1, email, ...checkEmail(email) }));
+            const valid = bulkResults.filter(r => r.valid).length;
+            const invalid = lines.length - valid;
+            document.getElementById('statsRow').innerHTML = `
+    <div class="stat-pill">Total: <span>${lines.length}</span></div>
+    <div class="stat-pill" style="color:#16a34a">✓ Valid: <span style="color:#16a34a">${valid}</span></div>
+    <div class="stat-pill" style="color:#ef4444">✕ Invalid: <span style="color:#ef4444">${invalid}</span></div>
+  `;
+            document.getElementById('resultsTbody').innerHTML = bulkResults.map(r => `
+    <tr>
+      <td style="color:var(--muted)">${r.index}</td>
+      <td style="font-family:monospace;font-size:0.85rem">${r.email}</td>
+      <td>${r.valid ? '<span class="tag-valid">✓ Valid</span>' : '<span class="tag-invalid">✕ Invalid</span>'}</td>
+      <td style="font-size:0.82rem;color:var(--muted)">${r.valid ? (r.suggestion || '—') : r.reason}</td>
+    </tr>
+  `).join('');
+            document.getElementById('bulkResults').style.display = 'block';
+        }
+
+        function exportResults(type) {
+            let rows = bulkResults;
+            if (type === 'valid') rows = rows.filter(r => r.valid);
+            else if (type === 'invalid') rows = rows.filter(r => !r.valid);
+            let text;
+            if (type === 'all') text = 'Email,Valid,Issue\n' + rows.map(r => `"${r.email}",${r.valid},${r.valid ? (r.suggestion || '') : '\"' + r.reason + '"'}`).join('\n');
+            else text = rows.map(r => r.email).join('\n');
+            const blob = new Blob([text], { type: type === 'all' ? 'text/csv' : 'text/plain' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = type === 'all' ? 'email-report.csv' : type + '-emails.txt'; a.click();
+        }
+
+        function loadBulkSample() {
+            document.getElementById('bulkInput').value = 'alice@gmail.com\nbob@company.org\ntest@domain.co.uk\ninvalid-email\nmissing@tld\nuser@gamil.com\nhello.world@sub.domain.io\n@missing-local.com\nno-at-sign.email';
+        }
+        function clearBulk() { document.getElementById('bulkInput').value = ''; document.getElementById('bulkResults').style.display = 'none'; }
+
+        const _t = document.getElementById('themeBtn');
+        if (_t) {
+            if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark'); _t.textContent = '☀️'; }
+            _t.onclick = () => { document.body.classList.toggle('dark'); const d = document.body.classList.contains('dark'); localStorage.setItem('theme', d ? 'dark' : 'light'); _t.textContent = d ? '☀️' : '🌙'; };
+        }
+    </script>
+
+<script src="../site-enhancements.js"></script>
+<script src="../nav-enhancements.js"></script>
+</body>
+
+</html>

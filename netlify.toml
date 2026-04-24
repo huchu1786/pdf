@@ -1,0 +1,438 @@
+# ── Fix GSC Redirect Errors: enforce trailing slash on tool pages ──
+[[redirects]]
+  from = "/passport-photo"
+  to = "/passport-photo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/resize-image"
+  to = "/resize-image/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/crop-image"
+  to = "/crop-image/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/compress-image"
+  to = "/compress-image/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/jpg-to-png"
+  to = "/jpg-to-png/"
+  status = 301
+  force = true
+
+# ── Fix color-picker duplicate: already present below ──
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://lovepdfs.in/*"
+  to = "https://lovepdfs.in/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.lovepdfs.in/*"
+  to = "https://lovepdfs.in/:splat"
+  status = 301
+  force = true
+
+# Fix 404s — old blog-posts paths that Google indexed
+[[redirects]]
+  from = "/blog-posts/contact.html"
+  to = "/contact.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog-posts/blog.html"
+  to = "/blog.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog-posts/all-tools.html"
+  to = "/all-tools.html"
+  status = 301
+
+[[redirects]]
+  from = "/add-page-numbers-pdf/index.html"
+  to = "/add-page-numbers-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/add-watermark-pdf/index.html"
+  to = "/add-watermark-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/age-calculator/index.html"
+  to = "/age-calculator/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/alternate-mix-pdf/index.html"
+  to = "/alternate-mix-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/bmi-calculator/index.html"
+  to = "/bmi-calculator/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/calculator-tools/index.html"
+  to = "/calculator-tools/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/color-picker/index.html"
+  to = "/color-picker/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/compare-pdf/index.html"
+  to = "/compare-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/compress-image/index.html"
+  to = "/compress-image/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/compress-pdf/index.html"
+  to = "/compress-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/converter-tools/index.html"
+  to = "/converter-tools/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/crop-image/index.html"
+  to = "/crop-image/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/crop-pdf/index.html"
+  to = "/crop-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/csv-to-excel/index.html"
+  to = "/csv-to-excel/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/currency-converter/index.html"
+  to = "/currency-converter/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/date-calculator/index.html"
+  to = "/date-calculator/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/deskew-pdf/index.html"
+  to = "/deskew-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/edit-pdf/index.html"
+  to = "/edit-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/edit-pdf-metadata/index.html"
+  to = "/edit-pdf-metadata/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/email-validator/index.html"
+  to = "/email-validator/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/excel-to-pdf/index.html"
+  to = "/excel-to-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/extract-images-pdf/index.html"
+  to = "/extract-images-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/extract-pages-pdf/index.html"
+  to = "/extract-pages-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/flatten-pdf/index.html"
+  to = "/flatten-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/grayscale-pdf/index.html"
+  to = "/grayscale-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/gst-calculator/index.html"
+  to = "/gst-calculator/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/header-footer-pdf/index.html"
+  to = "/header-footer-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/html-to-pdf/index.html"
+  to = "/html-to-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/image-tools/index.html"
+  to = "/image-tools/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/jpg-to-pdf/index.html"
+  to = "/jpg-to-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/jpg-to-png/index.html"
+  to = "/jpg-to-png/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/json-formatter/index.html"
+  to = "/json-formatter/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/loan-calculator/index.html"
+  to = "/loan-calculator/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/merge-pdf/index.html"
+  to = "/merge-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/nup-pdf/index.html"
+  to = "/nup-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ocr-extract-text/index.html"
+  to = "/ocr-extract-text/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/organize-pdf/index.html"
+  to = "/organize-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/password-generator/index.html"
+  to = "/password-generator/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf-to-excel/index.html"
+  to = "/pdf-to-excel/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf-to-jpg/index.html"
+  to = "/pdf-to-jpg/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf-to-pdfa/index.html"
+  to = "/pdf-to-pdfa/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf-to-ppt/index.html"
+  to = "/pdf-to-ppt/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf-to-text/index.html"
+  to = "/pdf-to-text/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf-to-word/index.html"
+  to = "/pdf-to-word/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf-tools/index.html"
+  to = "/pdf-tools/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/percentage-calculator/index.html"
+  to = "/percentage-calculator/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/png-to-jpg/index.html"
+  to = "/png-to-jpg/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ppt-to-pdf/index.html"
+  to = "/ppt-to-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/protect-pdf/index.html"
+  to = "/protect-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/qr-code-generator/index.html"
+  to = "/qr-code-generator/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/redact-pdf/index.html"
+  to = "/redact-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/remove-annotations-pdf/index.html"
+  to = "/remove-annotations-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/remove-pages-pdf/index.html"
+  to = "/remove-pages-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/repair-pdf/index.html"
+  to = "/repair-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/resize-image/index.html"
+  to = "/resize-image/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/resize-pdf/index.html"
+  to = "/resize-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/rotate-pdf/index.html"
+  to = "/rotate-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sign-pdf/index.html"
+  to = "/sign-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/split-pdf/index.html"
+  to = "/split-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/unlock-pdf/index.html"
+  to = "/unlock-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/word-counter/index.html"
+  to = "/word-counter/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/word-to-pdf/index.html"
+  to = "/word-to-pdf/"
+  status = 301
+  force = true
