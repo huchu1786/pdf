@@ -44,10 +44,10 @@ class SettingsScreen extends ConsumerWidget {
 
           // About Section
           _buildSectionHeader(context, 'About'),
-          ListTile(
-            leading: const Icon(Icons.info_outline),
-            title: const Text('App Version'),
-            subtitle: const Text('1.0.0'),
+          const ListTile(
+            leading: Icon(Icons.info_outline),
+            title: Text('App Version'),
+            subtitle: Text('1.0.0'),
           ),
           ListTile(
             leading: const Icon(Icons.privacy_tip_outlined),

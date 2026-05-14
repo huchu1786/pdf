@@ -55,7 +55,7 @@ class FilePickerSection extends ConsumerWidget {
           else
             Text(
               'Maximum ${tool.maxFilesCount} files selected',
-              style: TextStyle(
+              style: const TextStyle(
                 color: AppColors.warning,
                 fontSize: 12,
               ),
@@ -230,7 +230,7 @@ class FilePickerSection extends ConsumerWidget {
       ),
       child: Row(
         children: [
-          Icon(
+          const Icon(
             Icons.info_outline,
             size: 16,
             color: AppColors.textSecondary,
@@ -239,7 +239,7 @@ class FilePickerSection extends ConsumerWidget {
           Expanded(
             child: Text(
               'Max file size: ${tool.maxFileSizeMB}MB${tool.supportsMultipleFiles ? ' • Max ${tool.maxFilesCount} files' : ''}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 12,
                 color: AppColors.textSecondary,
               ),

@@ -80,14 +80,11 @@ class ImageService {
       }
     }
 
-    if (bestResult == null) {
-      // If we couldn't get under target, use minimum quality
-      bestResult = await FlutterImageCompress.compressWithFile(
+    bestResult ??= await FlutterImageCompress.compressWithFile(
         inputPath,
         quality: 1,
         format: format == 'png' ? CompressFormat.png : CompressFormat.jpeg,
       );
-    }
 
     if (bestResult == null) {
       throw Exception('Failed to compress image to target size');
@@ -345,6 +342,6 @@ class ImageService {
     final baseName = path.basenameWithoutExtension(inputPath);
     final timestamp = DateTime.now().millisecondsSinceEpoch;
     final cleanExt = extension.toLowerCase().replaceAll('.', '');
-    return '${baseName}${suffix}_$timestamp.$cleanExt';
+    return '$baseName${suffix}_$timestamp.$cleanExt';
   }
 }

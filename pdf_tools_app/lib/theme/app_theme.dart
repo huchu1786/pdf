@@ -42,12 +42,10 @@ class AppTheme {
         primary: AppColors.primary,
         secondary: AppColors.secondary,
         surface: AppColors.surface,
-        background: AppColors.backgroundLight,
         error: AppColors.error,
         onPrimary: AppColors.textLight,
         onSecondary: AppColors.textLight,
         onSurface: AppColors.textPrimary,
-        onBackground: AppColors.textPrimary,
         onError: AppColors.textLight,
       ),
       scaffoldBackgroundColor: AppColors.backgroundLight,
@@ -167,12 +165,10 @@ class AppTheme {
         primary: AppColors.primary,
         secondary: AppColors.secondary,
         surface: Color(0xFF1E1E1E),
-        background: AppColors.backgroundDark,
         error: AppColors.error,
         onPrimary: AppColors.textLight,
         onSecondary: AppColors.textLight,
         onSurface: AppColors.textLight,
-        onBackground: AppColors.textLight,
         onError: AppColors.textLight,
       ),
       scaffoldBackgroundColor: AppColors.backgroundDark,
@@ -258,7 +254,7 @@ class AppTextStyles {
     return GoogleFonts.nunito(
       fontSize: 28,
       fontWeight: FontWeight.bold,
-      color: Theme.of(context).colorScheme.onBackground,
+      color: Theme.of(context).colorScheme.onSurface,
     );
   }
 
@@ -266,7 +262,7 @@ class AppTextStyles {
     return GoogleFonts.nunito(
       fontSize: 22,
       fontWeight: FontWeight.bold,
-      color: Theme.of(context).colorScheme.onBackground,
+      color: Theme.of(context).colorScheme.onSurface,
     );
   }
 
@@ -274,7 +270,7 @@ class AppTextStyles {
     return GoogleFonts.nunito(
       fontSize: 18,
       fontWeight: FontWeight.w700,
-      color: Theme.of(context).colorScheme.onBackground,
+      color: Theme.of(context).colorScheme.onSurface,
     );
   }
 
@@ -282,7 +278,7 @@ class AppTextStyles {
     return GoogleFonts.nunito(
       fontSize: 14,
       fontWeight: FontWeight.normal,
-      color: Theme.of(context).colorScheme.onBackground,
+      color: Theme.of(context).colorScheme.onSurface,
     );
   }
 

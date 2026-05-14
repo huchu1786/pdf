@@ -203,8 +203,8 @@ class ResultSection extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   side: BorderSide(color: AppColors.primary.withOpacity(0.5), width: 2),
                 ),
-                icon: Icon(Icons.share_rounded, size: 20, color: AppColors.primary),
-                label: Text(
+                icon: const Icon(Icons.share_rounded, size: 20, color: AppColors.primary),
+                label: const Text(
                   'Share',
                   style: TextStyle(
                     fontSize: 15,
@@ -222,8 +222,8 @@ class ResultSection extends StatelessWidget {
           style: TextButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           ),
-          icon: Icon(Icons.refresh_rounded, color: AppColors.textSecondary),
-          label: Text(
+          icon: const Icon(Icons.refresh_rounded, color: AppColors.textSecondary),
+          label: const Text(
             'Process Another File',
             style: TextStyle(
               color: AppColors.textSecondary,

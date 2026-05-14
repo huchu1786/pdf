@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:pdf_tools_app/models/tool_model.dart';
 
 class ToolService {

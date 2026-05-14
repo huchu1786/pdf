@@ -68,7 +68,7 @@ class ToolInfoSection extends StatelessWidget {
                 child: Center(
                   child: Text(
                     '${index + 1}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       color: AppColors.primary,

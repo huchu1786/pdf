@@ -97,7 +97,7 @@ class RecentScreen extends ConsumerWidget {
             color: AppColors.primary.withOpacity(0.1),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Icon(
+          child: const Icon(
             Icons.insert_drive_file,
             color: AppColors.primary,
           ),
@@ -113,7 +113,7 @@ class RecentScreen extends ConsumerWidget {
             Text(file.toolName),
             Text(
               '${_formatDate(file.date)} • ${_formatFileSize(file.fileSize)}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 12,
                 color: AppColors.textSecondary,
               ),
