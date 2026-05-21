@@ -40,7 +40,7 @@ function buildPages() {
     // 5. Build Related HTML
     const relatedHtml = t.related.map(rid => {
       const relData = TOOLS_SEO.find(x => x.id === rid);
-      return relData ? `<a href="../${rid}/index.html" class="related-chip">${relData.h1}</a>` : '';
+      return relData ? `<a href="../${rid}/" class="related-chip">${relData.h1}</a>` : '';
     }).join('');
 
     // 6. Replace Tags in Template
