@@ -7,7 +7,7 @@ from pathlib import Path
 
 def load_tools_data():
     """Load tools data from tools-data.js"""
-    with open('tools-data.js', 'r') as f:
+    with open('tools-data.js', 'r', encoding='utf-8') as f:
         content = f.read()
     
     # Extract the entire TOOLS_SEO array content
@@ -126,20 +126,20 @@ def generate_tool_page(tool_data):
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../shared.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1303178479491171" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4413784450447798" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav class="site-nav" id="siteNav">
-        <a href="../index.html" class="nav-logo"><div class="nav-logo-ic">P</div>i<span>Love</span>PDFs</a>
+        <a href="../" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
         <div class="nav-mid">
-            <a href="../index.html#tools" class="nav-link">All Tools</a>
-            <a href="../features.html" class="nav-link">Features</a>
-            <a href="../blog.html" class="nav-link">Blog</a>
+            <a href="../all-tools.html" class="nav-link">All Tools</a>
+            <a href="../all-tools.html" class="nav-link">PDF Tools</a>
+            <a href="../all-tools.html" class="nav-link">Image Tools</a>
         </div>
         <div class="nav-right">
             <button class="theme-btn" id="themeBtn">🌙</button>
-            <a href="mailto:huchusim@gmail.com" class="nav-btn-o">✉️ Contact</a>
-            <a href="../index.html" class="nav-btn-f">← Tools</a>
+            <a href="../contact.html" class="nav-btn-o">Contact</a>
+            <a href="../" class="nav-btn-f">← All Tools</a>
         </div>
     </nav>
 
@@ -202,7 +202,7 @@ def generate_tool_page(tool_data):
         <div class="related-tools">
             <h3>Related Tools</h3>
             <div class="tools-grid">
-                {''.join([f'<div class="tool-card" onclick="window.location.href=\'../{related}.html\'"><div class="tool-icon">🔧</div><h4>{related.replace("-", " ").title()}</h4></div>' for related in tool_data.get('related', ['compress-pdf', 'split-pdf', 'merge-pdf'])[:6]])}
+                {''.join([f'<div class="tool-card" onclick="window.location.href=\'../{related}/\'"><div class="tool-icon">🔧</div><h4>{related.replace("-", " ").title()}</h4></div>' for related in tool_data.get('related', ['compress-pdf', 'split-pdf', 'merge-pdf'])[:6]])}
             </div>
         </div>
     </main>
@@ -210,12 +210,19 @@ def generate_tool_page(tool_data):
     <footer class="site-footer">
         <div class="footer-grid">
             <div class="footer-brand">
-                <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>i<span>Love</span>PDFs</div>
+                <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
                 <div class="footer-tagline">Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.</div>
+                <div class="footer-contact"><a href="../contact.html">Contact us</a></div>
+                <div class="footer-badges"><span class="fbadge">&#128274; SSL</span><span class="fbadge">&#9889; WebAssembly</span><span class="fbadge">&#10022; Always Free</span></div>
             </div>
-            <div><div class="footer-col-title">Product</div><div class="footer-links"><a href="../index.html">Home</a><a href="../features.html">Features</a><a href="../all-tools.html">Tools</a></div></div>
-            <div><div class="footer-col-title">Resources</div><div class="footer-links"><a href="../blog.html">Blog</a><a href="../faq.html">FAQ</a></div></div>
-            <div><div class="footer-col-title">Legal</div><div class="footer-links"><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a></div></div>
+            <div><div class="footer-col-title">Product</div><div class="footer-links"><a href="../">Home</a><a href="../features.html">Features</a><a href="../pricing.html">Pricing</a><a href="../all-tools.html">Tools</a><a href="../faq.html">FAQ</a></div></div>
+            <div><div class="footer-col-title">Solutions</div><div class="footer-links"><a href="../business.html">Business</a><a href="../education.html">Education</a></div></div>
+            <div><div class="footer-col-title">Legal</div><div class="footer-links"><a href="../security.html">Security</a><a href="../privacy.html">Privacy policy</a><a href="../terms.html">Terms & conditions</a><a href="../cookies.html">Cookies</a></div></div>
+            <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="../about.html">About us</a><a href="../contact.html">Contact us</a><a href="../blog.html">Blog</a><a href="../press.html">Press</a></div></div>
+        </div>
+        <div class="footer-bottom" style="max-width:1240px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+            <div class="footer-copy" style="font-size:0.8rem;color:var(--muted)">&copy; LovePDFs 2026 &reg; · Private & Local Processing</div>
+            <div class="footer-sitemap"><a href="../sitemap.xml" style="color:var(--muted);font-size:0.82rem;text-decoration:none;transition:color 0.2s">Sitemap</a></div>
         </div>
     </footer>
 
@@ -253,19 +260,19 @@ def main():
             
             # Check if page already exists
             if tool_dir.exists() and (tool_dir / "index.html").exists():
-                print(f"✓ {tool_id} - page already exists")
+                print(f"[OK] {tool_id} - page already exists")
                 continue
             
             # Generate page
             output_file = generate_tool_page(tool)
             generated_count += 1
-            print(f"✓ Generated: {output_file}")
+            print(f"[NEW] Generated: {output_file}")
         
-        print(f"\n🎉 Generated {generated_count} new tool pages")
-        print(f"📁 Total tools: {len(tools)}")
+        print(f"\nGenerated {generated_count} new tool pages")
+        print(f"Total tools: {len(tools)}")
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"[ERROR] Error: {e}")
         import traceback
         traceback.print_exc()
 

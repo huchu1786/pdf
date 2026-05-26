@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 class MaintenanceScheduler:
-    def __init__(self, base_dir="/home/rameez/Downloads/ilovepdfs"):
+    def __init__(self, base_dir="."):
         self.base_dir = Path(base_dir)
         self.log_file = self.base_dir / "maintenance_log.json"
         self.load_maintenance_log()
@@ -125,7 +125,7 @@ class MaintenanceScheduler:
     
     def generate_sitemap(self):
         """Generate XML sitemap"""
-        base_url = "https://lovepdfs.com"
+        base_url = "https://lovepdfs.in"
         today = datetime.now().strftime("%Y-%m-%d")
         
         urls = [
@@ -136,13 +136,13 @@ class MaintenanceScheduler:
     <priority>1.0</priority>
   </url>""",
             f"""  <url>
-    <loc>{base_url}/all-tools.html</loc>
+    <loc>{base_url}/all-tools</loc>
     <lastmod>{today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>""",
             f"""  <url>
-    <loc>{base_url}/blog.html</loc>
+    <loc>{base_url}/blog</loc>
     <lastmod>{today}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>

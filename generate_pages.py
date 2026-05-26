@@ -2,18 +2,18 @@
 """Generates all missing static pages and calculator tool pages for LovePDFs."""
 import os
 
-ADSENSE = """<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1303178479491171" crossorigin="anonymous"></script>"""
+ADSENSE = """<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4413784450447798" crossorigin="anonymous"></script>"""
 
 NAV = """<nav class="site-nav" id="siteNav">
-  <a href="{home}index.html" class="nav-logo"><div class="nav-logo-ic">P</div>i<span>Love</span>PDFs</a>
+  <a href="{home}index.html" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
   <div class="nav-mid">
-    <a href="{home}#tools" class="nav-link">All Tools</a>
+    <a href="{home}index.html#tools" class="nav-link">All Tools</a>
     <a href="{home}features.html" class="nav-link">Features</a>
     <a href="{home}pricing.html" class="nav-link">Pricing</a>
   </div>
   <div class="nav-right">
     <button class="theme-btn" id="themeBtn">🌙</button>
-    <a href="mailto:huchusim@gmail.com" class="nav-btn-o">✉️ Contact</a>
+    <a href="{home}contact.html" class="nav-btn-o">Contact</a>
     <a href="{home}index.html" class="nav-btn-f">← Tools</a>
   </div>
 </nav>"""
@@ -21,9 +21,9 @@ NAV = """<nav class="site-nav" id="siteNav">
 FOOTER = """<footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>i<span>Love</span>PDFs</div>
+      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
       <div class="footer-tagline">Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.</div>
-      <div class="footer-contact">📧 <a href="mailto:huchusim@gmail.com">huchusim@gmail.com</a></div>
+      <div class="footer-contact"><a href="{home}contact.html">Contact us</a></div>
       <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>
     </div>
     <div><div class="footer-col-title">Product</div><div class="footer-links"><a href="{home}index.html">Home</a><a href="{home}features.html">Features</a><a href="{home}pricing.html">Pricing</a><a href="{home}all-tools.html">Tools</a><a href="{home}faq.html">FAQ</a></div></div>
@@ -54,8 +54,8 @@ FOOTER = """<footer class="site-footer">
     }});
   </script>
   <div class="footer-bottom" style="max-width:1240px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
-    <div class="footer-copy" style="font-size:0.85rem;color:var(--muted)">&copy; LovePDFs 2026 &reg; · Private & Local Processing · <a href="mailto:huchusim@gmail.com" style="color:var(--red);font-weight:600">huchusim@gmail.com</a></div>
-    <div class="footer-socials"><a href="#" class="soc-btn" style="text-decoration:none;margin-left:8px">𝕏</a><a href="#" class="soc-btn" style="text-decoration:none;margin-left:8px">in</a><a href="#" class="soc-btn" style="text-decoration:none;margin-left:8px">gh</a></div>
+    <div class="footer-copy" style="font-size:0.85rem;color:var(--muted)">&copy; LovePDFs 2026 &reg; · Private & Local Processing</div>
+    <div class="footer-sitemap"><a href="{home}sitemap.xml" style="color:var(--muted);font-size:0.82rem;text-decoration:none;transition:color 0.2s">Sitemap</a></div>
   </div>
 </footer>"""
 
@@ -140,7 +140,7 @@ faq_items = [
     ("Can I convert between file formats?", "Yes! We support PDF to Word, PDF to JPG, JPG to PDF, Word to PDF, HTML to PDF, and more."),
     ("How do I compress a PDF?", "Go to Compress PDF, upload your file, choose a quality preset (70%, 50%, or 25%), and download the result."),
     ("Do you use cookies?", "We use minimal essential cookies for theme preferences and history. See our Cookies page for details."),
-    ("Who made LovePDFs?", "LovePDFs was built by an independent developer passionate about free, privacy-first tools. Contact us at huchusim@gmail.com."),
+    ("Who made LovePDFs?", "LovePDFs was built by an independent developer passionate about free, privacy-first tools. You can reach out through our contact page."),
 ]
 faq_body = "\n".join(
     f"""<div class="content-card">
@@ -293,7 +293,7 @@ press_body = """
     ("🌐", "Audience", "Students, professionals, SMBs, and everyday users who need reliable PDF tools without cost or sign-up friction."),
     ("📊", "Key Stats", "40+ tools. Zero file uploads. Zero tracking. 100% free. Works in any modern browser."),
     ("🎨", "Brand", "LovePDFs uses a red (#E8321A) and white colour palette with Fraunces serif and Instrument Sans typefaces."),
-    ("📧", "Press Contact", 'For interviews, data, or asset requests: <a href="mailto:huchusim@gmail.com" style="color:var(--red)">huchusim@gmail.com</a>'),
+    ("📧", "Press Contact", 'For interviews, data, or asset requests, please visit our <a href="contact.html" style="color:var(--red)">Contact Page</a>.'),
 ]]) + """
 <div class="content-card">
   <h2 class="section-h">Our Elevator Pitch</h2>
@@ -398,7 +398,7 @@ age_seo = """<div class="info-grid">
 </div>"""
 
 os.makedirs("age-calculator", exist_ok=True)
-with open("age-calculator/index.html", "w") as f:
+with open("age-calculator/index.html", "w", encoding="utf-8") as f:
     f.write(calc_page("age-calculator", "Age Calculator | LovePDFs — Calculate Your Exact Age",
         "Free online age calculator. Enter your date of birth and calculate your exact age in years, months, weeks, and days.",
         "Free Calculator", "Age Calculator",
@@ -450,7 +450,7 @@ wc_seo = """<div class="info-grid">
 </div>"""
 
 os.makedirs("word-counter", exist_ok=True)
-with open("word-counter/index.html", "w") as f:
+with open("word-counter/index.html", "w", encoding="utf-8") as f:
     f.write(calc_page("word-counter", "Word Counter | LovePDFs — Free Online Word Count Tool",
         "Free online word counter. Count words, characters, sentences, paragraphs and reading time instantly.",
         "Free Tool", "Word Counter",
@@ -504,7 +504,7 @@ pct_seo = """<div class="info-grid">
 </div>"""
 
 os.makedirs("percentage-calculator", exist_ok=True)
-with open("percentage-calculator/index.html", "w") as f:
+with open("percentage-calculator/index.html", "w", encoding="utf-8") as f:
     f.write(calc_page("percentage-calculator", "Percentage Calculator | LovePDFs — Free Online % Calculator",
         "Free online percentage calculator. Calculate X% of Y, find what percent X is of Y, and compute percentage change.",
         "Free Calculator", "Percentage Calculator",
@@ -571,7 +571,7 @@ gst_seo = """<div class="info-grid">
 </div>"""
 
 os.makedirs("gst-calculator", exist_ok=True)
-with open("gst-calculator/index.html", "w") as f:
+with open("gst-calculator/index.html", "w", encoding="utf-8") as f:
     f.write(calc_page("gst-calculator", "GST Calculator | LovePDFs — Free Online GST Calculator India",
         "Free online GST calculator for India. Calculate GST exclusive and inclusive, CGST, SGST, IGST for all slab rates.",
         "Free Calculator", "GST Calculator",
@@ -580,7 +580,7 @@ with open("gst-calculator/index.html", "w") as f:
 
 # ─── Write static pages ───
 for filename, html in pages.items():
-    with open(filename, "w") as f:
+    with open(filename, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"Created {filename}")
 

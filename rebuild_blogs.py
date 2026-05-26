@@ -168,7 +168,7 @@ TEMPLATE = """<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared.css">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1303178479491171" crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4413784450447798" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {{"@context":"https://schema.org","@type":"Article","headline":"{title}","url":"https://lovepdfs.in/blog-posts/{slug}","description":"{meta_desc}","datePublished":"{date_iso}","author":{{"@type":"Organization","name":"LovePDFs"}},"publisher":{{"@type":"Organization","name":"LovePDFs","logo":{{"@type":"ImageObject","url":"https://lovepdfs.in/favicon.png"}}}}}}
 </script>
@@ -196,7 +196,7 @@ TEMPLATE = """<!DOCTYPE html>
   </section>
 
   <div class="ad-banner">
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1303178479491171" data-ad-slot="7744112203" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4413784450447798" data-ad-slot="7744112203" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({{}});</script>
   </div>
 
@@ -253,7 +253,7 @@ TEMPLATE = """<!DOCTYPE html>
   </div>
 
   <div class="ad-banner">
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1303178479491171" data-ad-slot="7744112204" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4413784450447798" data-ad-slot="7744112204" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({{}});</script>
   </div>
 </div>
@@ -263,11 +263,17 @@ TEMPLATE = """<!DOCTYPE html>
     <div class="footer-brand">
       <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
       <div class="footer-tagline">Every PDF &amp; Image tool you'll ever need &mdash; 100% free, private, running entirely in your browser.</div>
+      <div class="footer-contact"><a href="../contact.html">Contact us</a></div>
       <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>
     </div>
-    <div><div class="footer-col-title">Product</div><div class="footer-links"><a href="../index.html">Home</a><a href="../features.html">Features</a><a href="../all-tools.html">Tools</a><a href="../faq.html">FAQ</a></div></div>
-    <div><div class="footer-col-title">Resources</div><div class="footer-links"><a href="../blog.html">Blog</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div></div>
-    <div><div class="footer-col-title">Legal</div><div class="footer-links"><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../security.html">Security</a></div></div>
+    <div><div class="footer-col-title">Product</div><div class="footer-links"><a href="../index.html">Home</a><a href="../features.html">Features</a><a href="../pricing.html">Pricing</a><a href="../all-tools.html">Tools</a><a href="../faq.html">FAQ</a></div></div>
+    <div><div class="footer-col-title">Solutions</div><div class="footer-links"><a href="../business.html">Business</a><a href="../education.html">Education</a></div></div>
+    <div><div class="footer-col-title">Legal</div><div class="footer-links"><a href="../security.html">Security</a><a href="../privacy.html">Privacy policy</a><a href="../terms.html">Terms & conditions</a><a href="../cookies.html">Cookies</a></div></div>
+    <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="../about.html">About us</a><a href="../contact.html">Contact us</a><a href="../blog.html">Blog</a><a href="../press.html">Press</a></div></div>
+  </div>
+  <div class="footer-bottom" style="max-width:1240px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+    <div class="footer-copy" style="font-size:0.85rem;color:var(--muted)">&copy; LovePDFs 2026 &reg; · Private & Local Processing</div>
+    <div class="footer-sitemap"><a href="../sitemap.xml" style="color:var(--muted);font-size:0.82rem;text-decoration:none;transition:color 0.2s">Sitemap</a></div>
   </div>
 </footer>
 

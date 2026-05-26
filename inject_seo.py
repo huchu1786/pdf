@@ -39,7 +39,7 @@ def process_file(filepath):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://lovepdfs.com/">
+<meta property="og:url" content="https://lovepdfs.in/">
 <meta property="og:site_name" content="LovePDFs">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">

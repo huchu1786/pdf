@@ -81,11 +81,11 @@ class BlogManager:
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../shared.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1303178479491171" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4413784450447798" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav class="site-nav" id="siteNav">
-        <a href="../index.html" class="nav-logo"><div class="nav-logo-ic">P</div>i<span>Love</span>PDFs</a>
+        <a href="../index.html" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
         <div class="nav-mid">
             <a href="../index.html#tools" class="nav-link">All Tools</a>
             <a href="../features.html" class="nav-link">Features</a>
@@ -93,7 +93,7 @@ class BlogManager:
         </div>
         <div class="nav-right">
             <button class="theme-btn" id="themeBtn">🌙</button>
-            <a href="mailto:huchusim@gmail.com" class="nav-btn-o">✉️ Contact</a>
+            <a href="../contact.html" class="nav-btn-o">Contact</a>
             <a href="../blog.html" class="nav-btn-f">← Blog</a>
         </div>
     </nav>
@@ -137,12 +137,19 @@ class BlogManager:
     <footer class="site-footer">
         <div class="footer-grid">
             <div class="footer-brand">
-                <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>i<span>Love</span>PDFs</div>
+                <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
                 <div class="footer-tagline">Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.</div>
+                <div class="footer-contact"><a href="../contact.html">Contact us</a></div>
+                <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>
             </div>
-            <div><div class="footer-col-title">Product</div><div class="footer-links"><a href="../index.html">Home</a><a href="../features.html">Features</a><a href="../all-tools.html">Tools</a></div></div>
-            <div><div class="footer-col-title">Resources</div><div class="footer-links"><a href="../blog.html">Blog</a><a href="../faq.html">FAQ</a></div></div>
-            <div><div class="footer-col-title">Legal</div><div class="footer-links"><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a></div></div>
+            <div><div class="footer-col-title">Product</div><div class="footer-links"><a href="../index.html">Home</a><a href="../features.html">Features</a><a href="../pricing.html">Pricing</a><a href="../all-tools.html">Tools</a><a href="../faq.html">FAQ</a></div></div>
+            <div><div class="footer-col-title">Solutions</div><div class="footer-links"><a href="../business.html">Business</a><a href="../education.html">Education</a></div></div>
+            <div><div class="footer-col-title">Legal</div><div class="footer-links"><a href="../security.html">Security</a><a href="../privacy.html">Privacy policy</a><a href="../terms.html">Terms & conditions</a><a href="../cookies.html">Cookies</a></div></div>
+            <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="../about.html">About us</a><a href="../contact.html">Contact us</a><a href="../blog.html">Blog</a><a href="../press.html">Press</a></div></div>
+        </div>
+        <div class="footer-bottom" style="max-width:1240px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+            <div class="footer-copy" style="font-size:0.85rem;color:var(--muted)">&copy; LovePDFs 2026 &reg; · Private & Local Processing</div>
+            <div class="footer-sitemap"><a href="../sitemap.xml" style="color:var(--muted);font-size:0.82rem;text-decoration:none;transition:color 0.2s">Sitemap</a></div>
         </div>
     </footer>
 

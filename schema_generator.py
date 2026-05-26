@@ -9,9 +9,9 @@ from datetime import datetime
 from pathlib import Path
 
 class SchemaGenerator:
-    def __init__(self, base_dir="/home/rameez/Downloads/ilovepdfs"):
+    def __init__(self, base_dir="."):
         self.base_dir = Path(base_dir)
-        self.site_url = "https://lovepdfs.com"
+        self.site_url = "https://lovepdfs.in"
     
     def generate_organization_schema(self):
         """Generate Organization schema markup"""
@@ -27,7 +27,7 @@ class SchemaGenerator:
             ],
             "contactPoint": {
                 "@type": "ContactPoint",
-                "email": "huchusim@gmail.com",
+                "email": "contact@lovepdfs.in",
                 "contactType": "customer service"
             },
             "founder": {

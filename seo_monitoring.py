@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 class SEOMonitor:
-    def __init__(self, base_dir="/home/rameez/Downloads/ilovepdfs"):
+    def __init__(self, base_dir="."):
         self.base_dir = Path(base_dir)
         self.seo_data_file = self.base_dir / "seo_data.json"
         self.reports_dir = self.base_dir / "seo_reports"
@@ -46,14 +46,14 @@ class SEOMonitor:
         
         return {
             "sitemap_generated": True,
-            "sitemap_url": "https://lovepdfs.com/sitemap.xml",
+            "sitemap_url": "https://lovepdfs.in/sitemap.xml",
             "pages_count": sitemap_content.count("<url>"),
             "last_updated": datetime.now().isoformat()
         }
     
     def generate_sitemap(self):
         """Generate comprehensive XML sitemap"""
-        base_url = "https://lovepdfs.com"
+        base_url = "https://lovepdfs.in"
         today = datetime.now().strftime("%Y-%m-%d")
         
         urls = [
@@ -118,7 +118,7 @@ class SEOMonitor:
 Allow: /
 
 # Sitemap location
-Sitemap: https://lovepdfs.com/sitemap.xml
+Sitemap: https://lovepdfs.in/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
@@ -133,7 +133,7 @@ Disallow: /*.tmp$
         with open(robots_file, 'w') as f:
             f.write(robots_content)
         
-        return {"robots_txt_generated": True, "location": "https://lovepdfs.com/robots.txt"}
+        return {"robots_txt_generated": True, "location": "https://lovepdfs.in/robots.txt"}
     
     def analyze_site_structure(self):
         """Analyze site structure for SEO"""
@@ -336,7 +336,7 @@ Disallow: /*.tmp$
 
 ## Step 2: Verify Your Website
 1. Select "URL prefix" property type
-2. Enter: https://lovepdfs.com
+2. Enter: https://lovepdfs.in
 3. Choose verification method (recommended: HTML file upload)
 4. Download the verification HTML file
 5. Upload it to your website root directory
