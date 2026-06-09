@@ -124,8 +124,6 @@
 
     <!-- RIGHT ACTIONS -->
     <div class="nav-right">
-      <button class="ilv-login-link" onclick="alert('LovePDFs is 100% free — no login required!'); return false;">Login</button>
-      <button class="ilv-signup-btn" onclick="alert('LovePDFs is 100% free — no account needed!'); return false;">Sign up free</button>
       <!-- Hamburger for mobile -->
       <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
