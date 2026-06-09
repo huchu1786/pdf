@@ -120,17 +120,18 @@ def main():
             # Enhance the tool page
             if enhance_tool_page(tool_id, related_tools):
                 enhanced_count += 1
-                print(f"✓ Enhanced: {tool_id} (linked to {len(related_tools)} tools)")
+                print(f"[SUCCESS] Enhanced: {tool_id} (linked to {len(related_tools)} tools)")
             else:
-                print(f"⚠ Skipped: {tool_id} (file not found or no related section)")
+                print(f"[WARNING] Skipped: {tool_id} (file not found or no related section)")
         
-        print(f"\n🎉 Enhanced {enhanced_count} tool pages with internal linking")
-        print("🔗 Each page now links to 4-6 related tools for better SEO")
+        print(f"\n[DONE] Enhanced {enhanced_count} tool pages with internal linking")
+        print("[INFO] Each page now links to 4-6 related tools for better SEO")
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"[ERROR] Error: {e}")
         import traceback
         traceback.print_exc()
 
 if __name__ == "__main__":
     main()
+

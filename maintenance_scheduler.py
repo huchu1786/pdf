@@ -7,6 +7,7 @@ Run this script regularly to maintain and enhance your site
 import os
 import subprocess
 import json
+import sys
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -19,7 +20,7 @@ class MaintenanceScheduler:
     def load_maintenance_log(self):
         """Load maintenance history"""
         if self.log_file.exists():
-            with open(self.log_file, 'r') as f:
+            with open(self.log_file, 'r', encoding='utf-8') as f:
                 self.log = json.load(f)
         else:
             self.log = {
@@ -36,7 +37,7 @@ class MaintenanceScheduler:
     
     def save_maintenance_log(self):
         """Save maintenance history"""
-        with open(self.log_file, 'w') as f:
+        with open(self.log_file, 'w', encoding='utf-8') as f:
             json.dump(self.log, f, indent=2, default=str)
     
     def log_task(self, task_name, success=True, details=""):
@@ -57,10 +58,10 @@ class MaintenanceScheduler:
     
     def run_script(self, script_name, description):
         """Run a maintenance script and log results"""
-        print(f"🔄 Running: {description}")
+        print(f"[RUN] Running: {description}")
         try:
             result = subprocess.run(
-                ["python3", script_name],
+                [sys.executable, script_name],
                 cwd=self.base_dir,
                 capture_output=True,
                 text=True,
@@ -68,21 +69,21 @@ class MaintenanceScheduler:
             )
             
             if result.returncode == 0:
-                print(f"✅ Success: {description}")
+                print(f"[SUCCESS] Success: {description}")
                 self.log_task(script_name, True, result.stdout)
                 return True
             else:
-                print(f"❌ Error: {description}")
+                print(f"[ERROR] Error: {description}")
                 print(f"Error output: {result.stderr}")
                 self.log_task(script_name, False, result.stderr)
                 return False
                 
         except subprocess.TimeoutExpired:
-            print(f"⏰ Timeout: {description}")
+            print(f"[TIMEOUT] Timeout: {description}")
             self.log_task(script_name, False, "Script timed out after 5 minutes")
             return False
         except Exception as e:
-            print(f"💥 Exception: {description} - {e}")
+            print(f"[EXCEPTION] Exception: {description} - {e}")
             self.log_task(script_name, False, str(e))
             return False
     
@@ -108,75 +109,85 @@ class MaintenanceScheduler:
         )
     
     def create_daily_blog_post(self):
-        """Create a new blog post"""
-        return self.run_script(
-            "blog_manager.py",
-            "Create daily blog post"
-        )
+        """Create a new blog post (disabled for AdSense compliance)"""
+        print("[INFO] Programmatic blog creation is disabled to comply with Google AdSense quality guidelines.")
+        return True
     
     def update_sitemap(self):
         """Update sitemap with latest pages"""
         sitemap_content = self.generate_sitemap()
         sitemap_file = self.base_dir / "sitemap.xml"
-        with open(sitemap_file, 'w') as f:
+        with open(sitemap_file, 'w', encoding='utf-8') as f:
             f.write(sitemap_content)
-        print("✅ Updated sitemap.xml")
+        print("[SUCCESS] Updated sitemap.xml")
         return True
     
     def generate_sitemap(self):
-        """Generate XML sitemap"""
+        """Generate XML sitemap including only the 30 authorized indexable pages"""
         base_url = "https://lovepdfs.in"
-        today = datetime.now().strftime("%Y-%m-%d")
-        
-        urls = [
-            f"""  <url>
-    <loc>{base_url}/</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>""",
-            f"""  <url>
-    <loc>{base_url}/all-tools</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>""",
-            f"""  <url>
-    <loc>{base_url}/blog</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>"""
+        existing_urls = set()
+        existing_urls.add(base_url + "/")
+                    
+        # 2. Add authorized static informational pages (9 pages)
+        static_pages = [
+            "about",
+            "contact",
+            "privacy",
+            "terms",
+            "security",
+            "faq",
+            "pricing",
+            "features",
+            "blog"
         ]
+        for page in static_pages:
+            existing_urls.add(f"{base_url}/{page}")
+            
+        # 3. Add 16 major tools (only if index.html exists and has index robots tag)
+        MAJOR_TOOLS = {
+            'merge-pdf', 'compress-pdf', 'split-pdf', 'pdf-to-word', 'word-to-pdf',
+            'sign-pdf', 'protect-pdf', 'unlock-pdf', 'jpg-to-pdf', 'pdf-to-jpg',
+            'edit-pdf', 'compress-image', 'png-to-jpg', 'jpg-to-png', 'image-to-pdf',
+            'pdf-to-text'
+        }
+        for tool_name in MAJOR_TOOLS:
+            tool_dir = self.base_dir / tool_name
+            index_file = tool_dir / "index.html"
+            if index_file.exists():
+                # Let's verify it is set to index
+                with open(index_file, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                if 'content="index, follow"' in content:
+                    existing_urls.add(f"{base_url}/{tool_name}/")
+            
+        # 4. Add the 4 indexable blog posts
+        INDEXABLE_BLOG_SLUGS = {
+            'merge-pdfs', 'reduce-pdf-size', 'electronic-signatures', 'password-security'
+        }
+        for slug in INDEXABLE_BLOG_SLUGS:
+            blog_file = self.base_dir / f"blog-{slug}.html"
+            if blog_file.exists():
+                # Verify robots tag is index, follow
+                with open(blog_file, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                if 'content="index, follow"' in content:
+                    existing_urls.add(f"{base_url}/blog-{slug}")
+                
+        sorted_urls = list(existing_urls)
+        def sort_key(url):
+            if url == base_url + "/":
+                return ""
+            return url
+        sorted_urls.sort(key=sort_key)
         
-        # Add tool pages
-        tools_dir = self.base_dir
-        for item in tools_dir.iterdir():
-            if item.is_dir() and (item / "index.html").exists():
-                urls.append(f"""  <url>
-    <loc>{base_url}/{item.name}/</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>""")
+        xml_content = '<?xml version="1.0" encoding="UTF-8"?>\n'
+        xml_content += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        for url in sorted_urls:
+            xml_content += f'  <url>\n    <loc>{url}</loc>\n  </url>\n'
+        xml_content += '</urlset>'
         
-        # Add blog posts
-        blog_dir = self.base_dir / "blog-posts"
-        if blog_dir.exists():
-            for post_file in blog_dir.glob("*.html"):
-                urls.append(f"""  <url>
-    <loc>{base_url}/blog-posts/{post_file.stem}</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>""")
-        
-        sitemap = f"""<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{chr(10).join(urls)}
-</urlset>"""
-        
-        return sitemap
+        return xml_content
+
     
     def generate_maintenance_report(self):
         """Generate a maintenance report"""
@@ -210,7 +221,7 @@ class MaintenanceScheduler:
     
     def run_full_maintenance(self):
         """Run complete maintenance routine"""
-        print("🚀 Starting LovePDFs maintenance routine...")
+        print("[INFO] Starting LovePDFs maintenance routine...")
         print("=" * 50)
         
         success_count = 0
@@ -243,7 +254,7 @@ class MaintenanceScheduler:
         # Task 6: Generate report
         report = self.generate_maintenance_report()
         report_file = self.base_dir / "maintenance_report.md"
-        with open(report_file, 'w') as f:
+        with open(report_file, 'w', encoding='utf-8') as f:
             f.write(report)
         success_count += 1
         
@@ -251,8 +262,8 @@ class MaintenanceScheduler:
         self.save_maintenance_log()
         
         print("=" * 50)
-        print(f"🎉 Maintenance complete: {success_count}/{total_tasks} tasks successful")
-        print(f"📊 Report saved to: maintenance_report.md")
+        print(f"[INFO] Maintenance complete: {success_count}/{total_tasks} tasks successful")
+        print(f"[INFO] Report saved to: maintenance_report.md")
         
         return success_count == total_tasks
 

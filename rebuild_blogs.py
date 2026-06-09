@@ -166,7 +166,7 @@ TEMPLATE = """<!DOCTYPE html>
 <link rel="icon" type="image/png" sizes="512x512" href="../favicon.png">
 <link rel="apple-touch-icon" href="../favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4413784450447798" crossorigin="anonymous"></script>
 <script type="application/ld+json">
@@ -175,14 +175,19 @@ TEMPLATE = """<!DOCTYPE html>
 </head>
 <body>
 <nav class="site-nav" id="siteNav">
-  <a href="../index.html" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-heart">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    love<span>pdfs</span>
+  </a>
   <div class="nav-mid">
     <a href="../index.html" class="nav-link">Home</a>
     <a href="../all-tools.html" class="nav-link">All Tools</a>
     <a href="../blog.html" class="nav-link">Blog</a>
   </div>
   <div class="nav-right">
-    <button class="theme-btn" id="themeBtn">🌙</button>
+    
     <a href="../contact.html" class="nav-btn-o">Contact</a>
     <a href="../blog.html" class="nav-btn-f">← Blog</a>
   </div>
@@ -261,7 +266,12 @@ TEMPLATE = """<!DOCTYPE html>
 <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
+      <div class="footer-logo">
+        <div class="nav-logo-heart" style="width:24px;height:24px;display:inline-flex;color:#E53E3E;">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+        love<span>pdfs</span>
+      </div>
       <div class="footer-tagline">Every PDF &amp; Image tool you'll ever need &mdash; 100% free, private, running entirely in your browser.</div>
       <div class="footer-contact"><a href="../contact.html">Contact us</a></div>
       <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>

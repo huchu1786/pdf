@@ -1,105 +1,284 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="robots" content="noindex, follow">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y3DBMD92DV"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-Y3DBMD92DV');
 </script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>OCR vs Text Extraction: What's the Difference? | LovePDFs Blog</title>
-<meta name="description" content="Not all text extraction is the same. We explain OCR vs text layers."/>
+<title>OCR vs. Direct Text Extraction: Convert Scanned PDFs to Text | LovePDFs Blog</title>
+<meta name="description" content="Deep dive into PDF text extraction. Learn the differences between native digital PDFs and scanned images, how OCR technology works, and how to maximize accuracy."/>
 <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4413784450447798" crossorigin="anonymous"></script>
-
-    <link rel="canonical" href="https://lovepdfs.in/blog-ocr-vs-text-extraction" />
+<link rel="canonical" href="https://lovepdfs.in/blog-ocr-vs-text-extraction" />
+<style>
+  .premium-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    text-align: left;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border);
+  }
+  .premium-table th {
+    background-color: var(--bg2);
+    color: var(--text);
+    font-weight: 700;
+    padding: 12px 15px;
+    border-bottom: 2px solid var(--border);
+  }
+  .premium-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text2);
+  }
+  .premium-table tr:hover {
+    background-color: var(--bg2);
+  }
+  .toc-container {
+    background-color: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .toc-title {
+    font-weight: 800;
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+  .toc-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  .toc-list li {
+    margin-bottom: 0.5rem;
+  }
+  .toc-list a {
+    color: var(--red);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .toc-list a:hover {
+    text-decoration: underline;
+  }
+  .faq-section {
+    margin-top: 3rem;
+    border-top: 2px solid var(--border);
+    padding-top: 2rem;
+  }
+  .faq-item {
+    margin-bottom: 1.5rem;
+  }
+  .faq-question {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+  .faq-answer {
+    color: var(--text2);
+    line-height: 1.7;
+  }
+</style>
 </head>
-<body>
+<body class="page-wrap">
 <nav class="site-nav" id="siteNav">
-  <a href="/" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
+  <a href="/" class="nav-logo" style="font-weight: 800; font-size: 1.5rem; color: #1e2229; display: inline-flex; align-items: center; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none;">
+  I <span class="nav-logo-heart" style="color: #e8321a; margin: 0 4px; display: inline-flex; align-items: center; vertical-align: middle;">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+  </span> PDFs
+</a>
   <div class="nav-mid">
-    <a href="#tools" class="nav-link">All Tools</a>
+    <a href="all-tools.html" class="nav-link">All Tools</a>
     <a href="features.html" class="nav-link">Features</a>
-    <a href="pricing.html" class="nav-link">Pricing</a>
+    <a href="blog.html" class="nav-link">Blog</a>
   </div>
   <div class="nav-right">
-    <button class="theme-btn" id="themeBtn">🌙</button>
     <a href="contact.html" class="nav-btn-o">Contact</a>
-    <a href="/" class="nav-btn-f">← Tools</a>
+    <a href="blog.html" class="nav-btn-f">← Blog</a>
   </div>
 </nav>
 <div class="page-wrap">
   <section class="inner-hero">
     <div class="inner-hero-eyebrow">LovePDFs Blog</div>
-    <h1>Read the Article</h1>
+    <h1>OCR vs Text Extraction</h1>
     <p>Useful tips, tricks, and guides.</p>
   </section>
   <div class="content-section narrow">
-
     <div class="content-section" style="max-width: 800px;">
         <div style="margin-bottom: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem;">
-            <div style="font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--red);margin-bottom:0.8rem;">Dec 12, 2024 &bull; 5 min read</div>
-            <h1 style="font-family:'Fraunces', serif; font-size: 2.5rem; font-weight: 900; line-height: 1.1; color: var(--text); margin-bottom: 1rem;">OCR vs Text Extraction: What's the Difference?</h1>
-            <p style="font-size: 1.15rem; color: var(--muted); line-height: 1.7;">Not all text extraction is the same. We explain OCR vs text layers.</p>
+            <div style="font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--red);margin-bottom:0.8rem;">May 01, 2026 &bull; 15 min read</div>
+            <h1 style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 2.5rem; font-weight: 900; line-height: 1.1; color: var(--text); margin-bottom: 1rem;">OCR vs. Direct Text Extraction: How to Convert Scanned PDFs to Searchable Text</h1>
+            <p style="font-size: 1.15rem; color: var(--muted); line-height: 1.7;">Handling scanned documents vs digital documents requires different extraction paths. Understand OCR, layouts, and accuracy metrics.</p>
         </div>
-            <div style="font-size:0.9rem;color:var(--muted);font-weight:700;margin-top:-0.5rem;margin-bottom:1.5rem;">By LovePDFs Team | Updated March 2026</div>
+        <div style="font-size:0.9rem;color:var(--muted);font-weight:700;margin-top:-0.5rem;margin-bottom:1.5rem;">By LovePDFs Editorial Team | Updated May 2026</div>
+        
         <div class="blog-content" style="font-size: 1.1rem; line-height: 1.8; color: var(--text2);">
             
-            <p class="body-p">If you cannot highlight or copy text in a PDF, you are looking at an image masquerading as a document. This usually happens when a physical piece of paper is run through a hardware scanner, or when a PDF was created by taking a photo with a camera or smartphone. The distinction between a digital PDF and a scanned PDF changes everything about how you can work with the content.</p>
+<div class="toc-container">
+    <div class="toc-title">Table of Contents</div>
+    <ul class="toc-list">
+        <li><a href="#scanned-vs-digital">1. Scanned PDFs vs. Native Digital PDFs</a></li>
+        <li><a href="#evolution-ocr">2. The Evolution of OCR Technology</a></li>
+        <li><a href="#how-ocr-works">3. How Optical Character Recognition (OCR) Works</a></li>
+        <li><a href="#preprocessing-images">4. Pre-processing Images for Improved OCR Accuracy</a></li>
+        <li><a href="#accuracy-factors">5. Critical Factors for OCR Accuracy</a></li>
+        <li><a href="#ocr-vs-direct">6. When to Use OCR vs. Direct Text Extraction</a></li>
+        <li><a href="#layout-recognition">7. Formatting Preservation and Layout Recognition</a></li>
+        <li><a href="#post-extraction">8. Post-Extraction Cleanup and Formatting Tips</a></li>
+        <li><a href="#business-automation">9. Business Automation and NLP Workflows</a></li>
+        <li><a href="#extraction-comparison-table">10. Comparison: OCR vs. Direct Text Extraction</a></li>
+        <li><a href="#ocr-faq">11. Frequently Asked Questions (FAQ)</a></li>
+    </ul>
+</div>
 
-            <h3 class="section-h3">Basic Text Extraction (Digital PDFs)</h3>
-            <p class="body-p">Digital PDFs — like those exported straight from Microsoft Word, Google Docs, or a web browser — have an invisible "text layer." Extracting text from these files is instant and 100% accurate because the computer already knows exactly what characters are on the page. You can use our <a href="pdf-to-text/" style="color:var(--red);font-weight:700;">PDF to Text</a> tool for this, which works instantly without any AI processing.</p>
+<p class="body-p">The ability to pull text out of a PDF document is a fundamental requirement for search indexers, data entry automations, translation tools, and general digital document storage. However, if you have ever tried to extract text from a batch of PDFs, you know that some files yield perfect results instantly, while others return empty strings or garbled characters. Resolving this requires understanding the difference between native text extraction and Optical Character Recognition (OCR).</p>
 
-            <h3 class="section-h3">Optical Character Recognition (OCR)</h3>
-            <p class="body-p">If there is no text layer, the computer literally has to "look" at the pixels and guess what shapes look like letters. This requires complex Artificial Intelligence known as Optical Character Recognition (OCR). Fortunately, LovePDFs includes a powerful client-side <a href="ocr-extract-text/" style="color:var(--red);font-weight:700;">OCR Text Extractor</a> that can read scanned documents in over 100 languages directly in your browser — nothing is uploaded to any server.</p>
+<h2 id="scanned-vs-digital" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">1. Scanned PDFs vs. Native Digital PDFs</h2>
+<p class="body-p">PDF files fall into two primary categories based on how they were created:</p>
+<p class="body-p"><strong>1. Native Digital PDFs:</strong> These files are generated directly from digital sources, such as exporting a document from Microsoft Word, Google Docs, or Adobe InDesign. These files contain a dedicated text layout layer. The exact characters, fonts, and coordinate mappings are stored directly in the file code. You can select, highlight, search, and copy this text instantly with a cursor.</p>
+<p class="body-p"><strong>2. Scanned PDFs:</strong> These documents are created by scanning a paper sheet using a flatbed scanner, mobile camera, or fax machine. The resulting PDF is simply a container holding one or more high-resolution photographic images. There are no character codes or font mappings inside the file—just pixels. You cannot select or search for words inside these documents unless you process them through an OCR engine.</p>
 
-            <h3 class="section-h3">How to Tell Which Type of PDF You Have</h3>
-            <ul style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text2); line-height: 2;">
-              <li>Try clicking on the text in your PDF viewer — if you can highlight it, it's a digital PDF with a text layer.</li>
-              <li>If the cursor turns into a crosshair or selection box without highlighting text, it's likely a scanned image PDF.</li>
-              <li>Check if the file size is unusually large for its page count — scanned image PDFs are typically much larger.</li>
-            </ul>
+<h2 id="evolution-ocr" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">2. The Evolution of OCR Technology</h2>
+<p class="body-p">OCR technology has evolved immensely over the past half-century. Early OCR systems in the 1970s relied on strict matrix matching, where the system compared characters pixel-by-pixel against a limited library of fonts. If a document had a slightly different typeface or print smudge, the recognition failed. The 1990s introduced feature extraction, which analyzed geometric components like loops, lines, and crossings. The 2010s revolutionized OCR with deep learning. Modern engines like Google Tesseract use Recurrent Neural Networks (RNNs) and Long Short-Term Memory (LSTM) networks that analyze characters in context, recognizing entire words based on language models rather than just individual letters, allowing them to parse complex handwritten materials and distorted scanner feeds.</p>
 
-            <h3 class="section-h3">After Text Extraction: What Next?</h3>
-            <p class="body-p">Once you've extracted text, you might want to convert the document to a more editable format. Use our <a href="pdf-to-word/" style="color:var(--red);font-weight:700;">PDF to Word</a> converter for rich formatting, or <a href="pdf-to-excel/" style="color:var(--red);font-weight:700;">PDF to Excel</a> for data-heavy documents. If the document is now ready to share but too large, run it through <a href="compress-pdf/" style="color:var(--red);font-weight:700;">Compress PDF</a> first.</p>
+<h2 id="how-ocr-works" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">3. How Optical Character Recognition (OCR) Works</h2>
+<p class="body-p">OCR is a technology that analyzes the pixel grids of scanned images, recognizes the shapes of letters, and converts them into digital character encodings (like Unicode). The typical OCR pipeline follows these stages:</p>
+<ul style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text2); line-height: 1.8;">
+    <li style="margin-bottom: 0.5rem;"><strong>Binarization:</strong> The engine converts the image to black and white (binary format), removing color gradients and shadows to make character edges distinct.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Deskewing:</strong> If the document was fed crookedly into the scanner, the OCR engine calculates the angle of rotation and aligns the page layout to prevent mischaracterizations.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Layout Analysis:</strong> The engine identifies where paragraphs, images, sidebars, and columns sit, mapping out the logical reading order.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Feature Extraction and Neural Network Matching:</strong> The engine breaks characters down into lines, loops, and intersections, matching them against known letter templates or passing them through neural network models trained on various fonts and handwritings.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Post-processing:</strong> The engine checks unrecognized combinations against built-in dictionary databases to fix spelling errors.</li>
+</ul>
+
+<h2 id="preprocessing-images" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">4. Pre-processing Images for Improved OCR Accuracy</h2>
+<p class="body-p">Before a scanned page is passed to character recognition models, the image must be optimized. Raw scans often have shadows, gradients, scanner dust, or low brightness. The binarization step converts greyscale pixels to purely black or white using adaptive thresholding, which calculates different contrast boundaries for different regions of the page. Noise filters are applied to strip out isolated black dots (scanner noise) that could be misread as periods or commas. Furthermore, morphological operations like erosion and dilation are executed. Erosion shrinks boundaries and splits touching characters, while dilation expands boundaries to repair broken glyphs or faint strokes. Proper pre-processing can improve OCR accuracy rates from 70% to over 98%.</p>
+
+<h2 id="accuracy-factors" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">5. Critical Factors for OCR Accuracy</h2>
+<p class="body-p">The accuracy of OCR outputs depends heavily on the quality of the input document. The primary factors include:</p>
+<ul style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text2); line-height: 1.8;">
+    <li style="margin-bottom: 0.5rem;"><strong>Image DPI:</strong> Scanned pages should be at least 150 DPI for standard reading and 300 DPI for high-accuracy OCR. Low-resolution scans lead to character mismatching (e.g., misreading "rn" as "m").</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Contrast and Noise:</strong> Speckled backgrounds, coffee stains, or low contrast (faded ink) degrade recognition rates.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Font Styles:</strong> Standard serif and sans-serif fonts (like Times New Roman, Arial) yield near 100% accuracy, while cursive scripts or decorative fonts are much harder to parse.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Language Models:</strong> Using an OCR engine calibrated to the correct language profile is essential, as the engine relies on dictionary lookups to verify outputs.</li>
+</ul>
+
+<h2 id="ocr-vs-direct" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">6. When to Use OCR vs. Direct Text Extraction</h2>
+<p class="body-p">If a PDF is a native digital document, **always use direct text extraction**. It is computationally light, processes in milliseconds, and delivers 100% accurate character recovery. OCR should only be used as a fallback for scanned pages or when text extraction fails (which can happen if a PDF has corrupted font encoding tables).</p>
+
+<h2 id="layout-recognition" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">7. Formatting Preservation and Layout Recognition</h2>
+<p class="body-p">A key challenge in PDF parsing is layout recognition. PDFs are designed for visual rendering rather than logical structural hierarchy. They do not store "paragraphs" or "headings"—instead, they specify the absolute coordinate position of characters on a page. When extracting text, standard tools can read text columns horizontally across the page, jumbling the text. High-quality extraction tools analyze spatial distances between characters to reconstruct column boundaries, headings, and lists. Standard OCR formats like hOCR or Alto XML store both the extracted text and its bounding box coordinates, allowing developers to reconstruct tables and search indexes accurately. In search indexing systems, this spatial data is what allows browsers to highlight search keywords at exact coordinates on the screen.</p>
+
+<h2 id="post-extraction" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">8. Post-Extraction Cleanup and Formatting Tips</h2>
+<p class="body-p">Extracted text often loses its original layout structure. Multi-column documents can become mixed together, and tables can turn into hard-to-read lists. To clean up extracted data, utilize scripts to merge hyphenated line ends, normalize spaces, and map tabular text. If you need the text formatted for standard editing, convert your PDF using our <a href="pdf-to-word/" style="color:var(--red);font-weight:700;">PDF to Word converter</a>, which preserves paragraphs and layouts.</p>
+
+<h2 id="business-automation" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">9. Business Automation and NLP Workflows</h2>
+<p class="body-p">In enterprise environments, OCR is the foundation of Robotic Process Automation (RPA). Companies deploy OCR pipelines to automatically extract invoice amounts, scan medical history charts, and index public records for global search systems. Natural Language Processing (NLP) models are layered directly on top of OCR outputs to detect entities like vendor names, invoice dates, and grand totals automatically. These systems use Named Entity Recognition (NER) algorithms to structure unstructured text data into JSON objects that flow directly into accounting databases. Standardizing these processes is key to scaling document data management, cutting human data-entry needs by up to 90% and speeding up auditing workflows.</p>
+
+<h2 id="extraction-comparison-table" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">10. Comparison: OCR vs. Direct Text Extraction</h2>
+<table class="premium-table">
+    <thead>
+        <tr>
+            <th>Characteristic</th>
+            <th>Direct Text Extraction</th>
+            <th>Optical Character Recognition (OCR)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Input Type</strong></td>
+            <td>Native digital PDFs</td>
+            <td>Scanned PDFs, image files, photos</td>
+        </tr>
+        <tr>
+            <td><strong>Processing Speed</strong></td>
+            <td>Instant (milliseconds per page)</td>
+            <td>Slower (requires CPU/GPU pixel processing)</td>
+        </tr>
+        <tr>
+            <td><strong>Accuracy</strong></td>
+            <td>100% (extracts exact code)</td>
+            <td>90% - 99% (depends on scan quality)</td>
+        </tr>
+        <tr>
+            <td><strong>Resource Overhead</strong></td>
+            <td>Very Low</td>
+            <td>High (uses neural nets and layout models)</td>
+        </tr>
+        <tr>
+            <td><strong>Layout Retention</strong></td>
+            <td>Good (based on coordinates)</td>
+            <td>Variable (requires layout parsing)</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="ocr-faq" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">11. Frequently Asked Questions (FAQ)</h2>
+<div class="faq-section">
+    <div class="faq-item">
+        <div class="faq-question">Why does my OCR output contain strange characters?</div>
+        <div class="faq-answer">Strange characters (like "l1" instead of "ll" or "0" instead of "O") usually result from low-resolution scans, blurred text, or uncommon font styles. Increasing the scan quality to 300 DPI and ensuring the page is flat and well-lit can resolve these recognition errors.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">Can OCR read handwritten notes?</div>
+        <div class="faq-answer">Standard OCR engines are optimized for printed fonts. However, modern AI-driven OCR systems (known as Intelligent Character Recognition or ICR) utilize deep learning models that can recognize handwriting with respectable accuracy, though it remains less reliable than printed text.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">How do I convert a scanned PDF to an editable Word file?</div>
+        <div class="faq-answer">To convert a scanned PDF, you must run it through a tool that supports OCR, like our PDF to Word converter. The tool analyzes the image pixels, matches them to characters, and places the recognized text into editable paragraphs inside a standard DOCX file.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">What languages does the LovePDFs OCR tool support?</div>
+        <div class="faq-answer">Our OCR engine supports multiple international languages, including English, Spanish, French, German, Italian, Portuguese, and Dutch. The tool uses dictionary lookups to verify words, ensuring high-accuracy outputs across supported regions.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">Does OCR change the original layout of my PDF?</div>
+        <div class="faq-answer">Standard OCR PDF tools create a "Searchable PDF" (also known as a PDF Sandwich), which places the recognized text layer invisibly directly underneath the scanned image layer. This preserves the original visual appearance of the document while allowing you to search, highlight, and copy the text.</div>
+    </div>
+</div>
 
         </div>
         
         <div style="margin:2rem 0;padding:1.25rem 1.4rem;background:var(--bg2);border:1.5px solid var(--border);border-radius:16px;">
             <div style="font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--red);margin-bottom:0.6rem;">Related Tools</div>
             <p style="margin:0;color:var(--text2);line-height:1.8;">
-              Try <a href="ocr-extract-text/" style="color:var(--red);font-weight:700;">OCR Extract Text</a> · 
-              <a href="pdf-to-text/" style="color:var(--red);font-weight:700;">PDF to Text</a> · 
-              <a href="pdf-to-word/" style="color:var(--red);font-weight:700;">PDF to Word</a> · 
-              <a href="compress-pdf/" style="color:var(--red);font-weight:700;">Compress PDF</a>
+              Try <a href="ocr-extract-text/" style="color:var(--red);font-weight:700;">OCR PDF</a> · <a href="pdf-to-text/" style="color:var(--red);font-weight:700;">PDF to Text</a> · <a href="pdf-to-word/" style="color:var(--red);font-weight:700;">PDF to Word</a> · <a href="pdf-to-excel/" style="color:var(--red);font-weight:700;">PDF to Excel</a>
             </p>
             <p style="margin:0.65rem 0 0;color:var(--text2);line-height:1.8;">Also read: 
-              <a href="blog-convert-pdf-word.html" style="color:var(--red);font-weight:700;">Convert PDF to Word Guide</a> · 
-              <a href="blog-merge-pdfs.html" style="color:var(--red);font-weight:700;">Merge PDFs</a> · 
-              <a href="blog.html" style="color:var(--red);font-weight:700;">All Blog Posts</a>
+              <a href="blog-png-vs-jpg.html" style="color:var(--red);font-weight:700;">PNG vs JPG Guide</a> · <a href="blog-reduce-pdf-size.html" style="color:var(--red);font-weight:700;">Reduce PDF Size</a> · <a href="blog.html" style="color:var(--red);font-weight:700;">All Blog Posts</a>
             </p>
         </div>
-<div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center;">
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center;">
             <p style="color: var(--muted); margin-bottom: 1.5rem;">Ready to try our tools?</p>
             <a href="all-tools.html" class="nav-btn-f" style="display: inline-flex; text-decoration: none;">Explore 43 Free Tools</a>
         </div>
     </div>
-    
   </div>
 </div>
 <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
+      <div class="footer-logo"><div class="nav-logo-heart">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    love<span>pdfs</span></div>
       <div class="footer-tagline">Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.</div>
       <div class="footer-contact"><a href="contact.html">Contact us</a></div>
       <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>

@@ -17,7 +17,7 @@
   status = 301
   force = true
 
-# Fix 404s — blog-posts/features.html and blog-posts/index.html (old crawled URLs)
+# Fix 404s — blog-posts/ (old crawled URLs redirected to canonical tool or blog pages)
 [[redirects]]
   from = "/blog-posts/features.html"
   to = "/features"
@@ -45,5 +45,53 @@
 [[redirects]]
   from = "/blog-posts/index.html"
   to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-posts/2026-03-16-split-pdf-files-complete-guide-and-tutorial"
+  to = "/split-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-posts/2026-03-16-compare-pdf-complete-guide-and-tutorial"
+  to = "/compare-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-posts/2026-03-16-protect-pdf-complete-guide-and-tutorial"
+  to = "/protect-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-posts/2026-03-16-convert-word-to-pdf-complete-guide-and-tutorial"
+  to = "/word-to-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-posts/2026-03-15-how-to-convert-jpg-to-pdf-online-free-complete-tutorial"
+  to = "/jpg-to-pdf/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-posts/2026-03-15-how-to-merge-multiple-pdfs-step-by-step-guide"
+  to = "/blog-merge-pdfs"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-posts/2026-03-15-how-to-merge-pdf-files-like-a-pro-in-2024"
+  to = "/blog-merge-pdfs"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-posts/*"
+  to = "/blog"
   status = 301
   force = true

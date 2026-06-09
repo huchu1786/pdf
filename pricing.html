@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -40,37 +40,41 @@
 <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <!-- ═══ GOOGLE ADSENSE ═══ -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4413784450447798" crossorigin="anonymous"></script>
 <style>
 .pricing-hero-note{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(22,163,74,0.08);border:1px solid rgba(22,163,74,0.2);color:var(--green);padding:0.5rem 1.25rem;border-radius:100px;font-size:0.85rem;font-weight:700;margin-bottom:2rem}
-.price-card{background:var(--card);border:1.5px solid var(--border);border-radius:28px;padding:2.75rem;max-width:600px;margin:3rem auto;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
-.price-card::before{content:'';position:absolute;inset:0;border-radius:28px;background:linear-gradient(135deg,rgba(232,50,26,0.03),transparent 60%);pointer-events:none}
-.price-amount{font-family:'Fraunces',serif;font-size:5rem;font-weight:900;color:var(--red);line-height:1;margin-bottom:0.35rem}
+.price-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2.75rem;max-width:600px;margin:3rem auto;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow-sm)}
+.price-card::before{content:'';position:absolute;inset:0;border-radius:12px;background:linear-gradient(135deg,rgba(232,50,26,0.03),transparent 60%);pointer-events:none}
+.price-amount{font-family:'Inter', sans-serif;font-size:5rem;font-weight:800;color:var(--red);line-height:1;margin-bottom:0.35rem;letter-spacing:-0.03em}
 .price-period{font-size:1.1rem;color:var(--muted);margin-bottom:0.75rem}
 .price-tagline{font-size:1rem;color:var(--text2);margin-bottom:2.25rem}
 .price-features{list-style:none;padding:0;display:flex;flex-direction:column;gap:0.85rem;margin-bottom:2.5rem;text-align:left}
 .price-features li{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.92rem;color:var(--text2)}
 .pf-check{color:var(--green);font-weight:800;flex-shrink:0;font-size:1rem}
-.price-cta{display:block;width:100%;padding:1rem;background:linear-gradient(135deg,var(--red),#FF5A3A);color:#fff;border:none;border-radius:14px;font-size:1.05rem;font-weight:800;font-family:'Instrument Sans',sans-serif;cursor:pointer;transition:all 0.3s;box-shadow:0 6px 24px rgba(232,50,26,0.3);text-decoration:none;text-align:center}
-.price-cta:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(232,50,26,0.4)}
+.price-cta{display:block;width:100%;padding:1rem;background:linear-gradient(135deg,var(--red),#FF5A3A);color:#fff;border:none;border-radius:10px;font-size:1.05rem;font-weight:800;font-family:'Inter', sans-serif;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 14px var(--red-glow);text-decoration:none;text-align:center}
+.price-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px var(--red-glow)}
 .why-free-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:900px;margin:3rem auto 0}
-.wf-card{background:var(--card);border:1.5px solid var(--border);border-radius:18px;padding:1.75rem;text-align:center;transition:all 0.25s}
+.wf-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.75rem;text-align:center;transition:all 0.25s}
 .wf-card:hover{border-color:rgba(232,50,26,0.2);transform:translateY(-3px)}
 .wf-icon{font-size:2rem;margin-bottom:0.875rem}
-.wf-title{font-family:'Fraunces',serif;font-weight:700;font-size:0.97rem;margin-bottom:0.45rem}
+.wf-title{font-family:'Inter', sans-serif;font-weight:700;font-size:0.97rem;margin-bottom:0.45rem}
 .wf-desc{font-size:0.82rem;color:var(--muted);line-height:1.6}
 @media(max-width:640px){.why-free-grid{grid-template-columns:1fr}}
 </style>
     <link rel="canonical" href="https://lovepdfs.in/pricing" />
 </head>
 <body class="page-wrap">
-<nav class="site-nav">
-  <a href="/" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
+<nav class="site-nav" id="siteNav">
+  <a href="/" class="nav-logo" style="font-weight: 800; font-size: 1.5rem; color: #1e2229; display: inline-flex; align-items: center; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none;">
+  I <span class="nav-logo-heart" style="color: #e8321a; margin: 0 4px; display: inline-flex; align-items: center; vertical-align: middle;">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+  </span> PDFs
+</a>
   <div class="nav-mid"><a href="/" class="nav-link">Home</a><a href="all-tools.html" class="nav-link">Tools</a><a href="features.html" class="nav-link">Features</a><a href="pricing.html" class="nav-link active">Pricing</a><a href="contact.html" class="nav-link">Contact</a></div>
-  <div class="nav-right"><button class="theme-btn" id="themeBtn">🌙</button><a href="all-tools.html" class="nav-btn-f">Start Free</a></div>
+  <div class="nav-right"><a href="all-tools.html" class="nav-btn-f">Start Free</a></div>
 </nav>
 
 <div class="inner-hero">
@@ -115,7 +119,7 @@
   <!-- Why Free -->
   <div style="text-align:center;margin-top:4rem">
     <div class="sec-eyebrow" style="font-size:0.72rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem">Why Is It Free?</div>
-    <h2 style="font-family:'Fraunces',serif;font-size:2rem;font-weight:900;letter-spacing:-0.025em;margin-bottom:0.5rem">Good question. Here's the honest answer.</h2>
+    <h2 style="font-family:'Inter', sans-serif;font-size:2rem;font-weight:800;letter-spacing:-0.025em;margin-bottom:0.5rem">Good question. Here's the honest answer.</h2>
   </div>
   <div class="why-free-grid">
     <div class="wf-card"><div class="wf-icon">⚡</div><div class="wf-title">Zero Server Costs</div><div class="wf-desc">Since all processing happens in your browser, we don't pay for computing servers, bandwidth, or storage. That saving goes straight to you.</div></div>
@@ -139,7 +143,10 @@
 <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
+      <div class="footer-logo"><div class="nav-logo-heart">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    love<span>pdfs</span></div>
       <div class="footer-tagline">Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.</div>
       <div class="footer-contact"><a href="contact.html">Contact us</a></div>
       <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -12,6 +12,7 @@
 </script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<link rel="canonical" href="https://lovepdfs.in/terms" />
 <title>Terms of Use | LovePDFs – Free PDF & Image Tools</title>
 <meta name="description" content="LovePDFs Terms of Use. Free online PDF and image tools. Read our terms before using the service."/>
 <meta name="keywords" content="terms of use free, online terms of use, how to terms of use, free pdf tools, online pdf editor, pdf converter, merge pdf without upload, fast pdf tools, private pdf tools, secure pdf editor, free pdf online, ilovepdf alternative, sejda alternative, client side pdf processing, no account pdf">
@@ -42,31 +43,35 @@
 <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
-  <!-- ═══ GOOGLE ADSENSE ═══ Replace ca-pub-4413784450447798 with your Publisher ID ═══ -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4413784450447798"
-       crossorigin="anonymous"></script>
-  <!-- ════════════════════════════════════════════════════════════════ -->
-    <link rel="canonical" href="https://lovepdfs.in/terms" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4413784450447798" crossorigin="anonymous"></script>
+<script>
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+  }
+</script>
 </head>
 <body>
 <nav class="site-nav" id="siteNav">
-  <a href="/" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
+  <a href="/" class="nav-logo" style="font-weight: 800; font-size: 1.5rem; color: #1e2229; display: inline-flex; align-items: center; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none;">
+  I <span class="nav-logo-heart" style="color: #e8321a; margin: 0 4px; display: inline-flex; align-items: center; vertical-align: middle;">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+  </span> PDFs
+</a>
   <div class="nav-mid">
-    <a href="all-tools.html" class="nav-link">All Tools</a>
-    <a href="contact.html" class="nav-link">Contact</a>
-    <a href="privacy.html" class="nav-link">Privacy</a>
-    <a href="terms.html" class="nav-link active">Terms</a>
+    <a href="merge-pdf/" class="nav-link">Merge PDF</a>
+    <a href="split-pdf/" class="nav-link">Split PDF</a>
+    <a href="compress-pdf/" class="nav-link">Compress PDF</a>
   </div>
   <div class="nav-right">
-    <button class="theme-btn" id="themeBtn">🌙</button>
     <a href="contact.html" class="nav-btn-o">Contact</a>
-    <a href="/" class="nav-btn-f">← All Tools</a>
+    <a href="all-tools.html" class="nav-btn-f">All Tools</a>
   </div>
 </nav>
 
 <div class="page-wrap">
+  <div class="pattern-bg"></div>
   <section class="inner-hero">
     <div class="inner-hero-eyebrow">Legal</div>
     <h1>Terms of Use</h1>
@@ -74,7 +79,6 @@
   </section>
 
   <div class="content-section narrow">
-
     <div class="content-card" style="background:linear-gradient(135deg,rgba(232,50,26,0.05),transparent); border-color:rgba(232,50,26,0.15); margin-bottom:2.5rem;">
       <p class="body-p"><strong>Effective Date: March 19, 2026.</strong> These Terms of Use govern your use of the LovePDFs website and services. By accessing or using our service, you agree to be bound by these terms.</p>
     </div>
@@ -159,7 +163,7 @@
   </div>
 </div>
 
-<!-- Google AdSense Banner – terms.html -->
+<!-- Google AdSense Banner -->
 <div class="adsense-wrap" style="text-align:center;padding:1.5rem 1rem;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:2rem 0;">
   <ins class="adsbygoogle"
        style="display:block"
@@ -169,10 +173,20 @@
        data-full-width-responsive="true"></ins>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-i" id="tIcon"></div>
+  <div><div class="toast-t" id="tTitle"></div><div class="toast-m" id="tMsg"></div></div>
+</div>
+
 <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
+      <div class="footer-logo"><div class="nav-logo-heart">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    love<span>pdfs</span></div>
       <div class="footer-tagline">Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.</div>
       <div class="footer-contact"><a href="contact.html">Contact us</a></div>
       <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>
@@ -187,17 +201,18 @@
     <div class="footer-sitemap"><a href="sitemap.xml" style="color:var(--muted);font-size:0.82rem;text-decoration:none;transition:color 0.2s">Sitemap</a></div>
   </div>
 </footer>
-
 <script>
   const t = document.getElementById('themeBtn');
-  const saved = localStorage.getItem('theme');
-  if (saved === 'dark') { document.body.classList.add('dark'); t.textContent = '☀️'; }
-  t.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    const isDark = document.body.classList.contains('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    t.textContent = isDark ? '☀️' : '🌙';
-  });
+  if (t) {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') { document.body.classList.add('dark'); t.textContent = '☀️'; }
+    t.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      t.textContent = isDark ? '☀️' : '🌙';
+    });
+  }
 </script>
 <script src="nav-enhancements.js"></script>
 <script src="site-enhancements.js"></script>

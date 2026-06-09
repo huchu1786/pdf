@@ -65,7 +65,7 @@ function drawWheel() {
     grad.addColorStop(0, '#f8f9fa'); grad.addColorStop(1, '#e9ecef');
     ctx.fillStyle = grad; ctx.fill();
     ctx.strokeStyle = '#dee2e6'; ctx.lineWidth = 4; ctx.stroke();
-    ctx.fillStyle = '#adb5bd'; ctx.font = 'bold 15px Instrument Sans';
+    ctx.fillStyle = '#adb5bd'; ctx.font = 'bold 15px Inter';
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.fillText('Add entries to spin!', cx, cy);
     return;
@@ -603,7 +603,7 @@ function stopConfetti() { cancelAnimationFrame(cAnimId); cCanvas.style.display='
 // ── TOAST ──
 function toast(msg, icon='ℹ️') {
   const t=document.createElement('div');
-  t.style.cssText='position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:var(--text);color:var(--card);padding:11px 22px;border-radius:12px;font-family:Instrument Sans,sans-serif;font-weight:700;font-size:.88rem;z-index:9999;box-shadow:0 8px 28px rgba(0,0,0,.22);animation:popIn .3s;white-space:nowrap;';
+  t.style.cssText='position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:var(--text);color:var(--card);padding:11px 22px;border-radius:12px;font-family:Inter,sans-serif;font-weight:700;font-size:.88rem;z-index:9999;box-shadow:0 8px 28px rgba(0,0,0,.22);animation:popIn .3s;white-space:nowrap;';
   t.textContent=`${icon} ${msg}`;
   document.body.appendChild(t); setTimeout(()=>t.remove(),2800);
 }

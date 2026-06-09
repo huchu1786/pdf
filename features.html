@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -41,27 +41,27 @@
 <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <!-- ═══ GOOGLE ADSENSE ═══ -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4413784450447798" crossorigin="anonymous"></script>
 <style>
 .features-big-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3.5rem}
-.fbig{background:var(--card);border:1.5px solid var(--border);border-radius:24px;padding:2.25rem;transition:all 0.3s;position:relative;overflow:hidden}
+.fbig{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2.25rem;transition:all 0.3s;position:relative;overflow:hidden}
 .fbig::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),#FF7A3B);transform:scaleX(0);transform-origin:left;transition:transform 0.4s}
-.fbig:hover{transform:translateY(-5px);box-shadow:0 20px 60px rgba(0,0,0,0.1);border-color:rgba(232,50,26,0.22)}
+.fbig:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm);border-color:rgba(232,50,26,0.22)}
 .fbig:hover::before{transform:scaleX(1)}
 .fbig-icon{font-size:2.8rem;margin-bottom:1.25rem}
-.fbig-title{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:900;margin-bottom:0.75rem}
+.fbig-title{font-family:'Inter', sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:0.75rem}
 .fbig-desc{font-size:0.88rem;color:var(--muted);line-height:1.75;margin-bottom:1.25rem}
 .fbig-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:0.4rem}
 .fbig-list li{font-size:0.85rem;color:var(--text2);display:flex;align-items:flex-start;gap:0.5rem}
 .fbig-list li::before{content:'✓';color:var(--green);font-weight:800;flex-shrink:0;margin-top:0.05rem}
 .tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem}
-.tech-card{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:1.5rem;text-align:center;transition:all 0.25s}
+.tech-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center;transition:all 0.25s}
 .tech-card:hover{border-color:rgba(232,50,26,0.2);transform:translateY(-3px)}
 .tech-icon{font-size:2rem;margin-bottom:0.75rem}
-.tech-name{font-family:'Fraunces',serif;font-weight:700;font-size:0.95rem;margin-bottom:0.35rem}
+.tech-name{font-family:'Inter', sans-serif;font-weight:700;font-size:0.95rem;margin-bottom:0.35rem}
 .tech-desc{font-size:0.78rem;color:var(--muted);line-height:1.5}
 .compare-table{width:100%;border-collapse:collapse;margin-top:2.5rem;font-size:0.88rem}
 .compare-table th{padding:1rem;text-align:left;border-bottom:2px solid var(--border);font-weight:700;color:var(--muted);text-transform:uppercase;font-size:0.72rem;letter-spacing:0.08em}
@@ -72,20 +72,24 @@
 .compare-table .cross{color:var(--muted);font-size:1rem}
 .compare-table .us{background:rgba(232,50,26,0.03)}
 .compare-table th.us-h{color:var(--red)!important}
-.cta-section{background:linear-gradient(135deg,var(--red),#FF5A3A);border-radius:28px;padding:3.5rem;text-align:center;margin-top:4rem;position:relative;overflow:hidden}
+.cta-section{background:linear-gradient(135deg,var(--red),#FF5A3A);border-radius:12px;padding:3.5rem;text-align:center;margin-top:4rem;position:relative;overflow:hidden}
 .cta-section::before{content:'';position:absolute;top:-50%;right:-10%;width:400px;height:400px;background:rgba(255,255,255,0.07);border-radius:50%}
-.cta-title{font-family:'Fraunces',serif;font-size:2.5rem;font-weight:900;color:#fff;margin-bottom:0.75rem}
+.cta-title{font-family:'Inter', sans-serif;font-size:2.5rem;font-weight:800;color:#fff;margin-bottom:0.75rem;letter-spacing:-0.03em}
 .cta-sub{color:rgba(255,255,255,0.8);font-size:1rem;margin-bottom:2rem}
-.cta-btn{display:inline-flex;align-items:center;gap:0.5rem;background:#fff;color:var(--red);padding:0.95rem 2.25rem;border-radius:14px;font-size:1rem;font-weight:800;font-family:'Instrument Sans',sans-serif;text-decoration:none;transition:all 0.25s;box-shadow:0 6px 24px rgba(0,0,0,0.2)}
-.cta-btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+.cta-btn{display:inline-flex;align-items:center;gap:0.5rem;background:#fff;color:var(--red);padding:0.95rem 2.25rem;border-radius:10px;font-size:1rem;font-weight:800;font-family:'Inter', sans-serif;text-decoration:none;transition:all 0.25s;box-shadow:0 4px 14px rgba(0,0,0,0.15)}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.25)}
 @media(max-width:768px){.features-big-grid,.tech-grid{grid-template-columns:1fr}.compare-table{font-size:0.78rem}}
 </style>
 </head>
 <body class="page-wrap">
-<nav class="site-nav">
-  <a href="/" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
+<nav class="site-nav" id="siteNav">
+  <a href="/" class="nav-logo" style="font-weight: 800; font-size: 1.5rem; color: #1e2229; display: inline-flex; align-items: center; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none;">
+  I <span class="nav-logo-heart" style="color: #e8321a; margin: 0 4px; display: inline-flex; align-items: center; vertical-align: middle;">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+  </span> PDFs
+</a>
   <div class="nav-mid"><a href="/" class="nav-link">Home</a><a href="all-tools.html" class="nav-link">Tools</a><a href="features.html" class="nav-link active">Features</a><a href="contact.html" class="nav-link">Contact</a></div>
-  <div class="nav-right"><button class="theme-btn" id="themeBtn">🌙</button><a href="all-tools.html" class="nav-btn-f">Try Free</a></div>
+  <div class="nav-right"><a href="all-tools.html" class="nav-btn-f">Try Free</a></div>
 </nav>
 
 <div class="inner-hero">
@@ -103,7 +107,7 @@
 <!-- MAIN FEATURES -->
 <section class="content-section">
   <div class="sec-eyebrow" style="text-align:center;font-size:0.72rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem">Core Features</div>
-  <h2 style="font-family:'Fraunces',serif;font-size:2rem;font-weight:900;letter-spacing:-0.025em;text-align:center;margin-bottom:0.5rem">Everything you need in one place</h2>
+  <h2 style="font-family:'Inter', sans-serif;font-size:2rem;font-weight:800;letter-spacing:-0.025em;text-align:center;margin-bottom:0.5rem">Everything you need in one place</h2>
   <div class="features-big-grid">
     <div class="fbig">
       <div class="fbig-icon">⚡</div>
@@ -148,7 +152,7 @@
 <section style="padding:4rem 2rem;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
   <div style="max-width:1100px;margin:0 auto">
     <div class="sec-eyebrow" style="text-align:center;font-size:0.72rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem">Under the Hood</div>
-    <h2 style="font-family:'Fraunces',serif;font-size:2rem;font-weight:900;text-align:center;margin-bottom:0.5rem">Open Source Technology Stack</h2>
+    <h2 style="font-family:'Inter', sans-serif;font-size:2rem;font-weight:800;text-align:center;margin-bottom:0.5rem">Open Source Technology Stack</h2>
     <p style="text-align:center;color:var(--muted);font-size:0.9rem;max-width:480px;margin:0 auto">Built on the best open-source PDF libraries available.</p>
     <div class="tech-grid">
       <div class="tech-card"><div class="tech-icon">📦</div><div class="tech-name">PDF-lib</div><div class="tech-desc">Create, modify and save PDFs entirely in JavaScript with WebAssembly performance. Powers all PDF manipulation tools.</div></div>
@@ -164,7 +168,7 @@
 <!-- COMPARISON -->
 <section class="content-section">
   <div class="sec-eyebrow" style="text-align:center;font-size:0.72rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem">How We Compare</div>
-  <h2 style="font-family:'Fraunces',serif;font-size:2rem;font-weight:900;text-align:center;margin-bottom:0.5rem">LovePDFs vs. Alternatives</h2>
+  <h2 style="font-family:'Inter', sans-serif;font-size:2rem;font-weight:800;text-align:center;margin-bottom:0.5rem">LovePDFs vs. Alternatives</h2>
   <table class="compare-table">
     <thead><tr><th>Feature</th><th class="us-h">LovePDFs ❤️</th><th>Typical Online Tool</th><th>Desktop Software</th></tr></thead>
     <tbody>
@@ -194,7 +198,10 @@
 <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
+      <div class="footer-logo"><div class="nav-logo-heart">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    love<span>pdfs</span></div>
       <div class="footer-tagline">Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.</div>
       <div class="footer-contact"><a href="contact.html">Contact us</a></div>
       <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>

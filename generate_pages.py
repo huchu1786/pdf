@@ -5,14 +5,19 @@ import os
 ADSENSE = """<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4413784450447798" crossorigin="anonymous"></script>"""
 
 NAV = """<nav class="site-nav" id="siteNav">
-  <a href="{home}index.html" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
+  <a href="{home}index.html" class="nav-logo">
+    <div class="nav-logo-heart">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    love<span>pdfs</span>
+  </a>
   <div class="nav-mid">
     <a href="{home}index.html#tools" class="nav-link">All Tools</a>
     <a href="{home}features.html" class="nav-link">Features</a>
     <a href="{home}pricing.html" class="nav-link">Pricing</a>
   </div>
   <div class="nav-right">
-    <button class="theme-btn" id="themeBtn">🌙</button>
+    
     <a href="{home}contact.html" class="nav-btn-o">Contact</a>
     <a href="{home}index.html" class="nav-btn-f">← Tools</a>
   </div>
@@ -21,7 +26,12 @@ NAV = """<nav class="site-nav" id="siteNav">
 FOOTER = """<footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
+      <div class="footer-logo">
+        <div class="nav-logo-heart" style="width:24px;height:24px;display:inline-flex;color:#E53E3E;">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+        love<span>pdfs</span>
+      </div>
       <div class="footer-tagline">Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.</div>
       <div class="footer-contact"><a href="{home}contact.html">Contact us</a></div>
       <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>
@@ -32,10 +42,10 @@ FOOTER = """<footer class="site-footer">
     <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="{home}about.html">About us</a><a href="{home}contact.html">Contact us</a><a href="{home}blog.html">Blog</a><a href="{home}press.html">Press</a></div></div>
   </div>
   <div class="footer-stats" style="max-width:1240px; margin: 2.5rem auto 0; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; justify-content: space-around; gap: 2rem; text-align: center;">
-    <div><div style="font-family:'Fraunces',serif; font-size:48px; font-weight:900; color:var(--text);" id="stat-users">Loading...</div><div style="font-size:26px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:0.2rem;">Users Visited</div></div>
-    <div><div style="font-family:'Fraunces',serif; font-size:48px; font-weight:900; color:var(--text);" id="stat-tools">47</div><div style="font-size:26px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:0.2rem;">Tools Available</div></div>
-    <div><div style="font-family:'Fraunces',serif; font-size:48px; font-weight:900; color:var(--text);" id="stat-files">18M+</div><div style="font-size:26px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:0.2rem;">Files Processed</div></div>
-    <div><div style="font-family:'Fraunces',serif; font-size:48px; font-weight:900; color:var(--text);" id="stat-time">&lt; 1.2s</div><div style="font-size:26px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:0.2rem;">Processing Time</div></div>
+    <div><div style="font-family:'Inter', sans-serif; font-size:40px; font-weight:800; color:var(--text);" id="stat-users">Loading...</div><div style="font-size:18px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:0.2rem;">Users Visited</div></div>
+    <div><div style="font-family:'Inter', sans-serif; font-size:40px; font-weight:800; color:var(--text);" id="stat-tools">47</div><div style="font-size:18px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:0.2rem;">Tools Available</div></div>
+    <div><div style="font-family:'Inter', sans-serif; font-size:40px; font-weight:800; color:var(--text);" id="stat-files">18M+</div><div style="font-size:18px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:0.2rem;">Files Processed</div></div>
+    <div><div style="font-family:'Inter', sans-serif; font-size:40px; font-weight:800; color:var(--text);" id="stat-time">&lt; 1.2s</div><div style="font-size:18px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:0.2rem;">Processing Time</div></div>
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", () => {{
@@ -86,7 +96,7 @@ def make_head(title, desc, home, extra_css=""):
 <link rel="icon" type="image/png" sizes="512x512" href="{home}favicon.png">
 <link rel="apple-touch-icon" href="{home}favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 {SHARED_CSS.format(home=home)}
 {ADSENSE}
 {extra_css}
@@ -292,7 +302,7 @@ press_body = """
     ("🗓️", "Founded", "2025. Independent project."),
     ("🌐", "Audience", "Students, professionals, SMBs, and everyday users who need reliable PDF tools without cost or sign-up friction."),
     ("📊", "Key Stats", "40+ tools. Zero file uploads. Zero tracking. 100% free. Works in any modern browser."),
-    ("🎨", "Brand", "LovePDFs uses a red (#E8321A) and white colour palette with Fraunces serif and Instrument Sans typefaces."),
+    ("🎨", "Brand", "LovePDFs uses a red (#E8321A) and white colour palette with Inter typeface."),
     ("📧", "Press Contact", 'For interviews, data, or asset requests, please visit our <a href="contact.html" style="color:var(--red)">Contact Page</a>.'),
 ]]) + """
 <div class="content-card">
@@ -312,23 +322,23 @@ pages["press.html"] = page_shell(
 # ───────────────────────────────────────────
 
 CALC_CSS = """<style>
-.calc-box{background:var(--card);border:2.5px solid var(--border);border-radius:22px;padding:2.5rem;max-width:680px;margin:-3.5rem auto 3rem;box-shadow:0 24px 64px rgba(0,0,0,0.12);position:relative;z-index:10}
+.calc-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2.5rem;max-width:680px;margin:-2.5rem auto 3rem;box-shadow:var(--shadow-sm);position:relative;z-index:10}
 .calc-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem}
 .calc-row.single{grid-template-columns:1fr}
-.calc-label{font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.5rem}
-.calc-input{width:100%;padding:0.9rem 1.1rem;border:2px solid var(--border);border-radius:12px;background:var(--bg2);color:var(--text);font-size:1.15rem;font-family:'Instrument Sans',sans-serif;transition:all 0.2s;outline:none}
-.calc-input:focus{border-color:var(--red);box-shadow:0 0 0 4px rgba(232,50,26,0.1)}
-.calc-btn{width:100%;padding:1.1rem;background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border:none;border-radius:14px;font-size:1.1rem;font-weight:700;cursor:pointer;font-family:'Instrument Sans',sans-serif;transition:all 0.2s;box-shadow:0 6px 20px rgba(232,50,26,0.3);margin-top:0.5rem}
-.calc-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,50,26,0.4)}
-.calc-result{display:none;background:linear-gradient(135deg,rgba(22,163,74,0.08),transparent);border:2px solid rgba(22,163,74,0.25);border-radius:14px;padding:1.5rem;text-align:center;margin-top:1.25rem}
-.calc-result-val{font-family:'Fraunces',serif;font-size:2.8rem;font-weight:900;color:var(--text);line-height:1.1}
-.calc-result-label{font-size:0.9rem;color:var(--muted);margin-top:0.35rem}
-.calc-select{width:100%;padding:0.85rem 1.1rem;border:2px solid var(--border);border-radius:12px;background:var(--bg2);color:var(--text);font-size:1rem;font-family:'Instrument Sans',sans-serif;outline:none;cursor:pointer}
+.calc-label{font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.5rem}
+.calc-input{width:100%;padding:0.85rem 1.1rem;border:1px solid var(--border);border-radius:10px;background:var(--bg2);color:var(--text);font-size:1.1rem;font-family:'Inter', sans-serif;transition:all 0.2s;outline:none}
+.calc-input:focus{border-color:var(--red);box-shadow:0 0 0 4px var(--red-soft)}
+.calc-btn{width:100%;padding:0.95rem;background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border:none;border-radius:10px;font-size:1.05rem;font-weight:700;cursor:pointer;font-family:'Inter', sans-serif;transition:all 0.2s;box-shadow:0 4px 14px var(--red-glow);margin-top:0.5rem}
+.calc-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px var(--red-glow)}
+.calc-result{display:none;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.5rem;text-align:center;margin-top:1.25rem}
+.calc-result-val{font-family:'Inter', sans-serif;font-size:2.2rem;font-weight:800;color:var(--text);line-height:1.1}
+.calc-result-label{font-size:0.88rem;color:var(--muted);margin-top:0.35rem}
+.calc-select{width:100%;padding:0.8rem 1.1rem;border:1px solid var(--border);border-radius:10px;background:var(--bg2);color:var(--text);font-size:0.95rem;font-family:'Inter', sans-serif;outline:none;cursor:pointer}
 .calc-select:focus{border-color:var(--red)}
 .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;margin:2rem 0}
-.info-card-c{background:var(--card);border:2px solid var(--border);border-radius:16px;padding:1.5rem}
-.info-card-c h3{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;margin:0 0 0.5rem}
-.info-card-c p{margin:0;color:var(--muted);font-size:0.95rem;line-height:1.6}
+.info-card-c{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem}
+.info-card-c h3{font-family:'Inter', sans-serif;font-size:1.15rem;font-weight:700;margin:0 0 0.5rem}
+.info-card-c p{margin:0;color:var(--muted);font-size:0.88rem;line-height:1.6}
 </style>"""
 
 def calc_page(dir_name, title, meta_desc, eyebrow, hero_title, hero_sub, calc_html, seo_html):
@@ -339,10 +349,10 @@ def calc_page(dir_name, title, meta_desc, eyebrow, hero_title, hero_sub, calc_ht
     return f"""{head}
 <body>
 {nav}
-<section class="tool-hero page-wrap" style="background:linear-gradient(170deg,var(--bg2) 0%,var(--bg) 100%);padding:6rem 2rem 5rem;text-align:center;border-bottom:2px solid var(--border)">
-  <a href="../index.html#tools" class="tool-hero-eyebrow" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(232,50,26,0.08);border:1.5px solid rgba(232,50,26,0.2);color:var(--red);padding:0.45rem 1.1rem;border-radius:100px;font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1.5rem;text-decoration:none;">{eyebrow}</a>
-  <h1 style="font-family:'Fraunces',serif;font-size:clamp(2.8rem,7vw,64px);font-weight:900;margin-bottom:1rem;letter-spacing:-0.03em">{hero_title}</h1>
-  <p style="color:var(--muted);max-width:560px;margin:0 auto;font-size:1.25rem;line-height:1.75">{hero_sub}</p>
+<section class="tool-hero page-wrap" style="background:var(--bg2);padding:5rem 2rem 3.5rem;text-align:center;border-bottom:1px solid var(--border)">
+  <a href="../index.html#tools" class="tool-hero-eyebrow" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--card);border:1px solid var(--border);color:var(--red);padding:0.4rem 1rem;border-radius:999px;font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:1.2rem;text-decoration:none;box-shadow:var(--shadow-xs);">{eyebrow}</a>
+  <h1 style="font-family:'Inter', sans-serif;font-size:clamp(2.2rem,6vw,48px);font-weight:800;margin-bottom:1rem;letter-spacing:-0.02em">{hero_title}</h1>
+  <p style="color:var(--muted);max-width:560px;margin:0 auto;font-size:1.1rem;line-height:1.65">{hero_sub}</p>
 </section>
 
 <div class="calc-box">
@@ -411,17 +421,17 @@ wc_html = """<div class="calc-row single">
   <textarea class="calc-input" id="wc_text" rows="8" placeholder="Start typing or paste your text here..." style="resize:vertical" oninput="countWords()"></textarea></div>
 </div>
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;margin-top:1rem" id="wc_stats">
-  <div style="background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:1rem;text-align:center"><div style="font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--text)" id="wc_words">0</div><div style="font-size:0.78rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.08em">Words</div></div>
-  <div style="background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:1rem;text-align:center"><div style="font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--text)" id="wc_chars">0</div><div style="font-size:0.78rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.08em">Characters</div></div>
-  <div style="background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:1rem;text-align:center"><div style="font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--text)" id="wc_sentences">0</div><div style="font-size:0.78rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.08em">Sentences</div></div>
-  <div style="background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:1rem;text-align:center"><div style="font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--text)" id="wc_para">0</div><div style="font-size:0.78rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.08em">Paragraphs</div></div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'Inter', sans-serif;font-size:1.8rem;font-weight:800;color:var(--text)" id="wc_words">0</div><div style="font-size:0.74rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.05em">Words</div></div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'Inter', sans-serif;font-size:1.8rem;font-weight:800;color:var(--text)" id="wc_chars">0</div><div style="font-size:0.74rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.05em">Characters</div></div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'Inter', sans-serif;font-size:1.8rem;font-weight:800;color:var(--text)" id="wc_sentences">0</div><div style="font-size:0.74rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.05em">Sentences</div></div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'Inter', sans-serif;font-size:1.8rem;font-weight:800;color:var(--text)" id="wc_para">0</div><div style="font-size:0.74rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.05em">Paragraphs</div></div>
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:0.75rem">
-  <div style="background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:0.875rem;text-align:center"><span style="color:var(--muted);font-size:0.85rem">Reading time: </span><strong id="wc_read">0 sec</strong></div>
-  <div style="background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:0.875rem;text-align:center"><span style="color:var(--muted);font-size:0.85rem">Chars (no spaces): </span><strong id="wc_cns">0</strong></div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:0.875rem;text-align:center"><span style="color:var(--muted);font-size:0.85rem">Reading time: </span><strong id="wc_read">0 sec</strong></div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:0.875rem;text-align:center"><span style="color:var(--muted);font-size:0.85rem">Chars (no spaces): </span><strong id="wc_cns">0</strong></div>
 </div>
 <div style="display:flex;gap:0.75rem;margin-top:1rem">
-  <button class="calc-btn" onclick="document.getElementById('wc_text').value='';countWords()" style="background:var(--bg2);color:var(--text2);box-shadow:none;border:2px solid var(--border)">🗑️ Clear</button>
+  <button class="calc-btn" onclick="document.getElementById('wc_text').value='';countWords()" style="background:var(--bg2);color:var(--text2);box-shadow:none;border:1px solid var(--border)">🗑️ Clear</button>
   <button class="calc-btn" onclick="navigator.clipboard&&navigator.clipboard.readText().then(t=>{document.getElementById('wc_text').value+=t;countWords()})">📋 Paste</button>
 </div>
 <script>
@@ -460,33 +470,33 @@ with open("word-counter/index.html", "w", encoding="utf-8") as f:
 # PERCENTAGE CALCULATOR
 pct_html = """<div style="display:grid;gap:1.5rem">
   <!-- 1: What is X% of Y -->
-  <div style="background:var(--bg2);border:2px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem">
-    <div style="font-weight:800;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:1rem">① What is X% of Y?</div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem">
+    <div style="font-weight:800;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);margin-bottom:1rem">① What is X% of Y?</div>
     <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap">
       <input class="calc-input" id="p1_pct" type="number" placeholder="X %" style="width:120px"> <span style="color:var(--muted)">% of</span>
       <input class="calc-input" id="p1_num" type="number" placeholder="Y number" style="width:160px"> <span style="color:var(--muted)">=</span>
-      <button class="calc-btn" onclick="calc1()" style="width:auto;padding:0.85rem 1.5rem;margin:0">Calculate</button>
-      <span id="p1_res" style="font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900;color:var(--red)"></span>
+      <button class="calc-btn" onclick="calc1()" style="width:auto;padding:0.6rem 1.25rem;margin:0">Calculate</button>
+      <span id="p1_res" style="font-family:'Inter', sans-serif;font-size:1.4rem;font-weight:800;color:var(--red)"></span>
     </div>
   </div>
   <!-- 2: X is what % of Y -->
-  <div style="background:var(--bg2);border:2px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem">
-    <div style="font-weight:800;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:1rem">② X is what % of Y?</div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem">
+    <div style="font-weight:800;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);margin-bottom:1rem">② X is what % of Y?</div>
     <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap">
       <input class="calc-input" id="p2_x" type="number" placeholder="X value" style="width:140px"> <span style="color:var(--muted)">is what % of</span>
       <input class="calc-input" id="p2_y" type="number" placeholder="Y value" style="width:140px"> <span style="color:var(--muted)">=</span>
-      <button class="calc-btn" onclick="calc2()" style="width:auto;padding:0.85rem 1.5rem;margin:0">Calculate</button>
-      <span id="p2_res" style="font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900;color:var(--red)"></span>
+      <button class="calc-btn" onclick="calc2()" style="width:auto;padding:0.6rem 1.25rem;margin:0">Calculate</button>
+      <span id="p2_res" style="font-family:'Inter', sans-serif;font-size:1.4rem;font-weight:800;color:var(--red)"></span>
     </div>
   </div>
   <!-- 3: Percentage change -->
-  <div style="background:var(--bg2);border:2px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem">
-    <div style="font-weight:800;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:1rem">③ Percentage Change (from X to Y)</div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem">
+    <div style="font-weight:800;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);margin-bottom:1rem">③ Percentage Change (from X to Y)</div>
     <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap">
       <span style="color:var(--muted)">From</span> <input class="calc-input" id="p3_x" type="number" placeholder="Original" style="width:140px">
       <span style="color:var(--muted)">to</span> <input class="calc-input" id="p3_y" type="number" placeholder="New value" style="width:140px"> <span style="color:var(--muted)">=</span>
-      <button class="calc-btn" onclick="calc3()" style="width:auto;padding:0.85rem 1.5rem;margin:0">Calculate</button>
-      <span id="p3_res" style="font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900;color:var(--red)"></span>
+      <button class="calc-btn" onclick="calc3()" style="width:auto;padding:0.6rem 1.25rem;margin:0">Calculate</button>
+      <span id="p3_res" style="font-family:'Inter', sans-serif;font-size:1.4rem;font-weight:800;color:var(--red)"></span>
     </div>
   </div>
 </div>
@@ -539,11 +549,11 @@ gst_html = """<div class="calc-row">
 </div>
 <div id="gst_result" style="display:none;margin-top:1.25rem">
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;text-align:center">
-    <div style="background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:1rem"><div style="font-family:'Fraunces',serif;font-size:1.8rem;font-weight:900;color:var(--text)" id="gst_base">—</div><div style="font-size:0.78rem;color:var(--muted);font-weight:700;text-transform:uppercase">Base Amount</div></div>
-    <div style="background:rgba(232,50,26,0.06);border:2px solid rgba(232,50,26,0.2);border-radius:12px;padding:1rem"><div style="font-family:'Fraunces',serif;font-size:1.8rem;font-weight:900;color:var(--red)" id="gst_tax">—</div><div style="font-size:0.78rem;color:var(--muted);font-weight:700;text-transform:uppercase">GST Amount</div></div>
-    <div style="background:rgba(22,163,74,0.06);border:2px solid rgba(22,163,74,0.2);border-radius:12px;padding:1rem"><div style="font-family:'Fraunces',serif;font-size:1.8rem;font-weight:900;color:var(--green)" id="gst_total">—</div><div style="font-size:0.78rem;color:var(--muted);font-weight:700;text-transform:uppercase">Total (with GST)</div></div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem"><div style="font-family:'Inter', sans-serif;font-size:1.6rem;font-weight:800;color:var(--text)" id="gst_base">—</div><div style="font-size:0.74rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.05em">Base Amount</div></div>
+    <div style="background:rgba(232,50,26,0.06);border:1px solid rgba(232,50,26,0.15);border-radius:10px;padding:1rem"><div style="font-family:'Inter', sans-serif;font-size:1.6rem;font-weight:800;color:var(--red)" id="gst_tax">—</div><div style="font-size:0.74rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.05em">GST Amount</div></div>
+    <div style="background:rgba(22,163,74,0.06);border:1px solid rgba(22,163,74,0.15);border-radius:10px;padding:1rem"><div style="font-family:'Inter', sans-serif;font-size:1.6rem;font-weight:800;color:var(--green)" id="gst_total">—</div><div style="font-size:0.74rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.05em">Total (with GST)</div></div>
   </div>
-  <div style="margin-top:0.75rem;background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:1rem;font-size:0.9rem;color:var(--muted)" id="gst_breakdown"></div>
+  <div style="margin-top:0.75rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem;font-size:0.88rem;color:var(--muted)" id="gst_breakdown"></div>
 </div>
 <script>
 function fmt(n){return n.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});}

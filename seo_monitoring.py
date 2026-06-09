@@ -52,65 +52,71 @@ class SEOMonitor:
         }
     
     def generate_sitemap(self):
-        """Generate comprehensive XML sitemap"""
+        """Generate XML sitemap including only the 30 authorized indexable pages"""
         base_url = "https://lovepdfs.in"
-        today = datetime.now().strftime("%Y-%m-%d")
-        
-        urls = [
-            f"""  <url>
-    <loc>{base_url}/</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>""",
-            f"""  <url>
-    <loc>{base_url}/all-tools.html</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>""",
-            f"""  <url>
-    <loc>{base_url}/blog.html</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>""",
-            f"""  <url>
-    <loc>{base_url}/features.html</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>"""
+        existing_urls = set()
+        existing_urls.add(base_url + "/")
+                    
+        # 2. Add authorized static informational pages (9 pages)
+        static_pages = [
+            "about",
+            "contact",
+            "privacy",
+            "terms",
+            "security",
+            "faq",
+            "pricing",
+            "features",
+            "blog"
         ]
+        for page in static_pages:
+            existing_urls.add(f"{base_url}/{page}")
+            
+        # 3. Add 16 major tools (only if index.html exists and has index robots tag)
+        MAJOR_TOOLS = {
+            'merge-pdf', 'compress-pdf', 'split-pdf', 'pdf-to-word', 'word-to-pdf',
+            'sign-pdf', 'protect-pdf', 'unlock-pdf', 'jpg-to-pdf', 'pdf-to-jpg',
+            'edit-pdf', 'compress-image', 'png-to-jpg', 'jpg-to-png', 'image-to-pdf',
+            'pdf-to-text'
+        }
+        for tool_name in MAJOR_TOOLS:
+            tool_dir = self.base_dir / tool_name
+            index_file = tool_dir / "index.html"
+            if index_file.exists():
+                # Let's verify it is set to index
+                with open(index_file, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                if 'content="index, follow"' in content:
+                    existing_urls.add(f"{base_url}/{tool_name}/")
+            
+        # 4. Add the 4 indexable blog posts
+        INDEXABLE_BLOG_SLUGS = {
+            'merge-pdfs', 'reduce-pdf-size', 'electronic-signatures', 'password-security'
+        }
+        for slug in INDEXABLE_BLOG_SLUGS:
+            blog_file = self.base_dir / f"blog-{slug}.html"
+            if blog_file.exists():
+                # Verify robots tag is index, follow
+                with open(blog_file, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                if 'content="index, follow"' in content:
+                    existing_urls.add(f"{base_url}/blog-{slug}")
+                
+        sorted_urls = list(existing_urls)
+        def sort_key(url):
+            if url == base_url + "/":
+                return ""
+            return url
+        sorted_urls.sort(key=sort_key)
         
-        # Add tool pages
-        tools_dir = self.base_dir
-        for item in tools_dir.iterdir():
-            if item.is_dir() and (item / "index.html").exists():
-                urls.append(f"""  <url>
-    <loc>{base_url}/{item.name}/</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>""")
+        xml_content = '<?xml version="1.0" encoding="UTF-8"?>\n'
+        xml_content += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        for url in sorted_urls:
+            xml_content += f'  <url>\n    <loc>{url}</loc>\n  </url>\n'
+        xml_content += '</urlset>'
         
-        # Add blog posts
-        blog_dir = self.base_dir / "blog-posts"
-        if blog_dir.exists():
-            for post_file in blog_dir.glob("*.html"):
-                urls.append(f"""  <url>
-    <loc>{base_url}/blog-posts/{post_file.stem}</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>""")
-        
-        sitemap = f"""<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{chr(10).join(urls)}
-</urlset>"""
-        
-        return sitemap
+        return xml_content
+
     
     def generate_robots_txt(self):
         """Generate robots.txt for search engine crawling"""
@@ -384,7 +390,7 @@ def main():
     """Main SEO monitoring routine"""
     monitor = SEOMonitor()
     
-    print("🔍 Running SEO analysis for LovePDFs...")
+    print("[INFO] Running SEO analysis for LovePDFs...")
     print("=" * 50)
     
     # Generate comprehensive SEO report
@@ -393,7 +399,7 @@ def main():
     # Generate Search Console setup instructions
     instructions = monitor.generate_search_console_instructions()
     
-    print("📊 SEO Analysis Complete:")
+    print("[INFO] SEO Analysis Complete:")
     print(f"  Total Pages: {report['site_structure']['total_pages']}")
     print(f"  Tool Pages: {report['site_structure']['tool_pages']}")
     print(f"  Blog Posts: {report['site_structure']['blog_posts']}")
@@ -401,12 +407,12 @@ def main():
     print(f"  Robots.txt Generated: {report['robots_txt']['robots_txt_generated']}")
     print(f"  Recommendations: {len(report['recommendations'])}")
     
-    print(f"\n📋 Search Console setup instructions saved to: {instructions['file']}")
-    print("📈 SEO report saved to: seo_reports/")
+    print(f"\n[INFO] Search Console setup instructions saved to: {instructions['file']}")
+    print("[INFO] SEO report saved to: seo_reports/")
     
-    print("\n🚀 Next Steps:")
+    print("\n[INFO] Next Steps:")
     for step in report['next_steps'][:5]:
-        print(f"  • {step}")
+        print(f"  * {step}")
 
 if __name__ == "__main__":
     main()

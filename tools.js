@@ -76,25 +76,25 @@ const TOOLS = [
 ];
 
 const CATS = [
-  { id: 'all', label: 'All Tools' },
-  { id: 'organize', label: '📂 Organize' },
-  { id: 'optimize', label: '⚡ Optimize' },
-  { id: 'convert', label: '🔄 Convert' },
-  { id: 'edit', label: '✏️ Edit' },
-  { id: 'security', label: '🔐 Security' },
-  { id: 'image', label: '🖼️ Image Tools', badge: 'new' },
-  { id: 'calculators', label: '🧠 Calculators', badge: 'new' },
-  { id: 'utilities', label: '🛠️ Utilities', badge: 'new' },
-  { id: 'advanced', label: '🧰 Advanced', badge: 'new' },
+  { id: 'all', label: 'All' },
+  { id: 'organize', label: 'Organize PDF' },
+  { id: 'optimize', label: 'Optimize PDF' },
+  { id: 'convert', label: 'Convert PDF' },
+  { id: 'edit', label: 'Edit PDF' },
+  { id: 'security', label: 'PDF Security' },
+  { id: 'image', label: 'Image Tools', badge: 'new' },
+  { id: 'calculators', label: 'Calculators', badge: 'new' },
+  { id: 'utilities', label: 'Utilities', badge: 'new' },
+  { id: 'advanced', label: 'Advanced', badge: 'new' },
 ];
 
 const CAT_GROUPS = {
   organize: { label: '📂 Organize PDF', tools: ['organize', 'merge', 'split', 'removepg', 'extract', 'altmix', 'nup'] },
   optimize: { label: '⚡ Optimize PDF', tools: ['compress', 'repair', 'ocr', 'grayscale', 'flatten', 'deskew'] },
-  convert: { label: '🔄 Convert', tools: ['jpg2pdf', 'word2pdf', 'ppt2pdf', 'xls2pdf', 'html2pdf', 'epub_reader', 'epub2pdf', 'pdf2jpg', 'pdf2ppt', 'pdf2word', 'pdf2xls', 'pdf2pdfa', 'pdf2txt'] },
+  convert: { label: 'Convert PDF', tools: ['jpg2pdf', 'word2pdf', 'ppt2pdf', 'xls2pdf', 'html2pdf', 'epub_reader', 'epub2pdf', 'pdf2jpg', 'pdf2ppt', 'pdf2word', 'pdf2xls', 'pdf2pdfa', 'pdf2txt'] },
   edit: { label: '✏️ Edit PDF', tools: ['rotate', 'watermark', 'pagenums', 'crop', 'editpdf', 'editMeta', 'extractImg', 'resizepdf', 'headfoot', 'removeann'] },
   security: { label: '🔐 PDF Security', tools: ['unlock', 'protect', 'sign', 'redact', 'compare'] },
-  image: { label: '🖼️ Image Tools', tools: ['passport_photo', 'resize_img', 'crop_img', 'compress_img', 'jpg2png_img', 'png2jpg_img'] },
+  image: { label: 'Image Tools', tools: ['passport_photo', 'resize_img', 'crop_img', 'compress_img', 'jpg2png_img', 'png2jpg_img'] },
   calculators: { label: '🧠 Calculators & Tools', tools: ['age_calc', 'word_counter', 'pct_calc', 'gst_calc', 'loan_calc', 'bmi_calc', 'date_calc', 'currency'] },
   utilities: { label: '🛠️ Utility Tools', tools: ['password_gen', 'qr_gen', 'color_picker', 'json_fmt', 'email_val', 'csv_excel', 'picker_wheel'] },
   advanced: { label: '🧰 Advanced PDF', tools: ['grayscale', 'flatten', 'editMeta', 'extractImg', 'resizepdf', 'altmix', 'headfoot', 'removeann', 'deskew', 'pdf2txt'] },
@@ -106,7 +106,10 @@ function gs(id) { if (!STATE[id]) STATE[id] = { files: [], result: null }; retur
 
 // ── PDF-LIB shorthand ───────────────────────────────────────────
 const pdfLibReady = () => window.PDFLib;
-const { PDFDocument, rgb, degrees, StandardFonts } = PDFLib;
+Object.defineProperty(window, 'PDFDocument', { get: () => window.PDFLib?.PDFDocument, configurable: true });
+Object.defineProperty(window, 'rgb', { get: () => window.PDFLib?.rgb, configurable: true });
+Object.defineProperty(window, 'degrees', { get: () => window.PDFLib?.degrees, configurable: true });
+Object.defineProperty(window, 'StandardFonts', { get: () => window.PDFLib?.StandardFonts, configurable: true });
 
 // ── PDF.js loader ───────────────────────────────────────────────
 async function pjsLoad(ab) {
@@ -1249,6 +1252,7 @@ async function onCmpFile(side, files) {
     await pg.render({ canvasContext: cv.getContext('2d'), viewport: vp }).promise;
   } catch (e) { }
   if (cmpFiles.A && cmpFiles.B) { document.getElementById('bg_compare').disabled = false; }
+  if (window.updateWorkspaceActiveState) window.updateWorkspaceActiveState('compare');
 }
 function setupCmpDZ(side) {
   const dz = document.getElementById(`dz_cmp${side}`);
@@ -1573,6 +1577,7 @@ function onAltFile_(side, files) {
   const el = document.getElementById('alt' + side + '_info');
   if (el) el.textContent = '✅ ' + files[0].name;
   if (altFiles_.A && altFiles_.B) document.getElementById('bg_altmix').disabled = false;
+  if (window.updateWorkspaceActiveState) window.updateWorkspaceActiveState('altmix');
 }
 async function doAltmix(s) {
   if (!altFiles_.A || !altFiles_.B) throw new Error('Upload both PDFs first');

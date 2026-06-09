@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -44,7 +44,7 @@
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
   <!-- ═══ GOOGLE ADSENSE ═══ -->
@@ -60,16 +60,16 @@
 
     .blog-card {
       background: var(--card);
-      border: 1.5px solid var(--border);
-      border-radius: 22px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
       overflow: hidden;
       transition: all 0.3s;
       cursor: pointer
     }
 
     .blog-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
       border-color: rgba(232, 50, 26, 0.22)
     }
 
@@ -106,7 +106,7 @@
     }
 
     .blog-title {
-      font-family: 'Fraunces', serif;
+      font-family: 'Inter', sans-serif;
       font-weight: 700;
       font-size: 1.05rem;
       margin-bottom: 0.5rem;
@@ -167,18 +167,19 @@
 
     .newsletter {
       background: linear-gradient(135deg, rgba(232, 50, 26, 0.06), rgba(255, 90, 58, 0.04));
-      border: 1.5px solid rgba(232, 50, 26, 0.16);
-      border-radius: 24px;
+      border: 1px solid rgba(232, 50, 26, 0.16);
+      border-radius: 12px;
       padding: 3rem;
       text-align: center;
       margin-top: 3.5rem
     }
 
     .nl-title {
-      font-family: 'Fraunces', serif;
+      font-family: 'Inter', sans-serif;
       font-size: 1.8rem;
-      font-weight: 900;
-      margin-bottom: 0.6rem
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.02em;
     }
 
     .nl-sub {
@@ -199,12 +200,12 @@
       flex: 1;
       min-width: 220px;
       padding: 0.75rem 1rem;
-      border: 1.5px solid var(--border);
-      border-radius: 11px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
       background: var(--card);
       color: var(--text);
       font-size: 0.9rem;
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       transition: border-color 0.2s
     }
 
@@ -218,10 +219,10 @@
       background: var(--red);
       color: #fff;
       border: none;
-      border-radius: 11px;
+      border-radius: 10px;
       font-size: 0.9rem;
       font-weight: 700;
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       cursor: pointer;
       transition: all 0.2s;
       white-space: nowrap
@@ -248,14 +249,16 @@
 </head>
 
 <body class="page-wrap">
-  <nav class="site-nav">
-    <a href="/" class="nav-logo">
-      <div class="nav-logo-ic">P</div>LovePDFs
-    </a>
+  <nav class="site-nav" id="siteNav">
+    <a href="/" class="nav-logo" style="font-weight: 800; font-size: 1.5rem; color: #1e2229; display: inline-flex; align-items: center; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none;">
+  I <span class="nav-logo-heart" style="color: #e8321a; margin: 0 4px; display: inline-flex; align-items: center; vertical-align: middle;">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+  </span> PDFs
+</a>
     <div class="nav-mid"><a href="/" class="nav-link">Home</a><a href="all-tools.html"
         class="nav-link">Tools</a><a href="features.html" class="nav-link">Features</a><a href="blog.html"
         class="nav-link active">Blog</a><a href="contact.html" class="nav-link">Contact</a></div>
-    <div class="nav-right"><button class="theme-btn" id="themeBtn">🌙</button><a href="all-tools.html"
+    <div class="nav-right"><a href="all-tools.html"
         class="nav-btn-f">Use Tools</a></div>
   </nav>
 
@@ -269,751 +272,67 @@
     <!-- ── AdSense: Top Banner ── -->
     <div style="text-align:center;padding:1.25rem 0;margin-bottom:2rem">
       <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4413784450447798" data-ad-slot="1111111111"
-        data-ad-format="auto" data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
     <div class="blog-grid">
 
-      <div class="blog-card" onclick="window.location.href='blog-png-vs-jpg.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(236,72,153,0.12),rgba(245,158,11,0.06))">
-          <span style="font-size: 3rem;">🖼️</span>
+      <div class="blog-card" onclick="window.location.href='blog-merge-pdfs.html'">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
+          <span style="font-size: 3rem;">🗜️</span>
         </div>
         <div class="blog-body">
-          <div class="blog-cat" style="color:#EC4899">Image Guides</div>
-          <div class="blog-title">PNG vs JPG: Which Image Format Should You Use?</div>
-          <div class="blog-excerpt">A practical guide to file size, transparency, sharpness, and when to convert PNG files into JPG for better sharing and performance.</div>
+          <div class="blog-cat" style="color:#16A34A">Tutorials</div>
+          <div class="blog-title">Merge Multiple PDFs Into One: The Complete Professional Guide & Best Practices</div>
+          <div class="blog-excerpt">The ultimate guide to merging PDF files efficiently. Learn how to maintain formatting, manage password-protected files, handle large documents, and optimize your workflow.</div>
           <div class="blog-meta">
-            <span>Mar 19, 2026</span><span class="blog-meta-dot"></span><span>8 min read</span>
+            <span>May 24, 2026</span><span class="blog-meta-dot"></span><span>7 min read</span>
           </div>
-          <br><a href="blog-png-vs-jpg.html" class="blog-read">Read More</a>
+          <br><a href="blog-merge-pdfs.html" class="blog-read">Read More →</a>
         </div>
       </div>
 
-      <div class="blog-card" onclick="window.location.href='blog-bmi-guide.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.12),rgba(59,130,246,0.06))">
-          <span style="font-size: 3rem;">⚕️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">Health Tools</div>
-          <div class="blog-title">How to Read Your BMI Result Without Panicking</div>
-          <div class="blog-excerpt">Learn what BMI can tell you, what it misses, and how to use the number as a practical screening tool instead of a final judgment.</div>
-          <div class="blog-meta">
-            <span>Mar 19, 2026</span><span class="blog-meta-dot"></span><span>7 min read</span>
-          </div>
-          <br><a href="blog-bmi-guide.html" class="blog-read">Read More</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-convert-pdf-to-text-complete-guide-and-tutorial.html'">
+      <div class="blog-card" onclick="window.location.href='blog-reduce-pdf-size.html'">
         <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
           <span style="font-size: 3rem;">🗜️</span>
         </div>
         <div class="blog-body">
           <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Convert PDF to Text: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Convert PDF to Text with our complete tutorial and guide. Extract all readable text from your PDF into a plain .txt file.</div>
+          <div class="blog-title">7 Professional Techniques to Reduce PDF File Size Without Losing Quality</div>
+          <div class="blog-excerpt">Learn why PDF files get bloated and how to compress them using advanced techniques like image downsampling, font subsetting, flattening, and metadata removal.</div>
           <div class="blog-meta">
-            <span>Mar 13, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
+            <span>May 15, 2026</span><span class="blog-meta-dot"></span><span>7 min read</span>
           </div>
-          <br><a href="blog-posts/2026-03-16-convert-pdf-to-text-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
+          <br><a href="blog-reduce-pdf-size.html" class="blog-read">Read More →</a>
         </div>
       </div>
 
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-deskew--straighten-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
+      <div class="blog-card" onclick="window.location.href='blog-electronic-signatures.html'">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(124,58,237,0.04))">
+          <span style="font-size: 3rem;">🔒</span>
         </div>
         <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Deskew / Straighten PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Deskew / Straighten PDF with our complete tutorial and guide. Correct rotation angle of scanned PDF pages that are slightly crooked.</div>
+          <div class="blog-cat" style="color:#7C3AED">Security</div>
+          <div class="blog-title">Electronic Signatures: The Ultimate Guide to Laws, Security, & Compliance</div>
+          <div class="blog-excerpt">Explore the legal validity of electronic and digital signatures worldwide. Learn the difference between SES, AES, and QES, audit trails, and security best practices.</div>
           <div class="blog-meta">
-            <span>Mar 16, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
+            <span>May 10, 2026</span><span class="blog-meta-dot"></span><span>7 min read</span>
           </div>
-          <br><a href="blog-posts/2026-03-16-deskew--straighten-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
+          <br><a href="blog-electronic-signatures.html" class="blog-read">Read More →</a>
         </div>
       </div>
 
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-remove-annotations-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
+      <div class="blog-card" onclick="window.location.href='blog-password-security.html'">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(124,58,237,0.04))">
+          <span style="font-size: 3rem;">🔒</span>
         </div>
         <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Remove Annotations: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Remove Annotations with our complete tutorial and guide. Delete all highlights, comments, sticky notes and markups.</div>
+          <div class="blog-cat" style="color:#7C3AED">Security</div>
+          <div class="blog-title">Password Security in 2026: Why Weak Passwords Are Your Biggest Risk</div>
+          <div class="blog-excerpt">Discover why weak passwords remain the #1 cause of data breaches in 2026. Learn how to create strong passwords, what makes them uncrackable, and how to manage them safely.</div>
           <div class="blog-meta">
-            <span>Mar 22, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
+            <span>Mar 15, 2026</span><span class="blog-meta-dot"></span><span>7 min read</span>
           </div>
-          <br><a href="blog-posts/2026-03-16-remove-annotations-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-add-header--footer-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Add Header & Footer: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Add Header & Footer with our complete tutorial and guide. Stamp custom text at the top and bottom of every PDF page.</div>
-          <div class="blog-meta">
-            <span>Mar 5, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-add-header--footer-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-alternate--mix-pdfs-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Alternate & Mix PDFs: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Alternate & Mix PDFs with our complete tutorial and guide. Combine two PDFs by alternating pages between them.</div>
-          <div class="blog-meta">
-            <span>Mar 7, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-alternate--mix-pdfs-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-resize-pdf-page-size-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Resize PDF Page Size: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Resize PDF Page Size with our complete tutorial and guide. Change all pages to a standard paper size like A4 or US Letter.</div>
-          <div class="blog-meta">
-            <span>Mar 24, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-resize-pdf-page-size-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-extract-images-from-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Extract Images from PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Extract Images from PDF with our complete tutorial and guide. Renders each page as an image and downloads them as a ZIP archive.</div>
-          <div class="blog-meta">
-            <span>Mar 18, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-extract-images-from-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-edit-pdf-metadata-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Edit PDF Metadata: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Edit PDF Metadata with our complete tutorial and guide. Change PDF title, author, subject and keywords.</div>
-          <div class="blog-meta">
-            <span>Mar 17, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-edit-pdf-metadata-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-flatten-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Flatten PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Flatten PDF with our complete tutorial and guide. Make all form fields and annotations permanently non-editable.</div>
-          <div class="blog-meta">
-            <span>Mar 19, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-flatten-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-convert-pdf-to-grayscale-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Convert PDF to Grayscale: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Convert PDF to Grayscale with our complete tutorial and guide. Remove all colour from your PDF — ideal for black-and-white printing.</div>
-          <div class="blog-meta">
-            <span>Mar 11, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-convert-pdf-to-grayscale-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-add-page-numbers-to-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Add Page Numbers to PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Add Page Numbers to PDF with our complete tutorial and guide. Add customizable page numbers to your PDF documents with your preferred position and style.</div>
-          <div class="blog-meta">
-            <span>Mar 6, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-add-page-numbers-to-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-convert-pdf-to-pdfa-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Convert PDF to PDF/A: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Convert PDF to PDF/A with our complete tutorial and guide. Convert your PDF documents to the ISO-standardized PDF/A format for long-term archiving.</div>
-          <div class="blog-meta">
-            <span>Mar 12, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-convert-pdf-to-pdfa-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-convert-html-to-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Convert HTML to PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Convert HTML to PDF with our complete tutorial and guide. Convert web pages or raw HTML code into downloadable PDF documents.</div>
-          <div class="blog-meta">
-            <span>Mar 9, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-convert-html-to-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-compare-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Compare PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Compare PDF with our complete tutorial and guide. Upload two PDF documents and compare them side by side to spot differences.</div>
-          <div class="blog-meta">
-            <span>Mar 7, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-compare-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-sign-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Sign PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Sign PDF with our complete tutorial and guide. Add your handwritten or typed signature to any PDF document.</div>
-          <div class="blog-meta">
-            <span>Mar 25, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-sign-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-ocr--extract-text-from-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(232,50,26,0.08),rgba(232,50,26,0.04))">
-          <span style="font-size: 3rem;">📝</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:var(--red)">Tools Tutorial</div>
-          <div class="blog-title">OCR / Extract Text from PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use OCR / Extract Text from PDF with our complete tutorial and guide. Pull out all the selectable text from PDF pages for easy copying and editing.</div>
-          <div class="blog-meta">
-            <span>Mar 20, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-ocr--extract-text-from-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-repair-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Repair PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Repair PDF with our complete tutorial and guide. Fix damaged or corrupted PDF files and recover your data.</div>
-          <div class="blog-meta">
-            <span>Mar 23, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-repair-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-extract-pages-from-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Extract Pages from PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Extract Pages from PDF with our complete tutorial and guide. Pull out specific pages from a PDF to create a new, smaller document.</div>
-          <div class="blog-meta">
-            <span>Mar 18, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-extract-pages-from-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-edit-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Edit PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Edit PDF with our complete tutorial and guide. Draw, highlight, add text, and annotate your PDF documents directly in the browser.</div>
-          <div class="blog-meta">
-            <span>Mar 17, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-edit-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-convert-png-to-jpg-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(236,72,153,0.04))">
-          <span style="font-size: 3rem;">🖼️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#EC4899">Image Tools</div>
-          <div class="blog-title">Convert PNG to JPG: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Convert PNG to JPG with our complete tutorial and guide. Convert PNG graphics into compressed JPG photos to save space.</div>
-          <div class="blog-meta">
-            <span>Mar 14, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-convert-png-to-jpg-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-convert-jpg-to-png-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(236,72,153,0.04))">
-          <span style="font-size: 3rem;">🖼️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#EC4899">Image Tools</div>
-          <div class="blog-title">Convert JPG to PNG: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Convert JPG to PNG with our complete tutorial and guide. Convert JPEG photos into high-quality PNG graphics.</div>
-          <div class="blog-meta">
-            <span>Mar 10, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-convert-jpg-to-png-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-compress-image-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(236,72,153,0.04))">
-          <span style="font-size: 3rem;">🖼️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#EC4899">Image Tools</div>
-          <div class="blog-title">Compress Image: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Compress Image with our complete tutorial and guide. Reduce image file size significantly without losing visible quality.</div>
-          <div class="blog-meta">
-            <span>Mar 8, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-compress-image-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-crop-image-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(236,72,153,0.04))">
-          <span style="font-size: 3rem;">🖼️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#EC4899">Image Tools</div>
-          <div class="blog-title">Crop Image: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Crop Image with our complete tutorial and guide. Remove unwanted areas and frame your photos perfectly.</div>
-          <div class="blog-meta">
-            <span>Mar 15, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-crop-image-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-resize-image-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(236,72,153,0.04))">
-          <span style="font-size: 3rem;">🖼️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#EC4899">Image Tools</div>
-          <div class="blog-title">Resize Image: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Resize Image with our complete tutorial and guide. Change the dimensions of your images quickly and easily.</div>
-          <div class="blog-meta">
-            <span>Mar 23, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-resize-image-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-convert-jpg-to-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Convert JPG to PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Convert JPG to PDF with our complete tutorial and guide. Convert JPG, PNG, and WebP images to a PDF document in seconds.</div>
-          <div class="blog-meta">
-            <span>Mar 10, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-convert-jpg-to-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-convert-powerpoint-to-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Convert PowerPoint to PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Convert PowerPoint to PDF with our complete tutorial and guide. Convert PPTX slideshows to PDF to make them easy to view on any device.</div>
-          <div class="blog-meta">
-            <span>Mar 14, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-convert-powerpoint-to-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-convert-excel-to-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Convert Excel to PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Convert Excel to PDF with our complete tutorial and guide. Make XLSX and CSV spreadsheets easy to read and share by converting them to PDF.</div>
-          <div class="blog-meta">
-            <span>Mar 9, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-convert-excel-to-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-convert-word-to-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Convert Word to PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Convert Word to PDF with our complete tutorial and guide. Make DOCX files easy to read universally by converting them to PDF format.</div>
-          <div class="blog-meta">
-            <span>Mar 15, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-convert-word-to-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-convert-pdf-to-jpg-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Convert PDF to JPG: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Convert PDF to JPG with our complete tutorial and guide. Convert every page of your PDF to high-quality JPG, PNG, or WebP images.</div>
-          <div class="blog-meta">
-            <span>Mar 12, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-convert-pdf-to-jpg-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-pdf-to-powerpoint-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">PDF to PowerPoint: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use PDF to PowerPoint with our complete tutorial and guide. Extract text from PDFs to create PowerPoint presentations.</div>
-          <div class="blog-meta">
-            <span>Mar 21, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-pdf-to-powerpoint-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-convert-pdf-to-excel-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Convert PDF to Excel: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Convert PDF to Excel with our complete tutorial and guide. Extract PDF data and tables into a CSV format compatible with Excel.</div>
-          <div class="blog-meta">
-            <span>Mar 11, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-convert-pdf-to-excel-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-convert-pdf-to-word-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Convert PDF to Word: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Convert PDF to Word with our complete tutorial and guide. Convert PDF to editable Word documents (DOCX).</div>
-          <div class="blog-meta">
-            <span>Mar 13, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-convert-pdf-to-word-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-crop-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Crop PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Crop PDF with our complete tutorial and guide. Trim margins on PDF pages to remove white space or standardize dimensions.</div>
-          <div class="blog-meta">
-            <span>Mar 16, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-crop-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-organize-pdf-pages-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Organize PDF Pages: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Organize PDF Pages with our complete tutorial and guide. Sort and reorder PDF pages. Drag and drop the page thumbnails and sort them however you like.</div>
-          <div class="blog-meta">
-            <span>Mar 20, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-organize-pdf-pages-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-remove-pages-from-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Remove Pages from PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Remove Pages from PDF with our complete tutorial and guide. Delete specific pages from your PDF document quickly and easily.</div>
-          <div class="blog-meta">
-            <span>Mar 22, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-remove-pages-from-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-add-watermark-to-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Add Watermark to PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Add Watermark to PDF with our complete tutorial and guide. Stamp text over your PDF in seconds. Choose the typography, transparency and position.</div>
-          <div class="blog-meta">
-            <span>Mar 6, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-add-watermark-to-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-protect-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Protect PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Protect PDF with our complete tutorial and guide. Encrypt your PDF with a password to keep sensitive data confidential.</div>
-          <div class="blog-meta">
-            <span>Mar 21, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-protect-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-unlock-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Unlock PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Unlock PDF with our complete tutorial and guide. Remove PDF password security, allowing you to edit, print, and copy from your documents.</div>
-          <div class="blog-meta">
-            <span>Mar 26, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-unlock-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-rotate-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Rotate PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Rotate PDF with our complete tutorial and guide. Rotate your PDFs the way you need them. Easily change page orientation from portrait to landscape.</div>
-          <div class="blog-meta">
-            <span>Mar 24, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-rotate-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-split-pdf-files-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Split PDF Files: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Split PDF Files with our complete tutorial and guide. Separate one page or a whole set for easy conversion into independent PDF files.</div>
-          <div class="blog-meta">
-            <span>Mar 25, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-split-pdf-files-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-compress-pdf-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Compress PDF: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Compress PDF with our complete tutorial and guide. Reduce file size while optimizing for maximal quality.</div>
-          <div class="blog-meta">
-            <span>Mar 8, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-compress-pdf-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-16-merge-pdf-files-complete-guide-and-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Merge PDF Files: Complete Guide and Tutorial</div>
-          <div class="blog-excerpt">Learn how to use Merge PDF Files with our complete tutorial and guide. Combine PDFs in the order you want with the easiest PDF merger available.</div>
-          <div class="blog-meta">
-            <span>Mar 19, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-16-merge-pdf-files-complete-guide-and-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-15-how-to-convert-jpg-to-pdf-online-free-complete-tutorial.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(236,72,153,0.04))">
-          <span style="font-size: 3rem;">🖼️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#EC4899">Image Tools</div>
-          <div class="blog-title">How to Convert JPG to PDF Online Free: Complete Tutorial</div>
-          <div class="blog-excerpt">
-            <h2>Understanding JPG to PDF Conversion</h2>
-            <p>Converting JPG images to PDF format is a common task that many people need to...</div>
-          <div class="blog-meta">
-            <span>Mar 4, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-15-how-to-convert-jpg-to-pdf-online-free-complete-tutorial.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-15-how-to-merge-multiple-pdfs-step-by-step-guide.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">How to Merge Multiple PDFs: Step-by-Step Guide</div>
-          <div class="blog-excerpt">
-            <h2>Introduction to PDF Merging</h2>
-            <p>Merging multiple PDFs is a fundamental skill that every professional should master. W...</div>
-          <div class="blog-meta">
-            <span>Mar 4, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-15-how-to-merge-multiple-pdfs-step-by-step-guide.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-15-how-to-compress-a-pdf-without-losing-quality-complete-guide.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">How to Compress a PDF Without Losing Quality: Complete Guide</div>
-          <div class="blog-excerpt">
-            <h2>Understanding PDF Compression</h2>
-            <p>PDF compression is a crucial skill for anyone working with digital documents. Large...</div>
-          <div class="blog-meta">
-            <span>Mar 3, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-15-how-to-compress-a-pdf-without-losing-quality-complete-guide.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-15-best-free-pdf-tools-in-2026-complete-guide.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">Best Free PDF Tools in 2026: Complete Guide</div>
-          <div class="blog-excerpt">
-            <h2>Introduction to Free PDF Tools in 2026</h2>
-            <p>In today's digital world, PDF tools have become essential for professional...</div>
-          <div class="blog-meta">
-            <span>Mar 3, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-15-best-free-pdf-tools-in-2026-complete-guide.html" class="blog-read">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card" onclick="window.location.href='blog-posts/2026-03-15-how-to-merge-pdf-files-like-a-pro-in-2024.html'">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04))">
-          <span style="font-size: 3rem;">🗜️</span>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat" style="color:#16A34A">PDF Tips</div>
-          <div class="blog-title">How to Merge PDF Files Like a Pro in 2026</div>
-          <div class="blog-excerpt">Learn the best practices for merging PDF files and how to use our free online PDF merger tool effectively.</div>
-          <div class="blog-meta">
-            <span>Mar 5, 2026</span><span class="blog-meta-dot"></span><span>5 min read</span>
-          </div>
-          <br><a href="blog-posts/2026-03-15-how-to-merge-pdf-files-like-a-pro-in-2024.html" class="blog-read">Read More →</a>
+          <br><a href="blog-password-security.html" class="blog-read">Read More →</a>
         </div>
       </div>
 
@@ -1043,7 +362,10 @@
   <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
+      <div class="footer-logo"><div class="nav-logo-heart">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    love<span>pdfs</span></div>
       <div class="footer-tagline">Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.</div>
       <div class="footer-contact"><a href="contact.html">Contact us</a></div>
       <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>

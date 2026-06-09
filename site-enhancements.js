@@ -98,15 +98,15 @@
     const style = document.createElement('style');
     style.id = styleId;
     style.textContent = [
-      '.lp-related-hub{margin:3rem 0 0;padding:2rem;border:2px solid var(--border);border-radius:24px;background:linear-gradient(135deg,var(--card),var(--bg2));box-shadow:0 18px 40px rgba(0,0,0,0.06);}',
-      '.lp-related-hub h2{margin:0 0 0.75rem;font-family:\'Fraunces\',serif;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--text);}',
+      '.lp-related-hub{margin:3rem 0 0;padding:2rem;border:1px solid var(--border);border-radius:12px;background:linear-gradient(135deg,var(--card),var(--bg2));box-shadow:var(--shadow-sm);}',
+      '.lp-related-hub h2{margin:0 0 0.75rem;font-family:\'Inter\',sans-serif;font-weight:800;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--text);letter-spacing:-0.02em;}',
       '.lp-related-hub p{margin:0 0 1.2rem;color:var(--muted);line-height:1.75;font-size:1rem;max-width:820px;}',
       '.lp-related-hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}',
-      '.lp-link-group{background:var(--card);border:1.5px solid var(--border);border-radius:18px;padding:1rem 1rem 1.1rem;}',
+      '.lp-link-group{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem 1rem 1.1rem;}',
       '.lp-link-group-title{margin:0 0 0.85rem;font-size:0.76rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}',
       '.lp-related-hub-links{display:flex;flex-wrap:wrap;gap:0.65rem;}',
-      '.lp-related-hub-links a{padding:0.72rem 0.95rem;border:2px solid var(--border);border-radius:999px;background:linear-gradient(180deg,var(--card),var(--bg2));color:var(--text);text-decoration:none;font-weight:700;transition:all .2s ease;box-shadow:0 4px 10px rgba(0,0,0,0.04);}',
-      '.lp-related-hub-links a:hover{border-color:var(--red);color:var(--red);transform:translateY(-2px);box-shadow:0 10px 18px rgba(232,50,26,0.12);}',
+      '.lp-related-hub-links a{padding:0.72rem 0.95rem;border:1px solid var(--border);border-radius:999px;background:linear-gradient(180deg,var(--card),var(--bg2));color:var(--text);text-decoration:none;font-weight:700;transition:all .2s ease;box-shadow:var(--shadow-xs);}',
+      '.lp-related-hub-links a:hover{border-color:var(--red);color:var(--red);transform:translateY(-2px);box-shadow:0 4px 12px var(--red-glow);}',
       '@media(max-width:640px){.lp-related-hub{padding:1.35rem}.lp-related-hub-grid{grid-template-columns:1fr;}}'
     ].join('');
     document.head.appendChild(style);

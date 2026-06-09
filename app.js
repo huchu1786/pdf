@@ -6,7 +6,9 @@
 let activeCat = 'all';
 function renderCats() {
   const row = document.getElementById('catRow'); if (!row) return;
-  row.innerHTML = CATS.map(c => `<button class="cat-btn${c.id === activeCat ? ' on' : ''}" onclick="setCat('${c.id}')">${c.label}</button>`).join('');
+  row.innerHTML = CATS.filter(c => c.id !== 'advanced').map(c => 
+    `<div class="tag${c.id === activeCat ? ' active' : ''}" data-filter="${c.id}" onclick="setCat('${c.id}')">${c.label}</div>`
+  ).join('');
 }
 function setCat(c) { activeCat = c; renderCats(); renderTools(''); }
 
@@ -17,8 +19,8 @@ function renderTools(search = '') {
   const container = document.getElementById('toolsContainer'); if (!container) return;
   if (search) {
     const filtered = TOOLS.filter(t => t.name.toLowerCase().includes(search) || t.desc.toLowerCase().includes(search));
-    if (!filtered.length) { container.innerHTML = '<div style="text-align:center;padding:4rem;color:var(--muted)">No tools match your search. Try "merge", "compress", or "sign".</div>'; return; }
-    container.innerHTML = `<div class="tools-grid">${filtered.map(toolCard).join('')}</div>`;
+    if (!filtered.length) { container.innerHTML = '<div style="text-align:center;padding:4rem;color:#888">No tools match your search. Try "merge", "compress", or "sign".</div>'; return; }
+    container.innerHTML = `<div class="tools__container"><div class="tools-grid">${filtered.map(toolCard).join('')}</div></div>`;
     return;
   }
   if (activeCat !== 'all') {
@@ -26,18 +28,88 @@ function renderTools(search = '') {
     container.innerHTML = `<div class="tools-grid">${filtered.map(toolCard).join('')}</div>`;
     return;
   }
-  // All: grouped
-  container.innerHTML = Object.values(CAT_GROUPS).map(g => {
-    const tools = g.tools.map(id => TOOLS.find(t => t.id === id)).filter(Boolean);
-    return `<div class="tool-group"><div class="group-heading">${g.label}</div><div class="tools-grid">${tools.map(toolCard).join('')}</div></div>`;
-  }).join('');
+  // All: flat grid, no group headings (iLovePDF style)
+  const allTools = [];
+  Object.values(CAT_GROUPS).forEach(g => {
+    g.tools.forEach(id => {
+      const t = TOOLS.find(tool => tool.id === id);
+      if (t && !allTools.find(x => x.id === t.id)) allTools.push(t);
+    });
+  });
+  container.innerHTML = `<div class="tools-grid">${allTools.map(toolCard).join('')}</div>`;
 }
 
-function toolCard(t) {
-  // Check if we are on the homepage index.html or another page
-  const isHome = window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('all-tools.html');
+function getToolIconSVG(id, clr) {
+  const stroke = `stroke="${clr || 'currentColor'}"`;
+  const svgs = {
+    'merge': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M8 12h8"></path><path d="M12 8v8"></path></svg>`,
+    'split': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>`,
+    'removepg': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>`,
+    'extract': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path><polyline points="8 12 12 8 16 12"></polyline><line x1="12" y1="8" x2="12" y2="22"></line></svg>`,
+    'organize': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>`,
+    'compress': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 14 10 14 10 20"></polyline><polyline points="20 10 14 10 14 4"></polyline><line x1="14" y1="10" x2="21" y2="3"></line><line x1="10" y1="14" x2="3" y2="21"></line></svg>`,
+    'repair': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`,
+    'ocr': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3H5a2 2 0 0 0-2 2v2m0 10v2a2 2 0 0 0 2 2h2m10-18h2a2 2 0 0 1 2 2v2m0 10v2a2 2 0 0 1-2 2h-2m-10-8h8m-4-4v8"></path></svg>`,
+    'jpg2pdf': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>`,
+    'word2pdf': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>`,
+    'ppt2pdf': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line><path d="M12 17v4"></path><path d="M8 21h8"></path></svg>`,
+    'xls2pdf': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM21 9H3m21 6H3M9 3v18m6-18v18"></path></svg>`,
+    'html2pdf': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`,
+    'epub_reader': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5v-15z"></path></svg>`,
+    'epub2pdf': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5v-15z"></path></svg>`,
+    'pdf2jpg': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><circle cx="9.5" cy="13.5" r="1.5"></circle><polyline points="18 19 14 14 8 20"></polyline></svg>`,
+    'pdf2ppt': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line><path d="M12 17v4"></path><path d="M8 21h8"></path></svg>`,
+    'pdf2word': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>`,
+    'pdf2xls': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM21 9H3m21 6H3M9 3v18m6-18v18"></path></svg>`,
+    'pdf2pdfa': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>`,
+    'rotate': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>`,
+    'watermark': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>`,
+    'pagenums': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5v-15z"></path><text x="8" y="12" font-size="7" font-weight="900" font-family="sans-serif" fill="${clr || 'currentColor'}">12</text></svg>`,
+    'crop': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.13 1L6 16a2 2 0 0 0 2 2h15"></path><path d="M1 6.13L16 6a2 2 0 0 1 2 2v15"></path></svg>`,
+    'editpdf': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>`,
+    'unlock': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path></svg>`,
+    'protect': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>`,
+    'sign': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20H4"></path><path d="M20 7l-8 8-4-4 8-8 4 4z"></path></svg>`,
+    'redact': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg>`,
+    'compare': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="8" x2="22" y2="12"></line><line x1="18" y1="16" x2="22" y2="12"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="6" y1="16" x2="2" y2="12"></line><line x1="6" y1="8" x2="2" y2="12"></line></svg>`,
+    'grayscale': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 1 0 20z" fill="${clr || 'currentColor'}"></path></svg>`,
+    'flatten': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
+    'editMeta': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>`,
+    'extractImg': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7m14-4V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3m16 4H3"></path></svg>`,
+    'resizepdf': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>`,
+    'altmix': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"></path><path d="M4 20L21 3"></path><path d="M21 16v5h-5"></path><path d="M15 15l6 6"></path><path d="M4 4l5 5"></path></svg>`,
+    'headfoot': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`,
+    'removeann': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>`,
+    'deskew': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>`,
+    'pdf2txt': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>`,
+    'nup': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="18" rx="1"></rect><rect x="14" y="3" width="7" height="18" rx="1"></rect></svg>`,
+    'passport_photo': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>`,
+    'resize_img': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><polyline points="21 15 16 10 5 21"></polyline></svg>`,
+    'crop_img': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.13 1L6 16a2 2 0 0 0 2 2h15"></path><path d="M1 6.13L16 6a2 2 0 0 1 2 2v15"></path></svg>`,
+    'compress_img': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 14 10 14 10 20"></polyline><polyline points="20 10 14 10 14 4"></polyline></svg>`,
+    'jpg2png_img': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1v22M23 17l-6 6-6-6"></path><circle cx="6" cy="6" r="3"></circle></svg>`,
+    'png2jpg_img': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1v22M23 17l-6 6-6-6"></path><circle cx="6" cy="6" r="3"></circle></svg>`,
+    'age_calc': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>`,
+    'word_counter': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>`,
+    'pct_calc': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>`,
+    'gst_calc': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"></rect><line x1="9" y1="9" x2="15" y2="9"></line><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="15" y2="17"></line></svg>`,
+    'loan_calc': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>`,
+    'bmi_calc': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20M2 12h20"></path></svg>`,
+    'date_calc': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
+    'currency': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>`,
+    'password_gen': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"></circle><path d="M21 2l-6 6m0 0l-3-1M15 8l1 3"></path></svg>`,
+    'qr_gen': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="5" height="5"></rect><rect x="16" y="3" width="5" height="5"></rect><rect x="3" y="16" width="5" height="5"></rect><path d="M16 16h1v1h-1zM19 19h1v1h-1zM20 16h1v1h-1zM16 20h1v1h-1z"></path></svg>`,
+    'color_picker': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 14.7255 3.09032 17.1962 4.85857 19C5.34771 18.3395 6.12643 17.9048 7 17.9048C8.65685 17.9048 10 19.2479 10 20.9048C10 21.2942 9.92544 21.6663 9.79043 22.008C10.5056 22.0027 11.2435 22 12 22Z" fill="none"></path><circle cx="7.5" cy="10.5" r="1.5" fill="currentColor"></circle><circle cx="11.5" cy="7.5" r="1.5" fill="currentColor"></circle><circle cx="16.5" cy="9.5" r="1.5" fill="currentColor"></circle><circle cx="15.5" cy="14.5" r="1.5" fill="currentColor"></circle></svg>`,
+    'json_fmt': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M8 3H3v5M16 21h5v-5M8 21H3v-5"></path></svg>`,
+    'email_val': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>`,
+    'csv_excel': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM21 9H3m21 6H3M9 3v18m6-18v18"></path></svg>`,
+    'picker_wheel': `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"></path></svg>`
+  };
+  return svgs[id] || `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" ${stroke} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`;
+}
 
-  // Very simple client-side slug mapping (assuming tools map 1:1 with typical SEO IDs, or just map them explicitly)
+function getToolUrl(id) {
+  const isHome = window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('all-tools.html');
   const slugMap = {
     'passport_photo': 'passport-photo.html',
     'merge': 'merge-pdf', 'compress': 'compress-pdf', 'split': 'split-pdf', 'rotate': 'rotate-pdf',
@@ -60,27 +132,24 @@ function toolCard(t) {
     'json_fmt': 'json-formatter', 'email_val': 'email-validator', 'csv_excel': 'csv-to-excel',
     'picker_wheel': 'picker-wheel'
   };
-
-
-  // Distribute colors evenly
-  const colors = ['tc-red', 'tc-green', 'tc-blue', 'tc-amber', 'tc-purple'];
-  const colorIndex = Object.keys(slugMap).indexOf(t.id) % colors.length;
-  const colorClass = colorIndex >= 0 ? colors[colorIndex] : colors[0];
-
-  const slug = slugMap[t.id];
+  const slug = slugMap[id];
   const isDirectHtml = typeof slug === 'string' && /\.html$/i.test(slug);
-  const href = isHome
-    ? (slug ? (isDirectHtml ? `./${slug}` : `./${slug}/index.html`) : `javascript:openTool('${t.id}')`)
-    : (slug ? (isDirectHtml ? `../${slug}` : `../${slug}/index.html`) : `javascript:openTool('${t.id}')`);
+  return isHome
+    ? (slug ? (isDirectHtml ? `./${slug}` : `./${slug}/index.html`) : `javascript:openTool('${id}')`)
+    : (slug ? (isDirectHtml ? `../${slug}` : `../${slug}/index.html`) : `javascript:openTool('${id}')`);
+}
 
-  return `<a class="tool-card ${colorClass}" href="${href}">
-    ${t.badge ? `<div class="tc-badge bg-${t.badge}">${t.badge}</div>` : ''}
-    <div class="tc-shine"></div>
-    <div class="tc-icon" style="background:${t.clr}12;color:${t.clr}">${t.icon}</div>
-    <div class="tc-name">${t.name}</div>
-    <div class="tc-desc">${t.desc}</div>
-    <div class="tc-arrow">→</div>
-  </a>`;
+function toolCard(t) {
+  const url = getToolUrl(t.id);
+  const svg = getToolIconSVG(t.id, '#ffffff');
+  const iconContent = svg || `<span style="font-size:1.6rem">${t.icon}</span>`;
+  return `<div class="tools__item" data-category="${t.cat}" style="--accent: ${t.clr || 'var(--red)'}">
+    <a href="${url}" title="${t.name}">
+      <div class="tools__item__icon">${iconContent}</div>
+      <h3>${t.name}</h3>
+      <div class="tools__item__content"><p>${t.desc}</p></div>
+    </a>
+  </div>`;
 }
 
 renderCats(); renderTools('');
@@ -147,6 +216,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const ds = document.body.dataset.toolId;
   if (ds) {
     openTool(ds);
+    updateWorkspaceActiveState(ds);
   }
 });
 
@@ -283,20 +353,31 @@ function onFiles(id, flist) {
     fr.readAsDataURL(s.files[0]);
     showOpts(id);
   }
+  updateWorkspaceActiveState(id);
 }
 function renderFL(id) {
   const fl = document.getElementById('fl_' + id); if (!fl) return;
   const s = gs(id);
-  fl.innerHTML = s.files.map((f, i) => `<div class="fi">
+  let html = s.files.map((f, i) => `<div class="fi">
     <div class="fi-ic" style="background:rgba(232,50,26,0.08);color:var(--red)">${f.name.match(/\.pdf$/i) ? '📄' : f.name.match(/\.(jpg|jpeg|png|gif|webp)$/i) ? '🖼️' : f.name.match(/\.(doc|docx)$/i) ? '📝' : f.name.match(/\.(xls|xlsx|csv)$/i) ? '📊' : '📎'}</div>
     <div class="fi-info"><div class="fi-name">${f.name}</div><div class="fi-size">${fmtSize(f.size)}</div></div>
     <span class="fi-status">Ready</span>
     <button class="fi-rm" onclick="rmFile('${id}',${i})">✕</button>
   </div>`).join('');
+  
+  if (['merge', 'jpg2pdf'].includes(id) && s.files.length > 0) {
+    html += `<div class="fi fi-add" onclick="triggerFI('${id}')">
+      <div class="fi-ic">+</div>
+      <div class="fi-info"><div class="fi-name">Add files</div></div>
+    </div>`;
+  }
+  
+  fl.innerHTML = html;
 }
 function rmFile(id, i) {
   const s = gs(id); s.files.splice(i, 1); renderFL(id);
   if (!s.files.length) { const bg = document.getElementById('bg_' + id); if (bg) bg.disabled = true; hideOpts(id); }
+  updateWorkspaceActiveState(id);
 }
 function showOpts(id) { const el = document.getElementById('opts_' + id); if (el) el.style.display = ''; }
 function hideOpts(id) { const el = document.getElementById('opts_' + id); if (el) el.style.display = 'none'; }
@@ -331,6 +412,7 @@ function resetT(id) {
   const fi = document.getElementById('fi_' + id); if (fi) fi.value = '';
   const pgw = document.getElementById('pgw_' + id); if (pgw) pgw.style.display = 'none';
   annPdf = null; annStrokes = []; rdPdf = null; rdBoxes = [];
+  updateWorkspaceActiveState(id);
 }
 
 // ── RUN ──────────────────────────────────────────────────────────
@@ -659,4 +741,89 @@ async function onCmpFile(side, files) {
     await pg.render({ canvasContext: cv.getContext('2d'), viewport: vp }).promise;
   } catch (e) { console.error(e); }
   if (cmpFiles.A && cmpFiles.B) { const btn = document.getElementById('bg_compare'); if (btn) btn.disabled = false; }
+  updateWorkspaceActiveState('compare');
 }
+
+// ── WORKSPACE REDESIGN HELPERS ────────────────────────────────────
+window.updateWorkspaceActiveState = function(id) {
+  const s = gs(id);
+  const workspace = document.getElementById('toolWorkspace') || document.getElementById('mBody');
+  if (!workspace) return;
+
+  const hasFiles = (s && s.files && s.files.length > 0) || 
+                   (id === 'compare' && cmpFiles && (cmpFiles.A || cmpFiles.B)) ||
+                   (id === 'altmix' && altFiles_ && (altFiles_.A || altFiles_.B));
+
+  if (hasFiles) {
+    document.body.classList.add('workspace-active');
+    restructureWorkspace(id);
+  } else {
+    document.body.classList.remove('workspace-active');
+  }
+};
+
+window.restructureWorkspace = function(id) {
+  const workspace = document.getElementById('toolWorkspace') || document.getElementById('mBody');
+  if (!workspace) return;
+
+  // If already structured, don't do it again
+  if (workspace.querySelector('.tool-main') && workspace.querySelector('.tool-sidebar')) {
+    return;
+  }
+
+  // Create wrappers
+  const main = document.createElement('div');
+  main.className = 'tool-main';
+  const sidebar = document.createElement('div');
+  sidebar.className = 'tool-sidebar';
+
+  // Add a nice header to the sidebar
+  const t = TOOLS.find(x => x.id === id);
+  const sidebarHeader = document.createElement('div');
+  sidebarHeader.className = 'sidebar-header';
+  sidebarHeader.innerHTML = `
+    <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; color: var(--text)">${t ? t.name : 'Options'}</h2>
+    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 12px; line-height: 1.4">${t ? t.desc : ''}</p>
+  `;
+  sidebar.appendChild(sidebarHeader);
+
+  // Group elements
+  const children = Array.from(workspace.children);
+  children.forEach(child => {
+    // Determine if element belongs to main preview or sidebar
+    const isMain = child.classList.contains('dzone') || 
+                   child.classList.contains('flist') || 
+                   child.classList.contains('pg-wrap') || 
+                   child.classList.contains('cmp-cols') || 
+                   child.id === 'edit_panel' || 
+                   child.id === 'redact_panel' || 
+                   child.id === 'sign_panel' || 
+                   child.id === 'ocr_panel' ||
+                   child.id === 'p2t_preview' ||
+                   child.tagName.toLowerCase() === 'input' && child.type === 'file';
+    
+    const isSidebar = child.classList.contains('preset-bar') || 
+                      child.classList.contains('opt-section') || 
+                      child.classList.contains('prog') || 
+                      child.classList.contains('result-box') || 
+                      child.classList.contains('act-row') ||
+                      child.textContent.includes('💡') || 
+                      child.textContent.includes('📘') || 
+                      child.textContent.includes('📊') ||
+                      child.textContent.includes('🎞️') ||
+                      child.textContent.includes('🔓') ||
+                      child.textContent.includes('⚠️');
+
+    if (isMain) {
+      main.appendChild(child);
+    } else if (isSidebar) {
+      sidebar.appendChild(child);
+    } else {
+      // Default fallback
+      main.appendChild(child);
+    }
+  });
+
+  workspace.appendChild(main);
+  workspace.appendChild(sidebar);
+};

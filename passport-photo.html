@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -64,7 +64,7 @@
       --red:       #E8321A;
       --text:      #1C1C18;
       --muted:     #8C8C80;
-      --radius:    20px;
+      --radius:    12px;
     }
 
     body.dark #passport-photo-page {
@@ -79,7 +79,7 @@
       --red:       #E8321A;
       --text:      #F4F4EE;
       --muted:     #606058;
-      --radius:    20px;
+      --radius:    12px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -100,7 +100,7 @@
       display: flex; align-items: center; justify-content: space-between;
     }
     .logo {
-      font-family: 'Fraunces', serif;
+      font-family: 'Inter', sans-serif;
       font-size: 1.2rem; font-weight: 700;
       color: var(--text); text-decoration: none;
       display: flex; align-items: center; gap: 8px;
@@ -127,10 +127,11 @@
       padding: 5px 14px; border-radius: 999px; margin-bottom: 20px;
     }
     .hero h1 {
-      font-family: 'Fraunces', serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700; line-height: 1.2;
+      font-weight: 800; line-height: 1.2;
       margin-bottom: 12px;
+      letter-spacing: -0.02em;
     }
     .hero h1 em { font-style: normal; color: var(--accent); }
     .hero p {
@@ -143,7 +144,7 @@
       position: relative; z-index: 1;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: var(--radius);
       padding: 36px;
       max-width: 780px; margin: 0 auto 28px;
     }
@@ -155,7 +156,7 @@
 
     /* ── Section label ── */
     .section-label {
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: .7rem; font-weight: 700;
       letter-spacing: .1em; text-transform: uppercase;
       color: var(--muted); margin-bottom: 14px;
@@ -188,7 +189,7 @@
     }
     .drop-icon svg { color: var(--accent); }
     #dropZone h3 {
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 1rem; font-weight: 600; margin-bottom: 5px;
     }
     #dropZone p { font-size: .82rem; color: var(--muted); }
@@ -306,7 +307,7 @@
     }
     .btn-primary {
       background: var(--accent); color: #fff;
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: .9rem; font-weight: 700;
       padding: 12px 32px; border-radius: 10px;
       border: none; cursor: pointer;
@@ -318,7 +319,7 @@
 
     .btn-success {
       background: var(--green); color: #0d0f14;
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: .9rem; font-weight: 700;
       padding: 12px 32px; border-radius: 10px;
       border: none; cursor: pointer;
@@ -368,7 +369,7 @@
     }
     .modal-overlay.visible .modal-box { transform: translateY(0); }
     .modal-title {
-      font-family: 'Fraunces', serif;
+      font-family: 'Inter', sans-serif;
       font-size: 1.05rem; font-weight: 700; margin-bottom: 16px;
     }
     .crop-container {
@@ -405,12 +406,12 @@
       width: 32px; height: 32px;
       background: rgba(79,142,247,.12); border: 1px solid rgba(79,142,247,.25);
       border-radius: 9px;
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: .85rem; font-weight: 700; color: var(--accent);
       display: flex; align-items: center; justify-content: center;
     }
     .step h4 {
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: .88rem; font-weight: 600;
     }
     .step p { font-size: .78rem; color: var(--muted); }
@@ -428,7 +429,7 @@
     .rmbg-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: var(--radius);
       padding: 28px 32px;
       max-width: 780px;
       margin: 0 auto 24px;
@@ -445,8 +446,8 @@
       margin-bottom: 18px; flex-wrap: wrap; gap: 10px;
     }
     .rmbg-title {
-      font-family: 'Fraunces', serif;
-      font-size: 1.15rem; font-weight: 800; color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 1.15rem; font-weight: 700; color: var(--text);
       display: flex; align-items: center; gap: 8px;
     }
     .rmbg-badge {
@@ -461,7 +462,7 @@
     @media (max-width: 580px) { .rmbg-body { grid-template-columns: 1fr; } }
     .rmbg-drop {
       border: 2px dashed var(--border2);
-      border-radius: 14px; background: var(--surface2);
+      border-radius: var(--radius); background: var(--surface2);
       padding: 28px 16px; text-align: center; cursor: pointer;
       transition: border-color .2s, background .2s;
       min-height: 140px; display: flex; flex-direction: column;
@@ -507,7 +508,7 @@
     .rmbg-actions { display: flex; gap: 8px; flex-wrap: wrap; }
     .btn-rmbg {
       flex: 1; padding: 10px 14px; border-radius: 10px; border: none;
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 0.82rem; font-weight: 700; cursor: pointer;
       transition: opacity .2s, transform .12s;
     }
@@ -550,16 +551,16 @@
       z-index: 1;
     }
     .seo-content h2{
-      font-family: 'Fraunces', serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(1.55rem, 3.2vw, 2.25rem);
-      font-weight: 900;
+      font-weight: 800;
       letter-spacing: -0.02em;
       margin: 3rem 0 1rem;
     }
     .seo-content h2:first-of-type{ margin-top: 1.6rem; }
     .seo-content h3{
-      font-family: 'Fraunces', serif;
-      font-weight: 800;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
       font-size: 1.25rem;
       margin: 1.6rem 0 0.65rem;
       color: var(--text);
@@ -582,7 +583,7 @@
     .steps-list li{
       background: var(--surface2);
       border: 1px solid var(--border2);
-      border-radius: 16px;
+      border-radius: var(--radius);
       padding: 1.05rem 1.1rem;
       color: var(--text);
       font-size: 1.05rem;
@@ -598,14 +599,14 @@
     .size-card{
       background: var(--surface2);
       border: 1px solid var(--border2);
-      border-radius: 18px;
+      border-radius: var(--radius);
       padding: 1.15rem 1.15rem;
     }
 
     .note-block{
       background: rgba(79,142,247,.08);
       border: 1px solid rgba(79,142,247,.18);
-      border-radius: 18px;
+      border-radius: var(--radius);
       padding: 1.05rem 1.15rem;
       color: var(--muted);
       font-size: 1.05rem;
@@ -656,7 +657,7 @@
       color: var(--text);
       text-decoration: none;
       font-weight: 800;
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       transition: transform .18s, border-color .18s;
     }
     .related-chip:hover{
@@ -668,7 +669,7 @@
     .faq-list{
       background: var(--surface2);
       border: 1px solid var(--border2);
-      border-radius: 18px;
+      border-radius: var(--radius);
       overflow: hidden;
     }
     .faq-item{
@@ -694,14 +695,18 @@
 
 <!-- NAV -->
 <nav class="site-nav" id="siteNav">
-  <a href="/" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
+  <a href="/" class="nav-logo" style="font-weight: 800; font-size: 1.5rem; color: #1e2229; display: inline-flex; align-items: center; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none;">
+  I <span class="nav-logo-heart" style="color: #e8321a; margin: 0 4px; display: inline-flex; align-items: center; vertical-align: middle;">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+  </span> PDFs
+</a>
   <div class="nav-mid">
     <a href="all-tools.html" class="nav-link">All Tools</a>
     <a href="image-tools/" class="nav-link">Image Tools</a>
     <a href="pdf-tools/" class="nav-link">PDF Tools</a>
   </div>
   <div class="nav-right">
-    <button class="theme-btn" id="themeBtn">🌙</button>
+    
     <a href="contact.html" class="nav-btn-o">Contact</a>
     <a href="all-tools.html" class="nav-btn-f">All Tools →</a>
   </div>
@@ -1014,7 +1019,10 @@
 <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
+      <div class="footer-logo"><div class="nav-logo-heart">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    love<span>pdfs</span></div>
       <div class="footer-tagline">Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.</div>
       <div class="footer-contact"><a href="contact.html">Contact us</a></div>
       <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>

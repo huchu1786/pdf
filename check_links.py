@@ -10,10 +10,10 @@ import sys
 def find_html_files(root_dir):
     html_files = []
     for dirpath, dirnames, filenames in os.walk(root_dir):
-        # skip node_modules, .git, __pycache__
-        dirnames[:] = [d for d in dirnames if d not in ('node_modules', '.git', '__pycache__', 'blog-posts')]
+        # skip node_modules, .git, __pycache__, backups, app dirs
+        dirnames[:] = [d for d in dirnames if d not in ('node_modules', '.git', '__pycache__', 'backups', 'pdf_tools_app', 'quiz_app')]
         for f in filenames:
-            if f.endswith('.html'):
+            if f.endswith('.html') and f != 'template.html':
                 html_files.append(os.path.join(dirpath, f))
     return html_files
 
@@ -40,10 +40,18 @@ def is_internal(link):
         return False
     if link.startswith('data:'):
         return False
+    # skip JS template variables or Flutter assets/variables
+    if '$' in link or '{' in link or '}' in link:
+        return False
     return True
 
 def resolve_path(link, base_dir, html_file_path):
     """Resolve relative link to absolute file path."""
+    # Strip query parameters and anchors
+    link = link.split('?')[0].split('#')[0]
+    if not link.strip():
+        return None
+        
     # If link is absolute from root (starts with /), treat as relative to base_dir
     if link.startswith('/'):
         link = link[1:]
@@ -51,7 +59,6 @@ def resolve_path(link, base_dir, html_file_path):
     html_dir = os.path.dirname(html_file_path)
     # Join with link
     target = os.path.normpath(os.path.join(html_dir, link))
-    # If target is outside base_dir, still check existence
     return target
 
 def main():
@@ -73,6 +80,8 @@ def main():
             if not is_internal(link):
                 continue
             target = resolve_path(link, root_dir, html_file)
+            if target is None:
+                continue
             if not os.path.exists(target):
                 # Check if it's a directory with index.html
                 if os.path.isdir(target):

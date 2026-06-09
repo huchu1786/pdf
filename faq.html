@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4413784450447798" crossorigin="anonymous"></script>
 
@@ -16,14 +16,18 @@
 </head>
 <body>
 <nav class="site-nav" id="siteNav">
-  <a href="index.html" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
+  <a href="/" class="nav-logo" style="font-weight: 800; font-size: 1.5rem; color: #1e2229; display: inline-flex; align-items: center; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none;">
+  I <span class="nav-logo-heart" style="color: #e8321a; margin: 0 4px; display: inline-flex; align-items: center; vertical-align: middle;">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+  </span> PDFs
+</a>
   <div class="nav-mid">
     <a href="index.html#tools" class="nav-link">All Tools</a>
     <a href="features.html" class="nav-link">Features</a>
     <a href="pricing.html" class="nav-link">Pricing</a>
   </div>
   <div class="nav-right">
-    <button class="theme-btn" id="themeBtn">🌙</button>
+    
     <a href="contact.html" class="nav-btn-o">Contact</a>
     <a href="index.html" class="nav-btn-f">← Tools</a>
   </div>
@@ -37,50 +41,61 @@
   <div class="content-section narrow">
 <div class="content-card">
   <h3 class="section-h">Q: Is LovePDFs really free?</h3>
-  <p class="body-p">Yes! All core tools are 100% free with no sign-up required. We support the service with Google AdSense ads.</p>
+  <p class="body-p">Yes! All core tools are 100% free with no sign-up required. Unlike traditional sites, we do not pay for heavy cloud servers to process your documents—all CPU work occurs locally in your browser. This reduces our infrastructure costs to near zero, letting us provide unlimited, restriction-free access. We support the service with standard Google AdSense display ads.</p>
 </div>
+
 <div class="content-card">
-  <h3 class="section-h">Q: Are my files safe?</h3>
-  <p class="body-p">Completely. All processing happens in your browser using WebAssembly and JavaScript. Your files never leave your device or touch our servers.</p>
+  <h3 class="section-h">Q: What does client-side WebAssembly processing mean?</h3>
+  <p class="body-p">Traditionally, online PDF converters upload your files to their servers, process them remotely, and send them back. LovePDFs is different. When you load a tool page, the browser downloads a secure WebAssembly (Wasm) binary library. This library runs directly in your browser tab at near-native hardware speed. Your files are read and modified strictly within your local device memory, meaning your document data never travels across the web or touches our servers.</p>
 </div>
+
 <div class="content-card">
-  <h3 class="section-h">Q: Can I use LovePDFs on mobile?</h3>
-  <p class="body-p">Absolutely. The site is fully responsive and works on smartphones, tablets, and desktops in any modern browser.</p>
+  <h3 class="section-h">Q: Are my files secure and private?</h3>
+  <p class="body-p">Absolutely. Since we do not transmit your documents to any external server, your file contents, metadata, and filenames remain private. Your data never leaves your device's RAM. This architecture provides zero-trust security, making LovePDFs compliant with corporate data protection standards and global regulations like GDPR and CCPA.</p>
 </div>
+
 <div class="content-card">
-  <h3 class="section-h">Q: Is there a file size limit?</h3>
-  <p class="body-p">There is no enforced server-side limit since files never reach our servers. Very large files may be slower depending on your device's CPU and RAM.</p>
+  <h3 class="section-h">Q: Is there a file size limit or daily usage limit?</h3>
+  <p class="body-p">No. Traditional server-based tools restrict file sizes (e.g., 20MB limits) to prevent server overload. Since LovePDFs utilizes your device's local memory, we do not impose any artificial caps on file size or the number of documents you can process. You can merge, split, or compress files of any size, limited only by your computer or phone's available RAM and processing power.</p>
 </div>
+
 <div class="content-card">
-  <h3 class="section-h">Q: Do I need to create an account?</h3>
-  <p class="body-p">No account required — just open a tool, drop your file, and click the action button.</p>
+  <h3 class="section-h">Q: How does browser-based local compression work?</h3>
+  <p class="body-p">When you use our Compress PDF tool, our local library scans the document structure. It locates embedded raster image objects, downsamples their resolution (DPI) according to your selected quality preset, flattens duplicate form layers, and strips unnecessary metadata streams. The text streams remain fully vector and lossless. The entire process takes place in your browser RAM, giving you a compressed file instantly without upload delays.</p>
 </div>
+
+<div class="content-card">
+  <h3 class="section-h">Q: Can I use LovePDFs on mobile devices?</h3>
+  <p class="body-p">Yes. LovePDFs is built using a fully responsive, modern web framework. It works in Safari on iOS, Chrome on Android, and other mobile browsers. You can upload files directly from your phone's storage or file system, execute any conversion locally, and download the output instantly.</p>
+</div>
+
 <div class="content-card">
   <h3 class="section-h">Q: What browsers are supported?</h3>
-  <p class="body-p">Chrome, Firefox, Edge, and Safari (all modern versions). We recommend Chrome for the best performance.</p>
+  <p class="body-p">Our WebAssembly engines are fully compatible with all modern, standards-compliant browsers, including Google Chrome, Mozilla Firefox, Apple Safari, and Microsoft Edge. For heavy processes (like converting massive image batches or compressing large files), we recommend using Google Chrome for the best memory handling and fastest execution.</p>
 </div>
+
 <div class="content-card">
-  <h3 class="section-h">Q: Can I convert between file formats?</h3>
-  <p class="body-p">Yes! We support PDF to Word, PDF to JPG, JPG to PDF, Word to PDF, HTML to PDF, and more.</p>
+  <h3 class="section-h">Q: Why does security.html claim no tracking but some pages have Google Analytics?</h3>
+  <p class="body-p">We use Google Analytics to measure visitor counts, page views, and geographic usage trends. This data is aggregated and does not contain personal information. We do not track document content, text layers, filenames, or file data. We have updated our Security page to clarify this, ensuring transparent compliance.</p>
 </div>
+
 <div class="content-card">
-  <h3 class="section-h">Q: How do I compress a PDF?</h3>
-  <p class="body-p">Go to Compress PDF, upload your file, choose a quality preset (70%, 50%, or 25%), and download the result.</p>
+  <h3 class="section-h">Q: Can I merge documents with different page orientations?</h3>
+  <p class="body-p">Yes. Our Merge PDF tool shows visual previews of all pages. If your document has landscape diagrams mixed with portrait pages, you can rotate pages individually before clicking merge to ensure the entire final document has a clean, consistent orientation.</p>
 </div>
+
 <div class="content-card">
-  <h3 class="section-h">Q: Do you use cookies?</h3>
-  <p class="body-p">We use minimal essential cookies for theme preferences and history. See our Cookies page for details.</p>
+  <h3 class="section-h">Q: How do I contact support or request a feature?</h3>
+  <p class="body-p">If you have feedback, find a bug, or want to suggest a new client-side tool, contact our Noida-based support team through our Contact page. We regularly review requests to expand our WebAssembly tools collection.</p>
 </div>
-<div class="content-card">
-  <h3 class="section-h">Q: Who made LovePDFs?</h3>
-  <p class="body-p">LovePDFs was built by an independent developer passionate about free, privacy-first tools. You can reach out through our contact page.</p>
-</div>
-  </div>
 </div>
 <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
+      <div class="footer-logo"><div class="nav-logo-heart">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    love<span>pdfs</span></div>
       <div class="footer-tagline">Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.</div>
       <div class="footer-contact"><a href="contact.html">Contact us</a></div>
       <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>
@@ -90,30 +105,8 @@
     <div><div class="footer-col-title">Legal</div><div class="footer-links"><a href="security.html">Security</a><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms & conditions</a><a href="cookies.html">Cookies</a></div></div>
     <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="about.html">About us</a><a href="contact.html">Contact us</a><a href="blog.html">Blog</a><a href="press.html">Press</a></div></div>
   </div>
-  <div class="footer-stats" style="max-width:1240px; margin: 2.5rem auto 0; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; justify-content: space-around; gap: 2rem; text-align: center;">
-    <div><div style="font-family:'Fraunces',serif; font-size:48px; font-weight:900; color:var(--text);" id="stat-users">Loading...</div><div style="font-size:26px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:0.2rem;">Users Visited</div></div>
-    <div><div style="font-family:'Fraunces',serif; font-size:48px; font-weight:900; color:var(--text);" id="stat-tools">47</div><div style="font-size:26px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:0.2rem;">Tools Available</div></div>
-    <div><div style="font-family:'Fraunces',serif; font-size:48px; font-weight:900; color:var(--text);" id="stat-files">18M+</div><div style="font-size:26px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:0.2rem;">Files Processed</div></div>
-    <div><div style="font-family:'Fraunces',serif; font-size:48px; font-weight:900; color:var(--text);" id="stat-time">&lt; 1.2s</div><div style="font-size:26px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:0.2rem;">Processing Time</div></div>
-  </div>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      fetch('https://api.counterapi.dev/v1/lovepdfs/visits/up')
-        .then(res => res.json())
-        .then(data => {
-          const userEl = document.getElementById('stat-users');
-          if (userEl && typeof data.count === 'number') {
-            userEl.textContent = data.count.toLocaleString();
-          }
-        })
-        .catch(err => {
-          const userEl = document.getElementById('stat-users');
-          if (userEl) userEl.textContent = "1,405,123";
-        });
-    });
-  </script>
   <div class="footer-bottom" style="max-width:1240px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
-    <div class="footer-copy" style="font-size:0.85rem;color:var(--muted)">&copy; LovePDFs 2026 &reg; · Private & Local Processing</div>
+    <div class="footer-copy" style="font-size:0.8rem;color:var(--muted)">&copy; LovePDFs 2026 &reg; · Private & Local Processing</div>
     <div class="footer-sitemap"><a href="sitemap.xml" style="color:var(--muted);font-size:0.82rem;text-decoration:none;transition:color 0.2s">Sitemap</a></div>
   </div>
 </footer>
@@ -130,5 +123,8 @@
     });
   }
 </script>
+
+<script src="nav-enhancements.js"></script>
+<script src="site-enhancements.js"></script>
 </body>
 </html>

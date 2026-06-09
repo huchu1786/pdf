@@ -4,7 +4,10 @@ import re
 footer_template = """<footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
+      <div class="footer-logo"><div class="nav-logo-heart">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    love<span>pdfs</span></div>
       <div class="footer-tagline">Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.</div>
       <div class="footer-contact"><a href="{prefix}contact.html">Contact us</a></div>
       <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>
@@ -36,7 +39,9 @@ for root, _, files in os.walk('.'):
                 content = f.read()
             
             # Determine prefix: if in a subdirectory (e.g. ./merge-pdf/index.html), we need "../"
-            depth = filepath.count(os.sep) - 1 # "./file.html" depth=0, "./dir/file.html" depth=1
+            rel_path = os.path.relpath(filepath, '.')
+            rel_path_norm = rel_path.replace('\\', '/')
+            depth = rel_path_norm.count('/')
             prefix = "../" * depth
             
             new_footer = footer_template.replace('{prefix}', prefix)

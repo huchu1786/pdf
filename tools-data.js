@@ -499,7 +499,7 @@ const TOOLS_SEO = [
 
   {
     id: 'image-to-pdf',
-    toolId: 'img2pdf',
+    toolId: 'jpg2pdf',
     title: 'Convert Image to PDF Free — JPG PNG to PDF Online | LovePDFs',
     meta: 'Image to PDF converter free. Turn any photo or image (JPG, PNG, WEBP) into a PDF online for free — no upload, mobile friendly with LovePDFs.',
     h1: 'Convert Image to PDF Free Online',
@@ -527,7 +527,7 @@ const TOOLS_SEO = [
 
   {
     id: 'resize-image',
-    toolId: 'resizeimg',
+    toolId: 'resize_img',
     title: 'Resize Image Online Free — Without Losing Quality | LovePDFs',
     meta: 'Resize image online free without losing quality. Resize photo to passport size, Instagram, LinkedIn or any custom dimensions — browser-based with LovePDFs.',
     h1: 'Resize Image Online Free',
@@ -555,7 +555,7 @@ const TOOLS_SEO = [
 
   {
     id: 'crop-image',
-    toolId: 'cropimg',
+    toolId: 'crop_img',
     title: 'Crop Image Online Free — Cut and Trim Photos | LovePDFs',
     meta: 'Crop image online free. Cut, trim and crop photos to any size or aspect ratio — browser-based, no upload to server, instant download with LovePDFs.',
     h1: 'Crop Image Online Free',
@@ -581,7 +581,7 @@ const TOOLS_SEO = [
 
   {
     id: 'compress-image',
-    toolId: 'compressimg',
+    toolId: 'compress_img',
     title: 'Compress Image Online Free — Reduce Size to 50KB, 20KB | LovePDFs',
     meta: 'Compress image online free without losing quality. Reduce image to 100KB, 50KB or 20KB for government forms, email, WhatsApp — no upload needed with LovePDFs.',
     h1: 'Compress Image Free — Reduce to Any Size',
@@ -610,7 +610,7 @@ const TOOLS_SEO = [
 
   {
     id: 'jpg-to-png',
-    toolId: 'jpg2png',
+    toolId: 'jpg2png_img',
     title: 'Convert JPG to PNG Free Online — Transparent Background | LovePDFs',
     meta: 'Convert JPG to PNG free online. Turn JPG images into PNG with transparent background support — browser-based, no upload, instant download with LovePDFs.',
     h1: 'Convert JPG to PNG Free Online',
@@ -636,7 +636,7 @@ const TOOLS_SEO = [
 
   {
     id: 'png-to-jpg',
-    toolId: 'png2jpg',
+    toolId: 'png2jpg_img',
     title: 'Convert PNG to JPG Free Online — No Quality Loss | LovePDFs',
     meta: 'Convert PNG to JPG free online. PNG to JPEG converter — no software needed, no upload, instant browser-based conversion without quality loss with LovePDFs.',
     h1: 'Convert PNG to JPG Free — Instant Online',
@@ -665,7 +665,7 @@ const TOOLS_SEO = [
 
   {
     id: 'edit-pdf',
-    toolId: 'edit',
+    toolId: 'editpdf',
     title: 'Edit PDF Online Free — Add Text, Draw, Highlight | LovePDFs',
     meta: 'Edit PDF online free without Adobe Acrobat. Add text, draw, highlight, annotate any PDF in your browser — no watermark, no signup, private with LovePDFs.',
     h1: 'Edit PDF Online Free — No Adobe Needed',
@@ -693,7 +693,7 @@ const TOOLS_SEO = [
 
   {
     id: 'extract-pages-pdf',
-    toolId: 'extractpg',
+    toolId: 'extract',
     title: 'Extract Pages from PDF Free — Save as Separate File | LovePDFs',
     meta: 'Extract pages from PDF free online. Save one page or a range of PDF pages as a separate file — no software, no upload, instant download with LovePDFs.',
     h1: 'Extract Pages from PDF Free',
@@ -878,7 +878,7 @@ const TOOLS_SEO = [
 
   {
     id: 'pdf-to-pdfa',
-    toolId: 'pdfa',
+    toolId: 'pdf2pdfa',
     title: 'Convert PDF to PDF/A Free — Archival Format Online | LovePDFs',
     meta: 'Convert PDF to PDF/A free. Create archival PDF/A-1b compliant files for court, government, and long-term document storage — browser-based with LovePDFs.',
     h1: 'Convert PDF to PDF/A Free Online',
@@ -981,7 +981,7 @@ const TOOLS_SEO = [
 
   {
     id: 'edit-pdf-metadata',
-    toolId: 'metadata',
+    toolId: 'editMeta',
     title: 'Edit PDF Metadata Free Online — Title, Author, Subject | LovePDFs',
     meta: 'Edit PDF metadata free online. Change PDF title, author, subject and keywords — remove personal metadata before sharing, browser-based with LovePDFs.',
     h1: 'Edit PDF Metadata Free Online',
@@ -1007,7 +1007,7 @@ const TOOLS_SEO = [
 
   {
     id: 'extract-images-pdf',
-    toolId: 'extractimg',
+    toolId: 'extractImg',
     title: 'Extract Images from PDF Free Online | LovePDFs',
     meta: 'Extract images from PDF free online. Save all embedded images from any PDF as JPG or PNG files — browser-based, no upload needed with LovePDFs.',
     h1: 'Extract Images from PDF Free Online',
@@ -1108,7 +1108,7 @@ const TOOLS_SEO = [
 
   {
     id: 'remove-annotations-pdf',
-    toolId: 'rmannot',
+    toolId: 'removeann',
     title: 'Remove Annotations from PDF Free Online | LovePDFs',
     meta: 'Remove annotations from PDF free online. Strip comments, highlights, sticky notes and markups from PDF — browser-based, private with LovePDFs.',
     h1: 'Remove Annotations from PDF Free',
@@ -1210,7 +1210,7 @@ const TOOLS_SEO = [
 
   {
     id: 'pdf-to-text',
-    toolId: 'pdf2text',
+    toolId: 'pdf2txt',
     title: 'Extract Text from PDF Free Online — PDF to TXT | LovePDFs',
     meta: 'Extract text from PDF free online. Convert PDF to plain text (TXT) — copy all text from PDF for free in your browser, no signup with LovePDFs.',
     h1: 'Extract Text from PDF Free — PDF to TXT',

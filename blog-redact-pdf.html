@@ -1,40 +1,117 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="robots" content="noindex, follow">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y3DBMD92DV"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-Y3DBMD92DV');
 </script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>How to Redact a PDF: A Step-by-Step Guide | LovePDFs Blog</title>
-<meta name="description" content="Redaction permanently removes sensitive information from PDFs. Learn how our redaction tool works."/>
+<title>How to Safely Redact Sensitive Information from PDFs: Avoid Costly Mistakes | LovePDFs Blog</title>
+<meta name="description" content="Redaction is more than just drawing black boxes over text. Learn how to permanently remove sensitive information and comply with privacy regulations."/>
 <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4413784450447798" crossorigin="anonymous"></script>
-
-    <link rel="canonical" href="https://lovepdfs.in/blog-redact-pdf" />
+<link rel="canonical" href="https://lovepdfs.in/blog-redact-pdf" />
+<style>
+  .premium-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    text-align: left;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border);
+  }
+  .premium-table th {
+    background-color: var(--bg2);
+    color: var(--text);
+    font-weight: 700;
+    padding: 12px 15px;
+    border-bottom: 2px solid var(--border);
+  }
+  .premium-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text2);
+  }
+  .premium-table tr:hover {
+    background-color: var(--bg2);
+  }
+  .toc-container {
+    background-color: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .toc-title {
+    font-weight: 800;
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+  .toc-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  .toc-list li {
+    margin-bottom: 0.5rem;
+  }
+  .toc-list a {
+    color: var(--red);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .toc-list a:hover {
+    text-decoration: underline;
+  }
+  .faq-section {
+    margin-top: 3rem;
+    border-top: 2px solid var(--border);
+    padding-top: 2rem;
+  }
+  .faq-item {
+    margin-bottom: 1.5rem;
+  }
+  .faq-question {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+  .faq-answer {
+    color: var(--text2);
+    line-height: 1.7;
+  }
+</style>
 </head>
-<body>
+<body class="page-wrap">
 <nav class="site-nav" id="siteNav">
-  <a href="/" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
+  <a href="/" class="nav-logo" style="font-weight: 800; font-size: 1.5rem; color: #1e2229; display: inline-flex; align-items: center; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none;">
+  I <span class="nav-logo-heart" style="color: #e8321a; margin: 0 4px; display: inline-flex; align-items: center; vertical-align: middle;">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+  </span> PDFs
+</a>
   <div class="nav-mid">
-    <a href="#tools" class="nav-link">All Tools</a>
+    <a href="all-tools.html" class="nav-link">All Tools</a>
     <a href="features.html" class="nav-link">Features</a>
-    <a href="pricing.html" class="nav-link">Pricing</a>
+    <a href="blog.html" class="nav-link">Blog</a>
   </div>
   <div class="nav-right">
-    <button class="theme-btn" id="themeBtn">🌙</button>
     <a href="contact.html" class="nav-btn-o">Contact</a>
-    <a href="/" class="nav-btn-f">← Tools</a>
+    <a href="blog.html" class="nav-btn-f">← Blog</a>
   </div>
 </nav>
 <div class="page-wrap">
@@ -44,64 +121,163 @@
     <p>Useful tips, tricks, and guides.</p>
   </section>
   <div class="content-section narrow">
-
     <div class="content-section" style="max-width: 800px;">
         <div style="margin-bottom: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem;">
-            <div style="font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--red);margin-bottom:0.8rem;">Jan 10, 2025 &bull; 4 min read</div>
-            <h1 style="font-family:'Fraunces', serif; font-size: 2.5rem; font-weight: 900; line-height: 1.1; color: var(--text); margin-bottom: 1rem;">How to Redact a PDF: A Step-by-Step Guide</h1>
-            <p style="font-size: 1.15rem; color: var(--muted); line-height: 1.7;">Redaction permanently removes sensitive information from PDFs. Learn how our redaction tool works.</p>
+            <div style="font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--red);margin-bottom:0.8rem;">May 05, 2026 &bull; 16 min read</div>
+            <h1 style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 2.5rem; font-weight: 900; line-height: 1.1; color: var(--text); margin-bottom: 1rem;">How to Safely Redact Sensitive Information from PDFs: Avoid Costly Mistakes</h1>
+            <p style="font-size: 1.15rem; color: var(--muted); line-height: 1.7;">Drawing a black box over text is not redaction. Discover the hidden vulnerabilities of PDF files and how to permanently wipe sensitive data.</p>
         </div>
-            <div style="font-size:0.9rem;color:var(--muted);font-weight:700;margin-top:-0.5rem;margin-bottom:1.5rem;">By LovePDFs Team | Updated March 2026</div>
+        <div style="font-size:0.9rem;color:var(--muted);font-weight:700;margin-top:-0.5rem;margin-bottom:1.5rem;">By LovePDFs Editorial Team | Updated May 2026</div>
+        
         <div class="blog-content" style="font-size: 1.1rem; line-height: 1.8; color: var(--text2);">
             
-            <p class="body-p">Before sharing legal documents, financial statements, or HR records, you often need to hide sensitive information like Social Security Numbers, bank account details, or client names. Many people make the dangerous mistake of simply drawing a black rectangle over the text using a basic PDF editor — this looks redacted, but it's not. The text remains fully recoverable.</p>
+<div class="toc-container">
+    <div class="toc-title">Table of Contents</div>
+    <ul class="toc-list">
+        <li><a href="#failed-redactions">1. Infamous Case Studies of Redaction Failures</a></li>
+        <li><a href="#hidden-text">2. The Hidden Text Problem: Why Black Boxes Don't Work</a></li>
+        <li><a href="#metadata-hazards">3. The Hidden Risks of Document Metadata</a></li>
+        <li><a href="#regulatory-compliance">4. Regulatory Compliance and Privacy Laws (GDPR, HIPAA)</a></li>
+        <li><a href="#pii-categories">5. Key Categories of PII to Redact</a></li>
+        <li><a href="#redaction-checklist">6. The Ultimate Before-You-Share Redaction Checklist</a></li>
+        <li><a href="#industry-use-cases">7. Industry-Specific Redaction Requirements</a></li>
+        <li><a href="#permanent-vs-temp">8. Permanent Redaction vs. Temporary Highlighting</a></li>
+        <li><a href="#redaction-methods-table">9. Comparison: Highlighting vs. Black Shapes vs. Destructive Redaction</a></li>
+        <li><a href="#redact-faq">10. Frequently Asked Questions (FAQ)</a></li>
+    </ul>
+</div>
 
-            <h3 class="section-h3">Why Drawing a Black Box is Dangerous</h3>
-            <p class="body-p">When you draw a shape over text in a PDF, the underlying text is still there! Anyone who opens the document can simply select the text beneath the black box, copy it, and paste it into a text editor to read your sensitive information. This type of pseudo-redaction has led to major data leaks for law firms, government agencies, and financial institutions worldwide.</p>
+<p class="body-p">Whether you work in legal defense, healthcare administration, finance, or corporate management, you frequently handle documents containing sensitive data. Before sharing these files publicly, you must ensure that confidential details are permanently removed. However, improper redaction is one of the most common causes of accidental data leaks, sometimes leading to severe regulatory fines and corporate embarrassment.</p>
 
-            <h3 class="section-h3">True Redaction: What It Actually Means</h3>
-            <p class="body-p">A true redaction tool, like the one provided by LovePDFs, doesn't just cover the text — it actively searches the document's underlying data and <strong>permanently deletes the text strings</strong> before burning in the black bar. What remains is literally unrecoverable, not just hidden. Because our <a href="redact-pdf/" style="color:var(--red);font-weight:700;">Redact PDF tool</a> runs locally via WebAssembly, your highly sensitive documents are never uploaded to any server, ensuring absolute privacy from start to finish.</p>
+<h2 id="failed-redactions" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">1. Infamous Case Studies of Redaction Failures</h2>
+<p class="body-p">The danger of poor redaction is not theoretical. In 2019, lawyers representing Paul Manafort accidentally leaked sensitive court details because they redacted a PDF by placing black shapes over text without clearing the underlying text layer. Journalists simply copied the blacked-out paragraphs and pasted them into text documents, uncovering secret information immediately. In another famous case, the UK Ministry of Defence published a report on nuclear submarines with redacted paragraphs that were merely covered with black highlights in Microsoft Word. Web users discovered they could bypass the redaction by selecting the text and changing the background color to white. Similarly, Facebook once filed a legal brief in which name variables were covered with vector overlays that were easily removed by opening the PDF in Adobe Illustrator. These failures highlight the critical need to understand how PDF layers work.</p>
 
-            <h3 class="section-h3">When Should You Redact?</h3>
-            <ul style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text2); line-height: 2;">
-              <li>Before sharing contracts that contain one party's financial terms with a third party</li>
-              <li>When emailing HR documents with employee personal information to other departments</li>
-              <li>Before filing court documents that should have certain details sealed</li>
-              <li>When sharing research documents with partially anonymized subject data</li>
-              <li>Before posting PDF screenshots or downloading public government filings online</li>
-            </ul>
+<h2 id="hidden-text" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">2. The Hidden Text Problem: Why Black Boxes Don't Work</h2>
+<p class="body-p">The most common redaction mistake is simple: drawing a black vector rectangle over text in a PDF editor. While this makes the text visually invisible on screen, the underlying text characters remain in the document's layout layer. A recipient can open the document, press "Ctrl+A" to select all, and copy-paste the "redacted" text directly into a notepad file, revealing the secret info.</p>
+<p class="body-p">A PDF is a layered file format. The visual elements (such as shapes and drawings) sit in a separate layer from the actual character encoding. True redaction requires **destructive deletion**, meaning the actual text data, formatting blocks, and vector character coordinates must be permanently removed from the file stream, leaving a blank space or a flattened solid block. Our <a href="redact-pdf/" style="color:var(--red);font-weight:700;">Redact PDF tool</a> ensures that the text streams are completely erased, making data recovery impossible.</p>
 
-            <h3 class="section-h3">Protecting Documents After Redaction</h3>
-            <p class="body-p">After redacting a document, consider adding password protection so only authorized people can open it. Use our <a href="protect-pdf/" style="color:var(--red);font-weight:700;">Protect PDF</a> tool to add encryption. If you need to merge the redacted document with others, use <a href="merge-pdf/" style="color:var(--red);font-weight:700;">Merge PDF</a>. You can also <a href="compress-pdf/" style="color:var(--red);font-weight:700;">compress the final PDF</a> to reduce file size before sharing.</p>
+<h2 id="metadata-hazards" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">3. The Hidden Risks of Document Metadata</h2>
+<p class="body-p">Another major source of leaks is document metadata. Even if you completely erase the text from the visual pages of a PDF, the file container itself may store sensitive data in its metadata fields. PDF files can contain XML templates, creator histories, author names, company registration numbers, tags, edit dates, and even embedded search indices. If a search index exists inside the PDF, it contains a database of all the words in the document for quick loading. A user searching the document can type a "redacted" word, and the PDF reader will jump to the exact spot where the word was, even if that spot is covered in black pixels! Stripping metadata is therefore an essential component of a professional document scrubbing workflow. You must run files through a metadata sanitizer or flatten the PDF pages entirely to make sure no background objects survive.</p>
+
+<h2 id="regulatory-compliance" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">4. Regulatory Compliance and Privacy Laws (GDPR, HIPAA)</h2>
+<p class="body-p">Improper redaction is not just a technical issue; it carries major legal consequences under modern privacy frameworks:</p>
+<ul style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text2); line-height: 1.8;">
+    <li style="margin-bottom: 0.5rem;"><strong>GDPR:</strong> The General Data Protection Regulation in the EU demands strict protection of personal data. Leaking PII due to poor redaction can trigger fines up to 20 million Euros or 4% of global turnover. GDPR rules require any personal data breach to be disclosed within 72 hours, presenting significant operational pressure. This makes compliance auditing a mandatory part of data distribution.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>HIPAA:</strong> In US healthcare, leaking protected health information (PHI) through poorly redacted medical records violates patient privacy and carries heavy federal penalties. PHI includes clinical histories, surgery notes, prescription records, and patient insurance identifiers.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>FOIA:</strong> Public records requests processed under the Freedom of Information Act require official agencies to redact national security, trade secret, or personal information before release. Public safety records must hide investigator identities to keep ongoing operations secure.</li>
+</ul>
+
+<h2 id="pii-categories" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">5. Key Categories of PII to Redact</h2>
+<p class="body-p">When auditing documents for public release, make sure to search for and redact the following categories of Personally Identifiable Information (PII):</p>
+<ul style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text2); line-height: 1.8;">
+    <li style="margin-bottom: 0.5rem;"><strong>Full Names:</strong> Revealing names of minors, witnesses, patients, or undercover agents poses massive safety and privacy concerns.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>National Identifiers:</strong> Social Security Numbers (SSN), national insurance codes, or tax IDs present immediate identity theft vectors.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Financial Accounts:</strong> Bank account numbers, routing pathways, credit card details, and payroll statements must be completely erased.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Contact Details:</strong> Home addresses, phone numbers, personal email IDs, and GPS coordinates must be scrubbed to prevent harassment or tracking.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Medical Records:</strong> Diagnoses, treatment plans, prescriptions, and healthcare claim codes are heavily regulated under privacy acts.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Business Data:</strong> Trade secrets, corporate margin calculations, acquisition targets, and pre-release financial figures require strict containment.</li>
+</ul>
+
+<h2 id="redaction-checklist" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">6. The Ultimate Before-You-Share Redaction Checklist</h2>
+<p class="body-p">To guarantee security, adopt this strict checklist before sharing any redacted PDF:</p>
+<ul style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text2); line-height: 1.8;">
+    <li style="margin-bottom: 0.5rem;"><strong>Verify copy-paste:</strong> After saving, select all text ("Ctrl+A") and paste it into a blank text document. Verify that the redacted terms are missing.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Search check:</strong> Use "Ctrl+F" inside the PDF reader to search for the redacted words. If the reader finds the word, the redaction failed.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Strip metadata:</strong> Inspect the document properties to ensure that the document history, author comments, or original titles do not contain sensitive data.</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Flatten:</strong> If you are unsure about the PDF editor's capabilities, convert the redacted PDF pages to flat images (PNG) and compile them back into a PDF using our <a href="image-to-pdf/" style="color:var(--red);font-weight:700;">Image to PDF tool</a>. This guarantees that all editable layers are gone.</li>
+</ul>
+
+<h2 id="industry-use-cases" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">7. Industry-Specific Redaction Requirements</h2>
+<p class="body-p">Different fields have varying criteria for handling document scrubbing. In **legal court proceedings**, redactions must show the legal code or reason for the block (e.g., "Redacted under rule 5.2"). In **corporate acquisitions**, finance teams redact specific customer lists and product margin spreadsheets until a deal is signed. In **public safety**, law enforcement agencies must redact police reports to hide undercover agent identities and witness details before sharing records with the press.</p>
+
+<h2 id="permanent-vs-temp" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">8. Permanent Redaction vs. Temporary Highlighting</h2>
+<p class="body-p">Another common mistake is confusing redaction with highlight markings. Marking text with a black highlighter tool simply changes the background styling of the characters to black. While visually black on screen, the text stream remains editable, copyable, and searchable. Real redaction permanently alters the underlying code. The characters are physically removed, and a solid color block is drawn over the coordinates to mark where the text used to be.</p>
+
+<h2 id="redaction-methods-table" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">9. Comparison: Highlighting vs. Black Shapes vs. Destructive Redaction</h2>
+<table class="premium-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Visual Effect</th>
+            <th>Searchable Text Layer</th>
+            <th>Copy-Paste Test</th>
+            <th>Security Level</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Black Highlighter</strong></td>
+            <td>Black background on text</td>
+            <td>Yes (Fully intact)</td>
+            <td>Text can be copied directly</td>
+            <td>None (Dangerous)</td>
+        </tr>
+        <tr>
+            <td><strong>Drawing Black Shapes</strong></td>
+            <td>Solid shapes covering content</td>
+            <td>Yes (Still underneath)</td>
+            <td>Text can be extracted</td>
+            <td>None (Dangerous)</td>
+        </tr>
+        <tr>
+            <td><strong>Destructive Redaction</strong></td>
+            <td>Solid shapes covering blank spots</td>
+            <td><strong>No (Erased from code)</strong></td>
+            <td><strong>Text is permanently gone</strong></td>
+            <td><strong>Maximum (Secure)</strong></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="redact-faq" class="section-h2" style="font-size: 1.8rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--text);">10. Frequently Asked Questions (FAQ)</h2>
+<div class="faq-section">
+    <div class="faq-item">
+        <div class="faq-question">Why is drawing a black box in a PDF editor unsafe?</div>
+        <div class="faq-answer">Drawing a shape over text only adds a visual layer on top. It does not touch the text database stored in the PDF's layout stream. Anyone who opens the document can easily select, copy, and paste the hidden text, or search for it using standard PDF indexing engines.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">How does the LovePDFs Redact tool work?</div>
+        <div class="faq-answer">The LovePDFs Redact PDF tool processes the document locally in your browser. It identifies the coordinates of the selected area, completely deletes the matching character vectors and layout code from the file, and replaces that space with a flattened visual block. This ensures that the data is destroyed.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">Does redacting a PDF make the file size smaller?</div>
+        <div class="faq-answer">Generally, yes. By deleting text layers, vector paths, and associated metadata, the complexity of the PDF declines, yielding a lighter file. However, if you choose to flatten the pages into images to secure them, file size may increase, which you can fix using our Compress PDF tool.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">Can I redact text in scanned PDF documents?</div>
+        <div class="faq-answer">Yes. Because scanned PDFs are images, redacting them requires the editor to burn the black box into the pixel grid of the image layer. Once the pixels are overwritten, the original content is unrecoverable. Ensure you download the final redacted file to save these changes.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">What is the difference between whiteout and redaction?</div>
+        <div class="faq-answer">Whiteout replaces the target area with a white background, which is useful when you want to make text edits or print clean versions. Redaction typically uses black blocks to indicate that sensitive information has been intentionally removed for compliance or security reasons. Both must be done destructively to be secure.</div>
+    </div>
+</div>
 
         </div>
         
         <div style="margin:2rem 0;padding:1.25rem 1.4rem;background:var(--bg2);border:1.5px solid var(--border);border-radius:16px;">
             <div style="font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--red);margin-bottom:0.6rem;">Related Tools</div>
             <p style="margin:0;color:var(--text2);line-height:1.8;">
-              Try <a href="redact-pdf/" style="color:var(--red);font-weight:700;">Redact PDF</a> · 
-              <a href="protect-pdf/" style="color:var(--red);font-weight:700;">Protect PDF</a> · 
-              <a href="sign-pdf/" style="color:var(--red);font-weight:700;">Sign PDF</a> · 
-              <a href="merge-pdf/" style="color:var(--red);font-weight:700;">Merge PDF</a>
+              Try <a href="redact-pdf/" style="color:var(--red);font-weight:700;">Redact PDF</a> · <a href="protect-pdf/" style="color:var(--red);font-weight:700;">Protect PDF</a> · <a href="remove-pages-pdf/" style="color:var(--red);font-weight:700;">Remove Pages</a> · <a href="compress-pdf/" style="color:var(--red);font-weight:700;">Compress PDF</a>
             </p>
             <p style="margin:0.65rem 0 0;color:var(--text2);line-height:1.8;">Also read: 
-              <a href="blog-electronic-signatures.html" style="color:var(--red);font-weight:700;">Electronic Signatures Guide</a> · 
-              <a href="blog-merge-pdfs.html" style="color:var(--red);font-weight:700;">Merge PDFs</a> · 
-              <a href="blog.html" style="color:var(--red);font-weight:700;">All Blog Posts</a>
+              <a href="blog-electronic-signatures.html" style="color:var(--red);font-weight:700;">Electronic Signatures Guide</a> · <a href="blog-merge-pdfs.html" style="color:var(--red);font-weight:700;">Merge PDFs Guide</a> · <a href="blog.html" style="color:var(--red);font-weight:700;">All Blog Posts</a>
             </p>
         </div>
-<div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center;">
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center;">
             <p style="color: var(--muted); margin-bottom: 1.5rem;">Ready to try our tools?</p>
             <a href="all-tools.html" class="nav-btn-f" style="display: inline-flex; text-decoration: none;">Explore 43 Free Tools</a>
         </div>
     </div>
-    
   </div>
 </div>
 <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
+      <div class="footer-logo"><div class="nav-logo-heart">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    love<span>pdfs</span></div>
       <div class="footer-tagline">Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.</div>
       <div class="footer-contact"><a href="contact.html">Contact us</a></div>
       <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>

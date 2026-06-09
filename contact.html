@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -42,20 +42,20 @@
 <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
 .contact-page { max-width: 760px; margin: 0 auto; padding: 5rem 2rem 6rem; }
-.contact-card { background: var(--card); border: 2px solid var(--border); border-radius: 24px; padding: 3.5rem; margin-bottom: 2rem; box-shadow: 0 6px 30px rgba(0,0,0,0.07); text-align: center; }
+.contact-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 3.5rem; margin-bottom: 2rem; box-shadow: var(--shadow-sm); text-align: center; }
 .contact-card .big-icon { font-size: 4rem; display: block; margin-bottom: 1.5rem; }
-.contact-card h2 { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 900; margin-bottom: 1rem; color: var(--text); }
+.contact-card h2 { font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: var(--text); }
 .contact-card p { color: var(--muted); font-size: 1.15rem; line-height: 1.85; margin-bottom: 1.75rem; max-width: 480px; margin-left: auto; margin-right: auto; }
-.contact-email-btn { display: inline-flex; align-items: center; gap: 0.6rem; background: linear-gradient(135deg, var(--red), var(--red2)); color: white; padding: 1.1rem 2.5rem; border-radius: 50px; font-size: 1.15rem; font-weight: 700; text-decoration: none; transition: all 0.25s; box-shadow: 0 6px 22px rgba(232,50,26,0.32); }
-.contact-email-btn:hover { box-shadow: 0 12px 36px rgba(232,50,26,0.44); transform: translateY(-3px); }
+.contact-email-btn { display: inline-flex; align-items: center; gap: 0.6rem; background: linear-gradient(135deg, var(--red), var(--red2)); color: white; padding: 1.1rem 2.5rem; border-radius: 50px; font-size: 1.15rem; font-weight: 700; text-decoration: none; transition: all 0.25s; box-shadow: 0 4px 14px var(--red-glow); }
+.contact-email-btn:hover { box-shadow: 0 6px 20px var(--red-glow); transform: translateY(-3px); }
 .contact-info-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-.contact-info-card { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 18px; padding: 2rem; text-align: center; }
+.contact-info-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; text-align: center; }
 .contact-info-card .icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
-.contact-info-card h3 { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
+.contact-info-card h3 { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
 .contact-info-card p { color: var(--muted); font-size: 1rem; margin: 0; }
 .contact-info-card a { color: var(--red); font-weight: 700; text-decoration: none; }
 .contact-info-card a:hover { text-decoration: underline; }
@@ -68,7 +68,11 @@
 </head>
 <body>
 <nav class="site-nav" id="siteNav">
-  <a href="/" class="nav-logo"><div class="nav-logo-ic">P</div>LovePDFs</a>
+  <a href="/" class="nav-logo" style="font-weight: 800; font-size: 1.5rem; color: #1e2229; display: inline-flex; align-items: center; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none;">
+  I <span class="nav-logo-heart" style="color: #e8321a; margin: 0 4px; display: inline-flex; align-items: center; vertical-align: middle;">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+  </span> PDFs
+</a>
   <div class="nav-mid">
     <a href="all-tools.html" class="nav-link">All Tools</a>
     <a href="contact.html" class="nav-link active">Contact</a>
@@ -76,7 +80,7 @@
     <a href="terms.html" class="nav-link">Terms</a>
   </div>
   <div class="nav-right">
-    <button class="theme-btn" id="themeBtn">🌙</button>
+    
     <a href="/" class="nav-btn-f">← All Tools</a>
   </div>
 </nav>
@@ -101,22 +105,22 @@
         <input id="contactWebsite" name="_honey" type="text" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;opacity:0;pointer-events:none" aria-hidden="true">
         <div>
           <label style="display: block; font-weight: 700; color: var(--text); margin-bottom: 0.5rem;">Your Name</label>
-          <input id="contactName" type="text" placeholder="John Doe" style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 12px; background: var(--bg2); color: var(--text); font-family: 'Instrument Sans', sans-serif; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'" required>
+          <input id="contactName" type="text" placeholder="John Doe" style="width: 100%; padding: 1rem; border: 1px solid var(--border); border-radius: 10px; background: var(--bg2); color: var(--text); font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'" required>
         </div>
 
         <div>
            <label style="display: block; font-weight: 700; color: var(--text); margin-bottom: 0.5rem;">Your Email</label>
-           <input id="contactEmail" type="email" placeholder="jane@example.com" style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 12px; background: var(--bg2); color: var(--text); font-family: 'Instrument Sans', sans-serif; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'" required>
+           <input id="contactEmail" type="email" placeholder="jane@example.com" style="width: 100%; padding: 1rem; border: 1px solid var(--border); border-radius: 10px; background: var(--bg2); color: var(--text); font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'" required>
         </div>
 
         <div>
            <label style="display: block; font-weight: 700; color: var(--text); margin-bottom: 0.5rem;">Subject</label>
-           <input id="contactSubject" type="text" placeholder="How can we help?" style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 12px; background: var(--bg2); color: var(--text); font-family: 'Instrument Sans', sans-serif; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'" required>
+           <input id="contactSubject" type="text" placeholder="How can we help?" style="width: 100%; padding: 1rem; border: 1px solid var(--border); border-radius: 10px; background: var(--bg2); color: var(--text); font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'" required>
         </div>
 
         <div>
            <label style="display: block; font-weight: 700; color: var(--text); margin-bottom: 0.5rem;">Message</label>
-           <textarea id="contactMessage" rows="5" placeholder="Write your message here..." style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 12px; background: var(--bg2); color: var(--text); font-family: 'Instrument Sans', sans-serif; outline: none; resize: vertical; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'" required></textarea>
+           <textarea id="contactMessage" rows="5" placeholder="Write your message here..." style="width: 100%; padding: 1rem; border: 1px solid var(--border); border-radius: 10px; background: var(--bg2); color: var(--text); font-family: 'Inter', sans-serif; outline: none; resize: vertical; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'" required></textarea>
         </div>
 
         <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-top: 0.5rem;">
@@ -126,7 +130,7 @@
           </label>
         </div>
 
-        <button id="contactSubmit" type="submit" class="contact-email-btn" style="border: none; cursor: pointer; justify-content: center; margin-top: 1rem; width: 100%; font-family: 'Instrument Sans', sans-serif;">
+        <button id="contactSubmit" type="submit" class="contact-email-btn" style="border: none; cursor: pointer; justify-content: center; margin-top: 1rem; width: 100%; font-family: 'Inter', sans-serif;">
           Send Message
         </button>
       </form>
@@ -151,7 +155,10 @@
 <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo"><div class="nav-logo-ic" style="width:30px;height:30px;font-size:0.9rem">P</div>LovePDFs</div>
+      <div class="footer-logo"><div class="nav-logo-heart">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    love<span>pdfs</span></div>
       <div class="footer-tagline">Every PDF & Image tool you'll ever need — 100% free, private, running entirely in your browser.</div>
       <div class="footer-contact"><a href="contact.html">Contact us</a></div>
       <div class="footer-badges"><span class="fbadge">🔒 SSL</span><span class="fbadge">⚡ WebAssembly</span><span class="fbadge">✦ Always Free</span></div>

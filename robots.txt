@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
 
+# Sitemap location
 Sitemap: https://lovepdfs.in/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow temporary directories
+Disallow: /temp/
+Disallow: /cache/
+Disallow: /*.tmp$

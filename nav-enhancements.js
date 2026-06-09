@@ -1,209 +1,203 @@
 (function () {
-  const nav = document.querySelector('.site-nav');
-  if (!nav || document.querySelector('.nav-dropdown')) return;
+  const nav = document.getElementById('siteNav') || document.querySelector('.site-nav');
+  if (!nav) return;
 
-  const navRight = nav.querySelector('.nav-right');
-  if (!navRight) return;
-
-  // Determine if we're in a subdirectory by checking the URL
-  const url = window.location.href;
-  const isInSubfolder = /\/(merge-pdf|compress-pdf|split-pdf|word-counter|gst-calculator|currency-converter|pdf-to-word|pdf-to-excel|all-tools|pdf-tools|image-tools|calculator-tools|age-calculator|bmi-calculator|color-picker|compare-pdf|add-watermark-pdf|add-page-numbers-pdf|alternate-mix-pdf|blog|features|contact|compress-image|crop-image|jpg-to-png|png-to-jpg|crop-pdf|deskew-pdf|edit-pdf|edit-pdf-metadata|email-validator|excel-to-pdf|extract-images-pdf|extract-pages-pdf|flatten-pdf|grayscale-pdf|header-footer-pdf|html-to-pdf|jpg-to-pdf|json-formatter|loan-calculator|password-generator|qr-code-generator|ocr-extract-text|organize-pdf|pdf-to-jpg|pdf-to-pdfa|pdf-to-ppt|pdf-to-text|ppt-to-pdf|protect-pdf|redact-pdf|remove-annotations-pdf|remove-pages-pdf|repair-pdf|resize-image|resize-pdf|rotate-pdf|sign-pdf|word-to-pdf|unlock-pdf|csv-to-excel|date-calculator|percentage-calculator|word-counter|passport-photo)\//.test(url);
-  const prefix = isInSubfolder ? '../' : '';
-
-  const groups = [
-    {
-      title: 'Browse',
-      links: [
-        ['All Tools', prefix + 'all-tools.html'],
-        ['PDF Tools', prefix + 'pdf-tools/index.html'],
-        ['Image Tools', prefix + 'image-tools/index.html'],
-        ['Calculator Tools', prefix + 'calculator-tools/index.html'],
-        ['Blog Guides', prefix + 'blog.html']
-      ]
-    },
-    {
-      title: 'Popular',
-      links: [
-        ['Merge PDF', prefix + 'merge-pdf/index.html'],
-        ['Compress PDF', prefix + 'compress-pdf/index.html'],
-        ['Split PDF', prefix + 'split-pdf/index.html'],
-        ['Passport Photo', prefix + 'passport-photo.html'],
-        ['Word Counter', prefix + 'word-counter/index.html'],
-        ['GST Calculator', prefix + 'gst-calculator/index.html'],
-        ['Currency Converter', prefix + 'currency-converter/index.html']
-      ]
+  // Determine relative path prefix
+  let isInSubfolder = false;
+  const currentScript = document.currentScript;
+  if (currentScript) {
+    const src = currentScript.getAttribute('src');
+    if (src && src.indexOf('../') === 0) {
+      isInSubfolder = true;
     }
-  ];
+  } else {
+    // Fallback: check all script tags for relative path pattern
+    const scripts = document.getElementsByTagName('script');
+    for (let i = 0; i < scripts.length; i++) {
+      const src = scripts[i].getAttribute('src');
+      if (src && (src.indexOf('../nav-enhancements.js') >= 0 || src.indexOf('../site-enhancements.js') >= 0)) {
+        isInSubfolder = true;
+        break;
+      }
+    }
+  }
+  const p = isInSubfolder ? '../' : '';
 
-  const quickLinks = [
-    ['Home', prefix + 'index.html'],
-    ['All Tools', prefix + 'all-tools.html'],
-    ['PDF Tools', prefix + 'pdf-tools/index.html'],
-    ['Image Tools', prefix + 'image-tools/index.html'],
-    ['Passport Photo', prefix + 'passport-photo.html'],
-    ['Calculator Tools', prefix + 'calculator-tools/index.html'],
-    ['Blog', prefix + 'blog.html'],
-    ['Features', prefix + 'features.html'],
-    ['Contact', prefix + 'contact.html']
-  ];
+  nav.innerHTML = `
+    <!-- LOGO -->
+    <a href="${p || 'index.html'}" class="nav-logo" aria-label="LovePDFs Home">
+      I <span class="nav-logo-heart">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      </span> PDFs
+    </a>
 
-  const dropdown = document.createElement('div');
-  dropdown.className = 'nav-dropdown';
-  dropdown.innerHTML = `
-    <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-label="Open navigation menu">
-      <span class="nav-dropdown-label">Explore</span>
-      <span class="nav-dropdown-caret">&#9662;</span>
-    </button>
-    <div class="nav-dropdown-panel" role="menu">
-      <div class="nav-dropdown-grid">
-        ${groups.map((group) => `
-          <div class="nav-dropdown-group">
-            <div class="nav-dropdown-title">${group.title}</div>
-            <div class="nav-dropdown-list">
-              ${group.links.map(([label, href]) => `<a href="${href}" role="menuitem">${label}</a>`).join('')}
-            </div>
-          </div>
-        `).join('')}
-      </div>
-      <div class="nav-dropdown-note">Jump between tools, calculators, and guides without going back to the homepage.</div>
-    </div>
-  `;
+    <!-- CENTER NAV -->
+    <div class="nav-mid" id="navMid">
+      <a href="${p}merge-pdf/index.html" class="nav-link ilv-link">Merge PDF</a>
+      <a href="${p}split-pdf/index.html" class="nav-link ilv-link">Split PDF</a>
+      <a href="${p}compress-pdf/index.html" class="nav-link ilv-link">Compress PDF</a>
 
-  navRight.insertBefore(dropdown, navRight.firstChild);
-
-  const mobileToggle = document.createElement('button');
-  mobileToggle.className = 'nav-mobile-toggle';
-  mobileToggle.type = 'button';
-  mobileToggle.setAttribute('aria-expanded', 'false');
-  mobileToggle.setAttribute('aria-label', 'Open site navigation');
-  mobileToggle.innerHTML = 'Explore &#9662;';
-  navRight.insertBefore(mobileToggle, dropdown);
-
-  const mobilePanel = document.createElement('div');
-  mobilePanel.className = 'nav-mobile-panel';
-  mobilePanel.style.display = 'none'; // Initial state
-  mobilePanel.innerHTML = `
-    <div class="nav-dropdown-grid">
-      ${groups.map((group) => `
-        <div class="nav-dropdown-group">
-          <div class="nav-dropdown-title">${group.title}</div>
-          <div class="nav-dropdown-list">
-            ${group.links.map(([label, href]) => `<a href="${href}" role="menuitem">${label}</a>`).join('')}
-          </div>
+      <!-- Convert PDF Dropdown -->
+      <div class="ilv-dropdown" id="convertDropdown">
+        <button class="ilv-dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false">
+          Convert PDF <svg class="ilv-caret" viewBox="0 0 10 6" width="10" height="6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
+        </button>
+        <div class="ilv-dropdown-panel" role="menu">
+          <ul class="ilv-col">
+            <li class="ilv-group-title">Convert to PDF</li>
+            <li><a href="${p}jpg-to-pdf/index.html" role="menuitem">JPG to PDF</a></li>
+            <li><a href="${p}word-to-pdf/index.html" role="menuitem">Word to PDF</a></li>
+            <li><a href="${p}ppt-to-pdf/index.html" role="menuitem">PowerPoint to PDF</a></li>
+            <li><a href="${p}excel-to-pdf/index.html" role="menuitem">Excel to PDF</a></li>
+            <li><a href="${p}html-to-pdf/index.html" role="menuitem">HTML to PDF</a></li>
+            <li><a href="${p}image-to-pdf/index.html" role="menuitem">Image to PDF</a></li>
+          </ul>
+          <ul class="ilv-col">
+            <li class="ilv-group-title">Convert from PDF</li>
+            <li><a href="${p}pdf-to-jpg/index.html" role="menuitem">PDF to JPG</a></li>
+            <li><a href="${p}pdf-to-word/index.html" role="menuitem">PDF to Word</a></li>
+            <li><a href="${p}pdf-to-ppt/index.html" role="menuitem">PDF to PowerPoint</a></li>
+            <li><a href="${p}pdf-to-excel/index.html" role="menuitem">PDF to Excel</a></li>
+            <li><a href="${p}pdf-to-pdfa/index.html" role="menuitem">PDF to PDF/A</a></li>
+          </ul>
         </div>
-      `).join('')}
+      </div>
+
+      <!-- All PDF Tools Dropdown -->
+      <div class="ilv-dropdown ilv-dropdown--full" id="allToolsDropdown">
+        <button class="ilv-dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false">
+          All PDF Tools <svg class="ilv-caret" viewBox="0 0 10 6" width="10" height="6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
+        </button>
+        <div class="ilv-dropdown-panel ilv-panel--wide" role="menu">
+          <ul class="ilv-col">
+            <li class="ilv-group-title">Organize PDF</li>
+            <li><a href="${p}merge-pdf/index.html">Merge PDF</a></li>
+            <li><a href="${p}split-pdf/index.html">Split PDF</a></li>
+            <li><a href="${p}organize-pdf/index.html">Organize PDF</a></li>
+            <li><a href="${p}remove-pages-pdf/index.html">Remove Pages</a></li>
+            <li><a href="${p}extract-pages-pdf/index.html">Extract Pages</a></li>
+            <li><a href="${p}rotate-pdf/index.html">Rotate PDF</a></li>
+          </ul>
+          <ul class="ilv-col">
+            <li class="ilv-group-title">Optimize PDF</li>
+            <li><a href="${p}compress-pdf/index.html">Compress PDF</a></li>
+            <li><a href="${p}repair-pdf/index.html">Repair PDF</a></li>
+            <li><a href="${p}ocr-extract-text/index.html">OCR PDF</a></li>
+            <li class="ilv-group-title" style="margin-top:1rem">Edit PDF</li>
+            <li><a href="${p}edit-pdf/index.html">Edit PDF</a></li>
+            <li><a href="${p}add-watermark-pdf/index.html">Add Watermark</a></li>
+            <li><a href="${p}add-page-numbers-pdf/index.html">Page Numbers</a></li>
+            <li><a href="${p}crop-pdf/index.html">Crop PDF</a></li>
+          </ul>
+          <ul class="ilv-col">
+            <li class="ilv-group-title">Convert to PDF</li>
+            <li><a href="${p}jpg-to-pdf/index.html">JPG to PDF</a></li>
+            <li><a href="${p}word-to-pdf/index.html">Word to PDF</a></li>
+            <li><a href="${p}ppt-to-pdf/index.html">PowerPoint to PDF</a></li>
+            <li><a href="${p}excel-to-pdf/index.html">Excel to PDF</a></li>
+            <li><a href="${p}html-to-pdf/index.html">HTML to PDF</a></li>
+            <li><a href="${p}image-to-pdf/index.html">Image to PDF</a></li>
+          </ul>
+          <ul class="ilv-col">
+            <li class="ilv-group-title">Convert from PDF</li>
+            <li><a href="${p}pdf-to-jpg/index.html">PDF to JPG</a></li>
+            <li><a href="${p}pdf-to-word/index.html">PDF to Word</a></li>
+            <li><a href="${p}pdf-to-ppt/index.html">PDF to PowerPoint</a></li>
+            <li><a href="${p}pdf-to-excel/index.html">PDF to Excel</a></li>
+            <li class="ilv-group-title" style="margin-top:1rem">PDF Security</li>
+            <li><a href="${p}unlock-pdf/index.html">Unlock PDF</a></li>
+            <li><a href="${p}protect-pdf/index.html">Protect PDF</a></li>
+            <li><a href="${p}sign-pdf/index.html">Sign PDF</a></li>
+          </ul>
+          <ul class="ilv-col">
+            <li class="ilv-group-title">Image Tools</li>
+            <li><a href="${p}compress-image/index.html">Compress Image</a></li>
+            <li><a href="${p}resize-image/index.html">Resize Image</a></li>
+            <li><a href="${p}crop-image/index.html">Crop Image</a></li>
+            <li><a href="${p}jpg-to-png/index.html">JPG to PNG</a></li>
+            <li><a href="${p}png-to-jpg/index.html">PNG to JPG</a></li>
+            <li><a href="${p}image-to-pdf/index.html">Image to PDF</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="nav-dropdown-note">Jump between tools, calculators, and guides without going back to the homepage.</div>
+
+    <!-- RIGHT ACTIONS -->
+    <div class="nav-right">
+      <button class="ilv-login-link" onclick="alert('LovePDFs is 100% free — no login required!'); return false;">Login</button>
+      <button class="ilv-signup-btn" onclick="alert('LovePDFs is 100% free — no account needed!'); return false;">Sign up free</button>
+      <!-- Hamburger for mobile -->
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   `;
-  nav.insertAdjacentElement('afterend', mobilePanel);
 
-  const toggle = dropdown.querySelector('.nav-dropdown-toggle');
-  const panel = dropdown.querySelector('.nav-dropdown-panel');
+  // ── Dropdown Logic ──
+  nav.querySelectorAll('.ilv-dropdown').forEach(function (dd) {
+    const btn = dd.querySelector('.ilv-dropdown-btn');
+    const panel = dd.querySelector('.ilv-dropdown-panel');
 
-  // Ensure initial hidden state for panel
-  panel.style.display = 'none';
-  panel.style.opacity = '0';
-  panel.style.pointerEvents = 'none';
-
-  function closeMenu() {
-    dropdown.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-    panel.style.display = 'none';
-    panel.style.opacity = '0';
-    panel.style.pointerEvents = 'none';
-  }
-
-  function openMenu() {
-    dropdown.classList.add('open');
-    toggle.setAttribute('aria-expanded', 'true');
-    panel.style.display = 'block';
-    setTimeout(() => {
-      panel.style.opacity = '1';
-      panel.style.pointerEvents = 'auto';
-    }, 10);
-  }
-
-  function closeMobileMenu() {
-    mobilePanel.classList.remove('open');
-    mobilePanel.style.display = 'none';
-    mobileToggle.setAttribute('aria-expanded', 'false');
-  }
-
-  function openMobileMenu() {
-    mobilePanel.classList.add('open');
-    mobilePanel.style.display = 'block';
-    mobileToggle.setAttribute('aria-expanded', 'true');
-  }
-
-  function syncResponsive() {
-    const isMobile = window.innerWidth <= 900;
-    if (isMobile) {
-      // Mobile: show one clean menu (mobile panel). Hide desktop dropdown to avoid overlap.
-      dropdown.style.display = 'none';
-      closeMenu();
-    } else {
-      dropdown.style.display = '';
+    function closeDD() {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
     }
-  }
-
-  syncResponsive();
-
-  toggle.addEventListener('click', function (event) {
-    event.stopPropagation();
-    if (dropdown.classList.contains('open')) closeMenu();
-    else openMenu();
-  });
-
-  dropdown.addEventListener('mouseenter', function () {
-    if (window.innerWidth > 900) openMenu();
-  });
-
-  dropdown.addEventListener('mouseleave', function () {
-    if (window.innerWidth > 900) closeMenu();
-  });
-
-  document.addEventListener('click', function (event) {
-    if (!dropdown.contains(event.target)) closeMenu();
-    if (!mobilePanel.contains(event.target) && !mobileToggle.contains(event.target)) closeMobileMenu();
-  });
-
-  document.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape') {
-      closeMenu();
-      closeMobileMenu();
+    function openDD() {
+      // close siblings
+      nav.querySelectorAll('.ilv-dropdown').forEach(function (o) {
+        if (o !== dd) { o.classList.remove('open'); o.querySelector('.ilv-dropdown-btn').setAttribute('aria-expanded', 'false'); }
+      });
+      dd.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
     }
-  });
 
-  mobileToggle.addEventListener('click', function (event) {
-    event.stopPropagation();
-    if (mobilePanel.classList.contains('open')) closeMobileMenu();
-    else openMobileMenu();
-  });
-
-  window.addEventListener('resize', function () {
-    syncResponsive();
-    if (window.innerWidth > 900) closeMobileMenu();
-  });
-
-  panel.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', function () {
-      closeMenu();
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      dd.classList.contains('open') ? closeDD() : openDD();
     });
-    if (window.location.pathname.replace(/\/index\.html$/, '/').endsWith(link.getAttribute('href').replace(/^\.\.\//, '/').replace(/index\.html$/, ''))) {
-      link.style.color = 'var(--red)';
-      link.style.background = 'var(--red-tint)';
+
+    // Hover on desktop
+    dd.addEventListener('mouseenter', function () { if (window.innerWidth > 900) openDD(); });
+    dd.addEventListener('mouseleave', function () { if (window.innerWidth > 900) closeDD(); });
+
+    document.addEventListener('click', function (e) {
+      if (!dd.contains(e.target)) closeDD();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeDD();
+    });
+  });
+
+  // ── Mobile hamburger ──
+  const hamburger = nav.querySelector('#navHamburger');
+  const navMid = nav.querySelector('#navMid');
+  let mobileOpen = false;
+
+  if (hamburger && navMid) {
+    hamburger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      mobileOpen = !mobileOpen;
+      navMid.classList.toggle('mobile-open', mobileOpen);
+      hamburger.setAttribute('aria-expanded', String(mobileOpen));
+    });
+
+    document.addEventListener('click', function (e) {
+      if (mobileOpen && !navMid.contains(e.target) && !hamburger.contains(e.target)) {
+        mobileOpen = false;
+        navMid.classList.remove('mobile-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // ── Active link highlighting ──
+  const path = window.location.pathname.replace(/\/index\.html$/, '/');
+  nav.querySelectorAll('a[href]').forEach(function (a) {
+    const href = a.getAttribute('href').replace(/^\.\.\//, '/').replace(/index\.html$/, '');
+    if (href !== '/' && href !== '' && path.includes(href.replace(/^\//, ''))) {
+      a.classList.add('active');
     }
   });
 
-  mobilePanel.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', function () {
-      closeMobileMenu();
-    });
-    const normalizedHref = link.getAttribute('href').replace(/^\.\.\//, '/').replace(/index\.html$/, '/');
-    if (window.location.pathname.replace(/\/index\.html$/, '/').endsWith(normalizedHref)) {
-      link.style.color = 'var(--red)';
-      link.style.borderColor = 'var(--red)';
-      link.style.background = 'var(--red-tint)';
-    }
-  });
 })();
