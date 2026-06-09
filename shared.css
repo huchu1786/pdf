@@ -185,7 +185,7 @@ body.dark .nav-hamburger span{background:#999}
 .nav-mobile-panel.open{display:block}
 
 /* ── PAGE WRAPPER ── */
-.page-wrap{padding-top:60px;position:relative;overflow:hidden}
+.page-wrap{padding-top:60px;position:relative}
 
 /* ── iLovePDF-STYLE HERO ── */
 .pattern-bg {
