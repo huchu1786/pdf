@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="robots" content="noindex, follow">
+    <meta name="robots" content="index, follow">
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Age Calculator | LovePDFs — Calculate Your Exact Age</title>
@@ -97,6 +97,29 @@ function calcAge(){
   <div class="info-card-c"><h3>Why use As Of date?</h3><p>You can calculate age as of any date in the past or future — useful for legal age checks, birthday countdowns, or historical records.</p></div>
   <div class="info-card-c"><h3>Is it accurate?</h3><p>Yes. The calculator accounts for leap years and varying month lengths to give the exact years, months, weeks, and days.</p></div>
 </div>
+</div>
+
+<div class="tool-article">
+<h2>How to Calculate Your Exact Age</h2>
+<p>Most people know their age only in whole years, but the exact figure — down to the day — matters more often than you'd expect. Schools, government forms, visa applications, insurance policies, and even some sports leagues ask for age calculated as of a specific date rather than "years since birth." This tool does that calculation for you instantly, without you needing to count months on your fingers or account for leap years by hand.</p>
+<p>The calculation itself looks simple but has a few traps. You can't just subtract the birth year from the current year, because that ignores whether your birthday has already happened this year. You also can't assume every month has 30 days when counting the leftover days — February, and leap years in particular, throw off manual math constantly. This calculator handles all of that automatically: it compares your date of birth to the "as of" date field by field (year, month, day), borrows from the month or year when needed (the same way you'd borrow in long subtraction), and accounts for how many days are actually in the previous month, including leap years.</p>
+
+<h3>Why the "Calculate As Of" Field Matters</h3>
+<p>By default the tool uses today's date, but you can change it to any date — past or future. This is useful for a few real situations:</p>
+<ul>
+<li><strong>Eligibility checks</strong> — many programs require someone to be a certain age "as of" a cutoff date (e.g. school enrollment cutoffs, age-based pricing, or legal adulthood on a specific day), not as of today.</li>
+<li><strong>Historical records</strong> — genealogists and researchers often need to know how old a person was on a particular historical date, such as when a document was signed or an event occurred.</li>
+<li><strong>Future planning</strong> — you can check how old you (or someone else) will be on a future date, such as a wedding, graduation, or retirement date.</li>
+</ul>
+
+<h3>What the Results Mean</h3>
+<p>The main result shows your age broken into years, months, and days — the way you'd naturally say your age ("32 years, 4 months, and 11 days"). Below it, the tool also shows the same span converted entirely into months, weeks, and days, which is handy when you need a single number rather than three separate units — for example, when a form asks for "age in months" for a young child, or "age in days" for a precise legal record.</p>
+
+<h3>Frequently Asked Questions</h3>
+<div class="faq-item"><h3>Does this account for leap years?</h3><p>Yes. The calculator uses actual calendar dates via JavaScript's native date handling, so February 29 in leap years is counted correctly and never causes an off-by-one error.</p></div>
+<div class="faq-item"><h3>Can I calculate someone else's age, not just my own?</h3><p>Yes — enter any date of birth. The tool works for calculating a child's age in months, a pet's age, or the age of a historical figure on a given date.</p></div>
+<div class="faq-item"><h3>Is my date of birth stored or sent anywhere?</h3><p>No. The calculation runs entirely in your browser using JavaScript. Nothing you enter is transmitted to a server or saved.</p></div>
+<div class="faq-item"><h3>Why does the day count sometimes look larger than expected?</h3><p>When your current day-of-month is earlier than your birth day-of-month, the calculator "borrows" days from the previous month — which can make the day figure look large until you see it's paired with one fewer month.</p></div>
 </div>
 
 <footer class="site-footer">

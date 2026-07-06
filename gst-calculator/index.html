@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="robots" content="noindex, follow">
+    <meta name="robots" content="index, follow">
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>GST Calculator | LovePDFs — Free Online GST Calculator India</title>
@@ -117,6 +117,30 @@ function calcGst(){
   <div class="info-card-c"><h3>GST Exclusive vs Inclusive</h3><p><strong>Exclusive:</strong> GST is added on top of the price (e.g., price ₹1000 + 18% GST = ₹1180). <strong>Inclusive:</strong> GST is already included in the stated price.</p></div>
   <div class="info-card-c"><h3>CGST + SGST = IGST</h3><p>For intra-state transactions, GST is split equally into CGST (Central) and SGST (State). For inter-state, it's charged as IGST (Integrated).</p></div>
 </div>
+</div>
+
+<div class="tool-article">
+<h2>How GST Calculations Work</h2>
+<p>Goods and Services Tax (GST) replaced a stack of older indirect taxes in India — VAT, service tax, excise duty, and others — with a single tax applied at the point of sale. It sounds simple, but GST math still confuses people because the same tax can be added on top of a price or already baked into it, and the correct approach depends entirely on how the price was originally quoted to you.</p>
+
+<h3>Exclusive vs. Inclusive GST — Why It Matters</h3>
+<p>When a price is <strong>GST-exclusive</strong>, the listed price is the base amount and GST gets added on top at checkout — a ₹1,000 item with 18% GST becomes ₹1,180 on the final bill. When a price is <strong>GST-inclusive</strong>, the ₹1,180 figure is what you were quoted from the start, and the GST portion is already sitting inside it — extracting it means working backward: GST amount = Price − (Price ÷ (1 + rate)). Mixing these two up is the single most common billing mistake with GST, and it's why this calculator offers both directions rather than assuming one.</p>
+
+<h3>Understanding CGST, SGST, and IGST</h3>
+<p>GST isn't collected as one single line item — it's split depending on whether the buyer and seller are in the same state or different states:</p>
+<ul>
+<li><strong>CGST (Central GST) + SGST (State GST)</strong> — used for transactions within the same state. The total GST rate is split evenly between the two, e.g. an 18% rate becomes 9% CGST + 9% SGST.</li>
+<li><strong>IGST (Integrated GST)</strong> — used for transactions between two different states (or imports). The full rate is charged as a single IGST line rather than split.</li>
+</ul>
+<p>This split matters for businesses filing GST returns, since CGST, SGST, and IGST are tracked and reconciled separately even though the buyer usually just sees one total tax amount.</p>
+
+<h3>The Standard GST Slabs</h3>
+<p>India currently applies GST at 0%, 5%, 12%, 18%, or 28% depending on the category of goods or services — essential items are typically taxed at 0% or 5%, standard goods and most services at 12–18%, and luxury or "sin" goods (like tobacco or high-end vehicles) at 28%, sometimes with an additional cess on top.</p>
+
+<h3>Frequently Asked Questions</h3>
+<div class="faq-item"><h3>How do I remove GST from a total that already includes it?</h3><p>Divide the total by (1 + GST rate as a decimal) to get the base price, then subtract that from the total to get the GST amount. This calculator's "inclusive" mode does this automatically.</p></div>
+<div class="faq-item"><h3>Is GST the same across all of India?</h3><p>The rate slabs are set nationally, but which slab applies depends on the specific goods/service category, not the state — the CGST/SGST split (rather than the total rate) is what changes based on whether the transaction is within one state or across states.</p></div>
+<div class="faq-item"><h3>Can I use this for invoicing?</h3><p>Yes, it's useful for quickly checking GST math before issuing an invoice, though for official filing you should always verify figures against your accounting software or a tax professional.</p></div>
 </div>
 
 <footer class="site-footer">

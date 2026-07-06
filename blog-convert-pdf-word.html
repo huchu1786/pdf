@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="robots" content="noindex, follow">
+<meta name="robots" content="index, follow">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y3DBMD92DV"></script>
 <script>
@@ -75,8 +75,24 @@
                 <li><strong>Check file size first:</strong> If your PDF is very large, <a href="compress-pdf/" style="color:var(--red);font-weight:700;">compress it first</a> for faster conversion.</li>
             </ul>
             
+            <h3 class="section-h3">Why Formatting Breaks in the First Place</h3>
+            <p class="body-p">A PDF stores text as positioned glyphs on a page, not as a flowing document structure. When a converter reads a PDF, it has to reconstruct the idea of "paragraphs," "columns," and "headings" purely from clues like horizontal position, vertical spacing, and font size — the PDF itself doesn't label any of these. Two-column layouts are the classic failure case: without layout analysis, a converter reads left-to-right across the whole page width, which means the last few words of column one get glued to the first few words of column two, scrambling every sentence that crosses the column boundary.</p>
+
+            <h3 class="section-h3">Step-by-Step: Converting a PDF to Word</h3>
+            <ol style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text2); line-height: 2;">
+                <li>Open the <a href="pdf-to-word/" style="color:var(--red);font-weight:700;">PDF to Word tool</a> and select or drag in your PDF file.</li>
+                <li>Wait for the layout analysis to run — this groups text into paragraphs and detects headings by font size and position, entirely in your browser.</li>
+                <li>Download the resulting .docx file and open it in Word, Google Docs, or LibreOffice.</li>
+                <li>Review headings and any complex tables — these are the two areas most likely to need a small manual touch-up after conversion.</li>
+            </ol>
+
             <h3 class="section-h3">Other Conversion Formats</h3>
             <p class="body-p">Need a different format? LovePDFs supports many conversion options: <a href="pdf-to-excel/" style="color:var(--red);font-weight:700;">PDF to Excel</a>, <a href="pdf-to-ppt/" style="color:var(--red);font-weight:700;">PDF to PowerPoint</a>, <a href="pdf-to-text/" style="color:var(--red);font-weight:700;">PDF to Text</a>, and conversions going the other direction like <a href="word-to-pdf/" style="color:var(--red);font-weight:700;">Word to PDF</a> and <a href="excel-to-pdf/" style="color:var(--red);font-weight:700;">Excel to PDF</a>. All free, all private, all browser-based.</p>
+
+            <h3 class="section-h3">Frequently Asked Questions</h3>
+            <p class="body-p"><strong>Will my document look exactly the same in Word?</strong><br>Body text, paragraphs, and headings carry over accurately for most documents. Highly designed layouts (multi-column brochures, dense nested tables) may need minor manual adjustment after conversion, since Word's layout engine doesn't work identically to a PDF's fixed-position rendering.</p>
+            <p class="body-p" style="margin-top:0.9rem"><strong>Why does my converted document have odd line breaks?</strong><br>This usually happens with scanned PDFs that have no real text layer — the converter is trying to read an image as text. Running the file through <a href="ocr-extract-text/" style="color:var(--red);font-weight:700;">OCR</a> first solves this by extracting actual text before conversion.</p>
+            <p class="body-p" style="margin-top:0.9rem"><strong>Is my document uploaded to a server during conversion?</strong><br>No — the conversion runs locally in your browser, so your file is never transmitted anywhere.</p>
 
         </div>
         
